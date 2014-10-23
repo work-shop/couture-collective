@@ -1,0 +1,11 @@
+
+
+@font-face {
+    font-family: 'modern_pictograms_proregular';
+    src: url('modernpictogramspro_234.eot');
+    src: url('modernpictogramspro_234?#iefix') format('embedded-opentype'),
+		url('modernpictogramspro_234.woff') format('woff'),
+		url('modernpictogramspro_234.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
