@@ -1,9 +1,9 @@
 
 <?php get_header();?>
 
-<div id="home" class="template home">	
+<div id="how-it-works" class="template template-page">	
 
-	<section id="home-introduction" class="home-introduction block fit">	
+<section id="about-introduction" class="about-introduction block fit">	
 	
 		<div class="centered-vertical">
 			<div class="container">
@@ -12,7 +12,7 @@
 				
 					<div class="col-sm-12">
 					
-						<h1 class="centered">Text & Images</h1>
+						<h1 class="centered">How it Works</h1>
 					</div>
 				
 				</div>
@@ -22,7 +22,9 @@
 		</div>
 					
 	</section>	
-			
+
+
+	
 </div>	
 
 <?php get_footer(); ?>

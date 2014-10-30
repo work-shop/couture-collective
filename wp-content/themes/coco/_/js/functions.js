@@ -1,6 +1,6 @@
 
 //global variables
-var cw,ch;
+var cw,ch,hh;
 var loaded = false;
 var state = 'intro';
 var moving = false;
@@ -115,11 +115,14 @@ function view(){
 	
 	ch = $(window).height();
 	cw = $(window).width();
+	hh = $("#header").height();
+	console.log(hh);
 	
 	if($(window).width() >= 768){	
 		$('.block.half').css('height',ch/2);				
 		$('.block.crop').css('height',ch);		
-		$('.block.min').css('min-height',ch);				
+		$('.block.min').css('min-height',ch);						
+		$('.block.fit').css('height',ch-hh);				
 	}
 	else{
 		$('.block.crop').css('min-height',ch);	

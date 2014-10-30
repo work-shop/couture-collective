@@ -132,7 +132,7 @@ img,video{
 
 .centered-vertical{
 	margin-top: 0;
-	position: absolute;
+	position: relative;
 	top: 45%;
 	-webkit-transform: translate(0, -50%);
 }	
@@ -299,7 +299,7 @@ h1,h2,h3,h4,h5,h6,p{
 }
 
 h1,.h1{
-	font-size: 60px;
+	font-size: 90px;
 }
 
 h2,.h2{
@@ -311,7 +311,7 @@ h3,.h3{
 }
 
 h4{
-	font-size: 16px;
+	font-size: 14px;
 }
 
 h5,h6{
@@ -392,7 +392,7 @@ h5,h6{
 
 #header{
 	height: @header-height;
-	padding-top: 45px;
+	//padding-top: 45px;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -426,32 +426,46 @@ h5,h6{
 	#nav{
 		position: relative;
 		top: -60px;
-	
-		li{
-			display: inline-block;
-			margin-top: 7px;
-			padding: 0 25px;
-			border-right: 1px solid @brand;
-			
-			&:last-child{
-				border-right: 1px solid transparent;
-				padding-right: 0;
-			}
-			a{
-				font-size: 18px;
-				color: black;
-				
-				&:hover{
-					border-bottom: 1px solid @brand;
-				}
-			}
-		}
 	}
 	
 	.container{
 		border-bottom: 2px solid @brand;
 		padding: 0;
+		padding-top: 45px;
 	}
+	
+}
+
+#nav,#footer-nav{
+	li{
+		display: inline-block;
+		margin-top: 7px;
+		padding: 0 25px;
+		border-right: 1px solid @brand;
+		
+		&:last-child{
+			border-right: 1px solid transparent;
+			padding-right: 0;
+		}
+		a{
+			font-size: 18px;
+			color: black;
+			
+			&:hover{
+				border-bottom: 1px solid @brand;
+			}
+		}
+	}	
+}
+
+#footer{
+
+	.container{
+		padding: 12px 0 25px 0;
+		border-top: 2px solid @brand;
+		
+	}
+	
 }
 
 #headerfix{
@@ -463,10 +477,14 @@ h5,h6{
 	#header{
 		height: @header-small-height;
 		overflow: hidden;
-		padding-top: 03px;
+		//padding-top: 03px;
 		
 		#logo{
 			width: 150px;
+		}
+		
+		.container{
+			padding-top: 0;
 		}
 	}
 	
@@ -478,18 +496,60 @@ h5,h6{
 /********** @HOME *********/
 
 #home-introduction{
-	
-	.container{
-		height: inherit;
-	}
-	
-	.row{
-		height: inherit;
-		background: yellow;
-	}
+
 	
 }
 
+/********** @LOOK BOOK *********/
+
+#look-book{
+	.filters{
+		margin-bottom: 30px;
+	
+		li{
+			display: inline-block;
+			font-size: 15px;
+			padding: 0 15px;
+			border-right: 1px solid @brand;
+			
+			&:last-child{
+				border-right: 1px solid transparent;
+			}
+			
+			a{
+				&.active{
+					.bold();
+				}
+			}
+		}
+		
+		
+	}
+}
+
+.product{
+	margin-bottom: 45px;
+	//padding: 0 60px;
+	
+	.product-summary{
+		h4{
+		
+			&:first-child{
+				margin-top: 15px;
+			}
+			margin-top: 10px;
+			margin-bottom: 0px;
+			
+		}
+	}
+}
+
+/********** @PAGE *********/
+
+.template-page{
+	margin-top: 60px;
+	margin-bottom: 180px;
+}
 
 /********** @PROJECTS *********/
 
