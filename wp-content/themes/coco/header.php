@@ -66,27 +66,19 @@
 
 				<nav class="right hidden-xs" id="nav">
 					<ul class="main-menu">
-						<li><a href="<?php bloginfo('url'); ?>/about" id="about-link" class="">How it Works</a></li>	
+						<li><a href="<?php bloginfo('url'); ?>/how-it-works"  class="">How it Works</a></li>
+						<li><a href="<?php bloginfo('url'); ?>/look-book" class="">Look Book</a></li>								
 						<li><a href="<?php bloginfo('url'); ?>/join" class="">Become a Member</a></li>							
 						<li><a href="<?php bloginfo('url'); ?>/login" class="">Login</a></li>
 					</ul>	
 				</nav>	
 				
-				<a id="carrot" href="#" class="nav-toggle closed">
+				<!--
+<a id="carrot" href="#" class="nav-toggle closed">
 					<img src="<?php bloginfo('template_directory'); ?>/_/img/toggle.png" alt="navigation-toggle">
 				</a>
-				
-				<nav id="menu" class="closed hidden">
-					<div class="row">
-						<div class="col-sm-6">
-						
-						</div>
-						<div class="col-sm-6">
-						
-						</div>
-					</div>
-				</nav>
-														
+-->
+											
 			</div>					
 		</header>
 

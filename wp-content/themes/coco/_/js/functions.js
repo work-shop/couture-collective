@@ -44,7 +44,7 @@ $(window).scroll(function() {
 		spy();
 	}	
 
-	var after = $('body').offset().top + 200;
+	var after = $('body').offset().top + 60;
 	       
 	if($(this).scrollTop() >= after && $("body").hasClass('before')){
 		$("body").removeClass('before').addClass('after');
@@ -141,7 +141,7 @@ function loadPage(){
 	setTimeout(function(){
 		$('.loading').addClass('loaded');
 		$('.landing').addClass('landed');
-	},1050);		
+	},500);		
 		
 }
 

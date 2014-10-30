@@ -130,6 +130,13 @@ img,video{
 	text-align: center;
 }
 
+.centered-vertical{
+	margin-top: 0;
+	position: absolute;
+	top: 45%;
+	-webkit-transform: translate(0, -50%);
+}	
+
 .logo{
 	display: block;
 }
@@ -380,20 +387,26 @@ h5,h6{
 	}
 }
 
+@header-height: 170px;
+@header-small-height: 60px;
 
 #header{
-	height: 120px;
-	padding-top: 12px;
-	position: absolute;
+	height: @header-height;
+	padding-top: 45px;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	z-index: 10;
+	//background: gray;
+	.transition(padding,.25s);
 	
 	#logo{
 		width: 200px;
 		position: static;
 		margin-top: 5px;
+		.transition(width,.25s);
+		
 	}
 	
 	#carrot{
@@ -411,20 +424,52 @@ h5,h6{
 	}
 	
 	#nav{
-		position: fixed;
-		right: 32px;
-		top: 15px;
+		position: relative;
+		top: -60px;
 	
 		li{
 			display: inline-block;
 			margin-top: 7px;
-			margin-left: 15px;
+			padding: 0 25px;
+			border-right: 1px solid @brand;
+			
+			&:last-child{
+				border-right: 1px solid transparent;
+				padding-right: 0;
+			}
 			a{
 				font-size: 18px;
 				color: black;
+				
+				&:hover{
+					border-bottom: 1px solid @brand;
+				}
 			}
 		}
 	}
+	
+	.container{
+		border-bottom: 2px solid @brand;
+		padding: 0;
+	}
+}
+
+#headerfix{
+	height: @header-height;
+}
+
+.after{
+
+	#header{
+		height: @header-small-height;
+		overflow: hidden;
+		padding-top: 03px;
+		
+		#logo{
+			width: 150px;
+		}
+	}
+	
 }
 
 
@@ -434,303 +479,19 @@ h5,h6{
 
 #home-introduction{
 	
-	.block-background{
-		opacity: .9;
+	.container{
+		height: inherit;
 	}
 	
-	.tagline-container{
-		margin-top: 0;
-		position: relative;
-		top: 45%;
-		-webkit-transform: translate(0,-50%);
-		
-		.tagline{
-
-			line-height: 1.4;	
-
-			
-			&.black{
-				color: black;
-				.text-shadow(0,1px,1px,rgba(255,255,255,.5));				
-			}
-			
-			a{
-				color: inherit;
-				padding-bottom: 2px;
-				border-bottom: 4px solid transparent;
-				
-				
-				&:hover{
-					border-bottom: 4px solid rgba(255,255,255,.25);
-				}
-			}
-		}
-		
+	.row{
+		height: inherit;
+		background: yellow;
 	}
 	
-}
-
-.vertical-center{
-	margin-top: 0;
-	position: relative;
-	top: 45%;
-	-webkit-transform: translate(0,-50%);	
-}
-
-#home-background{
-	position: fixed;
-	height: 150%;
-	width: 100%;
-	z-index: 0;
 }
 
 
 /********** @PROJECTS *********/
-
-#projects-filters{
-	height: 70px;
-	overflow: hidden;
-	position: relative;
-	padding-top: 5px;
-	
-	.container{
-		//border-bottom: 2px solid @brand;
-	}
-	
-	ul{
-		text-align: center;
-	}
-	
-	li{
-		display: inline-block;
-		margin-right: 13px;
-		
-		a{
-			color: @dark;
-			font-size: 14px;
-			padding-bottom: 2px;
-
-			&:hover{
-				border-bottom: 2px solid @brand;
-			}
-			
-			
-			&.active{
-				border-bottom: 2px solid @brand;
-			}
-		}
-	}
-	
-}
-
-#projects-grid{
-	padding-bottom: 10%;
-	
-	.container{
-		max-width: 1000px;
-	}
-}
-
-.project-tile{
-	overflow: hidden;
-	margin-bottom: 60px;
-	
-	h2{
-		color: white;
-	}
-	
-	&:nth-child(odd){
-	
-		.project-tile-image{
-			
-			&:hover{
-				//opacity: .5;
-				.project-tile-hook{
-					left: 0;
-				}		
-			}
-		}	
-
-		.project-tile-hook{
-			left: -300%;
-		}				
-			
-	}
-	
-	&:nth-child(even){
-	
-		.project-tile-image{
-			
-			&:hover{
-				//opacity: .5;
-				.project-tile-hook{
-					left: 0;
-				}		
-			}
-		}	
-		
-		.project-tile-hook{
-			left: 300%;
-		}		
-			
-	}	
-	
-	.project-tile-image{
-		position: relative;
-	}
-	
-	.project-tile-hook{
-		position: absolute;
-		top: 0;
-		width: 100%;
-		height: 100%;
-		padding: 30px;
-		.transition(left,.75s);	
-		//background: rgba(110,110,110,.53);
-		
-	}
-	
-	.project-tile-info{
-	
-		*{
-			color: #111;
-		}
-		h4{
-			height: 60px;
-		}
-	}
-		
-}
-
-/********** @SINGLE-PROJECT *********/
-
-@gutter: 60px;
-
-#project-introduction{
-	//background: #333;
-	
-	.hero-image{
-		padding: 0 @gutter;
-	}
-}
-
-#project-overview{
-	.block-background{
-		opacity: .5;
-		z-index: -1;
-	}
-}
-
-#story-bar{
-	margin: 0;
-	padding: 0;
-	height: @gutter;	
-	position: fixed;
-	right: 5px;
-	top: 40%;
-	z-index: 8;	
-	transform: rotate(90deg);
-	transform-origin: 50% 200%;
-	overflow: hidden;
-	
-	li{
-		margin: 0;
-		height: inherit;
-
-		a{
-			height: inherit;
-			display: block;
-			font-size: 20px;
-			line-height: @gutter;
-			vertical-align: middle;	
-			text-transform: uppercase;	
-			color: @dark;
-		}
-	}
-}
-
-/********** @ABOUT *********/
-
-.info-mission{
-	
-
-	h3{
-		line-height: 1.6;
-	}
-
-	
-}
-
-.person{
-
-	h3{
-		margin-bottom: 3px;
-	}
-	h4{
-		margin-top: 3px;
-		margin-bottom: 3px;
-	}
-	
-	p{
-		//margin-top: 
-	}
-}
-
-
-/********** @INVITATIONS *********/
-
-.invitation{
-	overflow: hidden;
-}
-
-.invitation-form{
-	position: relative;
-	top: 0;
-	left: 150%;
-	.transition(left,1s);
-	background: rgba(255,255,255,.1);
-	background: @brand;
-	width: 320px;
-	padding: 10px;
-	visibility: hidden;
-	
-	.gform_wrapper{
-		*{
-			color: white;
-		}
-	}
-	
-	&.open{
-		left: 0;
-		visibility: visible;
-	}
-}
-
-/********** @FOOTER *********/
-
-#contact{
-	
-	address *{
-		text-align: center;
-		margin-top: 5px;
-		margin-bottom: 5px;
-	}
-	
-	.button{
-		display: block;
-	}
-	
-	.actions{
-		margin-top: 100px;
-		
-		.button{
-			height: 60px;
-		}
-	}
-
-}
-
-
 
 
 /********** @UTILITIES *********/
