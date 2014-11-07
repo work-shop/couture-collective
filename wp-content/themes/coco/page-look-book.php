@@ -39,7 +39,7 @@
 						$share_price = $product->price;
 						?>
 						
-						<div class="col-sm-3 col-md-2 col-xs-6 product available available-tomorrow available-shares">
+						<div class="col-sm-3 col-md-2 col-xs-6 product-tile available available-tomorrow available-shares">
 							<a href="<?php the_permalink(); ?>">
 								
 								<div class="product-image">

@@ -1,7 +1,6 @@
-
 <?php get_header();?>
-
-<div id="page" class="template page">
+		
+<div id="post" class="template post">	
 
 	<div class="container">
 		<div class="row">

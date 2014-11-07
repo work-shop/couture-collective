@@ -527,9 +527,14 @@ h5,h6{
 	}
 }
 
-.product{
+.product-tile{
 	margin-bottom: 45px;
 	//padding: 0 60px;
+	.transition(transform,.125s);
+	
+	&:hover{
+		-webkit-transform: scale(1.05);
+	}
 	
 	.product-summary{
 		h4{
