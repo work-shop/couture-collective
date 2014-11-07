@@ -8,7 +8,9 @@
 		<div class="filters">
 
 			<div class="container">	
-					
+				
+				<h2>My Closet</h2>
+
 				<ul>
 					<li class="key">Show: </li>
 					<li><a href="#" class="active">ALL</a></li>

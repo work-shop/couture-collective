@@ -68,8 +68,15 @@
 					<ul class="main-menu">
 						<li><a href="<?php bloginfo('url'); ?>/how-it-works"  class="">How it Works</a></li>
 						<li><a href="<?php bloginfo('url'); ?>/look-book" class="">Look Book</a></li>								
-						<li><a href="<?php bloginfo('url'); ?>/join" class="">Become a Member</a></li>							
-						<li><a href="<?php bloginfo('url'); ?>/login" class="">Login</a></li>
+						 <?php if ( is_user_logged_in() ) {  ?>
+							<li><a href="<?php bloginfo('url'); ?>/closet" class="">My Closet</a></li>		
+							<li><a href="<?php bloginfo('url'); ?>/my-account" class="">My Account</a></li>	
+							<li><a href="<?php bloginfo('url'); ?>/cart"  class="">My Cart</a></li>											
+						<?php } else{?> 						
+							<li><a href="<?php bloginfo('url'); ?>/my-account" class="">Become a Member</a></li>	
+							<li><a href="<?php bloginfo('url'); ?>/my-account" class="">Login</a></li>
+						<?php } ?> 
+
 					</ul>	
 				</nav>	
 				

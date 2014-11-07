@@ -1,6 +1,6 @@
 <?php get_header();?>
 
-<div id="page" class="template page-cart">
+<div id="page" class="template page">
 
 	<div class="container">
 		<div class="row">
@@ -17,7 +17,7 @@
 		<div class="row">
 		
 			<div class="col-sm-12">
-				<?php echo do_shortcode('[woocommerce_cart]') ?>
+				<?php echo do_shortcode('[woocommerce_my_account]') ?>
 			</div>
 			
 		</div>
