@@ -111,6 +111,17 @@ if ( function_exists( 'add_image_size' ) ) {
 	add_image_size( 'full', 1440, 878, true );  
 }
 
+// Add menus to theme
+function register_menus() {
+  register_nav_menus(
+    array(
+      'footer-menu' => __( 'Footer Menu' ),
+      'top-left-menu' => __( 'Top Left Menu' ),
+      'top-right-menu' => __( 'Top Right Menu' )
+    )
+  );
+}
+add_action('init', 'register_menus');
 
 // Remove post formats support
 add_action('after_setup_theme', 'remove_post_formats', 11);
