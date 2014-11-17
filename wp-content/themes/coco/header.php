@@ -75,6 +75,7 @@
 						<?php } else{?> 						
 							<li><a href="<?php bloginfo('url'); ?>/my-account" class="">Become a Member</a></li>	
 							<li><a href="<?php bloginfo('url'); ?>/my-account" class="">Login</a></li>
+							<?php include '_partials/small-login.php'; ?>
 						<?php } ?> 
 
 					</ul>	
