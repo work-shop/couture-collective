@@ -27,7 +27,8 @@
 			<?php
 				$args = array(
 					'post_type' => 'product',
-					'posts_per_page' => 12
+					'posts_per_page' => 12,
+					'post__not_in' => array(45)
 					);
 				$loop = new WP_Query( $args );
 				
@@ -38,7 +39,6 @@
 						$rent_price = $product->get_sale_price();
 						$share_price = $product->price;
 						?>
-						
 						<div class="col-sm-3 col-md-2 col-xs-6 product-tile available available-tomorrow available-shares">
 							<a href="<?php the_permalink(); ?>">
 								
