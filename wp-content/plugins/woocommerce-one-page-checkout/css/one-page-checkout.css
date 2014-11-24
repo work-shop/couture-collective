@@ -1,0 +1,128 @@
+.woocommerce form.checkout .opc-single-product:before,
+.woocommerce form.checkout .opc-single-product:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+.woocommerce form.checkout .opc-single-product:after {
+	clear: both;
+}
+.woocommerce form.checkout .opc-single-product {
+	*zoom: 1;
+	margin-bottom: 2em;
+}
+.woocommerce form.checkout .product .entry-summary {
+	margin: 0 !important;
+	padding:0 !important;
+}
+.woocommerce form.checkout .product .quantity,
+.woocommerce form.checkout .product .add_to_cart_button {
+	margin:0 0 2em 0 !important;
+}
+/* Hide the add to cart button as we just use the quantity input field to add items in opc */
+.woocommerce form.checkout .product .single_add_to_cart_button {
+	display: none !important;
+}
+.selected button.add_to_cart_button, 
+.selected a.add_to_cart_button {
+	opacity: 0.5;
+}
+.selected button.add_to_cart_button span, 
+.selected a.add_to_cart_button span {
+	display: none;
+}
+.selected button.add_to_cart_button:hover, 
+.selected a.add_to_cart_button:hover {
+	opacity:1;
+}
+.selected button.add_to_cart_button::after, 
+.selected a.add_to_cart_button::after {
+	content: attr(data-opc_remove_text);
+}
+/* Center add to cart input on product table */
+.opc-product-selection .shop_table td.product-quantity {
+	text-align: center;
+}
+/*
+ * Pricing Tables
+ */
+.opc-pricing-table-wrapper {
+	width: 100%;
+	clear: both;
+}
+/* Pricing Table Columns */
+.opc-pricing-table-product {
+	position: relative;
+	float: left;
+	margin: 1.6em 0 1em -1px;
+	border: 1px solid #e0e0e0;
+	text-align: center;
+}
+.opc-pricing-table-product:not(:first-child) {
+	border-left: none;
+}
+.opc-pricing-table-product,
+.opc_columns_4 .opc-pricing-table-product {
+	width: 24%;
+}
+.opc_columns_2 .opc-pricing-table-product {
+	width: 49%;
+}
+.opc_columns_3 .opc-pricing-table-product {
+	width: 33%;
+}
+.opc_columns_5 .opc-pricing-table-product {
+	width: 19%;
+}
+@media screen and (max-width: 782px) {
+	.opc-pricing-table-product,
+	.opc_columns_4 .opc-pricing-table-product,
+	.opc_columns_2 .opc-pricing-table-product,
+	.opc_columns_3 .opc-pricing-table-product,
+	.opc_columns_5 .opc-pricing-table-product {
+		width: 100%;
+	}
+}
+/* Pricing Table Header */
+.opc-pricing-table-product-header {
+	padding: 1em 1em 1.6em;
+}
+.opc-pricing-table-product-title {
+	font-size: 1em;
+}
+.opc-pricing-table-product-price {
+	font-size: 1.6em;
+	line-height: 1em;
+}
+.opc-pricing-table-product-price .subscription-details {
+	font-size: 0.6em;
+}
+.opc-pricing-table-product .product-quantity {
+	min-height: 30px;
+}
+/* Border between sections */
+.opc-pricing-table-product-attributes,
+.opc-pricing-table-product-dimensions {
+	padding-top: 2em;
+	border-top: 1px solid #e5e5e5;
+}
+/*
+ * Scroll down button
+ */
+.selected .wc-south {
+	display: inline-block;
+}
+.wc-south {
+	display: none;
+}
+.wc-south:before, .wc-south a:before {
+	font-family: 'WooCommerce';
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	margin-right: 7px;
+	content: "\e02e";
+	font-size: .75em;
+}

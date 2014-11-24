@@ -1,0 +1,29 @@
+/**
+ * user-edit.css
+ *
+ * Copyright (c) "kento" Karim Rahimpur www.itthinx.com
+ *
+ * This code is provided subject to the license granted.
+ * Unauthorized use and distribution is prohibited.
+ * See COPYRIGHT.txt and LICENSE.txt
+ *
+ * This code is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * This header and all notices must be kept intact.
+ *
+ * @author itthinx
+ * @package groups-woocommerce
+ * @since groups-woocommerce 1.7.1
+ */
+table td input.year {
+	width: 6em;
+}
+table td input.month,
+table td input.day,
+table td input.hour,
+table td input.minute,
+table td input.second {
+	width: 4em;
+}

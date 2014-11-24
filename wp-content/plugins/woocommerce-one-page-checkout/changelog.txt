@@ -1,0 +1,9 @@
+2014.11.17 - version 1.0.2
+ * Fix: make sure cart cookies are set when adding items to cart to ensure checkout works for new guest customers
+
+2014.11.10 - version 1.0.1
+ * Tweak: include internationalisation files and load localisation file
+ * Fix: strict notice
+
+2014.10.24 - version 1.0
+ * Initial release

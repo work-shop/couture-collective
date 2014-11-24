@@ -1,0 +1,107 @@
+*** Groups WooCommerce ***
+
+2014.11.12 - version 1.7.1
+* Allows to edit time-limited memberships manually (in user profiles).
+* Fixed missing language domains on some strings.
+* Fixed own membership info is not shown when editing own user profile
+  and the option is enabled.
+* Fixed duplicate membership lines shown in user profile on empty bucket
+  after bucket with timestamp(s).
+* Fixed a bug in the membership termination algorithm
+  (group comparison in the terminator).
+* Fixed the subscription switching handler to also react on completed orders.
+
+2014.08.28 - version 1.7.0
+* Added changes for WooCommerce 2.2.0 compatibility
+
+2014.05.02 - version 1.6.0
+* Added group assignments by product variation
+* Using selectize instead of checkboxes for product groups
+* Fixed missing plural forms in translation template
+* German translation completed
+
+2014.04.27 - version 1.5.4
+* Added: Load translations from the languages folder.
+* Changed: Plugin text domain from 'groups' to 'groups-woocommerce'.
+* Added: Translation template in the languages folder.
+* Added: Example translation de_DE (incomplete translation).
+
+2013.12.27 - version 1.5.3
+* Fixed: Prematurely ended subscriptions when orders are processing and a
+         subscription is cancelled.
+
+2013.11.23 - version 1.5.2
+* Improved: Dynamically change groups view for products based on product type.
+* Added: The [groups_woocommerce_memberships] can now be used to render info
+         on time-limited memberships for the current user.
+* Fixed: A fatal error would be caused when trying to render information on
+         subscriptions using the [groups_woocommerce_subscriptions_table]
+         shortcode while the WooCommerce Subscriptions plugin is not active.
+* Changed: Allowing to execute the subscription expiration handling process
+           also when the related order is processing (required to work with
+           switched subscriptions when groups should be removed as the
+           switched subscription is cancelled).
+* Improved: Replaced uses of deprecated get_users_subscription method
+
+2013.09.23 - version 1.5.1
+* Fixed: Fatal Error because of a missing class when WooCommerce Subscriptions
+  is not installed and membership info should be shown in user profiles.
+
+2013-08-20 - version 1.5.0
+* Fixed: membership removal is only effective if no other orders grant same
+* Added additional fields with plugin version, start timestamp, duration and
+  duration UOM to the product groups usermeta.
+* Fixed: show_count and show_table options not used when rendering
+  subscriptions table.
+* Added exclude_cancelled_after_end_of_prepaid_term option to subscription
+  table renderer; used to show valid group memberships for cancelled
+  subscriptions in user profile
+* Fixed: incorrect $$output variable reference in subscription table renderer
+* Fixed: some non-existent indexes used in subscription table renderer
+* Removed the word 'Unlimited' from group membership description to avoid
+  confusion
+* Fixed: remove group membership when subscriptions are cancelled and order is
+  cancelled or refunded
+* Added: Groups column in products admin view
+
+2013-07-03 - version 1.4.1
+* Fixed: missing $accepted_args on subscription_end_of_prepaid_term hook
+* Added: options to show group membership info in user profiles / when editing
+
+2013-04-30 - version 1.4.0
+* added feature: option to force registration on checkout when a Groups-
+  related product is in the cart
+* added feature: new shortcode [groups_woocommerce_subscriptions_table] that
+  lists a user's subscriptions
+
+2013-02-27 - version 1.3.4
+* Fixed: Using the subscription_end_of_prepaid_term action instead of
+  cancelled_subscription action to end group memberships for cancelled
+  subscriptions - this requires WooCommerce Subscriptions version 1.2.6 or
+  higher as that action has been introduced as of then.
+* added feature: subscriptions on hold will remove users from groups; when
+  reactivated, users are added back to the groups (enabled by default)
+
+2013-01-10 - version 1.3.3
+* visual changes in groups tab on products (needed for WooCommerce 2.0)
+
+2012.12.13 - version 1.3.2
+* 1.2.1 - 1.3.1 sync
+
+2012.12.11 - version 1.3.1
+* WP 3.5 compatibility
+
+2012.12.05 - version 1.3.0
+* added feature: group memberships based on normal products can have a limited
+  duration
+
+2012.10.07 - version 1.2.1
+* New updater
+
+2012.10.07 - version 1.2.0
+* added feature: choose when users are added to groups (processing or
+  completed)
+* added feature: remove from group when product is purchased
+
+2012.06.21 - version 1.0
+ * First release

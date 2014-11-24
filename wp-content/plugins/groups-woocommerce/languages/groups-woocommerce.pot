@@ -1,0 +1,448 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid   ""
+msgstr  "Project-Id-Version: PACKAGE VERSION\n"
+        "Report-Msgid-Bugs-To: \n"
+        "POT-Creation-Date: 2014-05-02 17:39+0200\n"
+        "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+        "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+        "Language-Team: LANGUAGE <LL@li.org>\n"
+        "Language: \n"
+        "MIME-Version: 1.0\n"
+        "Content-Type: text/plain; charset=CHARSET\n"
+        "Content-Transfer-Encoding: 8bit\n"
+        "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:224
+#, php-format
+msgid   "%s (as chosen under <em>Time unit</em>)"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:528
+#, php-format
+msgid   "%s for 1 day"
+msgid_plural    "%s for %d days"
+msgstr[0]       ""
+msgstr[1]       ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:525
+#, php-format
+msgid   "%s for 1 hour"
+msgid_plural    "%s for %d hours"
+msgstr[0]       ""
+msgstr[1]       ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:522
+#, php-format
+msgid   "%s for 1 minute"
+msgid_plural    "%s for %d minutes"
+msgstr[0]       ""
+msgstr[1]       ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:537
+#, php-format
+msgid   "%s for 1 month"
+msgid_plural    "%s for %d months"
+msgstr[0]       ""
+msgstr[1]       ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:519
+#, php-format
+msgid   "%s for 1 second"
+msgid_plural    "%s for %d seconds"
+msgstr[0]       ""
+msgstr[1]       ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:531
+#, php-format
+msgid   "%s for 1 week"
+msgid_plural    "%s for %d weeks"
+msgstr[0]       ""
+msgstr[1]       ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:534
+#, php-format
+msgid   "%s for 1 year"
+msgid_plural    "%s for %d years"
+msgstr[0]       ""
+msgstr[1]       ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-user.php:139
+#: groups-woocommerce/lib/views/class-groups-ws-membership-shortcodes.php:110
+#, php-format
+msgid   "<em>%1$s</em> membership until %2$s at %3$s."
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-user.php:132
+#: groups-woocommerce/lib/views/class-groups-ws-membership-shortcodes.php:103
+#, php-format
+msgid   "<em>%s</em> membership."
+msgstr  ""
+
+#: groups-woocommerce/lib/core/class-groups-ws.php:153
+msgid   "<em>Groups WooCommerce</em> needs the <a href=\"http://www.itthinx."
+        "com/plugins/groups/\" target=\"_blank\">Groups</a> plugin. Please "
+        "install and activate it."
+msgstr  ""
+
+#: groups-woocommerce/lib/core/class-groups-ws.php:156
+msgid   "<em>Groups WooCommerce</em> needs the <a href=\"http://www.woothemes."
+        "com/woocommerce/\" target=\"_blank\">WooCommerce</a> plugin. Please "
+        "install and activate it."
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:63
+msgid   "Access denied."
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:464
+msgid   "Add the customer to these groups when purchasing this variation."
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:140
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:448
+msgid   "Add to Groups"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:112
+msgid   "Add users to or remove from groups as early as the order is ..."
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:144
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:145
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:161
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:162
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:454
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:455
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:474
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:475
+msgid   "Choose groups &hellip;"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:114
+msgid   "Completed"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:197
+msgid   "Day"
+msgid_plural    "Days"
+msgstr[0]       ""
+msgstr[1]       ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:252
+msgid   "Days"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:222
+msgid   "Duration"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:132
+msgid   "Durations"
+msgstr  ""
+
+#: groups-woocommerce/lib/views/class-groups-ws-subscriptions-table-renderer.php:144
+msgid   "End Date"
+msgstr  ""
+
+#: groups-woocommerce/lib/views/class-groups-ws-subscriptions-table-renderer.php:143
+msgid   "Expiration"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:142
+msgid   "Force registration"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:147
+msgid   "Force registration on checkout"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:151
+msgid   "Force registration on checkout when a subscription or a product "
+        "which relates to groups is in the cart. The login form will also be "
+        "shown to allow existing users to log in."
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-user.php:110
+msgid   "Group Memberships"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-user.php:73
+msgid   "Group Subscriptions"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:121
+msgid   "Group assignments are not supported for external products."
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:109
+msgid   "Group membership"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:68
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:47
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:48
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:103
+#: groups-woocommerce/lib/admin/class-groups-ws-admin-product.php:76
+#: groups-woocommerce/lib/views/class-groups-ws-subscriptions-table-renderer.php:146
+msgid   "Groups"
+msgstr  ""
+
+#: groups-woocommerce/lib/core/class-groups-ws.php:120
+#, php-format
+msgid   "Groups WooCommerce failed to remove scheduled subscription "
+        "expirations due to: %s"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-admin-product.php:75
+msgid   "Groups to which customer is added and removed (within parenthesis)."
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:194
+msgid   "Hour"
+msgid_plural    "Hours"
+msgstr[0]       ""
+msgstr[1]       ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:251
+msgid   "Hours"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:488
+msgid   "If set, the duration limitations in the <em>Groups</em> settings of "
+        "the variable product apply."
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:213
+msgid   "If the duration is empty, the customer will remain a member of the "
+        "selected groups forever, unless removed explicitly."
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:215
+msgid   "If the duration is set, the customer will only belong to the "
+        "selected groups during the specified time, based on the "
+        "<em>Duration</em> and the <em>Time unit</em>."
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:211
+msgid   "Leave the duration empty unless you want memberships to end after a "
+        "certain amount of time."
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:191
+msgid   "Minute"
+msgid_plural    "Minutes"
+msgstr[0]       ""
+msgstr[1]       ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:250
+msgid   "Minutes"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:140
+msgid   "Modifies the way product prices are displayed to show durations."
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:206
+msgid   "Month"
+msgid_plural    "Months"
+msgstr[0]       ""
+msgstr[1]       ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:254
+msgid   "Months"
+msgstr  ""
+
+#: groups-woocommerce/lib/views/class-groups-ws-subscriptions-table-renderer.php:206
+msgid   "Never"
+msgstr  ""
+
+#: groups-woocommerce/lib/views/class-groups-ws-subscriptions-shortcodes.php:56
+msgid   "No active subscriptions."
+msgstr  ""
+
+#: groups-woocommerce/lib/views/class-groups-ws-membership-shortcodes.php:72
+msgid   "No memberships."
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-user.php:90
+#: groups-woocommerce/lib/views/class-groups-ws-subscriptions-shortcodes.php:58
+msgid   "No subscriptions."
+msgstr  ""
+
+#: groups-woocommerce/lib/views/class-groups-ws-subscriptions-table-renderer.php:208
+msgid   "Not yet ended"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:284
+msgid   "Note that all users belong to the <em>Registered</em> group "
+        "automatically."
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:119
+msgid   "Note that users will always be added to or removed from groups when "
+        "an order is completed."
+msgstr  ""
+
+#: groups-woocommerce/lib/views/class-groups-ws-subscriptions-shortcodes.php:57
+#, php-format
+msgid   "One active subscription."
+msgid_plural    "%d active subscriptions."
+msgstr[0]       ""
+msgstr[1]       ""
+
+#: groups-woocommerce/lib/views/class-groups-ws-membership-shortcodes.php:73
+#, php-format
+msgid   "One membership."
+msgid_plural    "%d memberships."
+msgstr[0]       ""
+msgstr[1]       ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-user.php:88
+#: groups-woocommerce/lib/views/class-groups-ws-subscriptions-shortcodes.php:59
+#, php-format
+msgid   "One subscription."
+msgid_plural    "%d subscriptions."
+msgstr[0]       ""
+msgstr[1]       ""
+
+#: groups-woocommerce/lib/views/class-groups-ws-subscriptions-table-renderer.php:147
+msgid   "Order"
+msgstr  ""
+
+#: groups-woocommerce/lib/views/class-groups-ws-subscriptions-table-renderer.php:237
+#, php-format
+msgid   "Order %d"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:110
+msgid   "Order Status"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:115
+msgid   "Processing"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:157
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:468
+msgid   "Remove from Groups"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:484
+msgid   "Remove the customer from these groups when purchasing this variation."
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:127
+msgid   "Remove users from groups when a subscription is on hold; add them "
+        "back when a subscription is reactivated."
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:172
+msgid   "Save"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:188
+msgid   "Second"
+msgid_plural    "Seconds"
+msgstr[0]       ""
+msgstr[1]       ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:249
+msgid   "Seconds"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:137
+msgid   "Show durations"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:159
+msgid   "Show membership info in user profiles"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:166
+msgid   "Show membership info when editing user profiles"
+msgstr  ""
+
+#: groups-woocommerce/lib/views/class-groups-ws-subscriptions-table-renderer.php:142
+msgid   "Start Date"
+msgstr  ""
+
+#: groups-woocommerce/lib/views/class-groups-ws-subscriptions-table-renderer.php:140
+msgid   "Status"
+msgstr  ""
+
+#: groups-woocommerce/lib/views/class-groups-ws-subscriptions-table-renderer.php:141
+msgid   "Subscription"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:122
+msgid   "Subscription Status"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:102
+msgid   "The customer will be a member of the selected groups as long as the "
+        "subscription is active. The customer will be removed from the "
+        "selected groups once the subscription is active."
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:98
+msgid   "The customer will be added to or removed from the selected groups "
+        "when purchasing this product."
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:126
+msgid   "There are no groups available to select. At least one group (other "
+        "than <em>Registered</em>) must be created."
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:120
+msgid   "This setting does not apply to subscriptions."
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:130
+msgid   "This setting only applies to subscriptions."
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:246
+msgid   "Time unit"
+msgstr  ""
+
+#: groups-woocommerce/lib/views/class-groups-ws-subscriptions-table-renderer.php:145
+msgid   "Trial Expiration"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-user.php:153
+msgid   "Unlimited"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-admin.php:154
+msgid   "User profiles"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:200
+msgid   "Week"
+msgid_plural    "Weeks"
+msgstr[0]       ""
+msgstr[1]       ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:253
+msgid   "Weeks"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:203
+msgid   "Year"
+msgid_plural    "Years"
+msgstr[0]       ""
+msgstr[1]       ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:255
+msgid   "Years"
+msgstr  ""
+
+#: groups-woocommerce/lib/admin/class-groups-ws-product.php:225
+msgid   "unlimited"
+msgstr  ""
