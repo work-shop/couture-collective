@@ -59,24 +59,36 @@
 	
 		<header id="header" class="closed">
 			<div class="container">		
+				<?php 
+					$args = array(
+						'theme_location' => 'top-left-menu', 
+						'container' => 'nav',
+						'container_class' => 'left hidden-xs col-sm-4',
+					);
+					wp_nav_menu( $args ); 
+				?>
+
 			
-				<a id="logo" class="logo" href="<?php bloginfo('url'); ?>">
+				<a id="logo" class="logo col-sm-4" href="<?php bloginfo('url'); ?>">
 					<img src="<?php bloginfo('template_directory'); ?>/_/img/logo.png" alt="logo">					
 				</a>		
 
-				<nav class="right hidden-xs" id="nav">
+				 <?php if ( is_user_logged_in() ) {
+						$args = array(
+							'theme_location' => 'top-right-menu', 
+							'container' => 'nav',
+							'container_class' => 'right hidden-xs col-sm-4',
+						);
+						wp_nav_menu( $args ); 
+
+				} else{ 
+					include '_partials/small-login.php';
+				} ?> 
+
+				<nav class="right hidden-xs hidden" id="nav">
 					<ul class="main-menu">
 						<li><a href="<?php bloginfo('url'); ?>/how-it-works"  class="">How it Works</a></li>
 						<li><a href="<?php bloginfo('url'); ?>/look-book" class="">Look Book</a></li>								
-						 <?php if ( is_user_logged_in() ) {  ?>
-							<li><a href="<?php bloginfo('url'); ?>/closet" class="">My Closet</a></li>		
-							<li><a href="<?php bloginfo('url'); ?>/my-account" class="">My Account</a></li>	
-							<li><a href="<?php bloginfo('url'); ?>/cart"  class="">My Cart</a></li>											
-						<?php } else{?> 						
-							<li><a href="<?php bloginfo('url'); ?>/my-account" class="">Become a Member</a></li>	
-							<li><a href="<?php bloginfo('url'); ?>/my-account" class="">Login</a></li>
-							<?php include '_partials/small-login.php'; ?>
-						<?php } ?> 
 
 					</ul>	
 				</nav>	

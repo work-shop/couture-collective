@@ -11,11 +11,14 @@
 						<ul class="left">
 							<li><?php edit_post_link('Edit This Page'); ?> </li>
 						</ul>
-						<ul class="right">
-							<li><a href="<?php bloginfo('url'); ?>/contact"  class="">Contact</a></li>
-							<li><a href="<?php bloginfo('url'); ?>/FAQ" class="">FAQ</a></li>				
-							<li><a href="<?php bloginfo('url'); ?>/terms-and-privacy" class="">Terms & Privacy</a></li>				
-						</ul>
+						<?php 
+							$args = array(
+								'theme_location' => 'footer-menu', 
+								'container' => false,
+								'menu_class' => 'center',
+							);
+							wp_nav_menu( $args ); 
+						?>
 					</nav>
 				</div>
 			</div>

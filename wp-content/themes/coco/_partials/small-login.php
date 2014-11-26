@@ -1,4 +1,4 @@
-<form name="small-login" id="small-login" action="http://localhost:8888/coco/wp-login.php" method="post">
+<form name="small-login" id="small-login" class="col-sm-4 right" action="http://localhost:8888/coco/wp-login.php" method="post">
   <p class="login-username">
     <input type="text" name="log" id="user_login" class="input" value="" placeholder="USERNAME" size="20">
   </p>
