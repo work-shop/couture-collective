@@ -17,7 +17,7 @@
 		<div class="row">
 		
 			<div class="col-sm-12">
-				<?php echo do_shortcode('[product sku="MEMBER"]'); ?>
+				 <?php echo do_shortcode('[woocommerce_one_page_checkout template="product-single" product_ids="45"]'); ?>
 			</div>
 			
 		</div>

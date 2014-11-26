@@ -17,7 +17,7 @@
 		<div class="row">
 		
 			<div class="col-sm-12">
-				<?php echo do_shortcode('[woocommerce_join]') ?>
+				<?php echo do_shortcode('[woocommerce_checkout]') ?>
 			</div>
 			
 		</div>
