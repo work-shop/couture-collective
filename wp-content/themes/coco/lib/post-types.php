@@ -7,6 +7,11 @@ function cc_dress( $post ) {
 		 ('auto-draft' != $post->post_status );
 }
 
+function cc_dress_trash( $post ) {
+	return ('dress' == $post->post_type) && 
+		 ('trash' == $post->post_status );
+}
+
 function cc_compute_product_name( $basename, $suffix ) {
 	return $basename . '-' . $suffix;
 }
@@ -372,19 +377,19 @@ function dress_update( $post, $post_id ) {
 		DRESS DELETE SECTION
 */
 
-add_action('delete_post', 'dress_destroy' ); // prior to post deletion
+add_action('before_delete_post', 'dress_destroy' ); // prior to post deletion
 function dress_destroy( $post_id ) {
 	$post = get_post( $post_id );
-	if ( !cc_dress($post) ) return; // return if this is not a modifiable post-type
+	if ( !cc_dress_trash($post) ) return; // return if this is not a modifiable post-type
 
 	$sale_product = get_field('dress_sale_product_instance', $post_id );
 	$rental_product = get_field('dress_rental_product_instance', $post_id );
 	$share_product = get_field('dress_share_product_instance', $post_id );
 
 	if ( (1 == count( $sale_product )) && (1 == count($rental_product)) && (1 == count( $share_product )) ) {
-		wp_delete_post( ws_fst( $sale_product )->ID );
-		wp_delete_post( ws_fst( $rental_product )->ID );
-		wp_delete_post( ws_fst( $share_product )->ID );
+		wp_delete_post( ws_fst( $sale_product )->ID, true );
+		wp_delete_post( ws_fst( $rental_product )->ID, true );
+		wp_delete_post( ws_fst( $share_product )->ID, true );
 
 		/*
 			This requires additional bookkeeping.
