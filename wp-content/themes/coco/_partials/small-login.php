@@ -7,7 +7,7 @@
   </p>
   <p class="login-submit">
     <input type="submit" name="wp-submit" id="wp-submit" class="button-primary" value="Log In">
-    <input type="hidden" name="redirect_to" value="http://localhost:8888/coco/">
+    <input type="hidden" name="redirect_to" value="http://localhost:8888/coco/"><!-- BAD -->
   </p>
   
 </form>
