@@ -6,12 +6,16 @@
 	);
 
 	if ( $owned ) {
+
 		get_template_part('_partials/dress/dress','owned');
 		get_template_part('_partials/dress/dress','sale');
+
 	} else {
+
 		get_template_part('_partials/dress/dress','share');
 		get_template_part('_partials/dress/dress','rental');
 		get_template_part('_partials/dress/dress','sale');
+		
 	}
 
 	
