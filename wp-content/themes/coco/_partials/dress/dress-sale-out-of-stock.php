@@ -1,0 +1,1 @@
+<p class="alert gray">This dress has already been sold.</p>
