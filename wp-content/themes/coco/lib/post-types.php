@@ -24,6 +24,10 @@ function cc_compute_product_sku( $sku, $suffix ) {
 	return ( $sku !== null ) ? $sku.'-'.$suffix : "";
 }
 
+function cc_short_address( $address_array ) {
+	var_dump( $address_array );
+}
+
 
 /*
 
@@ -245,12 +249,13 @@ function cc_create_dress_rental_product( $post, $parent_post_id ) {
 	update_post_meta($post_id, '_wc_booking_max_date_unit', 'month');
 	update_post_meta($post_id, '_wc_booking_min_date', 2);
 	update_post_meta($post_id, '_wc_booking_min_date_unit', 'week');
+	update_post_meta($post_id, '_wc_booking_default_date_availability', 'available');
 	//update_post_meta($post_id, '_wc_booking_availability', ...);
 
 	// add a custom range defining the current season.
 
 	// DONE
-	update_post_meta( $post_id, '_virtual', 'yes'); // check this for functionality
+	update_post_meta( $post_id, '_virtual', 'no'); // check this for functionality
 	update_post_meta( $post_id, 'total_sales', 0);
 	update_post_meta( $post_id, '_stock', "");
 	update_post_meta( $post_id, '_manage_stock', "no" );
