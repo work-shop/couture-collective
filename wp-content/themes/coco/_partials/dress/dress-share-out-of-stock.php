@@ -1,0 +1,1 @@
+<p class="alert gray">No more shares are available for this dress.</p>
