@@ -1,6 +1,8 @@
 
 <?php get_header();?>
 
+<?php wc_print_notices(); ?>
+
 <div id="look-book" class="template template-page">	
 	
 	<section id="look-book-introduction" class="look-book-introduction block">	
