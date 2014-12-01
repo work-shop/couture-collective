@@ -52,7 +52,7 @@ function dress_init() {
 		'public' => true,
 		'has_archive' => true,
 		'rewrite' => array('slug' => 'dresses'),
-		'supports' => array( 'title', 'editor', 'thumbnail', 'tags' ),
+		'supports' => array( 'title', 'editor', 'thumbnail', 'tags' )
 	);
 
 	register_post_type( 'dress', $options );
@@ -230,6 +230,24 @@ function cc_create_dress_rental_product( $post, $parent_post_id ) {
 	$sku = get_field('dress_sku', $parent_post_id);
 
 	// Start Consistency Checks
+
+	// Set that this product type is "bookable"
+	wp_set_object_terms( $post_id, 'booking', 'product_type' );
+	// Proceed to set bookable item terms.
+	update_post_meta( $post_id, '_wc_booking_duration_type', 'fixed');
+	update_post_meta( $post_id, '_wc_booking_duration', CC_BOOKING_DURATION);
+	update_post_meta( $post_id, '_wc_booking_duration_unit', 'day');
+	update_post_meta( $post_id, '_wc_booking_base_cost', $rental_price);
+	update_post_meta( $post_id, '_wc_booking_min_duration', 1);
+	update_post_meta( $post_id, '_wc_booking_max_duration', 1);
+	update_post_meta( $post_id, '_wc_booking_qty', 1);
+	update_post_meta( $post_id, '_wc_booking_max_date', 12);
+	update_post_meta($post_id, '_wc_booking_max_date_unit', 'month');
+	update_post_meta($post_id, '_wc_booking_min_date', 2);
+	update_post_meta($post_id, '_wc_booking_min_date_unit', 'week');
+	//update_post_meta($post_id, '_wc_booking_availability', ...);
+
+	// add a custom range defining the current season.
 
 	// DONE
 	update_post_meta( $post_id, '_virtual', 'yes'); // check this for functionality
