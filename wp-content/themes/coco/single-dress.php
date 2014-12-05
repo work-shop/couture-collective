@@ -1,5 +1,7 @@
 <?php get_header();?>
-		
+	
+<?php wc_print_notices(); ?>
+
 <article id="dress-<?php the_ID(); ?>" class="template dress">	
 <div class="row">
 
