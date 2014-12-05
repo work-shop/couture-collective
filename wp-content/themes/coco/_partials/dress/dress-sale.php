@@ -5,7 +5,7 @@
 	$sale = $GLOBALS['CC_POST_DATA']['sale'];
 
 
-	if ( woocommerce_customer_bought_product( $user->email, $user->ID, $sale->ID ) ) {
+	if ( wc_customer_bought_product( $user->user_email, $user->ID, $sale->id ) ) {
 
 		get_template_part('_partials/dress/dress', 'sale-sold');
 
