@@ -28,6 +28,10 @@ function cc_short_address( $address_array ) {
 	var_dump( $address_array );
 }
 
+function cc_active_bookings( $x,$y ) {
+	return ($x->post_status != 'cancelled' && $x->post_status != 'wc-cancelled') || $y;
+}
+
 
 /*
 
