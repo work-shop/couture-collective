@@ -46,10 +46,10 @@ if ( 'wc-completed' == $order->post_status ) { ?>
 		<div>
 
 		<div class="col-sm-12">
-			<!-- <button class="edit-reservation button">E</button>
+			<button class="edit-reservation button">E</button>
 			<div class="edit-subscription-modal">
 				<?php get_template_part('_partials/reservation/reservation', 'edit-modal'); ?>
-			</div> -->
+			</div> 
 		<div>
 
 		<div class="col-sm-12">
