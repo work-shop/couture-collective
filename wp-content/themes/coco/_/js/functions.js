@@ -27,6 +27,10 @@ jQuery(document).ready(function($) {
 		scrollLink(href);	
 	});
 
+	$('#make-pre-reservation').on('submit', function() {
+		$('#pre-reservation-add-to-cart').prop('disabled', true);
+	});
+
 
 });//end document.ready
 
