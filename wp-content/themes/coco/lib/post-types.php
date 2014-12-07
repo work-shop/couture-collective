@@ -32,6 +32,38 @@ function cc_active_bookings( $x,$y ) {
 	return ($x->post_status != 'cancelled' && $x->post_status != 'wc-cancelled') || $y;
 }
 
+function cc_get_dress_states( $user, $dress_id ) {
+	$class_string = "";
+	$share_arr = get_field( 'dress_share_product_instance', $dress_id );
+	$sale_arr = get_field( 'dress_sale_product_instance', $dress_id );
+
+	if ( $user && !empty( $share_arr ) && !empty( $sale_arr ) ) {
+
+		$share = new WC_Product( $share_arr[0]->id );
+		$sale = new WC_Product( $sale_arr[0]->id );
+
+		// for some reason this is not turning up the correct value, although it seems to do fine on the single page?
+		$owned = wc_customer_bought_product( $user->user_email, $user->ID, $share->id );
+
+		var_dump( $owned );
+
+		if ( $owned ) {
+			$class_string .= "owned ";
+		}
+
+		if ( $share->is_in_stock() ) {
+			$class_string .= "share-available ";
+		}
+
+		if ( $sale->is_in_stock() ) {
+			$class_string .= "sale-available ";
+		}
+	}
+
+	return $class_string;
+}
+
+
 
 /*
 
