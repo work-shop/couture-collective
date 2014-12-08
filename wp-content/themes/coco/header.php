@@ -1,3 +1,17 @@
+<?php 
+	if ( 
+		is_shop() ||
+		is_product() ||
+		is_cart() ||
+		is_product_category() ||
+		is_product_tag() ||
+		is_account_page()
+	) : 
+		get_template_part('_partials/placeholder/placeholder', 'forward' ); 
+
+	endif; 
+?>
+
 <!DOCTYPE html>
 
 <html class="header-closed">
