@@ -1,9 +1,1 @@
-<?php get_header();?>
-		
-<div id="post" class="template post">	
-
-	<?php the_content(); ?>	
-	
-</div>	
-
-<?php get_footer(); ?>
+<?php get_template_part('_partials/placeholder/placeholder', 'forward' ); ?>
