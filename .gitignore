@@ -15,3 +15,4 @@ wp-content/wp-cache-config.php
 # couture-collective beta and alpha deployment ignores
 beta/
 alpha/
+configs/
