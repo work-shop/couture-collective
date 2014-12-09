@@ -16,3 +16,5 @@ wp-content/wp-cache-config.php
 beta/
 alpha/
 configs/
+
+wp-content/plugins/wp-migrate-db
