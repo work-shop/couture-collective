@@ -323,7 +323,7 @@ if (!class_exists("GFResults")) {
                         <img style="vertical-align:middle;"
                              src="<?php echo GFCommon::get_base_url() ?>/images/spinner.gif"
                              alt="loading..."/>&nbsp;
-                        <a href="javascript:void(0);" onclick="javascript:gresultsAjaxRequest.abort()">Cancel</a>
+                        <a href="javascript:void(0);" onclick="javascript:gresultsAjaxRequest.abort()"><?php _e( 'Cancel', 'gravityforms' ); ?></a>
                     </div>
 
                     <div id="gresults-results-wrapper">
@@ -364,7 +364,7 @@ if (!class_exists("GFResults")) {
                 $html = __("No results.", "gravityforms");
             } else {
                 $search_criteria                  = array();
-                $search_criteria["field_filters"] = GFCommon::get_field_filters_from_post();
+                $search_criteria["field_filters"] = GFCommon::get_field_filters_from_post($form);
 
                 $start_date = rgpost("start");
                 $end_date   = rgpost("end");
@@ -839,7 +839,12 @@ if (!class_exists("GFResults")) {
                 foreach ($leads as $lead) {
 
                     $value   = RGFormsModel::get_lead_field_value($lead, $field);
+
                     $content = apply_filters("gform_entries_field_value", $value, $form_id, $field["id"], $lead);
+
+                    if(is_array($content)){
+                        $content = join(" ", $content);
+                    }
 
                     if (!empty($content)) {
                         $field_results .= "<li>{$content}</li>";

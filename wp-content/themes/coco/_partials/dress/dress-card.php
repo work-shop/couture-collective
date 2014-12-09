@@ -3,7 +3,7 @@
 	$GLOBALS['LOOP']->the_post(); 
 ?>
 
-<div class="col-sm-3 col-md-2 col-xs-6 product-tile <?php echo cc_get_dress_states( $GLOBALS['USER'], get_the_ID() ); ?>">
+<div class="col-sm-3 col-md-3 col-xs-6 product-card card <?php // echo cc_get_dress_states( $GLOBALS['USER'], get_the_ID() ); ?>">
 	<a href="<?php the_permalink(); ?>">
 		
 		<div class="product-image">
@@ -16,10 +16,8 @@
 			?>							
 		</div>
 		
-
-		<div class="product-summary centered">
-			<h4><?php the_title() ?></h4>
-			<h4><?php echo get_field('dress_designer', get_the_ID()); ?></h4>
+		<div class="product-summary">
+			<p class="h11 card-designer bordered-dark-bottom"><?php echo get_field('dress_designer', get_the_ID()); ?></p>
 		</div>
 	
 	</a>

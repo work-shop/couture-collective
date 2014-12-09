@@ -23,7 +23,7 @@ class GFExport{
             $charset = get_option('blog_charset');
             header('Content-Description: File Transfer');
             header("Content-Disposition: attachment; filename=$filename");
-            header('Content-Type: text/plain; charset=' . $charset, true);
+            header('Content-Type: text/csv; charset=' . $charset, true);
             $buffer_length = ob_get_length(); //length or false if no buffer
             if ($buffer_length > 1){
             	ob_clean();
@@ -72,15 +72,19 @@ class GFExport{
                         foreach($field["choices"] as &$choice)
                             unset($choice["value"]);
                     }
-
-                    // convert associative array to indexed
-                    if(isset($form['confirmations']))
-                        $form['confirmations'] = array_values($form['confirmations']);
-
-                    if(isset($form['notifications']))
-                        $form['notifications'] = array_values($form['notifications']);
-
                 }
+
+				// convert associative array to indexed
+				if(isset($form['confirmations']))
+					$form['confirmations'] = array_values($form['confirmations']);
+
+				if(isset($form['notifications'])){
+					$form['notifications'] = array_values($form['notifications']);
+
+					foreach( $form["notifications"] as &$notification ){
+						$notification["isActive"] = rgar( $notification, "isActive" ) ? "1" : "0";
+					}
+				}
 
                 $form = apply_filters( 'gform_export_form', $form );
                 $form = apply_filters( "gform_export_form_{$form['id']}", $form );
@@ -612,7 +616,7 @@ class GFExport{
         $end_date = empty($_POST["export_date_end"]) ? "" : self::get_gmt_date($_POST["export_date_end"] . " 23:59:59");
 
         $search_criteria["status"] = "active";
-        $search_criteria["field_filters"] = GFCommon::get_field_filters_from_post();
+        $search_criteria["field_filters"] = GFCommon::get_field_filters_from_post($form);
         if(!empty($start_date))
             $search_criteria["start_date"] = $start_date;
 
