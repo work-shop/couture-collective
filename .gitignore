@@ -9,12 +9,10 @@ wp-content/backups/
 wp-content/blogs.dir/
 wp-content/cache/
 wp-content/upgrade/
-# wp-content/uploads/ # -- we're deploying to production from this branch, so let's push new uploads
+wp-content/uploads/
 wp-content/wp-cache-config.php
 
 # couture-collective beta and alpha deployment ignores
 beta/
 alpha/
 configs/
-
-wp-content/plugins/wp-migrate-db
