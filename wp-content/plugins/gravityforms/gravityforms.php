@@ -3,14 +3,14 @@
 Plugin Name: Gravity Forms
 Plugin URI: http://www.gravityforms.com
 Description: Easily create web forms and manage form entries within the WordPress admin.
-Version: 1.8.8
+Version: 1.8.20
 Author: rocketgenius
 Author URI: http://www.rocketgenius.com
 Text Domain: gravityforms
 Domain Path: /languages
 
 ------------------------------------------------------------------------
-Copyright 2009-2013 Rocketgenius Inc.
+Copyright 2009-2014 Rocketgenius Inc.
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -76,11 +76,11 @@ if(!defined("GRAVITY_MANAGER_URL"))
 if(!defined("GRAVITY_MANAGER_PROXY_URL"))
     define('GRAVITY_MANAGER_PROXY_URL', 'http://proxy.gravityplugins.com');
 
-require_once( plugin_dir_path( __FILE__ ). '/common.php');
-require_once( plugin_dir_path( __FILE__ ). '/forms_model.php');
-require_once( plugin_dir_path( __FILE__ ). '/widget.php');
-require_once( plugin_dir_path( __FILE__ ) . '/includes/api.php');
-require_once( plugin_dir_path( __FILE__ ) . '/includes/webapi/webapi.php');
+require_once( plugin_dir_path( __FILE__ ) . 'common.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'forms_model.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'widget.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'includes/api.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'includes/webapi/webapi.php' );
 
 // GFCommon::$version is deprecated, set it to current version for backwards compat
 GFCommon::$version = GFForms::$version;
@@ -103,9 +103,20 @@ if(is_admin() && (RGForms::is_gravity_page() || RGForms::is_gravity_ajax_action(
     add_action("admin_footer", array("RGForms", "no_conflict_mode_style"), 1);
 }
 
+add_action( 'plugins_loaded', array( 'GFForms', 'loaded' ) );
+
 class GFForms {
 
-    public static $version = '1.8.8';
+	public static $version = '1.8.20';
+
+	public static function loaded(){
+		do_action( 'gform_loaded' );
+
+		//initializing Add-Ons if necessary
+		if ( class_exists( 'GFAddOn' ) ) {
+			GFAddOn::init_addons();
+		}
+	}
 
     public static function has_members_plugin(){
         return function_exists( 'members_get_capabilities' );
@@ -237,7 +248,7 @@ class GFForms {
 
         }
         else{
-            add_action('wp_enqueue_scripts', array('RGForms', 'enqueue_scripts'));
+            add_action('wp_enqueue_scripts', array('RGForms', 'enqueue_scripts'), 11 );
             add_action('wp', array('RGForms', 'ajax_parse_request'), 10);
         }
 
@@ -765,7 +776,7 @@ class GFForms {
             include_once( ABSPATH.'wp-admin/includes/plugin.php');
 
         $update = GFCommon::get_version_info();
-        if( $update["is_valid_key"] == true && version_compare(GFCommon::$version, $update["version"], '<') ){
+        if( rgar($update, "is_valid_key") == true && version_compare(GFCommon::$version, $update["version"], '<') ){
             $gforms = get_plugin_data( __FILE__ );
             $gforms['type'] = 'plugin';
             $gforms['slug'] = 'gravityforms/gravityforms.php';
@@ -783,7 +794,7 @@ class GFForms {
             include_once( ABSPATH.'wp-admin/includes/plugin.php');
 
         $update = GFCommon::get_version_info();
-        if( $update["is_valid_key"] == true && version_compare(GFCommon::$version, $update["version"], '<') ){
+        if( rgar($update,"is_valid_key") == true && version_compare(GFCommon::$version, $update["version"], '<') ){
             $gforms = get_plugin_data( __FILE__ );
             $gforms['slug'] = 'gravityforms/gravityforms.php'; // If not set by default, always pass theme template
             $gforms['type'] = 'plugin';
@@ -794,7 +805,7 @@ class GFForms {
         return $premium_update;
     }
 
-    private static function drop_index($table, $index){
+    public static function drop_index($table, $index){
         global $wpdb;
         $has_index = $wpdb->get_var("SHOW INDEX FROM {$table} WHERE Key_name='{$index}'");
         if($has_index){
@@ -1239,7 +1250,7 @@ class GFForms {
         $key = GFCommon::get_key();
         $version_info = GFCommon::get_version_info();
 
-        if(!$version_info["is_valid_key"]){
+        if(!rgar($version_info, "is_valid_key")){
 
             $plugin_name = "gravityforms/gravityforms.php";
 
@@ -1716,8 +1727,9 @@ class GFForms {
     }
 
     public static function get_addon_info($api, $action, $args){
-        if($action == "plugin_information" && empty($api) && !rgempty("rg", $_GET)){
-            $raw_response = GFCommon::post_to_manager("api.php", "op=get_plugin&slug={$args->slug}", $options);
+
+		if($action == "plugin_information" && empty($api) && ( !rgempty("rg", $_GET) || $args->slug == 'gravityforms')){
+			$raw_response = GFCommon::post_to_manager("api.php", "op=get_plugin&slug={$args->slug}", array());
 
             if ( is_wp_error( $raw_response ) || $raw_response['response']['code'] != 200)
                 return false;
@@ -1728,6 +1740,7 @@ class GFForms {
             $api->name = $plugin["title"];
             $api->version = $plugin["version"];
             $api->download_link = $plugin["download_url"];
+			$api->tested = '10.0';
         }
         return $api;
     }
@@ -1888,7 +1901,7 @@ class GFForms {
         if(!is_array($notifications))
             die(__("No notifications have been selected. Please select a notification to be sent.", "gravityforms"));
 
-        if(rgpost('sendTo') && GFCommon::is_invalid_or_empty_email(rgpost('sendTo')))
+        if( ! rgempty( 'sendTo', $_POST ) && ! GFCommon::is_valid_email_list(rgpost('sendTo')))
             die(__("The <strong>Send To</strong> email address provided is not valid.", "gravityforms"));
 
         foreach($leads as $lead_id){
