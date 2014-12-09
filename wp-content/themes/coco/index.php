@@ -20,7 +20,33 @@
 				<div class="row m3">
 				
 					<div class="col-sm-8 col-sm-offset-2">
-						<h4 class="centered bordered white tagline">Don't Buy Couture. Share It.</h4>
+						<h4 class="centered bordered white tagline">Don't Buy Couture.<br class="visible-xs"/> Share It.</h4>
+						
+						<div class="nav-home visible-xs">
+												
+							<ul>	
+															
+								<li>
+									<a class="white h7 uppercase"  href="<?php bloginfo('url'); ?>/look-book">
+										Fall 2014 Look Book
+									</a>
+								</li>	
+								<li>
+									<a class="white h7 uppercase"  href="<?php bloginfo('url'); ?>/how-it-works">
+										How it Works
+									</a>
+								</li>	
+								
+								<?php if ( is_home() && !is_user_logged_in() ) : ?>
+								<li>
+									<a class="white h7 uppercase"  href="<?php bloginfo('url'); ?>/join" class="hidden">
+										Become a Member
+									</a>
+								</li>							
+								<?php endif; ?>
+							</ul>
+							
+						</div>						
 					</div>
 				
 				</div>				

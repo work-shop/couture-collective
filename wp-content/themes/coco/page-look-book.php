@@ -3,9 +3,9 @@
 
 <?php wc_print_notices(); ?>
 
-<div id="look-book" class="template template-page">	
+<div id="look-book" class="template template-page ">	
 
-	<section id="look-book-introduction" class="page-introduction block m2">	
+	<section id="look-book-introduction" class="page-introduction block m2 hidden">	
 	
 		<hr class="page-header-rule"/>					
 
@@ -14,10 +14,6 @@
 			<div class="row">
 			
 				<div class="col-sm-10 col-sm-offset-1">
-				
-					<h1 class="serif centered m">Welcome to the Fall 2014 Look Book Preview!</h1>
-					
-					<h2 class="centered m2">Our dresses aren't available through the site yet, we will be releasing them soon. For now, take a look.</h2>
 									
 				</div>		
 
@@ -60,8 +56,6 @@
 				} else { 
 					echo '<h1>There aren\'t any dresses right now!</h1>';
 				} 
-
-
 
 				?>
 				</div>
