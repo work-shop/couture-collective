@@ -17,7 +17,7 @@
 				
 					<h1 class="serif centered m">Welcome to the Fall 2014 Look Book Preview!</h1>
 					
-					<h2 class="centered m2">Our dresses aren't available yet, we will be releasing them soon. For now, take a look.</h2>
+					<h2 class="centered m2">Our dresses aren't available through the site yet, we will be releasing them soon. For now, take a look.</h2>
 									
 				</div>		
 
