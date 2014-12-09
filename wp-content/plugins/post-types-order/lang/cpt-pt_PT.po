@@ -1,0 +1,177 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Post Types Order\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-02-21 16:44+0200\n"
+"PO-Revision-Date: 2014-07-23 01:23-0000\n"
+"Last-Translator: Pedro Mendonça <ped.gaspar@gmail.com>\n"
+"Language-Team: Pedro Mendonça <ped.gaspar@gmail.com>\n"
+"Language: pt_PT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.6.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: post-types-order.php:119
+msgid "Post Types Order must be configured. Please go to"
+msgstr "O plugin Post Types Order tem que ser configurado em"
+
+#: post-types-order.php:119
+msgid "Settings Page"
+msgstr "Página de configurações"
+
+#: post-types-order.php:119
+msgid "make the configuration and save"
+msgstr "Configure e guarde as definições"
+
+#: post-types-order.php:457 post-types-order.php:461 post-types-order.php:472
+msgid "Re-Order"
+msgstr "Reordenar"
+
+#: post-types-order.php:480
+msgid ""
+"This plugin can't work without javascript, because it's use drag and drop "
+"and AJAX."
+msgstr ""
+"Este plugin necessita de JavaScript porque utiliza AJAX para arrastar e "
+"largar os itens."
+
+#: post-types-order.php:493
+msgid "Update"
+msgstr "Atualizar"
+
+#: post-types-order.php:509
+msgid "Items Order Updated"
+msgstr "Ordem dos itens alterada"
+
+#: post-types-order.php:526
+msgid "Pages"
+msgstr "Páginas"
+
+#: include/functions.php:65
+msgid ""
+"Did you find this plugin useful? Please support our work with a donation or "
+"write an article about this plugin in your blog with a link to our site"
+msgstr ""
+"Considera este plugin útil? Por favor faça um donativo ao autor ou escreva "
+"um artigo sobre este plugin no seu blog com ligação para a nossa página"
+
+#: include/functions.php:66
+msgid "Did you know there is available an Advanced version of this plug-in?"
+msgstr "Sabe que há uma versão Avançada deste plugin?"
+
+#: include/functions.php:66
+msgid "Read more"
+msgstr "Leia mais"
+
+#: include/functions.php:67
+msgid "Check our"
+msgstr "Verifique o nosso plugin"
+
+#: include/functions.php:67
+msgid ""
+"plugin which allow to custom sort categories and custom taxonomies terms"
+msgstr ""
+"que permite personalizar a ordem das categorias e das taxonomias "
+"personalizadas"
+
+#: include/options.php:16
+msgid "Settings Saved"
+msgstr "Configurações guardadas"
+
+#: include/options.php:28
+msgid "General Settings"
+msgstr "Configurações gerais"
+
+#: include/options.php:34
+msgid "General"
+msgstr "Geral"
+
+#: include/options.php:39
+msgid "Minimum Level to use this plugin"
+msgstr "Nível mínimo para utilizar este plugin"
+
+#: include/options.php:42
+msgid "Subscriber"
+msgstr "Assinante"
+
+#: include/options.php:43
+msgid "Contributor"
+msgstr "Colaborador"
+
+#: include/options.php:44
+msgid "Author"
+msgstr "Autor"
+
+#: include/options.php:45
+msgid "Editor"
+msgstr "Editor"
+
+#: include/options.php:46
+msgid "Administrator"
+msgstr "Administrador"
+
+#: include/options.php:52
+msgid "Auto Sort"
+msgstr "Ordem Automática"
+
+#: include/options.php:56
+msgid ""
+"If checked, the plug-in will automatically update the wp-queries to use the "
+"new order (<b>No code update is necessarily</b>).<br /> If you need more "
+"order customizations you will need to uncheck this and include 'menu_order' "
+"into your theme queries"
+msgstr ""
+"Se seleccionado, o plugin irá ordenar automaticamente actualizar as <i>wp-"
+"queries</i> para usar a nova ordem <b>sem recorrer a qualquer programação</"
+"b>.<br />Se necessitar de ordenações mais personalizadas, deverá incluir "
+"'menu_order' nas <i>queries</i> do tema e desactivar esta opção."
+
+#: include/options.php:58
+msgid "Show Examples"
+msgstr "Mostrar exemplos"
+
+#: include/options.php:61
+msgid "The following PHP code will still return the post in the set-up Order"
+msgstr "O código PHP abaixo também permite obter o artigo na ordem definida"
+
+#: include/options.php:74
+msgid "Or"
+msgstr "Ou"
+
+#: include/options.php:83
+msgid ""
+"If the Auto Sort is uncheck you will need to use the \"orderby\" and \"order"
+"\" parameters"
+msgstr ""
+"Se a Ordem Automática não estiver seleccionada, deverá utilizar os "
+"parâmetros \"orderby\" e \"order\""
+
+#: include/options.php:98
+msgid "Admin Sort"
+msgstr "Ordem na Administração"
+
+#: include/options.php:102
+msgid ""
+"To affect the admin interface, to see the post types per your new sort, this "
+"need to be checked"
+msgstr ""
+"Active esta opção para afectar o painel de administração e ver os tipos de "
+"artigos pela sua nova ordem"
+
+#: include/options.php:111
+msgid "Save Settings"
+msgstr "Guardar configurações"
+
+#~ msgid "Post Types Order"
+#~ msgstr "Ordenar Posts"
+
+#~ msgid "Invalid post type"
+#~ msgstr "Type de post inválido"
+
+#~ msgid "%s  -  Re-order "
+#~ msgstr "Reordenar %s"
