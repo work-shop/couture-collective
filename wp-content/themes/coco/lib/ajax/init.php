@@ -7,5 +7,5 @@
 	    wp_send_json_success( $data );
 	} 
 
-	require_once( 'change-booking.php' );
+	// require_once( 'change-booking.php' );
 ?>

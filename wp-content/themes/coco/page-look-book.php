@@ -4,13 +4,34 @@
 <?php wc_print_notices(); ?>
 
 <div id="look-book" class="template template-page">	
+
+	<section id="look-book-introduction" class="page-introduction block m2">	
 	
-	<section id="look-book-introduction" class="look-book-introduction block">	
+		<hr class="page-header-rule"/>					
+
+		<div class="container">
+				
+			<div class="row">
+			
+				<div class="col-sm-10 col-sm-offset-1">
+				
+					<h1 class="serif centered m">Welcome to the Fall 2014 Look Book Preview!</h1>
+					
+					<h2 class="centered m2">Our dresses aren't available through the site yet, we will be releasing them soon. For now, take a look.</h2>
+									
+				</div>		
+
+			</div>
+			
+		</div>
+	</section>
+	
+	<section id="look-book" class="look-book block">	
 	
 		<div class="products">
 			<div class="container">
-				<?php  if ( is_user_logged_in() ) : ?>
-				<div class='row filter'>
+				<?php  if ( $uli = is_user_logged_in() ) : ?>
+				<div class='row filter hidden'>
 					<div class='col-sm-6'></div>
 					<div class='col-sm-2'><a href="#">Owned</a></div>
 					<div class='col-sm-2'><a href="#">Shares Available</a></div>
@@ -22,8 +43,9 @@
 				<?php
 				$args = array(
 					'post_type' => 'dress',
-					'posts_per_page' => -1,
-					'post__not_in' => array(45)
+					'posts_per_page' => ( $uli ) ? -1 : 6,
+					'orderby' => 'menu_order',
+					'order' => 'ASC'
 				);
 
 				$GLOBALS['LOOP'] = new WP_Query( $args );
@@ -45,9 +67,10 @@
 				</div>
 			</div>
 		</div>
-			
-								
+											
 	</section>	
+	
+	<?php get_template_part('_partials/look-book-check'); ?>	
 	
 </div>	
 

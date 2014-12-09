@@ -30,6 +30,8 @@ jQuery(document).ready(function($) {
 	$('#make-pre-reservation').on('submit', function() {
 		$('#pre-reservation-add-to-cart').prop('disabled', true);
 	});
+	
+	$('#look-book-modal').modal('show');	
 
 
 });//end document.ready
@@ -126,7 +128,7 @@ function view(){
 		$('.block.half').css('height',ch/2);				
 		$('.block.crop').css('height',ch);		
 		$('.block.min').css('min-height',ch);						
-		$('.block.fit').css('height',ch-hh);				
+		$('.block.fit').css('height',ch-hh-90);				
 	}
 	else{
 		$('.block.crop').css('min-height',ch);	
