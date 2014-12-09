@@ -45,8 +45,6 @@ function cc_get_dress_states( $user, $dress_id ) {
 		// for some reason this is not turning up the correct value, although it seems to do fine on the single page?
 		$owned = wc_customer_bought_product( $user->user_email, $user->ID, $share->id );
 
-		var_dump( $owned );
-
 		if ( $owned ) {
 			$class_string .= "owned ";
 		}
