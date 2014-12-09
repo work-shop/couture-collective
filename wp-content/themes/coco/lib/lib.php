@@ -48,3 +48,29 @@ function ws_decide_image_type( $file ) {
 
 
 function ws_fst( $lst ) { return $lst[0]; }
+
+
+
+
+// functions for manipulating $_GET and $_POST data
+function ws_eq_get_var( $var, $val ) {
+	return isset( $_GET[$var] ) && $_GET[$var] === $val;
+}
+
+function ws_andeq_get_vars( $vars, $vals ) {
+	if ( is_array( $vars ) && is_array( $vals ) ) {
+		if ( count( $vars ) == count( $vals ) ) {
+			return array_reduce(array_map(null, $vars, $vals), function( $x, $y ) {
+				return ws_eq_get_var($x[0], $x[1]) && $y;
+			});
+		}
+	}
+	return false;
+}
+
+
+
+
+
+
+
