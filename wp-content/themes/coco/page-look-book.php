@@ -30,7 +30,7 @@
 	
 		<div class="products">
 			<div class="container">
-				<?php  if ( is_user_logged_in() ) : ?>
+				<?php  if ( $uli = is_user_logged_in() ) : ?>
 				<div class='row filter hidden'>
 					<div class='col-sm-6'></div>
 					<div class='col-sm-2'><a href="#">Owned</a></div>
@@ -43,7 +43,7 @@
 				<?php
 				$args = array(
 					'post_type' => 'dress',
-					'posts_per_page' => -1,
+					'posts_per_page' => ( $uli ) ? -1 : 6,
 					'orderby' => 'menu_order',
 					'order' => 'ASC'
 				);
