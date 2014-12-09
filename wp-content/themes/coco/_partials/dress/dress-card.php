@@ -18,7 +18,6 @@
 		
 
 		<div class="product-summary centered">
-			<h4><?php the_title() ?></h4>
 			<h4><?php echo get_field('dress_designer', get_the_ID()); ?></h4>
 		</div>
 	

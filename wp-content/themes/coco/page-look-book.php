@@ -44,7 +44,8 @@
 				$args = array(
 					'post_type' => 'dress',
 					'posts_per_page' => -1,
-					'orderby' => 'menu_order'
+					'orderby' => 'menu_order',
+					'order' => 'ASC'
 				);
 
 				$GLOBALS['LOOP'] = new WP_Query( $args );
