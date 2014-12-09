@@ -12,30 +12,46 @@
 }
 
 
-#home-mission .flex-active-slide{
-	//.animation(scale, 8s, linear, 0s, infinite);
-}	
+@media (min-width: 992px) {
 
-#home-mission .block-background{
-	.animation(scale, 20s, linear, 0s, infinite);
-}	
 
-#home-mission .slides li{
-	-webkit-transform: scale(1.05);  		
+	
+	#background{
+		//.animation(color-drift, 15s, linear, 0s, infinite);	
+	}
+	
+	.home #background{
+		.animation(image-drift, 15s, linear, 0s, infinite);
+	}		
+
 }
 
 
-@-webkit-keyframes scale{
+@-webkit-keyframes image-drift{
   0% {
-	-webkit-transform: scale(1.0);
+		-webkit-filter: blur(0px) brightness(.5) saturate(2);
 	}
   50% {
-	-webkit-transform: scale(1.05);  	
+		-webkit-filter: blur(6px) brightness(1) saturate(1);		
   }
   100% {
-	-webkit-transform: scale(1.0);  	
+		-webkit-filter: blur(0px) brightness(.5) saturate(2);	  	
   }	
 	  
 }
+
+@-webkit-keyframes color-drift{
+  0% {
+		background: #e6d8d5;
+	}
+  50% {
+		background: darken(#e6d8d5,15%);		
+  }
+  100% {
+		background: #e6d8d5;
+  }	
+	  
+}
+
 
 

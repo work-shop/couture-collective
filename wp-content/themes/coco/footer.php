@@ -1,21 +1,18 @@
 
 	</div><!--/#content-->
 	
-	<footer id="footer">
+	<footer id="footer" class="bg-pink">
 	
 		<div class="container">
 			<div class="row">
-			
+				
 				<div class="col-sm-12">
-					<nav id="footer-nav" class="">
-						<ul class="left">
-							<li><?php edit_post_link('Edit This Page'); ?> </li>
-						</ul>
+					<nav id="footer-nav">
 						<?php 
 							$args = array(
 								'theme_location' => 'footer-menu', 
 								'container' => false,
-								'menu_class' => 'center',
+								'menu_class' => 'centered',
 							);
 							wp_nav_menu( $args ); 
 						?>
@@ -28,18 +25,7 @@
   
 </div><!-- /#state -->
 
-<div id="foot" class="hidden">
-
-	<script type="text/javascript">
-				  
-		  //add this setup
-		  var addthis_config = {"data_track_addressbar":true}; 
-		  var addthis_config = {"data_track_clickback":true};
-	
-	</script> 
-
-	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50f20b8a658458ce">
-	</script>		 		
+<div id="foot" class="hidden">	 		
 
 	<script type="text/javascript">
 	     less.env = "production"; less.watch();

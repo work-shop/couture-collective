@@ -35,6 +35,7 @@
 		
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	
+	<link rel="apple-touch-icon"href="/apple-touch-icon.png">	
 	<link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/_/img/favicon.ico">
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 			
@@ -43,7 +44,7 @@
       <script src="<?php bloginfo('template_directory'); ?>/_/js/respond.js"></script>
     <![endif]-->		
     
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700,300,400' rel='stylesheet' type='text/css'> 
+	<link href='http://fonts.googleapis.com/css?family=Muli:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
         	
 	<?php wp_head(); ?>
 				
@@ -51,55 +52,144 @@
 
 <body <?php body_class('before'); ?>>
 
-<?php get_template_part('landing'); ?>
+<?php // get_template_part('landing'); ?>
 
 <?php get_template_part('ie'); ?>
 
 <div id="state" class="loading">
+
+	<div id="background" class="<?php  if ( is_home()) : echo 'background-home'; endif; ?>
+"></div>
 	
 		<header id="header" class="closed">
-			<div class="container">		
-				<?php 
-					$args = array(
-						'theme_location' => 'top-left-menu', 
-						'container' => 'nav',
-						'container_class' => 'left hidden-xs col-sm-4',
-					);
-					wp_nav_menu( $args ); 
-				?>
 
+			<nav id="nav">
 			
-				<a id="logo" class="logo col-sm-4" href="<?php bloginfo('url'); ?>">
-					<img src="<?php bloginfo('template_directory'); ?>/_/img/logo.png" alt="logo">					
-				</a>		
-
-				 <?php if ( is_user_logged_in() ) {
-						$args = array(
-							'theme_location' => 'top-right-menu', 
-							'container' => 'nav',
-							'container_class' => 'right hidden-xs col-sm-4',
-						);
-						wp_nav_menu( $args ); 
-
-				} else{ 
-					include '_partials/small-login.php';
-				} ?> 
-
-				<nav class="right hidden-xs hidden" id="nav">
-					<ul class="main-menu">
-						<li><a href="<?php bloginfo('url'); ?>/how-it-works"  class="">How it Works</a></li>
-						<li><a href="<?php bloginfo('url'); ?>/look-book" class="">Look Book</a></li>								
-
-					</ul>	
-				</nav>	
+				<div class="container">	
+					<div class="row">	
+					
+						<div class="nav-left hidden-xs col-sm-4">
+												
+							<ul>	
+															
+								<li>
+									<a href="<?php bloginfo('url'); ?>/look-book">
+										Fall 2014 Look Book
+									</a>
+								</li>	
+								<li>
+									<a href="<?php bloginfo('url'); ?>/how-it-works">
+										How it Works
+									</a>
+								</li>	
+								
+								<?php if ( is_home() && !is_user_logged_in() ) : ?>
+								<li>
+									<a href="<?php bloginfo('url'); ?>/join" class="hidden">
+										Become a Member
+									</a>
+								</li>							
+								<?php endif; ?>
+							</ul>
+							
+						</div>
+						
+						<div id="carrot" class="menu-toggle visible-xs col-xs-2">
+							<a href="#menu">Menu</a>
+						</div>						
+									
+						<a id="logo" class="logo col-sm-4 col-xs-8" href="<?php bloginfo('url'); ?>">
+						
+							<img src="<?php bloginfo('template_directory'); ?>/_/img/logo.png" alt="logo">					
+						</a>		
+							
+						<div class="nav-right hidden-xs col-sm-4">
+							
+						 	<?php if ( is_user_logged_in() ) { ?>
+							
+									<ul class="right-logged-in">
+										<li>
+											<a href="<?php bloginfo('url'); ?>/cart" id="cart-link">
+												<?php get_template_part('_icons/cart'); ?>
+											</a>
+										</li>	
+										<li>
+											<a href="<?php bloginfo('url'); ?>/closet">
+												My Closet
+											</a>
+										</li>	
+										<li class="dropdown">
+											<a href="<?php bloginfo('url'); ?>/my-account" class="dropdown-toggle top" data-toggle="dropdown">
+												My Account<span class="icon icon-right" data-icon="&#8221;"></span>
+											</a>
+	 
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="<?php bloginfo('url'); ?>/my-account">Settings</a></li>
+												<li><a href="<?php echo wp_logout_url( home_url() ); ?>" title="Logout">Logout</a></li>
+											</ul>
+	
+										</li>										
+									
+									</ul>
+			
+							<?php } else{ 
+									if(is_home()){ ?>
+									
+									<div id="header-login">
+										
+										<?php get_template_part('_partials/login'); ?>
+										
+									</div>							
+										
+									<? }
+									else{ ?>
+										
+										<ul class="right-logged-out">
+											<li>
+												<a href="<?php bloginfo('url'); ?>/login">
+													Login
+												</a>
+											</li>	
+											<li>
+												<a href="<?php bloginfo('url'); ?>/join">
+													Become a Member
+												</a>
+											</li>										
+										
+										</ul>									
+									
+									<?} } ?> 
+												
+							</div>							
+					
+							<div class="nav-xs hidden col-xs-12">
+								<ul>								
+									<li>
+										<a href="<?php bloginfo('url'); ?>/look-book">
+											Fall 2014 Look Book
+										</a>
+									</li>	
+									<li>
+										<a href="<?php bloginfo('url'); ?>/how-it-works">
+											How it Works
+										</a>
+									</li>	
+									
+									<?php if ( is_home() && !is_user_logged_in() ) : ?>
+									<li>
+										<a href="<?php bloginfo('url'); ?>/join">
+											Become a Member
+										</a>
+									</li>							
+									<?php endif; ?>
+								</ul>		
+							</div>										
+								
+							</div>							
+						</div>	
 				
-				<!--
-<a id="carrot" href="#" class="nav-toggle closed">
-					<img src="<?php bloginfo('template_directory'); ?>/_/img/toggle.png" alt="navigation-toggle">
-				</a>
--->
-											
-			</div>					
+			</nav>		
+			
 		</header>
 
 	<div id="headerfix"></div>
