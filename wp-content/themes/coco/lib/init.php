@@ -5,4 +5,5 @@
 	require_once('post-types.php');
 	require_once('actions.php');
 	// require_once('ajax/init.php');
+	require_once('class/class-update-reservation-form.php');
 	
