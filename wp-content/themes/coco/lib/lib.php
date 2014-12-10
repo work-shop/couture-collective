@@ -3,8 +3,9 @@
 
 // Monadic functions for echoing content to the page.
 function ws_ifdef_do_else( $check, $content, $else ) {
-	return ( $check ) ? $content : $else;
+	return ( $check || $check === 0 || $check === "0" ) ? $content : $else;
 }
+
 
 function ws_ifdef_do( $check, $content ) {
 	return ws_ifdef_do_else( $check, $content, "");

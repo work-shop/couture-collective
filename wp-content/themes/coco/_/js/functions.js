@@ -32,6 +32,11 @@ jQuery(document).ready(function($) {
 	});
 	
 	$('#look-book-modal').modal('show');	
+	
+	$('.main-image').click(function(event) {
+	  	event.preventDefault();
+		//imageToggle();
+	});	
 
 
 });//end document.ready
@@ -109,6 +114,26 @@ function menuToggle(){
 	}
 	
 }
+
+function imageToggle(){
+
+	if($('.main-image').hasClass('off')){
+		$('.main-image').removeClass('off');
+		$('.main-image').addClass('on');
+		$('html').removeClass('image-closed');
+		$('html').addClass('image-open');	
+			
+	}
+	
+	else if($('.main-image').hasClass('on')){
+		$('.main-image').removeClass('on');
+		$('.main-image').addClass('off');
+		$('html').removeClass('image-open');
+		$('html').addClass('image-closed');			
+	}
+	
+}
+
 
 
 //measure, resize, and adjust the viewport

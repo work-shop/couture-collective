@@ -64,6 +64,7 @@ if ( function_exists( 'add_theme_support' ) ) {
 if ( function_exists( 'add_image_size' ) ) { 
 	add_image_size( 'square', 500, 500, true );  	
 	add_image_size( 'full', 1440, 878, true );  
+	add_image_size( 'dress-full', 1440, 2415, true );  
 	add_image_size( 'gallery', 446, 748, true );  
 	
 }
