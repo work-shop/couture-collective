@@ -4,7 +4,7 @@
 ?>
 
 <div class="col-sm-3 col-md-2 col-xs-6 product-tile <?php echo cc_get_dress_states( $GLOBALS['USER'], get_the_ID() ); ?>">
-	<a href="<?php // the_permalink(); ?>">
+	<a href="<?php the_permalink(); ?>">
 		
 		<div class="product-image">
 			<?php 
