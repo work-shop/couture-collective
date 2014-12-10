@@ -972,8 +972,36 @@ h6,.h6{
 
 /********** @DRESS *********/
 
+.image-open{
+	height: 100%;
+}
+
 .dress-gallery{
-	
+	.main-image{
+		
+		img{
+			.shadow(0, 0, 2px, @pink-darker);
+			
+			&:hover{
+				//cursor: -webkit-zoom-in;
+			}
+		}
+		
+		&.on{		
+			position: fixed;
+			top: 10%;
+			left: 0%;
+			width: 100%;
+			height: 100%;
+			z-index: 9999;
+			
+			img{
+				height: 80%;
+				width: auto !important;
+				margin: 0 auto;
+			}		
+		}
+	}
 }
 
 .dress-designer{

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html class="header-closed">
+<html class="header-closed image-closed">
 
 <head>
 

@@ -10,10 +10,10 @@
 
 			</div>
 		</div>
-		<div class="col-sm-9 col-xs-8">
+		<div class="col-sm-9 col-xs-8 main-image off">
 			<?php 
 			if ( has_post_thumbnail() ) {
-				the_post_thumbnail('gallery');
+				the_post_thumbnail('dress-large');
 			} else {
 				echo '<img src="' . get_bloginfo( 'template_directory' ) . '/_/img/thumbnail-default.jpg" />';
 			}
