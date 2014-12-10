@@ -99,18 +99,13 @@ function menuToggle(){
 		$('#header').addClass('on');
 		$('html').removeClass('header-closed');
 		$('html').addClass('header-open');	
-		var trim = $(window).height();		
-		$('html,body').css('height',trim);
 	}
 	
 	else if($('#header').hasClass('on')){
 		$('#header').removeClass('on');
 		$('#header').addClass('off');
 		$('html').removeClass('header-open');
-		$('html').addClass('header-closed');
-		$('#header').scrollTop(0);	
-		$('html').css('height','100%');
-		$('body').css('height','100%');						
+		$('html').addClass('header-closed');				
 	}
 	
 }

@@ -39,7 +39,7 @@
 								
 								<?php if ( is_home() && !is_user_logged_in() ) : ?>
 								<li>
-									<a class="white h7 uppercase"  href="<?php bloginfo('url'); ?>/join" class="hidden">
+									<a class="white h7 uppercase hidden"  href="<?php bloginfo('url'); ?>/join" class="hidden">
 										Become a Member
 									</a>
 								</li>							
