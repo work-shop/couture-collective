@@ -4,7 +4,7 @@ Tags: ecommerce, e-commerce, commerce, woothemes, wordpress ecommerce, affiliate
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=paypal@woothemes.com&item_name=Donation+for+WooCommerce
 Requires at least: 3.8
 Tested up to: 4.0
-Stable tag: 2.2.7
+Stable tag: 2.2.8
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -44,8 +44,8 @@ Some of our popular extensions include **[Product Addons](http://www.woothemes.c
 
 Want to see more?
 
-* [View Payment Gateways](http://www.woothemes.com/product-category/woocommerce-extensions/?prod_cat%5B%5D=1023&s=&post_type=product&min_price=0&max_price=129&prod_country=0 "Payment gateways for WooCommerce from WooThemes").
-* [View Shipping Methods](http://www.woothemes.com/product-category/woocommerce-extensions/?prod_cat%5B%5D=1026&s=&post_type=product&min_price=0&max_price=129&post_type=product&prod_country=0 "Shipping methods for WooCommerce from WooThemes").
+* [View Payment Gateways](http://www.woothemes.com/product-category/woocommerce-extensions/payment-gateways/ "Payment gateways for WooCommerce from WooThemes").
+* [View Shipping Methods](http://www.woothemes.com/product-category/woocommerce-extensions/shipping-methods/ "Shipping methods for WooCommerce from WooThemes").
 * [View all extensions](http://www.woothemes.com/product-category/woocommerce-extensions/ "View all WooCommerce extensions").
 
 = Free Extensions =
@@ -129,6 +129,22 @@ Yes you can! Join in on our [GitHub repository](http://github.com/woothemes/wooc
 6. A product archive (grid).
 
 == Changelog ==
+
+= 2.2.8 - 29/10/2014 =
+* Fix - Image crop option.
+* Fix - Display of order note date.
+* Fix - API POST/PUT products attributes values.
+* Fix - Added fallbacks to wp_get_referer().
+* Fix - PayPal encoding for return urls.
+* Fix - Low stock report should hide no stock.
+* Fix - Fixed nonce check in form handler.
+* Fix - Notices in status report when checking if templates exist.
+* Fix - Allow to filter empty tax rate code.
+* Fix - Fixed the value format in stock field with wc_stock_amount().
+* Fix - Remove strtolower for status names and capitalize statuses.
+* Tweak - Removed unused methods from PayPal gateway.
+* Tweak - Use current user ID for refunds.
+* Tweak - Allow API edit_product method to update post_name (slug).
 
 = 2.2.7 - 22/10/2014 =
 * Fix - Fix refund date.
