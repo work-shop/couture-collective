@@ -116,11 +116,11 @@
 						
 							<img id="logo-whole" class="hidden-xs" src="<?php bloginfo('template_directory'); ?>/_/img/logo.png" alt="logo">
 						
-							<img id="logo-type" class="visible-xs" src="<?php bloginfo('template_directory'); ?>/_/img/mark.png" alt="logo">					
+							<img id="logo-type" class="visible-xs" src="<?php bloginfo('template_directory'); ?>/_/img/mark.png" alt="logo">			
 											
 						</a>		
 							
-						<div class="nav-right hidden-xs col-sm-4">
+						<div class="nav-right hidden col-sm-4">
 							
 						 	<?php if ( is_user_logged_in() ) { ?>
 							
@@ -178,29 +178,7 @@
 									<?} } ?> 
 												
 							</div>							
-					
-							<div class="nav-xs hidden col-xs-12">
-								<ul>								
-									<li>
-										<a href="<?php bloginfo('url'); ?>/look-book">
-											Fall 2014 Look Book
-										</a>
-									</li>	
-									<li>
-										<a href="<?php bloginfo('url'); ?>/how-it-works">
-											How it Works
-										</a>
-									</li>	
 									
-									<?php if ( is_home() && !is_user_logged_in() ) : ?>
-									<li>
-										<a href="<?php bloginfo('url'); ?>/join">
-											Become a Member
-										</a>
-									</li>							
-									<?php endif; ?>
-								</ul>		
-							</div>										
 								
 						</div>							
 					</div>	
