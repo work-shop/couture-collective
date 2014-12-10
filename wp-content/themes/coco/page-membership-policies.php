@@ -12,7 +12,7 @@
 			
 				<div class="col-sm-10 col-sm-offset-1">
 				
-					<h1 class="serif centered m">Terms and Conditions</h1>
+					<h1 class="serif centered m"><?php the_title(); ?></h1>
 					
 					<h2 class="centered">All memberships are at the invitation of Couture Collective (Co.Co.) and subject to the terms and conditions of the “Membership Agreement” as set out below:</h2>
 									
@@ -43,7 +43,7 @@
 					<div class="descriptor-text centered">
 						<h5 class="m">Termination by Member</h5>
 						<p class="h6">
-						 A member may terminate membership at any time. If you wish to de-activate your account, please contact customerservice@couturecollective.club. 
+						 A member may terminate membership at any time. If you wish to de-activate your account, please contact info@couturecollective.club. 
 						</p>
 					</div>
 					

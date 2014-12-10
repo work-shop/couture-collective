@@ -148,7 +148,7 @@ function view(){
 		$('.block.half').css('height',ch/2);				
 		$('.block.crop').css('height',ch);		
 		$('.block.min').css('min-height',ch);						
-		$('.block.fit').css('height',ch-hh-90);				
+		$('.block.fit').css('height',ch-90);				
 	}
 	else{
 		$('.block.crop').css('min-height',ch);	
