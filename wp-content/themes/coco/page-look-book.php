@@ -5,7 +5,7 @@
 
 <div id="look-book" class="template template-page ">	
 
-	<section id="look-book-introduction" class="page-introduction block m2">	
+	<section id="look-book-introduction" class="page-introduction block m2 hidden">	
 	
 		<hr class="page-header-rule"/>					
 

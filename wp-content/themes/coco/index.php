@@ -20,7 +20,7 @@
 				<div class="row m3">
 				
 					<div class="col-sm-8 col-sm-offset-2">
-						<h4 class="centered bordered white tagline">Don't Buy Couture.<br class="visible-xs"/> Share It.</h4>
+						<h4 class="centered bordered white tagline">Don't Buy Couture.<br class="visible-xs"/> <span class="italic">Share It.</span></h4>
 						
 						<div class="nav-home visible-xs">
 												

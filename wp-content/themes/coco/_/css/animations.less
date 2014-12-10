@@ -21,7 +21,7 @@
 	}
 	
 	.home #background{
-		.animation(image-drift, 15s, linear, 0s, infinite);
+		.animation(image-drift, 5s, linear, 0s, 1);
 	}		
 
 }
@@ -29,13 +29,11 @@
 
 @-webkit-keyframes image-drift{
   0% {
-		-webkit-filter: blur(0px) brightness(.5) saturate(2);
+		-webkit-filter: blur(8px) brightness(.5) saturate(2);
 	}
-  50% {
-		-webkit-filter: blur(6px) brightness(1) saturate(1);		
-  }
+
   100% {
-		-webkit-filter: blur(0px) brightness(.5) saturate(2);	  	
+		-webkit-filter: blur(0px) brightness(1) saturate(1);	  	
   }	
 	  
 }

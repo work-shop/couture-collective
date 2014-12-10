@@ -489,11 +489,6 @@ h6,.h6{
 
 /********** @STRUCTURE AND MAIN ELEMENTS *********/
 
-.container{
-	max-width: 1040px;
-}
-
-
 .loading{
 	.transition(opacity,1s);
 	opacity: 0 !important;	
@@ -889,6 +884,10 @@ h6,.h6{
 		padding-top: 19px;
 		padding-bottom: 19px;
 		border-color: white;
+		
+		.italic{
+			font-family: 'latin_modern_roman10_italic', Georgia, Times New Roman, serif;			
+		}
 	}
 	
 }
@@ -1180,6 +1179,15 @@ label{
 
 
 /********** @RESPONSIVE *********/
+
+
+@media (min-width: 1200px) {
+	.container{
+		max-width: 1040px;
+	}
+}
+
+
 
 //1200px
 @media (max-width: 1200px) {
