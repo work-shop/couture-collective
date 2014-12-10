@@ -75,7 +75,7 @@
 	<div id="background" class="<?php  if ( is_home()) : echo 'background-home'; endif; ?>
 "></div>
 	
-		<header id="header" class="closed">
+		<header id="header" class="off">
 
 			<nav id="nav">
 			
@@ -108,13 +108,16 @@
 							
 						</div>
 						
-						<div id="carrot" class="menu-toggle visible-xs col-xs-2">
+						<div id="carrot" class="menu-toggle visible-xs">
 							<a href="#menu">Menu</a>
 						</div>						
 									
-						<a id="logo" class="logo col-sm-4 col-xs-8" href="<?php bloginfo('url'); ?>">
+						<a id="logo" class="logo col-sm-4" href="<?php bloginfo('url'); ?>">
 						
-							<img src="<?php bloginfo('template_directory'); ?>/_/img/logo.png" alt="logo">					
+							<img id="logo-whole" class="hidden-xs" src="<?php bloginfo('template_directory'); ?>/_/img/logo.png" alt="logo">
+						
+							<img id="logo-type" class="visible-xs" src="<?php bloginfo('template_directory'); ?>/_/img/mark.png" alt="logo">					
+											
 						</a>		
 							
 						<div class="nav-right hidden-xs col-sm-4">
@@ -199,10 +202,33 @@
 								</ul>		
 							</div>										
 								
-							</div>							
-						</div>	
+						</div>							
+					</div>	
 				
-			</nav>		
+			</nav>	
+			
+			<div id="menu-xs" class="menu-xs closed">
+				<ul>								
+					<li>
+						<a href="<?php bloginfo('url'); ?>/look-book">
+							Fall 2014 Look Book
+						</a>
+					</li>	
+					<li>
+						<a href="<?php bloginfo('url'); ?>/how-it-works">
+							How it Works
+						</a>
+					</li>	
+					
+					<?php if ( is_home() && !is_user_logged_in() ) : ?>
+					<li>
+						<a href="<?php bloginfo('url'); ?>/join">
+							Become a Member
+						</a>
+					</li>							
+					<?php endif; ?>
+				</ul>						
+			</div>	
 			
 		</header>
 

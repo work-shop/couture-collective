@@ -1,32 +1,37 @@
-<div class="row">
-<div class="col-sm-9">
-	<?php
-		
-		$id = $GLOBALS['CC_POST_DATA']['id'];
-		$user = $GLOBALS['CC_POST_DATA']['logged_in'];
 
-		$title = $GLOBALS['CC_POST_DATA']['title'];
-		$description = $GLOBALS['CC_POST_DATA']['description'];
-		$designer = $GLOBALS['CC_POST_DATA']['designer'];
-
-		$size = $GLOBALS['CC_POST_DATA']['size'];
-
-		echo ws_ifdef_do( $title, ws_ifdef_concat('<h3>',$title,'</h3>') );
-		echo ws_ifdef_do( $designer, ws_ifdef_concat('<h6>',$designer,'</h6>') );
-		echo ws_ifdef_do( $description, ws_ifdef_concat('<h6>',$description,'</h6>') );
-
-		echo ws_ifdef_do( $user, ws_ifdef_do( $size, ws_ifdef_concat('<h6>SIZE: ',$size,'</h6>') ) );
-
-	?>
-</div>
-
-<?php if ( $user ) : ?>
-<div class="col-sm-3">
-	<?php
-
-	// CALENDAR
-
-	?>
-</div>
-<?php endif; ?>
-</div>
+	<div class="bordered-dark-top">
+		<?php
+			
+			$id = $GLOBALS['CC_POST_DATA']['id'];
+			$user = $GLOBALS['CC_POST_DATA']['logged_in'];
+	
+			$title = $GLOBALS['CC_POST_DATA']['title'];
+			$description = $GLOBALS['CC_POST_DATA']['description'];
+			$designer = $GLOBALS['CC_POST_DATA']['designer'];
+	
+			$size = $GLOBALS['CC_POST_DATA']['size'];
+	
+			echo ws_ifdef_do( $designer, ws_ifdef_concat('<h1 class="uppercase dress-designer">',$designer,'</h1>') );
+			echo ws_ifdef_do( $title, ws_ifdef_concat('<h6 class="dress-description">',$description,'</h6>') );
+	
+			echo ws_ifdef_do( $user, ws_ifdef_do( $size, ws_ifdef_concat('<p class="h7">SIZE: <span class="numerals h8">',$size,'</span></p>') ) );
+			
+			?>
+			
+			<hr class="brand" />
+			
+			<p class="dress-preview h8">
+				During our preview session, dresses are unavailable for reservation or purchase. Check back soon for the beginning of season 1.
+			</p>
+	
+	</div>
+	
+	<?php if ( $user ) : ?>
+	<div class="col-sm-3-broken">
+		<?php
+	
+		// CALENDAR
+	
+		?>
+	</div>
+	<?php endif; ?>

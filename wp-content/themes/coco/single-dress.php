@@ -2,16 +2,18 @@
 	
 <?php wc_print_notices(); ?>
 
-<article id="dress-<?php the_ID(); ?>" class="template dress">	
-<div class="row">
+<div id="dress-single" class="template template-page template-single">	
 
-<?php
-
-	get_template_part('_partials/dress/dress', 'base');	
-
-?>
+	<article id="dress-<?php the_ID(); ?>" class="template dress">
+		<div class="container">	
+			<div class="row">
+			
+				<?php get_template_part('_partials/dress/dress', 'base'); ?>
+			
+			</div>
+		</div>
+	</article>	
 
 </div>
-</article>	
 
 <?php get_footer(); ?>

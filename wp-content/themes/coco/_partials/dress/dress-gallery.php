@@ -5,14 +5,19 @@
 ?>
 
 	<div class="row">
-		<div class="col-sm-1">
+		<div class="col-sm-3">
 			<div class="row">
-			<!-- gallery grid -->
 
 			</div>
 		</div>
-		<div class="col-sm-11">
-			<!-- gallery image -->
+		<div class="col-sm-9">
+			<?php 
+			if ( has_post_thumbnail() ) {
+				the_post_thumbnail('gallery');
+			} else {
+				echo '<img src="' . get_bloginfo( 'template_directory' ) . '/_/img/thumbnail-default.jpg" />';
+			}
+			?>	
 			
 		</div>
 	</div>

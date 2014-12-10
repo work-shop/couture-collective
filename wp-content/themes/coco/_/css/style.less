@@ -272,7 +272,7 @@ svg *{
 }
 
 .bordered-dark-top{
-	border-bottom: 3px solid @brand;
+	border-top: 3px solid @brand;
 }
 
 hr{
@@ -406,49 +406,75 @@ h1,h2,h3,h4,h5,h6,p{
 
 
 h1,.h1{
-	.h1();
+	font-size: 28px;
+	font-family: 'latin_modern_roman10_regular', Georgia, Times New Roman, serif;
+	letter-spacing: .05em;
 }
 
 h2,.h2{
-	.h2();
+	font-size: 24px;
+	font-weight: light;
 }
 
 h3,.h3{
-	.h3();
+	font-size: 21px;
+	font-weight: light;
+	line-height: 1.5;
 }
 
 h4,.h4{
-	.h4();
+	font-size: 16px;
+	letter-spacing: .2em;
+	font-family: 'latin_modern_roman10_regular', Georgia, Times New Roman, serif;
+	color: #8d8d81;	
+	text-transform: uppercase;
 }
 
 h5,.h5{
-	.h5();
+	font-size: 20px;
+	font-family: 'latin_modern_roman10_regular', Georgia, Times New Roman, serif;
 }
 
 h6,.h6{
-	.h6();
+	font-size: 16px;
+	font-weight: light;
+	line-height: 1.5;	
 }
 
 .h7{	
 	font-size: 12px;
 	letter-spacing: .2em;
-	
 }
 
 
 .h8{
-	
-	
+	font-size: 15px;
+	font-family: 'latin_modern_roman10_italic', Georgia, Times New Roman, serif;
+	line-height: 1.75;		
 }
 
 
 .h9{
-	
-	
+	font-size: 14px;
+	font-family: 'latin_modern_roman10_italic', Georgia, Times New Roman, serif;
+	line-height: 1.75;			
+}
+
+.h10{
+	font-size: 13px;
+	text-transform: lowercase;
+	letter-spacing: .1em;	
 }
 
 .h11{
-	.h11();
+	font-size: 13px;
+	font-family: 'latin_modern_roman10_regular', Georgia, Times New Roman, serif;
+	text-transform: uppercase;	
+	text-align: left;
+}
+
+.numerals{
+	letter-spacing: .2em;	
 }
 
 .small{
@@ -488,8 +514,13 @@ h6,.h6{
 	height: 100%;
 	top: 0;
 	left: 0%;
-
 	background: @pink;
+	
+	&.background-home{
+		background-image: url('../img/home.gif');
+		background-size: cover;
+		background-position: center top;		
+	}
 }
 
 .block{
@@ -540,22 +571,60 @@ h6,.h6{
 
 #header{
 	height: @header-height;
+	max-height: @header-height;
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	z-index: 10;
 	.transition(height,.25s);
+	overflow: hidden;
 	
 	#logo{
 		position: static;
 		padding-top: 38px;
+		
 		img{
-			.transition(padding,.5s);
-			}
+			.transition(padding.25s);		
+			padding: 0px;
+			display: block;
+			margin: 0 auto;
+		}			
+		
+/*
+		#logo-mark{
+			width: 70px;
+			margin-bottom: 30px;
+		}
+		
+		#logo-type{
+			width: 310px;
+		}	
+*/
 		
 	}
 	
+}
+
+#menu-xs{
+	.transition(height,.5s);
+	background: @brand;
+	padding: 15px 0px 15px 15px;
+	display: none;
+
+	a{
+		display: block;
+		padding: 10px 0;
+		color: white;
+		font-size: 12px;
+		text-transform: uppercase;
+		letter-spacing: .2em;
+		
+		&:hover{
+			color: @pink
+		}
+	}
+
 }
 
 #nav{
@@ -566,7 +635,7 @@ h6,.h6{
 		a{
 			.h7();
 			text-transform: uppercase;
-			.transition(all,.25s);
+			.transition(all,.5s);
 			padding-bottom: 4px;
 			
 			&:hover{
@@ -676,26 +745,32 @@ h6,.h6{
 	
 	.dropdown-menu{
 		display: none;
-		width: 132px;
+		width: 134px;
 		text-align: right;
 		background: @brand;
 		position: absolute;
 		top: 25px;
-		right: 0px;
+		right: -1px;
+		
+		li {
+			margin-bottom: 0;
 		
 		a{
 			background: @brand;
 			display: block;
 			color: white;
-			padding: 15px 5px 0px 0px;
+			padding: 12px 10px 12px 0px;
 			height: 100%;
 			line-height: 100%;
 			vertical-align: middle;
+			text-align: center;
 			
 			&:hover{
-				border-bottom: none;
-				color: @pink;
+					border-bottom: none !important;
+					color: @pink !important;
+				}
 			}
+		
 		}
 	}
 	
@@ -717,12 +792,6 @@ h6,.h6{
 
 .home{
 
-	#background{
-		background-image: url('../img/home.gif');
-		background-size: cover;
-		background-position: center top;
-	}
-	
 	#header{
 		li a{
 			color: white;
@@ -734,7 +803,7 @@ h6,.h6{
 		}
 		
 		#logo img{
-			display: none;
+			display: none !important;
 		}
 		
 		#carrot{
@@ -758,20 +827,13 @@ h6,.h6{
 		}
 	
 		height: @header-small-height;
-		overflow: hidden;
+		
 	}
 	
 	&.home{
 	
 		#header{
 			background: none;
-			
-			#logo{
-				img{
-					padding: 0;
-				}
-			}
-		
 			height: @header-height;
 			overflow: visible;
 		}
@@ -906,11 +968,22 @@ h6,.h6{
 		margin-top: 60px;
 	}
 
-
-
 }
 
-/********** @PROJECTS *********/
+/********** @DRESS *********/
+
+.dress-gallery{
+	
+}
+
+.dress-designer{
+	margin-top: 10px;
+	margin-bottom: 0px;
+}
+
+.dress-description{
+	margin-top: 3px;
+}
 
 
 /********** @UTILITIES *********/
@@ -1043,13 +1116,77 @@ label{
 //767px
 @media (max-width: 767px) {
 
-hr{
-	//margin-left: 15px;
-	//margin-right: 15px;
+
+hr.page-header-rule{
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+h1,.h1{
+	font-size: 18px;
+	font-family: 'latin_modern_roman10_regular', Georgia, Times New Roman, serif;
+	letter-spacing: .05em;
+}
+
+h2,.h2{
+	font-size: 18px;
+	font-weight: light;
+}
+
+h3,.h3{
+	font-size: 16px;
+	font-weight: light;
+	line-height: 1.5;
+}
+
+h4,.h4{
+	font-size: 18px;
+	letter-spacing: .2em;
+	font-family: 'latin_modern_roman10_regular', Georgia, Times New Roman, serif;
+	color: #8d8d81;	
+	text-transform: uppercase;
+}
+
+h5,.h5{
+	font-size: 20px;
+	font-family: 'latin_modern_roman10_regular', Georgia, Times New Roman, serif;
+}
+
+h6,.h6{
+	font-size: 16px;
+	font-weight: light;
+	line-height: 1.5;	
+}
+
+.h7{	
+	font-size: 12px;
+	letter-spacing: .2em;
+}
+
+
+.h8{
+	font-size: 14px;
+	font-family: 'latin_modern_roman10_italic', Georgia, Times New Roman, serif;		
+}
+
+
+.h9{
+	font-size: 13px;
+	font-family: 'latin_modern_roman10_italic', Georgia, Times New Roman, serif;
+	line-height: 1.75;			
+}
+
+.h10{
+	font-size: 12px;
+	text-transform: lowercase;
+	letter-spacing: .1em;	
 }
 
 .h11{
-	
+	font-size: 12px;
+	font-family: 'latin_modern_roman10_regular', Georgia, Times New Roman, serif;
+	text-transform: uppercase;	
+	text-align: left;
 }
 
 .col-xs-6{
@@ -1062,32 +1199,70 @@ hr{
 	padding-right: 10px;
 }
 
+.m{
+	margin-bottom: .5em;
+}
+
+.m2{
+	margin-bottom: 1em;
+}
+
 .m3{
-	margin-bottom: 40px;
+	margin-bottom: 30px;
+}
+
+#headerfix{
+	height: 60px;
+}
+
+#background{
+	
+	&.background-home{
+		background-position: left top;
+	}
 }
 
 #header{
 	height: 60px;
-	overflow: hidden;
 
 	#logo{
-		padding-top: 10px;
+		padding-top: 12px;
+		width: 80px;
+		max-width: 80px;
+		margin: 0 auto;
 		
 		img{
-			padding: 0 5px;
+			padding: 0px;
+			display: block;
+			margin: 0 auto;
 		}
+		
 	}
 	
 	#carrot{
 		padding-top: 24px;
 		text-transform: uppercase;
 		.h7();
+		position: fixed;
+		left: 15px;
 		
 		&:hover{
-			border-bottom: none;
+			border-bottom: none !important;
 			color: auto;
 		}
 	}
+	
+	#nav{
+		height: 60px;
+	}
+	
+	&.on{
+		overflow: visible;
+		
+		#menu-xs{
+			display: block;
+		}
+	}	
 	
 }
 
@@ -1096,11 +1271,24 @@ hr{
 		display: none;
 	}
 	
-	.nav-index{
+	.nav-home{
 		text-align: center;
+		margin-top: 30px;
 		
 		li{
 			margin-bottom: .5em;
+			
+			a{
+				.transition(all,.25s);
+				padding-bottom: .25em;
+				border-bottom: 1px solid transparent;
+		letter-spacing: .2em;				
+				
+				&:hover{
+					color: @pink;
+					border-bottom: 1px solid @pink;
+				}
+			}
 		}
 	}
 	
@@ -1110,13 +1298,13 @@ hr{
 
 	#header{
 		height: 60px;
-		overflow: hidden;
+		//overflow: hidden;
 
 		#logo{
-			padding-top: 8px;
+			padding-top: 12px;
 			
 			img{
-			padding: 0 5px;
+				padding: 0px;
 			}			
 			
 		}	
