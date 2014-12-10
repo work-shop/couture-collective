@@ -14,7 +14,7 @@
 
 @light: #efefef;
 
-@error: #f2dede;
+@error: #af6966;
 
 .gradient(){
 	background: #ffffff; /* Old browsers */
@@ -967,6 +967,26 @@ h6,.h6{
 	#contact-form-container{
 		margin-top: 60px;
 	}
+	
+	.gfield{
+		margin-bottom: 10px;
+	}
+	
+	#field_1_1{
+		width: 50%;
+		display: inline-block;
+		padding-right: 15px;
+	}
+	
+	#field_1_2{
+		width: 50%;
+		display: inline-block;
+		padding-left: 15px;
+	}		
+	
+	input[type="submit"]{
+		display: block;
+	}
 
 }
 
@@ -1042,6 +1062,33 @@ h6,.h6{
 		margin-left: 5px;
 	}
 	
+	.validation_error{
+		margin-bottom: 30px;
+		text-align: center;
+		.h2();
+	}	
+	
+	.gfield_error{
+		input,textarea{
+			border: 2px solid @error;
+		}
+		.gfield_required{
+			color: @error;
+		}		
+	}	
+	
+	.gfield_description.validation_message{
+		.h10();
+		margin-top: 0;
+		color: @error;
+		text-transform: uppercase;
+	}	
+	
+	img{
+		width: auto;
+		max-width: auto;
+	}
+	
 }
 
 
@@ -1055,6 +1102,7 @@ input,textarea{
 	text-indent: 5px;
 	.h7();
 	margin-bottom: 10px;
+	letter-spacing: .1em;
 
 	&:focus{
 		outline: none;

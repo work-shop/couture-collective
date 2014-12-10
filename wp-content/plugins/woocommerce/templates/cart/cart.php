@@ -17,7 +17,6 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 <?php do_action( 'woocommerce_before_cart_table' ); ?>
 
-<h2>yeah</h2>
 <table class="shop_table cart" cellspacing="0">
 	<thead>
 		<tr>
