@@ -25,7 +25,6 @@ class CC_Make_Reservation_Form extends WC_Booking_Form {
 		parent::__construct( $product );
 		if ( CC_Make_Reservation_Form::validate( $resource_name ) ) {
 			$associated = $this->product->get_resources( );
-			//var_dump( $associated );
 			foreach ($associated as $key => $resource) {
 				if ( $resource->post_title == $resource_name ) {
 					$this->resource = $this->product->get_resource( $resource->ID );
@@ -87,6 +86,15 @@ class CC_Make_Reservation_Form extends WC_Booking_Form {
 		wp_localize_script( 'cc-ajax-make-reservation', 'booking_form_params', apply_filters( 'booking_form_params', $booking_form_params ) );
 	}
 
+	public function output() {
+		// $this->add_field( array(
+		// 	'name' => 'reservation_type'
+		// 	'class' => array('hidden', '')
+		// 	'label' =>
+		// 	'type' => 'hidden'
+		// ));
+		parent::output();
+	}
 
 	/**
 	 * Override the parent function that determines the posted data, allowing us to shim in our specific cost for a resource.
