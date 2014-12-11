@@ -3,6 +3,9 @@ $(document).ready( function() {
 
 	console.log('enqueued \"make-reservation.js\" via CC_Make_Reservation_Form');
 
+	// remove all resource fields from the make reservation form
+	$('.cc-make-reservation-form').find('.wc_bookings_field_resource').remove();
+
 	$('.cc-make-reservation-form')
 		.on('change', 'input, select', function() {
 			var index = $('.cc-make-reservation-form').index(this);
@@ -33,7 +36,8 @@ $(document).ready( function() {
 				url: booking_form_params.ajax_url,
 				data: {
 					action: 'cc_calculate_costs',
-					form: $form.serialize()
+					form: $form.serialize(),
+					reservation_type: booking_form_params.reservation_type
 				},
 				success: function( code ) {
 					console.log( 'response: RAW:' );
