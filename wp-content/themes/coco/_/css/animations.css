@@ -1,0 +1,31 @@
+/********** @ANIMATIONS *********/
+@media (min-width: 992px) {
+  .home #background {
+    animation: image-drift 5s linear 0s 1;
+    -ms-animation: image-drift 5s linear 0s 1;
+    -webkit-animation: image-drift 5s linear 0s 1;
+    -0-animation: move image-drift 5s linear 0s 1;
+    -moz-animation: move image-drift 5s linear 0s 1;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+  }
+}
+@-webkit-keyframes image-drift {
+  0% {
+    -webkit-filter: blur(8px) brightness(0.5) saturate(2);
+  }
+  100% {
+    -webkit-filter: blur(0px) brightness(1) saturate(1);
+  }
+}
+@-webkit-keyframes color-drift {
+  0% {
+    background: #e6d8d5;
+  }
+  50% {
+    background: #c9aba5;
+  }
+  100% {
+    background: #e6d8d5;
+  }
+}
