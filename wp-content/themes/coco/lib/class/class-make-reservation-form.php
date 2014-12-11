@@ -8,7 +8,7 @@ class CC_Make_Reservation_Form extends WC_Booking_Form {
 	 * Valid resource names
 	 * @var string array()
 	 */
-	static protected $resources = array('prereservation', 'rental', 'next-day');
+	static protected $resources = array('Prereservation', 'Rental', 'Nextday');
 	
 	/**
 	 * the resource type for this form
@@ -17,30 +17,27 @@ class CC_Make_Reservation_Form extends WC_Booking_Form {
 	protected $resource;
 
 	/**
-	 * the name of this resource
-	 * @var string :> {prereservation, rental, next-day}
-	 */ 
-	protected $resource_name;
-
-	/**
-	 * the resource type for this form
-	 * @var int :> {prereservation, rental, next-day}
-	 */
-	protected $resource_id;
-
-	/**
 	 * Constructor
 	 * @param $product WC_Product_Booking
 	 * @param $resource string :> {prereservation, rental, next-day}
 	 */
-	public function __construct( $product, $resource ) {
+	public function __construct( $product, $resource_name ) {
 		parent::__construct( $product );
-		if ( CC_Make_Reservation_Form::validate( $resource ) ) {
-			$this->resource = $this->product->get_resource( $this->resource_id );
+		if ( CC_Make_Reservation_Form::validate( $resource_name ) ) {
+			$associated = $this->product->get_resources( );
+			//var_dump( $associated );
+			foreach ($associated as $key => $resource) {
+				if ( $resource->post_title == $resource_name ) {
+					$this->resource = $this->product->get_resource( $resource->ID );
+					break;
+				}
+			}
+			// if there is no resource at this point, break
 		}
-		// Logic to populate the resource given this proce
+		// if it's not valid, break
 	}
 
+	public function get_resource() { return $this->resource; }
 
 	/**
 	 * Dequeue the parent scripts and replace them with our specialized implementations.
@@ -83,7 +80,8 @@ class CC_Make_Reservation_Form extends WC_Booking_Form {
 		$booking_form_params = array(
 			'ajax_url'              => $woocommerce->ajax_url(),
 			'ajax_loader_url'       => apply_filters( 'woocommerce_ajax_loader_url', $woocommerce->plugin_url() . '/assets/images/ajax-loader@2x.gif' ),
-			'i18n_date_unavailable' => __( 'This date is unavailable', 'woocommerce-bookings' )
+			'i18n_date_unavailable' => __( 'This date is unavailable', 'woocommerce-bookings' ),
+			'reservation_type'	=> $this->resource->get_title()
 		);
 
 		wp_localize_script( 'cc-ajax-make-reservation', 'booking_form_params', apply_filters( 'booking_form_params', $booking_form_params ) );
@@ -97,19 +95,14 @@ class CC_Make_Reservation_Form extends WC_Booking_Form {
 	 *
 	 */
 	public function get_posted_data( $posted = array() ) {
-		$resource_id = 0;
 
 		$data = parent::get_posted_data( $posted ); // do a first pass across the data.
-		$data['_resource_id'] = $this->product->get_resource( $resource_id );
+
+		$data['_resource_id'] = $this->resource->get_id();
+		// $data['type'] = $this->resource->get_title();
+
+		return $data;
 	}
-
-
-
-	public function is_bookable( $data ) {
-		$p_val = parent::is_bookable( $data );
-		// at this point the resource should have been auto-set. we need to reset it.
-	}
-
 
 	/**
 	 * Check a given string is a valid resource identifier
@@ -119,36 +112,6 @@ class CC_Make_Reservation_Form extends WC_Booking_Form {
 	public static function validate( $resource ) {
 		return in_array($resource, CC_Make_Reservation_Form::$resources);
 	}
-
-	/**
-	 * calculate costs with given resource type for posted values
-	 * @param $posted array
-	 * @return string
-	 *
-	 */
-	public function calculate_booking_cost( $posted ) {
-		return "10";
-
-
-
-
-		// if ( !empty( $this->booking_cost ) ) { return $this->booking_cost; }
-
-		// $base_cost = max( 0, parent::$product->wc_booking_cost );
-		// $booking_cost = max( 0, parent::$product->wc_booking_base_cost );
-
-		// $fixed_booking_cost = 0;
-
-		// $data = parent::get_posted_data( $posted );
-		// $valid = parent::is_bookable( $data );
-
-		// if ( is_wp_error( $validate ) ) { return $validate; }
-
-		// set the proper resource id
-	}
-
-
-
 }
 
 
