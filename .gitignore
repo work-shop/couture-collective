@@ -16,3 +16,6 @@ wp-content/wp-cache-config.php
 beta/
 alpha/
 configs/
+
+# environment settings
+env_prod
