@@ -5,7 +5,9 @@
 
 global $woocommerce;
 $rental = $GLOBALS['CC_POST_DATA']['rental'];
-$booking_form = new CC_Make_Reservation_Form( $rental, 'rental' );
+$booking_form = new CC_Make_Reservation_Form( $rental, 'Rental' );
+
+var_dump( get_class_methods( $booking_form->get_resource() ) );
 
 do_action( 'woocommerce_before_add_to_cart_form' ); 
 
