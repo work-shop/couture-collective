@@ -30,13 +30,17 @@ function theme_styles() {
   
   wp_register_style( 'bootstrap', get_template_directory_uri() . '/_/css/bootstrap/bootstrap.css');   
   wp_register_style( 'animation-css', get_template_directory_uri() . '/_/css/animations.css');         
-  //wp_register_style( 'style-less', get_template_directory_uri() . '/_/css/style.less');  
-  wp_register_style( 'style-css', get_template_directory_uri() . '/_/css/style.css');    
+    
+  if ( file_exists( dirname( __FILE__ ) ) . '/env_prod' ) { wp_register_style( 'style-css', get_template_directory_uri() . '/_/css/style.css'); } 
+  else { wp_register_style( 'style-less', get_template_directory_uri() . '/_/css/style.less'); }
+  
   wp_register_style( 'fonts', get_template_directory_uri() . '/_/fonts/fonts.css');  
    
   wp_enqueue_style( 'bootstrap' );   
-  wp_enqueue_style( 'animation-css' );   
-  //wp_enqueue_style( 'style-less' );
+
+  if ( file_exists( dirname( __FILE__ ) ) . '/env_prod' ) wp_enqueue_style( 'animation-css' );   
+  else { wp_enqueue_style( 'style-less' ); }
+
   wp_enqueue_style( 'style-css' );
   wp_enqueue_style( 'fonts' );  
   
