@@ -11,7 +11,7 @@ function theme_scripts() {
     wp_register_script( 'bootstrap', get_template_directory_uri() . '/_/js/bootstrap.js');
     wp_register_script( 'flexslider', get_template_directory_uri() . '/_/js/flexslider.js');
     wp_register_script( 'functions', get_template_directory_uri() . '/_/js/functions.js');
-    wp_register_script( 'ajax', get_template_directory_uri() . '/_/js/ajax.js' );
+    wp_register_script( 'cc-ajax-make-reservation', get_template_directory_uri() . '/_/js/ajax/make-reservation.js' );
 
     wp_enqueue_script( 'jquery' );
     wp_enqueue_script( 'less' );    
