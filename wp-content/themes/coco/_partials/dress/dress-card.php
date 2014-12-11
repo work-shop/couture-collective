@@ -16,7 +16,6 @@
 			}
 			?>							
 		</div>
-		
 
 		<div class="product-summary">
 			<p class="h11 card-designer bordered-dark-bottom"><?php echo get_field('dress_designer', get_the_ID()); ?></p>

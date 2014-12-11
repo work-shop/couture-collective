@@ -142,7 +142,6 @@ function view(){
 	ch = $(window).height();
 	cw = $(window).width();
 	hh = $("#header").height();
-	console.log(hh);
 	
 	if($(window).width() >= 768){	
 		$('.block.half').css('height',ch/2);				
