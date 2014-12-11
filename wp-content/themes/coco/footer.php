@@ -28,7 +28,6 @@
 <div id="foot" class="hidden">	 		
 
 	<script type="text/javascript">
-	     //less.env = "production"; less.watch();
 	</script>
 
 </div>
