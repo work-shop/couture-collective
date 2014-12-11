@@ -1,0 +1,7 @@
+<?php
+
+	require_once( 'class-make-reservation-form.php' );
+	require_once( 'class-update-reservation-form.php' );
+	require_once( 'class-ajax.php' );
+
+?>
