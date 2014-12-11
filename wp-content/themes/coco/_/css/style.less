@@ -1,5 +1,3 @@
-@import "animations.less";
-
 /********** @VARIABLES *********/
 
 @brand: #4a443e;
@@ -85,6 +83,63 @@
 	animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;	
 }
+
+
+/********** @ANIMATIONS *********/
+
+.animation(@name: animation, @duration: 2s, @easing: ease, @delay: 0s, @iteration: 1){	
+	animation: @name @duration @easing @delay @iteration;
+	-ms-animation: @name @duration @easing @delay @iteration;
+	-webkit-animation: @name @duration @easing @delay @iteration;
+	-0-animation:move @name @duration @easing @delay @iteration;
+	-moz-animation:move @name @duration @easing @delay @iteration;
+	animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;	
+}
+
+
+@media (min-width: 992px) {
+
+
+	
+	#background{
+		//.animation(color-drift, 15s, linear, 0s, infinite);	
+	}
+	
+	.home #background{
+		.animation(image-drift, 5s, linear, 0s, 1);
+	}		
+
+}
+
+
+@-webkit-keyframes image-drift{
+  0% {
+		-webkit-filter: blur(8px) brightness(.5) saturate(2);
+	}
+
+  100% {
+		-webkit-filter: blur(0px) brightness(1) saturate(1);	  	
+  }	
+	  
+}
+
+@-webkit-keyframes color-drift{
+  0% {
+		background: #e6d8d5;
+	}
+  50% {
+		background: darken(#e6d8d5,15%);		
+  }
+  100% {
+		background: #e6d8d5;
+  }	
+	  
+}
+
+
+
+
 
 /********** @OBJECT-ORIENTED *********/
 
