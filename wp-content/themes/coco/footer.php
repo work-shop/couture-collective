@@ -27,8 +27,11 @@
 
 <div id="foot" class="hidden">	 		
 
-	<script type="text/javascript">
-	</script>
+	<?php 
+		if ( !file_exists( dirname(__FILE__) . '/lib/env_prod' )  ) {
+			include( 'lib/less.php' );
+		}
+	?>
 
 </div>
 
