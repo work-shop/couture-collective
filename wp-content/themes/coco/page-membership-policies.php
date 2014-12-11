@@ -5,7 +5,7 @@
 
 	<hr class="page-header-rule"/>						
 
-	<section id="terms-introduction" class="block m3">	
+	<section id="terms-introduction" class="block m">	
 		<div class="container">
 				
 			<div class="row">
@@ -14,7 +14,7 @@
 				
 					<h1 class="serif centered m"><?php the_title(); ?></h1>
 					
-					<h2 class="centered">All memberships are at the invitation of Couture Collective (Co.Co.) and subject to the terms and conditions of the “Membership Agreement” as set out below:</h2>
+					<h3 class="centered">All memberships are at the invitation of Couture Collective (Co.Co.) and subject to the terms and conditions of the “Membership Agreement” as set out below:</h3>
 									
 				</div>
 
@@ -27,10 +27,6 @@
 		<div class="container">
 			
 			<div class="row">
-			
-				<div class="col-sm-12">
-					<h4 class=" bordered serif centered m25">Membership Agreement</h4>
-				</div>
 				
 				<div class="col-sm-10 col-sm-offset-1">
 					<p class="h3 centered m25">
@@ -42,7 +38,9 @@
 				
 					<div class="descriptor-text centered">
 						<h5 class="m">Termination by Member</h5>
-						<p class="h6">
+
+						<p class="h3">
+
 						 A member may terminate membership at any time. If you wish to de-activate your account, please contact info@couturecollective.club. 
 						</p>
 					</div>
@@ -53,7 +51,7 @@
 				
 					<div class="descriptor-text centered">
 						<h5 class="m">Termination by Co.Co.</h5>
-						<p class="h6">
+						<p class="h3">
 						A violation of the terms and conditions of this agreement may result in a suspension or termination of your membership privileges. 
 						</p>
 					</div>
@@ -138,7 +136,7 @@ Members should not undertake to clean any garment themselves. All members agree 
 				
 					<div class="descriptor-text centered">
 						<h5 class="m">Minor Repairs</h5>
-						<p class="h6">
+						<p class="h3">
 Upon purchasing a share in a Co.Co. item, you agree to take the utmost care with the garment, as you would your own. The nature of high couture fashion requires that dressing, undressing and storage while in your possession meet a certain standard. Please review our Care and Courtesy section below. Minor issues such as treatable stains, tiny rips or stuck zippers will be repaired and incur a repair charge to the member. You are responsible for any loss, damage, destruction or theft of the garment.  
 						</p>
 					</div>
@@ -149,7 +147,7 @@ Upon purchasing a share in a Co.Co. item, you agree to take the utmost care with
 				
 					<div class="descriptor-text centered">
 						<h5 class="m">Irreparable Damage</h5>
-						<p class="h6">
+						<p class="h3">
 At the time of your purchase of a share in an Item, a member authorizes Co.Co. to charge her payment card for an amount equal to 110% of the original retail value of the Item (when new) plus applicable sales taxes, in case of irreparable damage or loss. Co.Co. must be notified immediately in the case of major damage or loss to avoid Late Fees which are not refundable.						</p>
 					</div>
 					

@@ -14,6 +14,10 @@
 			<div class="row">
 			
 				<div class="col-sm-10 col-sm-offset-1">
+
+				
+					<h1 class="serif centered m">Welcome to the Fall 2014 Look Book Preview!</h1>
+
 									
 				</div>		
 

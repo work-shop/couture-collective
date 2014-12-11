@@ -14,7 +14,7 @@
 					
 						<h1 class="serif centered m">How it Works</h1>
 						
-						<h2 class="centered m">Couture Collective(Co.Co.) is a revolution in fashion ownership.</h2>
+						<h3 class="centered m">Couture Collective(Co.Co.) is a revolution in fashion ownership.</h3>
 						
 						<p class="h3 centered m">
 						Each fall and spring, we offer our members fractional shares in the newest looks from the hottest designers. Beautifully maintained and impeccably stored, your clothes are delivered to your door whenever you want them, all season long. When the season’s over, it’s time for a whole new wardrobe. 	
