@@ -24,7 +24,6 @@ if ( $tv ) { ?>
 	 	<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
 
 	 	<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $share->id ); ?>" />
-	 	<!-- <input type="hidden" name="redirect_to" value="<?php echo $url; ?>"> -->
 
 	 	<button type="submit" class="single_add_to_cart_button button alt">PURCHASE</button>
 

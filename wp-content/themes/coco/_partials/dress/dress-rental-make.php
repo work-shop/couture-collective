@@ -5,7 +5,7 @@
 
 global $woocommerce;
 $rental = $GLOBALS['CC_POST_DATA']['rental'];
-$booking_form = new WC_Booking_Form( $rental );
+$booking_form = new CC_Make_Reservation_Form( $rental, 'rental' );
 
 do_action( 'woocommerce_before_add_to_cart_form' ); 
 
@@ -14,7 +14,7 @@ do_action( 'woocommerce_before_add_to_cart_form' );
 
 <form class="cart" method="post" enctype='multipart/form-data'>
 
- 	<div id="wc-bookings-booking-form" class="wc-bookings-booking-form" style="display:none">
+ 	<div id="wc-bookings-booking-form" class="wc-bookings-booking-form cc-make-reservation-form" style="display:none">
 
  		<?php $booking_form->output(); ?>
 
