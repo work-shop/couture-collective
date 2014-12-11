@@ -1,4 +1,12 @@
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("//hello.myfonts.net/count/2cd399");
 
+  
+@font-face {font-family: 'AvenirLTStd-Light';src: url('2CD399_0_0.eot');src: url('2CD399_0_0.eot?#iefix') format('embedded-opentype'),url('2CD399_0_0.woff2') format('woff2'),url('2CD399_0_0.woff') format('woff'),url('2CD399_0_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'AvenirLTStd-LightOblique';src: url('2CD399_1_0.eot');src: url('2CD399_1_0.eot?#iefix') format('embedded-opentype'),url('2CD399_1_0.woff2') format('woff2'),url('2CD399_1_0.woff') format('woff'),url('2CD399_1_0.ttf') format('truetype');}
+ 
 
 @font-face {
     font-family: 'modern_pictograms_proregular';
