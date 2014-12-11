@@ -42,12 +42,41 @@ class CC_Ajax {
 
 		$booking_id = $posted['add-to-cart']; // changing this will help the whole reservation thing.
 		$product    = get_product( $booking_id );
+		$type 		= $_POST['reservation_type'];
+
+		if ( ! $product ) {
+			die( json_encode( array(
+				'result' => 'ERROR',
+				'html'   => '<span class="booking-error">' . __( 'This booking is unavailable.', 'woocommerce-bookings' ) . '</span>'
+			) ) );
+		}
+
+		$form = new CC_Make_Reservation_Form( $product, $type );
+		$cost = $form->calculate_booking_cost( $posted );
+
+		if ( is_wp_error( $cost ) ) {
+			die( json_encode( array(
+				'result' => 'ERROR',
+				'html'   => '<span class="booking-error">' . $cost->get_error_message() . '</span>',
+				''
+			) ) );
+		}
+
+		$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
+		$display_price    = $tax_display_mode == 'incl' ? $product->get_price_including_tax( 1, $cost ) : $product->get_price_excluding_tax( 1, $cost );
 
 		die( json_encode( array(
 			'result' => 'SUCCESS',
-			'html' => __('Booking cost', 'woocommerce-bookings') . ': <strong>' . '$10' . '</strong>'
+			'html'   => __( 'Booking cost', 'woocommerce-bookings' ) . ': <strong>' . woocommerce_price( $display_price ) . $product->get_price_suffix() . '</strong>'
 		) ) );
+
 	}
+
+
+
+
+
+
 
 	public function get_time_blocks() {
 		die( json_encode( array(
