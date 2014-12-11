@@ -5,7 +5,7 @@
 
 	<hr class="page-header-rule"/>						
 
-	<section id="terms-introduction" class="block m3">	
+	<section id="terms-introduction" class="block m">	
 		<div class="container">
 				
 			<div class="row">
@@ -14,7 +14,7 @@
 				
 					<h1 class="serif centered m"><?php the_title(); ?></h1>
 					
-					<h2 class="centered">All memberships are at the invitation of Couture Collective (Co.Co.) and subject to the terms and conditions of the “Membership Agreement” as set out below:</h2>
+					<h3 class="centered">All memberships are at the invitation of Couture Collective (Co.Co.) and subject to the terms and conditions of the “Membership Agreement” as set out below:</h3>
 									
 				</div>
 
@@ -27,10 +27,6 @@
 		<div class="container">
 			
 			<div class="row">
-			
-				<div class="col-sm-12">
-					<h4 class=" bordered serif centered m25">Membership Agreement</h4>
-				</div>
 				
 				<div class="col-sm-10 col-sm-offset-1">
 					<p class="h3 centered m25">
