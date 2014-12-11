@@ -50,7 +50,7 @@
 						</div>
 						<div class="descriptor-text centered">
 							<h5>Start Fresh Each Season</h5>
-							<p class="h6">
+							<p class="h3">
 							 Each item is available to share for 20% of the retail price. Once five members have bought shares in a particular item, it is considered sold out and will only appear in their private “closets” on the Co.Co. website. After the show, all items are stored and assiduously cared for in between wearings. 	
 							</p>
 						</div>
@@ -63,7 +63,7 @@
 						</div>
 						<div class="descriptor-text centered">
 							<h5>Reservations</h5>
-							<p class="h6">
+							<p class="h3">
 								Each item of clothing has its own interactive calendar on the Co.Co. website. Shareholders may access these calendars by logging into their Co.Co. closet and reserve up to five advance dates to wear their items during the 7-month season. Reservations will be noted on a first-come, first-serve basis. 	
 							</p>
 						</div>
@@ -76,7 +76,7 @@
 						</div>
 						<div class="descriptor-text centered">
 							<h5>On-Demand Delivery</h5>
-							<p class="h6">
+							<p class="h3">
 							 If an item is not reserved, a shareholder may request delivery of her item the following day as many times as she likes. 	
 							</p>
 						</div>
@@ -96,7 +96,7 @@
 					</div>
 					<div class="descriptor-text centered">
 						<h5>Need a Dress for One Night?</h5>
-						<p class="h6">
+						<p class="h3">
 						 All unsold item shares in an item are valued at five wearings each. Single wearings are available for 10% of the retail price. Items available for single wearings can be seen on the One Night Only section of the website. 
 						</p>
 					</div>
@@ -112,7 +112,7 @@
 					</div>
 					<div class="descriptor-text centered">
 						<h5>Keep Your Favorites</h5>
-						<p class="h6">
+						<p class="h3">
 						Final purchase of an item is available for an additional 30% of the retail price and is offered on a first-come basis. Members must pay for their purchase upon reservation but must wait until the end of the season to keep their item. 
 						</p>
 					</div>
@@ -126,7 +126,7 @@
 	
 			<div class="row">
 				<div class="col-sm-10 col-sm-offset-1">
-					<p class="h6 centered">
+					<p class="h3 centered">
 			Members are responsible for cleaning and applicable delivery charges (local delivery is free). Standard cleaning costs are listed with each item on the website. All items must be ready for pick up 48 hours after receipt, unless a different arrangement has been pre-arranged. A $100 daily late fee will be assessed if an item is not ready for pick up. 		
 					
 					</p>
