@@ -1,3 +1,3 @@
 <script type="text/javascript">
-	less.env = "production"; less.watch();
+	less.env = "development"; less.watch(); 
 </script>

@@ -28,8 +28,8 @@
 <div id="foot" class="hidden">	 		
 
 	<?php 
-		if ( !file_exists( dirname(__FILE__) . '/lib/env_prod' )  ) {
-			include( 'lib/less.php' );
+		if ( !file_exists( dirname(__FILE__) . '/lib/env_prod' )  ) { 
+			include('lib/less.php');
 		}
 	?>
 
