@@ -1,5 +1,6 @@
 <?php 
 	if (
+		//pages that no one should ever see, ever!
 		is_shop() ||
 		is_product() ||
 		is_product_category() ||
@@ -9,12 +10,14 @@
 		get_template_part('_partials/placeholder/placeholder', 'forward' ); 
 	} 
 	elseif(
+		//pages that anyone can see
 		is_home() ||
-		is_page(array( 9, 26, 30, 363 ))
+		is_page(array( 9, 26, 30, 363, 11 ))
 	) 
 	{
 	}
 	else{
+		//pages that only logged in users should see
 		if ( !is_user_logged_in() ) :
 		 	get_template_part('_partials/login','modal');
 		 endif;
