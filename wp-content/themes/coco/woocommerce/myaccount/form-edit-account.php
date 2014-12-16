@@ -13,8 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 
-<?php wc_print_notices(); ?>
-
 <form action="" method="post">
 
 	<?php do_action( 'woocommerce_edit_account_form_start' ); ?>
@@ -29,13 +27,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</p>
 	<div class="clear"></div>
 
-	<p class="form-row form-row-wide">
+	<p class="form-row form-row-wide m2">
 		<label for="account_email"><?php _e( 'Email address', 'woocommerce' ); ?> <span class="required">*</span></label>
 		<input type="email" class="input-text" name="account_email" id="account_email" value="<?php echo esc_attr( $user->user_email ); ?>" />
 	</p>
 
 	<fieldset>
-		<legend><?php _e( 'Password Change', 'woocommerce' ); ?></legend>
+		<legend class="h5"><?php _e( 'Password Change', 'woocommerce' ); ?></legend>
 
 		<p class="form-row form-row-wide">
 			<label for="password_current"><?php _e( 'Current Password (leave blank to leave unchanged)', 'woocommerce' ); ?></label>

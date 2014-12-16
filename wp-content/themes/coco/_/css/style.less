@@ -1390,6 +1390,63 @@ fieldset{
 	
 }
 
+.woocommerce-message{
+	background: @pink-darker;
+	color: white;
+	padding: 10px;
+	margin-top: 30px;
+	text-align: center;
+	.animation(wc-notice, 2s, linear, 1s, 1);
+	border: 1px solid @pink;
+}
+
+
+@-webkit-keyframes wc-notice{
+  0% {
+  		background: @pink-darker;
+	}
+
+  50% {
+  		background: darken(@pink,10%);
+  }	
+  
+  100%{
+  		background: @pink-darker;
+  }
+	  
+}
+
+@-moz-keyframes wc-notice{
+  0% {
+  		background: @pink-darker;
+	}
+
+  50% {
+  		background: darken(@pink,10%);
+  }	
+  
+  100%{
+  		background: @pink-darker;
+  }
+	  
+}
+
+@keyframes wc-notice{
+  0% {
+  		background: @pink-darker;
+	}
+
+  50% {
+  		background: darken(@pink,10%);
+  }	
+  
+  100%{
+  		background: @pink-darker;
+  }
+	  
+}
+
+
 
 input,textarea{
 	.transition(all,.125s);
@@ -1415,7 +1472,8 @@ input,textarea{
 		color: white;
 		.h7();
 		text-transform: uppercase;
-		width: 140px;
+		width: 100%;
+		max-width: 180px;
 		margin-left: auto;
 		margin-right: auto;
 		
@@ -1429,6 +1487,30 @@ input,textarea{
 		display: inline;
 	}	
 	
+}
+
+label{
+	color: @brand;
+	letter-spacing: .05em;
+}
+
+.button-brand{
+	.transition(all,.125s);
+	border: 1px solid @pink-darker;
+	padding: 9px 15px;
+	background: @pink-darker;
+	color: white;
+	.h7();
+	text-transform: uppercase;
+	width: 100%;
+	max-width: 180px;
+	margin-left: auto;
+	margin-right: auto;
+	
+	&:hover,&:focus{
+		background: darken(@pink-darker,10%);
+		color: white;
+	}	
 }
 
 label{
@@ -1475,6 +1557,24 @@ label{
 
 	}
 
+}
+
+#my-account-login{
+	[type="submit"]{
+		margin-left: auto;
+		margin-right: auto;
+		display: block;
+	}
+	
+	.lost_password{
+	text-align: center;
+		margin-top: 30px;		
+	}
+
+}
+
+.error{
+	padding: 10px;
 }
 
 

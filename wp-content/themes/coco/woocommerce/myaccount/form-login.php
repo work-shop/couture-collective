@@ -31,13 +31,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php if ( ws_eq_get_var('login','failed') ) : ?>
 
-<section id="login-error" class="block m3">
+<section id="login-error" class="block m2">
 	
 	<div class="container">
 		<div class="row">
 		
-			<div class="col-sm-12">
-				<h3 class="centered error">Incorrect username or password</h3>
+			<div class="col-sm-6 col-sm-offset-3">
+				<h3 class="centered error bg-pink-darker white">Incorrect username or password. Please try again. If you are still having trouble, email us at <a href="mailto:info@couturecollective.club" target="_blank" class="">info@couturecollective.club</a></h3>
 			</div>
 			
 		</div>
@@ -57,8 +57,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="container">
 			<div class="row">	
 				
-				<div class="col-sm-12">
-
+				<div class="col-sm-4 col-sm-offset-4">
 
 				<?php if ( get_option( 'woocommerce_enable_myaccount_registration' ) === 'yes' ) : ?>
 
@@ -68,17 +67,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				<?php endif; ?>
 
-						<form method="post" class="login">
+						<form method="post" class="login" id="my-account-login">
 
 							<?php do_action( 'woocommerce_login_form_start' ); ?>
 
 							<p class="form-row form-row-wide">
 								<label for="username"><?php _e( 'Username or email address', 'woocommerce' ); ?> <span class="required">*</span></label>
-								<input type="text" class="input-text" name="username" id="username" value="<?php if ( ! empty( $_POST['username'] ) ) echo esc_attr( $_POST['username'] ); ?>" />
+								<input type="text" class="input-text" name="username" placeholder="username" id="username" value="<?php if ( ! empty( $_POST['username'] ) ) echo esc_attr( $_POST['username'] ); ?>" />
 							</p>
 							<p class="form-row form-row-wide">
 								<label for="password"><?php _e( 'Password', 'woocommerce' ); ?> <span class="required">*</span></label>
-								<input class="input-text" type="password" name="password" id="password" />
+								<input class="input-text" type="password" name="password" placeholder="password" id="password" />
 							</p>
 
 							<?php do_action( 'woocommerce_login_form' ); ?>
@@ -86,12 +85,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<p class="form-row">
 								<?php wp_nonce_field( 'woocommerce-login' ); ?>
 								<input type="submit" class="button" name="login" value="<?php _e( 'Login', 'woocommerce' ); ?>" /> 
-								<label for="rememberme" class="inline">
+								<label for="rememberme" class="centered">
 									<input name="rememberme" type="checkbox" id="rememberme" value="forever" /> <?php _e( 'Remember me', 'woocommerce' ); ?>
 								</label>
 							</p>
 							<p class="lost_password">
-								<a href="<?php echo esc_url( wc_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'woocommerce' ); ?></a>
+								<a class=" button-brand" href="<?php echo esc_url( wc_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'woocommerce' ); ?></a>
 							</p>
 
 							<?php do_action( 'woocommerce_login_form_end' ); ?>

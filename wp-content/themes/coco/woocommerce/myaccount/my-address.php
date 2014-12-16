@@ -29,9 +29,7 @@ if ( ! wc_ship_to_billing_address_only() && get_option( 'woocommerce_calc_shippi
 $col = 1;
 ?>
 
-<h2><?php echo $page_title; ?></h2>
-
-<p class="myaccount_address">
+<p class="myaccount_address hidden">
 	<?php echo apply_filters( 'woocommerce_my_account_my_address_description', __( 'The following addresses will be used on the checkout page by default.', 'woocommerce' ) ); ?>
 </p>
 
@@ -39,12 +37,11 @@ $col = 1;
 
 <?php foreach ( $get_addresses as $name => $title ) : ?>
 
-	<div class="col-<?php echo ( ( $col = $col * -1 ) < 0 ) ? 1 : 2; ?> address">
+	<div class="col-<?php echo ( ( $col = $col * -1 ) < 0 ) ? 1 : 2; ?> col-sm-6 address">
 		<header class="title">
-			<h3><?php echo $title; ?></h3>
-			<a href="<?php echo wc_get_endpoint_url( 'edit-address', $name ); ?>" class="edit"><?php _e( 'Edit', 'woocommerce' ); ?></a>
+			<h3 class="h7 uppercase"><?php echo $title; ?></h3>
 		</header>
-		<address>
+		<address class="h3">
 			<?php
 				$address = apply_filters( 'woocommerce_my_account_my_address_formatted_address', array(
 					'first_name'  => get_user_meta( $customer_id, $name . '_first_name', true ),
@@ -66,6 +63,9 @@ $col = 1;
 					echo $formatted_address;
 			?>
 		</address>
+			<a href="<?php echo wc_get_endpoint_url( 'edit-address', $name ); ?>" class="edit button-brand"><?php _e( 'Edit', 'woocommerce' ); ?></a>
+		
+		
 	</div>
 
 <?php endforeach; ?>

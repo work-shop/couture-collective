@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         <div class="container">
             <div class="row">   
                 
-                <div class="col-sm-12">
+                <div class="col-sm-6 col-sm-offset-3">
 
                     <form method="post" class="lost_reset_password">
 
