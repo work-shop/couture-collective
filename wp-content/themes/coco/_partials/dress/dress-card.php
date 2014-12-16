@@ -6,7 +6,7 @@
 
 <div class="col-sm-3 col-md-3 col-xs-6 product-card card <?php echo cc_get_dress_states( $GLOBALS['USER'], get_the_ID() ); ?>">
 	<a href="<?php  the_permalink(); ?>">
-	
+
 		<div class="product-image">
 			<?php 
 			if ( has_post_thumbnail() ) {

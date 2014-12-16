@@ -1,5 +1,4 @@
 <?php 
-
 /*
  * @hooked page-look-book.php
  * This hook redirects the user to the same page with additional get vars on a failed login
@@ -16,7 +15,4 @@ function login_failure_redirect( $username ) {
 		exit;	
 	}
 }
-
-
-
 ?>
