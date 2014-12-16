@@ -1,4 +1,4 @@
-	<?php  if ( !is_user_logged_in() ) : ?>
+
 			
 		<div class="modal fade" id="look-book-modal" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
 		    <div class="modal-dialog">
@@ -34,6 +34,5 @@
 		      </div><!-- /.modal-content -->
 		    </div><!-- /.modal-dialog -->
 		  </div><!-- /.modal -->	
-	
-	<?php endif; ?>
+
 

@@ -67,9 +67,7 @@
 		</div>
 											
 	</section>	
-	
-	<?php get_template_part('_partials/look-book-check'); ?>	
-	
+		
 </div>	
 
 <?php get_footer(); ?>

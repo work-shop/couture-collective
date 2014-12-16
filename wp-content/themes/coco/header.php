@@ -1,15 +1,24 @@
 <?php 
-	if ( 
+	if (
 		is_shop() ||
 		is_product() ||
-		is_cart() ||
 		is_product_category() ||
-		is_product_tag() ||
-		is_account_page()
-	) : 
+		is_product_tag() 
+	) 
+	{ 
 		get_template_part('_partials/placeholder/placeholder', 'forward' ); 
-
-	endif; 
+	} 
+	elseif(
+		is_home() ||
+		is_page(array( 9, 26, 30, 363 ))
+	) 
+	{
+	}
+	else{
+		if ( !is_user_logged_in() ) :
+		 	get_template_part('_partials/login','modal');
+		 endif;
+	}
 ?>
 
 <!DOCTYPE html>
