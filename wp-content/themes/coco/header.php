@@ -134,9 +134,11 @@
 							
 						<div class="nav-right col-sm-4 hidden-xs">
 							
-						 	<?php if ( is_user_logged_in() ) { ?>
-							
-									<ul class="right-logged-in">
+						 	<?php if ( is_user_logged_in() ) { 
+							 	global $current_user;
+							 	get_currentuserinfo();
+							 	 ?>
+									<ul class="right-logged-in <?php if ($current_user->user_login == 'Guest') : echo 'hidden'; endif; ?>">
 										<li class="hidden">
 											<a href="<?php bloginfo('url'); ?>/cart" id="cart-link">
 												<?php // get_template_part('_icons/cart'); ?>

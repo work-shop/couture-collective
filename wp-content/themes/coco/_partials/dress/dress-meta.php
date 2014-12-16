@@ -20,8 +20,8 @@
 			
 			<hr class="brand" />
 			
-			<p class="dress-preview h8">
-				During our preview session, dresses are unavailable for reservation or purchase. Check back soon for the beginning of season 1.
+			<p class="dress-preview h8 m">
+				During our preview session, dresses are unavailable for online reservation. Browse the calendar below to see available dates for reservation for this dress, and then email <a href="mailto:info@couturecollective.club">info@couturecollective.club</a> to inquire about a reservation.
 			</p>
 	
 	</div>
