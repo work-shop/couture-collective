@@ -13,7 +13,7 @@ class CC_Make_Reservation_Form extends WC_Booking_Form {
 	/**
 	 * the resource type for this form
 	 * @var WC_Product_Booking_Resource
-	 */
+	 */ 
 	protected $resource;
 
 	/**

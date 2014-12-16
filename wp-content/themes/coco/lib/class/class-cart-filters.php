@@ -44,7 +44,7 @@ class CC_Cart_Filters {
 	/**
 	 * Added posted data to the specified cart item
 	 */
-	public function cc_add_cart_item_data( $cart_item_data, $product_id ) {
+	public function cc_add_cart_item_data( $cart_item_meta, $product_id ) {
 		$product = get_product( $product_id );
 
 		if ( 'booking' !== $product->product_type ) {
