@@ -150,7 +150,7 @@
 											</a>
 										</li>	
 										<li class="dropdown my-account-item">
-											<a href="<?php bloginfo('url'); ?>/my-account" class="dropdown-toggle top" data-toggle="dropdown">
+											<a href="<?php bloginfo('url'); ?>/my-account">
 												My Account<span class="icon icon-right" data-icon="&#8221;"></span>
 											</a>
 	 
@@ -175,7 +175,7 @@
 									<? }
 									else{ ?>
 										
-										<ul class="right-logged-out">
+										<ul class="right-logged-out hidden">
 											<li>
 												<a href="<?php bloginfo('url'); ?>/login">
 													Login
@@ -214,7 +214,7 @@
 					
 					<?php if ( is_user_logged_in() ) : ?>
 					<li>
-						<a href="<?php bloginfo('url'); ?>/my-account" class="dropdown-toggle top" data-toggle="dropdown">
+						<a href="<?php bloginfo('url'); ?>/my-account">
 							My Account
 						</a>		
 					</li>
