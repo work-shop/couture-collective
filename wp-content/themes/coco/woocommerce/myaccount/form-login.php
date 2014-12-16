@@ -29,7 +29,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 	
 </section>	
 
-<?php wc_print_notices(); ?>
+<?php if ( ws_eq_get_var('login','failed') ) : ?>
+
+<section id="login-error" class="block m3">
+	
+	<div class="container">
+		<div class="row">
+		
+			<div class="col-sm-12">
+				<h3 class="centered error">Incorrect username or password</h3>
+			</div>
+			
+		</div>
+		
+	</div>	
+	
+</section>	
+
+<?php endif; ?>
+
+
 
 <?php do_action( 'woocommerce_before_customer_login_form' ); ?>
 
