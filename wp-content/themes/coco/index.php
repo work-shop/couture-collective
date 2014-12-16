@@ -43,6 +43,8 @@
 										Become a Member
 									</a>
 								</li>	
+																		
+								<?php get_template_part('_partials/login'); ?>
 								
 								<?php else: ?>
 								<li>
