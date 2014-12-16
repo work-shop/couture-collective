@@ -1143,103 +1143,139 @@ fieldset{
 	-webkit-padding-after: 0em;	
 }
 
-#wc-bookings-booking-form{
+
+.dress-calendar{
 	
-	border: none;
-	padding: 0;
-	
-	legend{
-		display: none;
-	}
-	
-	.wc-bookings-date-picker .ui-widget-content	{
-		background: none;
-		.shadow(0,0,0,rgba(0,0,0,0));
-	}
-	
-	.wc-bookings-date-picker .ui-datepicker-header{
-		background: white;
-		background: rgba(255,255,255,.2);
-		border-top: none;
-		color: #8d8d81;
-		.border-radius(0);
+	#wc-bookings-booking-form{
 		
-		span{
-			font-size: 14px;
+		border: none;
+		padding: 0;
+		
+		legend{
+			display: none;
 		}
 		
-	}	
-	
-	.wc-bookings-date-picker .ui-datepicker .ui-datepicker-next, .wc-bookings-date-picker .ui-datepicker .ui-datepicker-prev{
-		background: white;
-		background: rgba(255,255,255,.2);
-		color: #8d8d81;
-		span{
-			//background-image: none;
-			color:  #8d8d81;
+		.wc-bookings-date-picker .ui-widget-content	{
+			background: none;
+			.shadow(0,0,0,rgba(0,0,0,0));
+		}
+		
+		.wc-bookings-date-picker .ui-datepicker-header{
+			background: white;
+			background: rgba(255,255,255,.2);
+			border-top: none;
+			color: #8d8d81;
+			.border-radius(0);
 			
-			&:before{
-				//content: '>';
-				}
-			
-		}
-				
-		}
-		
-		.ui-datepicker-calendar{
 			span{
 				font-size: 14px;
 			}
-		}
+			
+		}	
 		
-		.wc-bookings-date-picker .ui-datepicker th{
+		.wc-bookings-date-picker .ui-datepicker .ui-datepicker-next, .wc-bookings-date-picker .ui-datepicker .ui-datepicker-prev{
 			background: white;
 			background: rgba(255,255,255,.2);
 			color: #8d8d81;
-			border: none		
-		}
-		
-		.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
-			background: white;
-			background: rgba(255,255,255,.2);
-			color: @pink-darker;
-		}
-		
-		.wc-bookings-date-picker .ui-datepicker td{
-			background: white;
-			background: rgba(255,255,255,.2);
-			color: @pink-darker;
-			border: 1px solid darken(@pink,10%);		
-			font-size: 14px;
+			span{
+				//background-image: none;
+				color:  #8d8d81;
+				
+				&:before{
+					//content: '>';
+					}
+				
+			}
+					
+			}
 			
-			&.bookable{		
-				a{
-					background: white !important;
-					color: @brand !important;
+			.ui-datepicker-calendar{
+				span{
+					font-size: 14px;
+				}
+			}
+			
+			.wc-bookings-date-picker .ui-datepicker th{
+				background: white;
+				background: rgba(255,255,255,.2);
+				color: #8d8d81;
+				border: none		
+			}
+			
+			.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+				background: white;
+				background: rgba(255,255,255,.2);
+				color: @pink-darker;
+			}
+			
+			.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled{
+				opacity: .5;
+			}		
+			
+			.wc-bookings-date-picker .ui-datepicker td{
+				background: white;
+				background: rgba(255,255,255,.2);
+				color: @pink-darker;
+				border: 1px solid darken(@pink,10%);		
+				font-size: 14px;
+				outline: none !important;
+				
+				&.bookable{		
+					a{
+						background: white !important;
+						color: @brand !important;
+						.transition(all,.125s);
+						
+						&:hover{
+							//background: @pink !important;
+							//color: white !important;
+						}
+						
+						&:focus{
+							background: @pink-darker !important;
+							color: white !important;					
+						}
+					}
+					
+					.ui-state-active{
+						//background: @pink-darker !important;
+						//color: white !important;
+						&:hover{
+						//background: @pink-darker !important;
+						//color: white !important;						
+						}
+						
+					}
+					
 				}
 				
-				.ui-state-active{
+				&.fully_booked{
 					background: @pink-darker !important;
-					color: white !important;
-					
+					opacity: .5;
+					border: 1px solid @pink-darker;		
+					span.ui-state-default{
+						background: none !important;
+						color: @brand !important;
+					}					
 				}
 				
 				.ui-priority-secondary{
 					opacity: 1;
-				}
-			}
-			
-			&.ui-datepicker-today{
-				background: #f4f4bc;
-				opacity: 1;
-				span{
-					//color: white;
-				}
+	
+				}			
+				
+				&.ui-datepicker-today{
+					background: #ffffa2;
+					//opacity: 1;
+					span{
+						
+						//color: white;
+					}
+				}	
 			}	
-		}	
-
+	
+	}
 }
-
 
 /********** @UTILITIES *********/
 
