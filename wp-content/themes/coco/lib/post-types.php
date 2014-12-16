@@ -110,7 +110,7 @@ function dress_modify( $post_id ) {
 	$dress_sale = get_field('dress_sale_product_instance', $post_id );
 	$dress_rental = get_field('dress_rental_product_instance', $post_id );
 
-	// determine whether this is a creation of deletion
+	// determine whether this is a creation or deletion
 	if ( !empty( $dress_share ) && !empty( $dress_sale ) && !empty( $dress_rental ) ) {
 		remove_action( 'save_post', 'dress_modify');
 		dress_update( $post, $post_id );
@@ -253,7 +253,7 @@ function cc_create_dress_sale_product( $post, $parent_post_id ) {
 }
 
 function cc_create_dress_rental_product( $post, $parent_post_id ) {
-	$dress_share =  array(
+	$dress_rental =  array(
 		'post_content' => '',
 		'comment_status'  => 'closed',
 		'ping_status'   => 'closed',
@@ -264,7 +264,7 @@ function cc_create_dress_rental_product( $post, $parent_post_id ) {
 		'post_type'   => 'product'
 	);
 
-	$post_id = wp_insert_post( $dress_share );
+	$post_id = wp_insert_post( $dress_rental );
 
 	$rental_price = get_field('dress_rental_price', $parent_post_id);
 	$sku = get_field('dress_sku', $parent_post_id);
