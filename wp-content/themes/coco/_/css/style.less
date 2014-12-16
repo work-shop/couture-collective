@@ -1133,6 +1133,113 @@ h6,.h6{
 	margin-top: 3px;
 }
 
+fieldset{
+	border: none;
+	margin: none;
+	padding: none !important;
+	-webkit-padding-before: 0em;
+	-webkit-padding-start: 0em;
+	-webkit-padding-end: 0em;
+	-webkit-padding-after: 0em;	
+}
+
+#wc-bookings-booking-form{
+	
+	border: none;
+	padding: 0;
+	
+	legend{
+		display: none;
+	}
+	
+	.wc-bookings-date-picker .ui-widget-content	{
+		background: none;
+		.shadow(0,0,0,rgba(0,0,0,0));
+	}
+	
+	.wc-bookings-date-picker .ui-datepicker-header{
+		background: white;
+		background: rgba(255,255,255,.2);
+		border-top: none;
+		color: #8d8d81;
+		.border-radius(0);
+		
+		span{
+			font-size: 14px;
+		}
+		
+	}	
+	
+	.wc-bookings-date-picker .ui-datepicker .ui-datepicker-next, .wc-bookings-date-picker .ui-datepicker .ui-datepicker-prev{
+		background: white;
+		background: rgba(255,255,255,.2);
+		color: #8d8d81;
+		span{
+			//background-image: none;
+			color:  #8d8d81;
+			
+			&:before{
+				//content: '>';
+				}
+			
+		}
+				
+		}
+		
+		.ui-datepicker-calendar{
+			span{
+				font-size: 14px;
+			}
+		}
+		
+		.wc-bookings-date-picker .ui-datepicker th{
+			background: white;
+			background: rgba(255,255,255,.2);
+			color: #8d8d81;
+			border: none		
+		}
+		
+		.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+			background: white;
+			background: rgba(255,255,255,.2);
+			color: @pink-darker;
+		}
+		
+		.wc-bookings-date-picker .ui-datepicker td{
+			background: white;
+			background: rgba(255,255,255,.2);
+			color: @pink-darker;
+			border: 1px solid darken(@pink,10%);		
+			font-size: 14px;
+			
+			&.bookable{		
+				a{
+					background: white !important;
+					color: @brand !important;
+				}
+				
+				.ui-state-active{
+					background: @pink-darker !important;
+					color: white !important;
+					
+				}
+				
+				.ui-priority-secondary{
+					opacity: 1;
+				}
+			}
+			
+			&.ui-datepicker-today{
+				background: #f4f4bc;
+				opacity: 1;
+				span{
+					//color: white;
+				}
+			}	
+		}	
+
+}
+
 
 /********** @UTILITIES *********/
 
