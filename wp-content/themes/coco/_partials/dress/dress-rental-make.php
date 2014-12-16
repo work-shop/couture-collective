@@ -5,7 +5,7 @@
 
 global $woocommerce;
 
-$reservation_type = 'Prereservation';
+$reservation_type = 'Rental';
 
 $rental = $GLOBALS['CC_POST_DATA']['rental'];
 $booking_form = new CC_Make_Reservation_Form( $rental, $reservation_type );
