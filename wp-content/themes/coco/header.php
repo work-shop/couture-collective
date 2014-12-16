@@ -12,7 +12,7 @@
 	elseif(
 		//pages that anyone can see
 		is_home() ||
-		is_page(array( 9, 26, 30, 363, 11 ))
+		is_page(array( 9, 26, 30, 363, 11, 7 ))
 	) 
 	{
 	}

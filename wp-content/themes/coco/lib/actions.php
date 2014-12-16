@@ -10,8 +10,8 @@ function login_failure_redirect( $username ) {
 	$ref = $_SERVER['HTTP_REFERER'];
 
 	if ( !empty($ref) ) {
-		$get_vars = '?login=failed';
-		wp_redirect( $ref . $get_vars );
+		wc_add_notice('Incorrect username or password','notice');
+		wp_redirect( home_url() . '/my-account?login=failed' );
 		exit;	
 	}
 }
