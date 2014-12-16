@@ -881,6 +881,59 @@ h6,.h6{
 	
 }
 
+.nav-home form{
+	margin: 60px auto 0px auto;
+	width: 200px;
+
+	input{
+		height: 25px;
+		background: rgba(255,255,255,.25);
+		color: white;
+		opacity: 1;
+		text-align: center !important;
+		font-size: 12px;
+		letter-spacing: .2em;
+		width: 100%;
+		display: block;
+		margin-bottom: 5px;	
+			border: 2px solid transparent;
+				
+		
+		&:focus{
+			background: white;
+			color: @dark;
+			border: 2px solid transparent;
+		}
+		
+		&[type="submit"]{
+			background: none;
+			margin-top: 2px;
+
+			&:focus,&:hover{
+				background: white;
+				color: @brand;
+			}
+		}
+	}	
+		
+		::-webkit-input-placeholder {
+		   color: white;
+		}
+		
+		:-moz-placeholder { /* Firefox 18- */
+		   color: white;  
+		}
+		
+		::-moz-placeholder {  /* Firefox 19+ */
+		   color: white;  
+		}
+		
+		:-ms-input-placeholder {  
+		   color: white;  
+		}			
+}
+
+
 
 #headerfix{
 	height: @header-height;
@@ -985,6 +1038,9 @@ h6,.h6{
 		padding-top: 19px;
 		padding-bottom: 19px;
 		border-color: white;
+		border-top: 1px solid white;
+		border-bottom: 1px solid white;
+		
 		
 		.italic{
 			font-family: 'latin_modern_roman10_italic', Georgia, Times New Roman, serif;			
