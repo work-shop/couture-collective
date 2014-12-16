@@ -10,6 +10,8 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
+
+global $current_user;
 ?>
 
 <section id="account-intro" class="block m3">
