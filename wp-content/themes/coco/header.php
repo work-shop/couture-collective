@@ -132,22 +132,22 @@
 											
 						</a>		
 							
-						<div class="nav-right hidden col-sm-4">
+						<div class="nav-right col-sm-4 hidden-xs">
 							
 						 	<?php if ( is_user_logged_in() ) { ?>
 							
 									<ul class="right-logged-in">
-										<li>
+										<li class="hidden">
 											<a href="<?php bloginfo('url'); ?>/cart" id="cart-link">
-												<?php get_template_part('_icons/cart'); ?>
+												<?php // get_template_part('_icons/cart'); ?>
 											</a>
 										</li>	
-										<li>
+										<li class="hidden">
 											<a href="<?php bloginfo('url'); ?>/closet">
-												My Closet
+												<!-- My Closet -->
 											</a>
 										</li>	
-										<li class="dropdown">
+										<li class="dropdown my-account-item">
 											<a href="<?php bloginfo('url'); ?>/my-account" class="dropdown-toggle top" data-toggle="dropdown">
 												My Account<span class="icon icon-right" data-icon="&#8221;"></span>
 											</a>
@@ -210,12 +210,14 @@
 						</a>
 					</li>	
 					
-					<?php if ( is_home() && !is_user_logged_in() ) : ?>
+					<?php if ( is_user_logged_in() ) : ?>
 					<li>
-						<a href="<?php bloginfo('url'); ?>/join">
-							Become a Member
-						</a>
-					</li>							
+						<a href="<?php bloginfo('url'); ?>/my-account" class="dropdown-toggle top" data-toggle="dropdown">
+							My Account
+						</a>		
+					</li>
+					<li><a href="<?php echo wp_logout_url( home_url() ); ?>" title="Logout">Logout</a></li>
+							
 					<?php endif; ?>
 				</ul>						
 			</div>	

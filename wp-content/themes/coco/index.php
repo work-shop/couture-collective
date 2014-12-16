@@ -37,12 +37,19 @@
 									</a>
 								</li>	
 								
-								<?php if ( is_home() && !is_user_logged_in() ) : ?>
+								<?php if ( !is_user_logged_in() ) : ?>
 								<li>
 									<a class="white h7 uppercase hidden"  href="<?php bloginfo('url'); ?>/join" class="hidden">
 										Become a Member
 									</a>
-								</li>							
+								</li>	
+								
+								<?php else: ?>
+								<li>
+									<a class="white h7 uppercase" href="<?php bloginfo('url'); ?>/my-account" class="dropdown-toggle top" data-toggle="dropdown">
+										My Account
+									</a>		
+								</li>															
 								<?php endif; ?>
 							</ul>
 							
