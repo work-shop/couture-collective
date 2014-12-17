@@ -15,25 +15,13 @@ class CC_Static_Calendar_Form extends WC_Booking_Form {
 	/**
 	 *
 	 * Void all the scripts that are typically enqueued with a booking form.
+	 * @todo Figure out exactly what to do with the fact that the script cannot remove the res. type 
+	 * from the DOM. (Accidental / faked submissions OK because no product/redirect data, but still...)
 	 */
 	public function scripts() {
-		wp_register_script('cc-ajax-dequeue-calendar-form', get_template_directory_uri() . '/_/js/ajax/dequeue-calendar-form.js', array( 'jquery', 'jquery-blockui' ));
 		parent::scripts();
-		wp_enqueue_script('cc-ajax-dequeue-calendar-form');
-	}
-
-	/**
-	 * 
-	 * Output the static calendar form.
-	 */
-	public function output() {
-		// $this->add_field( array(
-		// 	'name' => 'reservation_type'
-		// 	'class' => array('hidden', '')
-		// 	'label' =>
-		// 	'type' => 'hidden'
-		// ));
-		parent::output();
+		wp_register_script('cc-ajax-dequeue-calendar-form', get_template_directory_uri() . '/_/js/ajax/dequeue-calendar-form.js', array( 'jquery', 'jquery-blockui' ));
+		wp_enqueue_script('cc-ajax-dequeue-calendar-form');		
 	}
 }
 
