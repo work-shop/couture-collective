@@ -5,13 +5,8 @@
 
 global $woocommerce;
 
-$reservation_type = 'Rental';
-
 $rental = $GLOBALS['CC_POST_DATA']['rental'];
-$booking_form = new CC_Static_Calendar_Form( $rental, $reservation_type );
-
-// do_action( 'woocommerce_before_add_to_cart_form' ); 
-
+$booking_form = new CC_Static_Calendar_Form( $rental );
 ?>
 
 
