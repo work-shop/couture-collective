@@ -329,7 +329,7 @@ class CC_Init {
 		);
 
 		$next_day_args = array(
-			'post_title' => 'Nextday'
+			'post_title' => 'Nextday',
 			'post_parent' => $id,
 			'post_status' => 'publish',
 			'post_type' => 'bookable_resource',
