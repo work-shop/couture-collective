@@ -15,7 +15,14 @@
 			echo ws_ifdef_do( $title, ws_ifdef_concat('<h6 class="dress-description">',$description,'</h6>') );
 	
 			echo ws_ifdef_do( $user, ws_ifdef_do( $size, ws_ifdef_concat('<p class="h7">SIZE: <span class="numerals h8">',$size,'</span></p>') ) );
-			
+			?>
+
+			<hr class="brand" />
+
+			<?php
+
+			get_template_part('_partials/dress/dress','alpha-pricing');
+
 			?>
 			
 			<hr class="brand" />
