@@ -31,8 +31,12 @@ class CC_Actions {
 	 * @var array(string => string) - cc action hooks
 	 */
 	protected static $actions = array(
-		'wp_login_failed' 				=> 'login_failure_redirect',
-		'woocommerce_new_booking' 			=> 'compute_booking_margins_in_booking'
+		'wp_login_failed' 						=> 'login_failure_redirect',
+		'woocommerce_new_booking' 					=> 'compute_booking_margins_in_booking',
+		'woocommerce_booking_paid'					=> 'schedule_dry_cleaning_email_events',
+		'woocommerce_booking_pending_to_cancelled' 		=> 'clear_scheduled_dry_cleaning_email_events',
+		'woocommerce_booking_confirmed_to_cancelled' 		=> 'clear_scheduled_dry_cleaning_email_events',
+		'woocommerce_booking_paid_to_cancelled' 		=> 'clear_scheduled_dry_cleaning_email_events'
 	);
 
 	/**
@@ -52,6 +56,8 @@ class CC_Actions {
 	 * @param int $booking_id the id of the newly minted booking
 	 */
 	public function compute_booking_margins_in_booking( $booking_id ) {
+		if ( !$booking_id ) return;
+
 		$booking = array( 
 			'booking_start' 	=> (($s = get_post_meta( $booking_id, '_booking_start' )) && is_array($s)) ? ws_fst( $s ) : $s,
 			'booking_end' 	=> (($e = get_post_meta( $booking_id, '_booking_end' )) && is_array($e)) ? ws_fst( $e ) : $e,
@@ -68,18 +74,74 @@ class CC_Actions {
 
 		update_post_meta( $booking_id, '_booking_start', $new_start );
 		update_post_meta( $booking_id, '_booking_end', $new_end );
+
+		if ( !add_post_meta( $booking_id, '_cc_customer_booked_date', $booking['booking_start'], true ) ) {
+			update_post_meta( $booking_id, '_cc_customer_booked_date', $booking['booking_start'] );
+		}
 	}
 
 	/**
-	 * This hook expands bookings outwards in both directions when a booking selected.
-	 * Currently, this allows for overlap in the margin reservations.
+	 * This hook schedules an email event for a given booking.
 	 *
-	 * approach B) create left and right subbookings that are children of this booking, and belong to admin.
-	 * @param int $booking_id the id of the newly minted booking
+	 * @param int $booking_id the booking to schedule a dispatch event for.
 	 */
-	public function compute_booking_margins_in_subbookings( $booking_id ) {
+	public function schedule_dry_cleaning_email_events( $booking_id ) {
+		// whenever a new booking is created, we either want to
+		// A -- send the email immediately, if the email is within a certain range, or
+		// B -- schedule an email to be sent when the range margin is met.
+		if ( !$booking_id ) return;
 
+		$booking = array( 
+			'booking_start' 	=> (($s = get_post_meta( $booking_id, '_booking_start' )) && is_array($s)) ? ws_fst( $s ) : $s,
+			'booking_end' 	=> (($e = get_post_meta( $booking_id, '_booking_end' )) && is_array($e)) ? ws_fst( $e ) : $e,
+		);
+
+		if ( !$booking['booking_start'] ) return;
+
+		$min_email_date = strtotime( $booking['booking_start'] . ' -1 weeks' );
+
+		if ( strtotime('today') > $min_email_date ) { 
+			// if today is greater than one week prior to the desired booking.
+			do_action( 'cc_send_dry_cleaning_email', $booking_id );
+		} else {
+			// we need to schedule an event for send the email.
+			wp_schedule_single_event( $min_email_date, 'cc_send_dry_cleaning_email', array( $booking_id ) );
+		}
 	}
+
+	/**
+	 * Clears any hooked dry-cleaning notification emails for a given $booking_id
+	 *
+	 * @param int #booking_id the id of the booking to clear hooks for
+	 */
+	public function clear_scheduled_dry_cleaning_email_events( $booking_id ) {
+		if ( !$booking_id ) return;
+
+		$booking = array( 
+			'booking_start' 	=> (($s = get_post_meta( $booking_id, '_booking_start' )) && is_array($s)) ? ws_fst( $s ) : $s,
+			'booking_end' 	=> (($e = get_post_meta( $booking_id, '_booking_end' )) && is_array($e)) ? ws_fst( $e ) : $e,
+		);
+
+		if ( !$booking['booking_start'] ) return;
+
+		$min_email_date = strtotime( $booking['booking_start'] . ' -1 weeks' );
+
+		if ( strtotime('today') > $min_email_date ) { 
+			// the send date for this booking has passed, we need to send a second email to inform of the cancellation.
+			do_action('cc_send_dry_cleaning_cancellation_email', $booking_id );
+		} else { 
+			// otherwise we can simply unhook the scheduled event and not worry about it.
+			wp_clear_scheduled_hook('cc_send_dry_cleaning_email', array( $booking_id ) );
+		}
+	}
+
+
+	/** 
+	*  we also need a hook if the dates have changed on a certain booking when a post is saved. This should be a custom
+	*  cc hook that gets fired at the end of the update post action.
+	*
+	*
+	**/
 
 
 	/**

@@ -15,7 +15,8 @@ class CC_Init {
 		'share_price'	=> 'dress_share_price',
 		'sale_price' 	=> 'dress_sale_price',
 		'rent_price' 	=> 'dress_rental_price',
-		'dry_price' 		=> 'dress_dry_cleaning_price'
+		'dry_price' 		=> 'dress_dry_cleaning_price',
+		'description' 	=> 'dress_description'
 
 	);
 
@@ -74,7 +75,7 @@ class CC_Init {
 		// determine whether this is a creation or modification
 		if ( !empty( $dress_share ) && !empty( $dress_sale ) && !empty( $dress_rental ) ) {
 			remove_action( 'save_post', array( $this, 'cc_dress_modify' ));
-			cc_dress_update( $post, $post_id );
+			$this->cc_dress_update( $post, $post_id );
 			add_action( 'save_post', array( $this, 'cc_dress_modify' ));
 		} else if ( !(empty( $dress_share ) && empty( $dress_sale ) && empty( $dress_rental )) ) {
 			/*
@@ -87,7 +88,7 @@ class CC_Init {
 			// and log the error. We may have missed sales, so we should handle this problem immediately.
 		} else {
 			remove_action( 'save_post', array( $this, 'cc_dress_modify' ) );
-			cc_dress_create( $post, $post_id );
+			$this->cc_dress_create( $post, $post_id );
 			add_action( 'save_post', array( $this, 'cc_dress_modify' ));
 		}		
 	}
@@ -221,7 +222,7 @@ class CC_Init {
 	 */
 	private function cc_create_dress_rental_product( $post, $parent_post_id ) {
 		$dress_rental =  array(
-			'post_content' => '',
+			'post_content' => get_field(CC_Init::$fields['description'], $parent_post_id),
 			'comment_status'  => 'closed',
 			'ping_status'   => 'closed',
 			'post_author'   => $post->post_author, // the author of the parent post is the author of this system post
@@ -233,7 +234,7 @@ class CC_Init {
 
 		$post_id = wp_insert_post( $dress_rental );
 
-		$rental_price = get_field(CC_Init::$fields['rental_price'], $parent_post_id);
+		$rental_price = get_field(CC_Init::$fields['rent_price'], $parent_post_id);
 		$dry_price = get_field(CC_Init::$fields['dry_price'], $parent_post_id);
 		$sku = get_field(CC_Init::$fields['id'], $parent_post_id);
 
@@ -244,7 +245,7 @@ class CC_Init {
 		update_post_meta( $post_id, '_wc_booking_duration_type', 'fixed');
 		update_post_meta( $post_id, '_wc_booking_duration', CC_BOOKING_DURATION);
 		update_post_meta( $post_id, '_wc_booking_duration_unit', 'day');
-		update_post_meta( $post_id, '_wc_booking_base_cost', $rental_price);
+		update_post_meta( $post_id, '_wc_booking_base_cost', 0);
 		update_post_meta( $post_id, '_wc_booking_min_duration', 1);
 		update_post_meta( $post_id, '_wc_booking_max_duration', 1);
 		update_post_meta( $post_id, '_wc_booking_qty', 1);
@@ -253,6 +254,7 @@ class CC_Init {
 		update_post_meta($post_id, '_wc_booking_min_date', 2);
 		update_post_meta($post_id, '_wc_booking_min_date_unit', 'week');
 		update_post_meta($post_id, '_wc_booking_default_date_availability', 'available');
+		update_post_meta($post_id, '_wc_booking_calendar_display_mode', 'always_visible');
 
 		update_post_meta( $post_id, '_virtual', 'no'); // check this for functionality
 		update_post_meta( $post_id, 'total_sales', 0);
@@ -262,7 +264,7 @@ class CC_Init {
 		update_post_meta( $post_id, '_regular_price',  0 );
 		update_post_meta( $post_id, '_sale_price', 0 );
 		update_post_meta( $post_id, '_price', 0 );
-		update_post_meta($post_id, '_sku', cc_compute_product_sku( $sku, "RENT") );
+		update_post_meta($post_id, '_sku', $sku );
 
 		// NOT DONE <= these are not used currently, but could be used to programmatically calculate shipping later.
 		// update_post_meta( $post_id, '_weight', "" );
@@ -275,7 +277,7 @@ class CC_Init {
 		update_post_meta( $post_id, '_stock_status', 'instock');
 		update_post_meta( $post_id, '_downloadable', 'no');
 
-		cc_create_rental_resources( $post_id, $rental_price, $dry_price );
+		$this->cc_create_rental_resources( $post, $post_id, $rental_price, $dry_price );
 
 		// update_post_meta( $post_id, '_purchase_note', "" );
 		// update_post_meta( $post_id, '_featured', "no" );
@@ -297,7 +299,7 @@ class CC_Init {
 	 * @param int $rental_price, the price of this rental
 	 * @param int $dry_price, this dress' associated dry cleaning fee
 	 */
-	private function cc_create_rental_resources( $id, $rental_price, $dry_price ) {
+	private function cc_create_rental_resources( $post, $id, $rental_price, $dry_price ) {
 		$pre_args = array(
 			'post_title' => 'Prereservation',
 			'post_parent' => $id,
@@ -355,16 +357,60 @@ class CC_Init {
 		$base_resources[ $next_day_id ] = $dry_price;
 		$base_resources[ $rent_id ] = $dry_price + $rental_price;
 		
-		update_post_meta( $id, '_resource_base_costs', $resources );
+		update_post_meta( $id, '_resource_base_costs', $base_resources );
 
 		$block_resources = array();
-		$base_resources[ $update_id ] = 0;
-		$base_resources[ $pre_id ] = 0;
-		$base_resources[ $next_day_id ] = 0;
-		$base_resources[ $rent_id ] = 0;
+		$block_resources[ $update_id ] = 0;
+		$block_resources[ $pre_id ] = 0;
+		$block_resources[ $next_day_id ] = 0;
+		$block_resources[ $rent_id ] = 0;
 
-		update_post_meta( $id, '_resource_block_costs', $resources );
+		update_post_meta( $id, '_resource_block_costs', $block_resources );
 
+		$this->link_product_and_resource( $id, $rent_id, 0 );
+		$this->link_product_and_resource( $id, $pre_id, 1 );
+		$this->link_product_and_resource( $id, $update_id, 2 );
+		$this->link_product_and_resource( $id, $next_day_id, 3 );
+	}
+
+	/**
+	 * link produces and resources together in the wc_booking_relationships table 
+	 *
+	 * @param int $post_id the id of the product post
+	 * @param int $resource_id the id of the bookable resource
+	 * @param int $order the order in which these products should display in the menu
+	 */
+	private function link_product_and_resource( $post_id, $resource_id, $order ) {
+		global $wpdb;
+
+		$wpdb->insert(
+				"{$wpdb->prefix}wc_booking_relationships",
+				array(
+					'product_id'  => $post_id,
+					'resource_id' => $resource_id,
+					'sort_order'  => $order
+				)
+			);
+	}
+
+	/**
+	 * delete all resources associated with a given product
+	 *
+	 * @param int $post_id the id of the product to delete resources for
+	 */
+	private function unlink_product_and_resources( $post_id ) {
+		global $wpdb;
+
+		$resource_ids = ws_fst( get_post_meta( $post_id, '_resource_base_costs' ) );
+
+		foreach ( $resource_ids as $id => $price ) { wp_delete_post( $id, true ); }
+
+		$wpdb->delete(
+			"{$wpdb->prefix}wc_booking_relationships",
+			array(
+				'product_id'  => $post_id
+			)
+		);
 	}
 
 	/**
@@ -373,9 +419,9 @@ class CC_Init {
 	 * @param int $post_id, $post->ID
 	 */
 	private function cc_dress_create( $post, $post_id ) {
-		cc_create_dress_share_product( $post, $post_id );
-		cc_create_dress_sale_product( $post, $post_id );
-		cc_create_dress_rental_product( $post, $post_id );
+		$this->cc_create_dress_share_product( $post, $post_id );
+		$this->cc_create_dress_sale_product( $post, $post_id );
+		$this->cc_create_dress_rental_product( $post, $post_id );
 
 	}
 
@@ -437,7 +483,7 @@ class CC_Init {
 
 		update_post_meta( $id, '_sku', cc_compute_product_sku( $changed['sku'], "RENT") );
 		
-		cc_update_rental_pricing( $id, $changed );	
+		$this->cc_update_rental_pricing( $id, $changed );	
 	}
 
 	/**
@@ -492,9 +538,9 @@ class CC_Init {
 				'dry_price' => get_field( CC_Init::$fields['dry_price'], $post_id )
 			);
 
-			cc_update_sale_product( ws_fst( $sale_product )->ID, $changed );
-			cc_update_rental_product( ws_fst( $rental_product )->ID, $changed );
-			cc_update_share_product( ws_fst( $share_product )->ID, $changed );
+			$this->cc_update_sale_product( ws_fst( $sale_product )->ID, $changed );
+			$this->cc_update_rental_product( ws_fst( $rental_product )->ID, $changed );
+			$this->cc_update_share_product( ws_fst( $share_product )->ID, $changed );
 
 		} else {
 			// ERROR, no 1-to-3 injection
@@ -511,11 +557,14 @@ class CC_Init {
 		$post = get_post( $post_id );
 		if ( !cc_dress_trash( $post ) ) return;
 
-		$sale_product = get_field( CC_Init::$fields['sale_product'], $post_id );
-		$rental_product = get_field( CC_Init::$fields['rental_product'], $post_id );
-		$share_product = get_field( CC_Init::$fields['share_product'], $post_id );
+		$sale_product = get_field( CC_Init::$fields['sale'], $post_id );
+		$rental_product = get_field( CC_Init::$fields['rental'], $post_id );
+		$share_product = get_field( CC_Init::$fields['share'], $post_id );
 
 		if ( (1 == count( $sale_product )) && (1 == count( $rental_product )) && (1 == count( $share_product )) ) {
+			
+			$this->unlink_product_and_resources( ws_fst( $rental_product )->ID );
+
 			wp_delete_post( ws_fst( $sale_product )->ID, true);
 			wp_delete_post( ws_fst( $rental_product )->ID, true);
 			wp_delete_post( ws_fst( $share_product )->ID, true);
