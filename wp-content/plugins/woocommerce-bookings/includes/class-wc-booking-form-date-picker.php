@@ -96,9 +96,14 @@ class WC_Booking_Form_Date_Picker extends WC_Booking_Form_Picker {
 						if ( ! $availability || empty( $availability[ $resource_id ] ) ) {
 							$fully_booked_days[ $js_date ][ $resource_id ] = true;
 
-							if ( 1 === $resource_count ) {
+							if ( 4 === $resource_count ) { // this core modification is NOT GOOD
 								$fully_booked_days[ $js_date ][0] = true;
 							}
+
+							// original woocommerce-code ...
+							// if ( 1 === $resource_count ) { 
+							// 	$fully_booked_days[ $js_date ][0] = true;
+							// }
 						}
 
 					} else {
