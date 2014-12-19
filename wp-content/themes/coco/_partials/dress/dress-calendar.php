@@ -3,8 +3,6 @@
 
 <?php 
 
-global $woocommerce;
-
 $rental = $GLOBALS['CC_POST_DATA']['rental'];
 $booking_form = new CC_Static_Calendar_Form( $rental );
 ?>
