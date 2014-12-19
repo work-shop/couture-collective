@@ -5,22 +5,24 @@
 		is_product() ||
 		is_product_category() ||
 		is_product_tag() 
-	) 
-	{ 
+	) { 
 		get_template_part('_partials/placeholder/placeholder', 'forward' ); 
-	} 
-	elseif(
+	} elseif (
+		// pages that the guest user should not see
+		cc_user_is_guest() && ( is_page( array( 7 ) ) || is_admin() )
+	) {
+		get_template_part('_partials/placeholder/placeholder', 'forward' ); 
+	} elseif (
 		//pages that anyone can see
 		is_home() ||
 		is_page(array( 9, 26, 30, 363, 11, 7 ))
-	) 
-	{
-	}
-	else{
+	) {
+		// no-op
+	} else {
 		//pages that only logged in users should see
 		if ( !is_user_logged_in() ) :
 		 	get_template_part('_partials/login','modal');
-		 endif;
+		endif;
 	}
 ?>
 
@@ -138,7 +140,7 @@
 							 	global $current_user;
 							 	get_currentuserinfo();
 							 	 ?>
-									<ul class="right-logged-in <?php if ($current_user->user_login == 'Guest') : echo 'hidden'; endif; ?>">
+									<ul class="right-logged-in <?php if ( cc_user_is_guest() ) : echo 'hidden'; endif; ?>">
 										<li class="hidden">
 											<a href="<?php bloginfo('url'); ?>/cart" id="cart-link">
 												<?php // get_template_part('_icons/cart'); ?>

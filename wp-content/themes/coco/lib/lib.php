@@ -131,3 +131,10 @@ function cc_get_dress_states( $user, $dress_id ) {
 
 	return $class_string;
 }
+
+function cc_user_is_guest() {
+	global $current_user;
+
+	return is_user_logged_in() && $current_user->user_login == 'Guest';
+}
+
