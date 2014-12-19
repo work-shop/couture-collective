@@ -100,7 +100,7 @@ class WC_Booking_Form_Date_Picker extends WC_Booking_Form_Picker {
 								$fully_booked_days[ $js_date ][0] = true;
 							}
 
-							// original woocommerce-code ...
+							// original woocommerce-code ... 
 							// if ( 1 === $resource_count ) { 
 							// 	$fully_booked_days[ $js_date ][0] = true;
 							// }
