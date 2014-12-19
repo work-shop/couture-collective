@@ -251,8 +251,8 @@ class CC_Init {
 		update_post_meta( $post_id, '_wc_booking_qty', 1);
 		update_post_meta( $post_id, '_wc_booking_max_date', 12);
 		update_post_meta($post_id, '_wc_booking_max_date_unit', 'month');
-		update_post_meta($post_id, '_wc_booking_min_date', 2);
-		update_post_meta($post_id, '_wc_booking_min_date_unit', 'week');
+		update_post_meta($post_id, '_wc_booking_min_date', 1);
+		update_post_meta($post_id, '_wc_booking_min_date_unit', 'day');
 		update_post_meta($post_id, '_wc_booking_default_date_availability', 'available');
 		update_post_meta($post_id, '_wc_booking_calendar_display_mode', 'always_visible');
 
@@ -481,7 +481,7 @@ class CC_Init {
 
 		wp_update_post( $updated );	
 
-		update_post_meta( $id, '_sku', cc_compute_product_sku( $changed['sku'], "RENT") );
+		update_post_meta( $id, '_sku',  $changed['sku'] );
 		
 		$this->cc_update_rental_pricing( $id, $changed );	
 	}
