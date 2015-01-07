@@ -14,7 +14,7 @@ do_action( 'woocommerce_before_add_to_cart_form' );
 
 ?>
 
-
+<div class="dress-calendar">
 <form class="cart" method="post" enctype='multipart/form-data'>
 
  	<div id="wc-bookings-booking-form" class="wc-bookings-booking-form cc-make-reservation-form" style="display:none">
@@ -33,6 +33,7 @@ do_action( 'woocommerce_before_add_to_cart_form' );
 
  	<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
 </form>
+</div>
 
 <?php do_action( 'woocommerce_after_add_to_cart_form' ); ?>
 
