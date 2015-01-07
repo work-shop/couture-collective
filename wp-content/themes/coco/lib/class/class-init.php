@@ -78,10 +78,10 @@ class CC_Init {
 			$this->cc_dress_update( $post, $post_id );
 			add_action( 'save_post', array( $this, 'cc_dress_modify' ));
 		} else if ( !(empty( $dress_share ) && empty( $dress_sale ) && empty( $dress_rental )) ) {
-			/*
-
-				ERROR
-
+			/**
+ 			 *
+			 * @fault
+			 *
 			 */
 			// ERROR: !($d_sh /\ $d_s /\ $d_r ) /\ ($d_sh \/ $d_s \/ $d_r )
 			// ERROR: Inconsistent State, missing product indicator decoration, recover from this issue if possible,
@@ -114,6 +114,8 @@ class CC_Init {
 		);
 
 		$post_id = wp_insert_post( $dress_share );
+
+		wp_set_object_terms( $post_id, 'share', 'product_cat' );
 
 		$share_price = get_field( CC_Init::$fields['share_price'], $parent_post_id );
 		$sku = get_field( CC_Init::$fields['id'], $parent_post_id );
@@ -172,6 +174,8 @@ class CC_Init {
 		);
 
 		$post_id = wp_insert_post( $dress_sale );
+
+		wp_set_object_terms( $post_id, 'sale', 'product_cat' );
 
 		$sale_price = get_field(CC_Init::$fields['sale_price'], $parent_post_id);
 		$sku = get_field(CC_Init::$fields['id'], $parent_post_id);
@@ -234,6 +238,8 @@ class CC_Init {
 
 		$post_id = wp_insert_post( $dress_rental );
 
+		wp_set_object_terms( $post_id, 'rental', 'product_cat' );
+
 		$rental_price = get_field(CC_Init::$fields['rent_price'], $parent_post_id);
 		$dry_price = get_field(CC_Init::$fields['dry_price'], $parent_post_id);
 		$sku = get_field(CC_Init::$fields['id'], $parent_post_id);
@@ -246,6 +252,7 @@ class CC_Init {
 		update_post_meta( $post_id, '_wc_booking_duration', CC_BOOKING_DURATION);
 		update_post_meta( $post_id, '_wc_booking_duration_unit', 'day');
 		update_post_meta( $post_id, '_wc_booking_base_cost', 0);
+		update_post_meta( $post_id, '_wc_booking_block_cost', 0);
 		update_post_meta( $post_id, '_wc_booking_min_duration', 1);
 		update_post_meta( $post_id, '_wc_booking_max_duration', 1);
 		update_post_meta( $post_id, '_wc_booking_qty', 1);

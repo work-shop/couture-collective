@@ -36,7 +36,8 @@ class CC_Actions {
 		'woocommerce_booking_paid'					=> 'schedule_dry_cleaning_email_events',
 		'woocommerce_booking_pending_to_cancelled' 		=> 'clear_scheduled_dry_cleaning_email_events',
 		'woocommerce_booking_confirmed_to_cancelled' 		=> 'clear_scheduled_dry_cleaning_email_events',
-		'woocommerce_booking_paid_to_cancelled' 		=> 'clear_scheduled_dry_cleaning_email_events'
+		'woocommerce_booking_paid_to_cancelled' 		=> 'clear_scheduled_dry_cleaning_email_events',
+		'woocommerce_order_status_processing'			=> 'add_dress_to_customer'
 	);
 
 	/**
@@ -139,9 +140,38 @@ class CC_Actions {
 	/** 
 	*  we also need a hook if the dates have changed on a certain booking when a post is saved. This should be a custom
 	*  cc hook that gets fired at the end of the update post action.
-	*
-	*
 	**/
+
+	/**
+	 * This hook fires when a customer purchases a share in a dress, and their payment has
+	 * been approved. It adds the dress as an object to the customer's purchased meta field.
+	 *
+ 	 * @param int $order_id, the id of the newly created order.
+	 */
+	public function add_dress_to_customer( $order_id ) {
+		if ( !$order_id ) return;
+
+		if ( $order_id && ($order = wc_get_order( $order_id )) ) {
+			$customer_id = get_current_user_id();
+
+			foreach ( $order->get_items() as $order_item ) {
+				$product_id = (count( $order_item['item_meta']['_product_id'] ) == 1) 
+						  ? $order_item['item_meta']['_product_id'][0] : "";
+
+				if ( !is_numeric( $product_id) ) continue;
+
+				$product_id = intval( $product_id );
+				$product = wc_get_product( intval( $product_id ) );
+
+				$terms = wp_get_object_terms( $product_id, 'product_cat', array('fields' => 'names') ); 
+				foreach ($terms as $name) {
+					if ( in_array($name, array('share', 'rental')) ) {
+						CC_Controller::add_dress_to_customer_closet( $name, $product_id, $customer_id );
+					}
+				}
+			}
+		}
+	}
 
 
 	/**
