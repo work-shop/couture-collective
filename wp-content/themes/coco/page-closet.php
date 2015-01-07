@@ -1,84 +1,39 @@
-<?php get_header();?>
+<?php get_header(); 
 
-<div id="look-book" class="template template-page">	
+
+
+?>
+
+<div id="my-closet" class="template template-page">	
 	
 	<section id="look-book-introduction" class="look-book-introduction block">	
-	
-		<div class="filters">
-
-			<div class="container">	
+		<div class="row">
 				
-				<h2>My Closet</h2>
+			<div class="col-sm-7 col-sm-offset-1">My Dresses</div>
 
-				<ul>
-					<li class="key">Show: </li>
-					<li><a href="#" class="active">ALL</a></li>
-					<li><a href="#" class="">Available Tomorrow</a></li>
-					<li><a href="#" class="">Shares Available</a></li>								
-				</ul>
-			
-			</div>
-		
-		</div>
-		
-		
-		<div class="products">
-			<div class="container">
-				<div class="row">
-			<?php
-				$args = array(
-					'post_type' => 'product',
-					'posts_per_page' => 12
-					);
-				$loop = new WP_Query( $args );
-				
-				if ( $loop->have_posts() ) {
-					while ( $loop->have_posts() ) : $loop->the_post(); ?>
-						<?php 
-						$product = new WC_Product( get_the_ID() );
-						$rent_price = $product->get_sale_price();
-						$share_price = $product->price;
-						?>
-						
-						<div class="col-sm-3 col-md-2 col-xs-6 product-tile available available-tomorrow available-shares">
-							<a href="<?php the_permalink(); ?>">
-								
-								<div class="product-image">
-									<?php 
-									if ( has_post_thumbnail() ) {
-										the_post_thumbnail();
-									}
-									else {
-										echo '<img src="' . get_bloginfo( 'template_directory' ) . '/_/img/thumbnail-default.jpg" />';
-									}
-									?>							
-								</div>
-								
-						
-								<div class="product-summary centered">
-									<h4 class="product-summary-title bold uppercase"><?php the_title(); ?></h4>
-									<h4 class="product-summary-subtitle">Lorem Ipsum Dolor Sit</h4>
-									<h4 class="product-summary-rent">
-										<a href="/something">Rent: <span class="bold">$<?php echo $rent_price; ?></span></a></h4>
-									<h4 class="product-summary-share">
-										<a href="/something">Share: <span class="bold">$<?php echo $share_price?></span></a>
-									
-									
-								</div>
-							
-							</a>
-						</div>
-						
-					<?php endwhile;
-				} else { ?>
-					<h1>The Look Book is currently empty. Please check back soon. </h1>
-				<? }
-				wp_reset_postdata();
-			?>
-				</div>
-			</div>
-		</div>
-			
+			<div class="col-sm-1"><a href="#">All</a></div>
+
+			<div class="col-sm-2"><a href="#">Available Tomorrow</a></div>
+
+			<hr class="page-header-rule"/>
+
+		</div>	
+
+		<?php 
+			$dresses = get_post_meta( get_current_user_id(), 'cc_closet_values', true ); 
+
+			$GLOBALS['CC_CLOSET_DATA'] = array(
+				'shares' => ( !empty( $dresses ) && array_key_exists('share', $dresses) ) ? $dresses['share'] : array(),
+				'rentals' => ( !empty( $dresses ) && array_key_exists('rental', $dresses) ) ? $dresses['rental'] : array()
+			);
+
+		?>
+
+		<?php get_template_part('_partials/closet/closet', 'shared-dresses'); ?>
+
+		<?php get_template_part('_partials/closet/closet', 'rented-dresses'); ?>
+
+		<?php unset( $GLOBALS['CC_CLOSET_DATA'] ); ?>
 								
 	</section>	
 	
