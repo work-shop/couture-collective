@@ -1,5 +1,6 @@
 <?php
 	
+	$
 	$res = $GLOBALS['CC_POST_DATA']['rental'];
 	$booking_form = new WC_Booking_Form( $res );
 	$booking = $GLOBALS['CC_POST_DATA']['current_booking']; 

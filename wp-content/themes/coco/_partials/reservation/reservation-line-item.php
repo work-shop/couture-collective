@@ -36,7 +36,7 @@ if ( 'wc-completed' == $order->post_status ) { ?>
 	<li class="reservation-item incomplete">
 	<div class="row">
 		<div class="col-sm-12">
-		<p class="reservation-date"><?php echo date( 'F jS, Y', strtotime( $booking->get_start_date() ) ); ?></p>
+		<p class="reservation-date"><?php echo date( 'F jS, Y', strtotime( $booking->get_start_date() ) ); ?> - <?php echo date( 'F jS, Y', strtotime( $booking->get_end_date() ) ); ?></p>
 		</div>
 	</div>
 
@@ -45,12 +45,12 @@ if ( 'wc-completed' == $order->post_status ) { ?>
 		<p class="reservation-destination"><small>Shipping to <?php echo $order->get_shipping_address(); ?></small></p>
 		<div>
 
-		<div class="col-sm-12">
+		<!--<div class="col-sm-12">
 			<button class="edit-reservation button">E</button>
 			<div class="edit-subscription-modal">
-				<?php get_template_part('_partials/reservation/reservation', 'edit-modal'); ?>
+				<?php // get_template_part('_partials/reservation/reservation', 'edit-modal'); ?>
 			</div> 
-		<div>
+		<div> -->
 
 		<div class="col-sm-12">
 			<form class="cc-cancel-reservation-form" method='POST' action='<?php echo home_url().'/cancel-reservation'?>'>
