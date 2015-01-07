@@ -1,6 +1,8 @@
 <?php
 // general functions for use in setting up post data, etc.
 
+function out( $variable ) { return var_dump( $variable ); }
+
 // Monadic functions for echoing content to the page.
 function ws_ifdef_do_else( $check, $content, $else ) {
 	return ( $check || $check === 0 || $check === "0" ) ? $content : $else;
@@ -67,6 +69,11 @@ function ws_andeq_get_vars( $vars, $vals ) {
 		}
 	}
 	return false;
+}
+
+function ws_load_module( $module_prefix, $module_name, $args ) {
+	if ( $args && is_array( $args ) ) extract( $args );
+	get_template_part( $module_prefix, $module_name );
 }
 
 
