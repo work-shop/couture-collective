@@ -7,13 +7,11 @@
 <div class="col-sm-5 col-sm-offset-1 dress-meta">
 <?php	
 	get_template_part('_partials/dress/dress', 'meta');
-	get_template_part('_partials/dress/dress', 'calendar' );
+	// get_template_part('_partials/dress/dress', 'calendar' );
 
 	if ( is_user_logged_in() ) {
 
-		// get_template_part('_partials/dress/dress', 'logic');
-
-	} else {
+		get_template_part('_partials/dress/dress', 'logic');
 
 	}
 ?>
