@@ -26,7 +26,7 @@
 		</div>
 	</section>
 	
-	<section id="look-book" class="look-book block">	
+	<section id="look-book-body" class="look-book block">	
 	
 		<div class="products">
 			<div class="container">

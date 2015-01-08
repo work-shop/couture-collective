@@ -139,11 +139,15 @@
 						 	<?php if ( is_user_logged_in() ) { 
 							 	global $current_user;
 							 	get_currentuserinfo();
+							 	global $woocommerce;
+							 	
 							 	 ?>
 									<ul class="right-logged-in <?php if ( cc_user_is_guest() ) : echo 'hidden'; endif; ?>">
 										<li class="">
-											<a href="<?php bloginfo('url'); ?>/cart" id="cart-link">
+											<a href="<?php bloginfo('url'); ?>/cart" id="cart-link" class="<?php if($woocommerce->cart->cart_contents_count): echo 'active'; endif?>
+">
 												<?php get_template_part('_icons/cart'); ?>
+												<?php if($woocommerce->cart->cart_contents_count): echo '<span class="cart-count">(' . $woocommerce->cart->cart_contents_count . ')</span>'; endif?>
 											</a>
 										</li>	
 										<li class="">

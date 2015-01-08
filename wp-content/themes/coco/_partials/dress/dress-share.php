@@ -1,5 +1,5 @@
 <div class="row">
-<div class="col-sm-12 col-lg-12" style="border-top:3px solid #aaa;">
+<div class="col-sm-12" >
 <?php
 	$user = $GLOBALS['CC_POST_DATA']['user'];
 	$share = $GLOBALS['CC_POST_DATA']['share'];

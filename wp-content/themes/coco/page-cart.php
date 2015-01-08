@@ -1,30 +1,44 @@
 
 <?php get_header();?>
 
-<div id="page" class="template page-cart">
+<div id="cart" class="template template-page">	
 
-	<div class="container">
-		<div class="row">
-		
-			<div class="col-sm-12">
-				<h1><?php the_title(); ?></h1>
+	<section id="cart-introduction" class="block m">	
+		<div class="container">
+				
+			<div class="row">
+			
+				<div class="col-sm-10 col-sm-offset-1">
+				
+					<?php wc_print_notices(); ?>
+					
+				</div>
+
 			</div>
 			
 		</div>
+	</section>
 		
-	</div>		
+
+<div id="cart-body" class="template template-page">	
+
+	<section id="cart-introduction" class="block m">	
+		<div class="container bordered-dark-top">
+				
+			<div class="row">
+			
+				<div class="col-sm-12">
+				
+					<?php echo do_shortcode('[woocommerce_cart]') ?>
+					
+				</div>
+
+			</div>
+			
+		</div>
+	</section>
 	
-	<div class="container">
-		<div class="row">
-		
-			<div class="col-sm-12">
-				<?php echo do_shortcode('[woocommerce_cart]') ?>
-			</div>
-			
-		</div>
-		
-	</div>		
-		
-</div>	
+</div>				
+				
 
 <?php get_footer(); ?>
