@@ -756,6 +756,19 @@ h6,.h6{
 			svg{
 				height: 20px;
 			}
+			
+			&.active{	
+				& svg *{
+					fill: @dark;
+				}				
+			}
+			
+			.cart-count{
+				position: relative;
+				top: -2px;
+				margin-left: 3px;
+				font-size: 13px;
+			}
 
 		}
 		
@@ -1408,6 +1421,21 @@ fieldset{
 
 
 @-webkit-keyframes wc-notice{
+  0% {
+  		background: @pink-darker;
+	}
+
+  50% {
+  		background: darken(@pink,10%);
+  }	
+  
+  100%{
+  		background: @pink-darker;
+  }
+	  
+}
+
+@-o-keyframes wc-notice{
   0% {
   		background: @pink-darker;
 	}
