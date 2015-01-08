@@ -25,7 +25,7 @@ if ( $tv ) { ?>
 
 	 	<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $share->id ); ?>" />
 
-	 	<button type="submit" class="single_add_to_cart_button button alt">PURCHASE</button>
+	 	<button type="submit" class="single_add_to_cart_button button alt"><?php echo cc_booking_prompt_string('Share'); ?></button>
 
 		<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
 	</form>

@@ -43,12 +43,13 @@ if ( isset( $_POST['referring-page']) && isset($_POST['user-id']) && isset($_POS
 
 					We need to reclaim the post meta values from the database here.
 					This is probably a custom database query, unfortunately...
+
+					It's not.
 					
 
 				 */
 
-				delete_post_meta($val->id, '_booking_resource_id');
-				delete_post_meta($val->id, '_booking_product_id');
+				CC_Controller::delete_booking_meta( $val->id );
 
 
 				if ( WC()->payment_gateways() ) {

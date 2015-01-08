@@ -145,3 +145,53 @@ function cc_user_is_guest() {
 	return is_user_logged_in() && $current_user->user_login == 'Guest';
 }
 
+/**
+ * writes out a cost string based on the reservation_type
+ *
+ * @param string $reservation_type the type of reservation
+ * @return string the cost string based on $reservation_type
+ */
+function cc_booking_cost_string( $reservation_type ) {
+	switch ( $reservation_type ) {
+		case "Prereservation" :
+			return "Reservation Cost";
+
+		case "Rental" :
+			return "Rental Cost";
+
+		default:
+			return "";
+	}
+
+}
+
+/**
+ * writes out a prompt string based on the reservation_type
+ *
+ * @param string $reservation_type the type of reservation
+ * @return string the prompt based on $reservation_type
+ */
+function cc_booking_prompt_string( $reservation_type ) {
+	switch ( $reservation_type ) {
+		case "Share" :
+			return "Purchase";
+
+		case "Prereservation" :
+			return "Book";
+
+		case "Rental" :
+			return "Rent";
+
+		case "Nextday" : 
+			return "Rent for Tomorrow";
+
+		default :
+			return "";
+	}
+
+}
+
+
+
+
+

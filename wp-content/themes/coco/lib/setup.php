@@ -42,6 +42,8 @@ function theme_styles() {
   else { wp_enqueue_style( 'style-less' ); }
 
   wp_enqueue_style( 'fonts' );  
+
+
   
 }
 add_action('wp_enqueue_scripts', 'theme_styles');

@@ -33,8 +33,9 @@ $shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
 
 						$GLOBALS['CC_POST_DATA'] = array(
 							'user' => wp_get_current_user(),
-							'rental' => get_product( ws_fst( $rental ) )
+							'rental' => get_product( ws_fst( $rental ) ),
 						);
+						$GLOBALS['CC_POST_DATA']['prereservations'] = CC_Controller::get_prereservations_for_dress_rental($GLOBALS['CC_POST_DATA']['rental']->id, $GLOBALS['CC_POST_DATA']['user']->ID);
 
 						// change this to prereservation history.
 						get_template_part( '_partials/dress/dress', 'prereservation-history');
