@@ -25,9 +25,6 @@ if ( isset( $_POST['referring-page']) && isset($_POST['user-id']) && isset($_POS
 			$items = $or->get_items();
 			$item = CC_Controller::get_order_item_for_booking( $val, $or );
 
-			var_dump( $item );
-			exit;
-
 			$refund = wc_create_refund( array(
 				'amount' => CC_Controller::get_refund_amount( $item['id'], $item['set'] ),
 				'reason' => $user->display_name . ' ('. $user->user_email .') canceled the booking.',
@@ -40,16 +37,29 @@ if ( isset( $_POST['referring-page']) && isset($_POST['user-id']) && isset($_POS
 			if ( $bk_succ && $refund ) {
 				// if we've reached this point, let's try and refund the thing v. the Stripe API:
 
+				/*
+
+					TODO:
+
+					We need to reclaim the post meta values from the database here.
+					This is probably a custom database query, unfortunately...
+					
+
+				 */
+
+				delete_post_meta($val->id, '_booking_resource_id');
+				delete_post_meta($val->id, '_booking_product_id');
+
 
 				if ( WC()->payment_gateways() ) {
 					$payment_gateways = WC()->payment_gateways->payment_gateways();
 				}
 
 				if ( isset( $payment_gateways[ $or->payment_method ] ) && $payment_gateways[ $or->payment_method ]->supports( 'refunds' ) ) {
-					$result = $payment_gateways[ $or->payment_method ]->process_refund( $order_id, $or->get_refund_amount(), $refund->get_refund_reason() );
+					$result = $payment_gateways[ $or->payment_method ]->process_refund( $or->id, $refund->get_refund_amount(), $refund->get_refund_reason() );
 
 					if ( is_wp_error( $result ) ) {
-						wc_add_notice( 'We couldn\'t refund you\'re order automatically.','notice' );
+						wc_add_notice( 'We couldn\'t refund your order automatically.','notice' );
 						wp_redirect( $_POST['referring-page']);
 						exit;
 					} elseif ( ! $result ) {
@@ -62,7 +72,7 @@ if ( isset( $_POST['referring-page']) && isset($_POST['user-id']) && isset($_POS
 					$or->update_status('cancelled');	
 				}
 
-				wc_add_notice( 'your booking was successfully cancelled.','success' );
+				wc_add_notice( 'Your booking was successfully cancelled.','success' );
 				wp_redirect( $_POST['referring-page']);
 				exit;
 			} else {
