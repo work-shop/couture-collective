@@ -81,8 +81,8 @@ class CC_Dry_Cleaning_Email extends WC_Email {
 		$order = $booking->get_order();
 		$customer = $booking->get_customer();
 
+		$name = $booking->get_product()->get_title();
 		$num = ws_fst( get_post_meta( '_sku', $booking->product_id ) );
-		$name = $booking->product->get_title();
 
 		$date_format = apply_filters( 'woocommerce_bookings_date_format', 'M jS Y' );
 		$date = date_i18n( $date_format, ws_fst( get_post_meta( $booking->id, '_cc_customer_booked_date' ) ) );
