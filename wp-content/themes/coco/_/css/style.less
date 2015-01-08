@@ -241,6 +241,16 @@ img,video{
 	margin-left: 10px;
 }
 
+.icon{
+	width: 25px;
+
+	svg{
+		width: 25px;
+		position: relative;
+		top: 4px;
+	}
+}
+
 a{
 	color: @brand;
 	.transition(color,.125s);
@@ -364,6 +374,11 @@ hr{
 		width: 225px;
 		margin-bottom: 60px;		
 	}	
+	
+	&.half{
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
 }
 
 *{
@@ -1313,11 +1328,12 @@ fieldset{
 					}
 					
 					.ui-state-active{
-						//background: @pink-darker !important;
-						//color: white !important;
+							background: @pink-darker !important;
+							color: white !important;
+							outline: 1px solid white;
 						&:hover{
-						//background: @pink-darker !important;
-						//color: white !important;						
+							background: @pink-darker !important;
+							color: white !important;	
 						}
 						
 					}
@@ -1348,9 +1364,24 @@ fieldset{
 					}
 				}	
 			}	
+			
+		.wc-bookings-booking-cost{
+			margin-left: 0px;
+			margin-right: 0px;
+			
+			
+		}		
 	
 	}
 }
+
+			
+.wc-bookings-booking-form-button{
+
+}
+
+
+
 
 /********** @UTILITIES *********/
 
@@ -1409,14 +1440,33 @@ fieldset{
 	
 }
 
+&[disabled="disabled"]{
+	opacity: .4;
+	
+	&:hover{
+		background: @pink;
+		cursor: no-drop;
+	}
+}
+
 .woocommerce-message{
-	background: @pink-darker;
-	color: white;
+	
+background: white;
+	color: @dark;
 	padding: 10px;
 	margin-top: 30px;
+	margin-bottom: 60px;
 	text-align: center;
-	.animation(wc-notice, 2s, linear, 1s, 1);
+	//.animation(wc-notice, 2s, linear, 1s, 1);
 	border: 1px solid @pink;
+	
+	font-size: 21px;
+	
+	.wc-forward{
+		.h3();
+		display: block;
+		color: @pink-darker;
+	}
 }
 
 
@@ -1482,7 +1532,7 @@ fieldset{
 
 
 
-input,textarea{
+input,textarea,button[type="submit"]{
 	.transition(all,.125s);
 	padding: 5px;
 	border: 1px solid @pink-darker;
@@ -1507,7 +1557,7 @@ input,textarea{
 		.h7();
 		text-transform: uppercase;
 		width: 100%;
-		max-width: 180px;
+		max-width: 200px;
 		margin-left: auto;
 		margin-right: auto;
 		
