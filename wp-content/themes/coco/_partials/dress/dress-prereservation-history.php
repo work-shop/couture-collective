@@ -1,24 +1,25 @@
 <?php 
-	global $wpdb;
-	$bookings = array();
-	$reservation_type = 'Prereservation';
-
-	$all_b = WC_Bookings_Controller::get_bookings_for_user( $GLOBALS['CC_POST_DATA']['user']->ID ); 
-	foreach ($all_b as $i => $booking) {
-		if ( ($booking->get_product_id() == $GLOBALS['CC_POST_DATA']['rental']->id )
-		     && $booking->status != 'cancelled' ) {
-
-			if ( CC_Controller::get_booking_type( $booking ) == $reservation_type ) {
-				array_push( $bookings, $booking );
-			}	
-		}
-	}
-
+	//$bookings = array();
 	
-	$results = $wpdb->get_col( $wpdb->prepare("SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key = '_booking_product_id' AND meta_value = %d", $GLOBALS['CC_POST_DATA']['rental']->id ) ); 
 
-	//var_dump( $results );
+	// $all_b = WC_Bookings_Controller::get_bookings_for_user( $GLOBALS['CC_POST_DATA']['user']->ID ); 
+	// foreach ($all_b as $i => $booking) {
+	// 	if ( ($booking->get_product_id() == $GLOBALS['CC_POST_DATA']['rental']->id )
+	// 	     && $booking->status != 'cancelled' ) {
 
+	// 		if ( CC_Controller::get_booking_type( $booking ) == $reservation_type ) {
+	// 			array_push( $bookings, $booking );
+	// 		}	
+	// 	}
+	// }
+
+	$reservation_type = 'Prereservation';
+	$bookings = $GLOBALS['CC_POST_DATA']['prereservations'];
+	
+
+	//var_dump( CC_Controller::get_prereservations_for_dress_rental( $GLOBALS['CC_POST_DATA']['rental']->id, $GLOBALS['CC_POST_DATA']['user']->ID ) );
+
+	//var_dump( get_post_meta( $GLOBALS['CC_POST_DATA']['rental']->id ) );
 	//var_dump( $GLOBALS['CC_POST_DATA']['rental']->get_resources() );
 
 ?>

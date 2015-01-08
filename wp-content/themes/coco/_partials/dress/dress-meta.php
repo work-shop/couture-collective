@@ -13,6 +13,12 @@
 	
 			$size = $GLOBALS['CC_POST_DATA']['size'];
 
+
+			// int representing the number of prereservations this user has left for this dress.
+			$remaining_preresevations = CC_Controller::$maximum_prereservations - count( $GLOBALS['CC_POST_DATA']['prereservations'] );
+
+
+
 			echo ws_ifdef_do( $designer, ws_ifdef_concat('<h1 class="uppercase dress-designer">',$designer,'</h1>') );
 			echo ws_ifdef_do( $title, ws_ifdef_concat('<h6 class="dress-description">',$description,'</h6>') );
 	

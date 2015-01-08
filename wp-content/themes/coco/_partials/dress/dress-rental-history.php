@@ -25,7 +25,7 @@
 		$GLOBALS['CC_POST_DATA']['reservation_type'] = 'Rental';
 
 
-		get_template_part( '_partials/reservation/reservation', 'line-item' );
+		get_template_part( '_partials/reservation/prereservation', 'line-item' );
 		
 
 		unset( $GLOBALS['CC_POST_DATA']['current_booking'] );

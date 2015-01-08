@@ -10,7 +10,7 @@ $reservation_type = 'Prereservation';
 $rental = $GLOBALS['CC_POST_DATA']['rental'];
 $booking_form = new CC_Make_Reservation_Form( $rental, $reservation_type );
 
-$prereservations = CC_Controller::get_prereservations_for_dress_rental($rental->id, $GLOBALS['CC_POST_DATA']['user']->ID );
+$prereservations = $GLOBALS['CC_POST_DATA']['prereservations'];
 
 
 if ( 5 > count( $prereservations ) ) {

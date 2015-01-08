@@ -2,6 +2,9 @@
 
 class CC_Controller {
 
+
+	public static $maximum_prereservations = 5;
+
 	/**
 	 * This function, given an integer representing a user-id, returns an 
 	 * array of dress objects that this user has a share in.
@@ -61,13 +64,31 @@ class CC_Controller {
  		return ws_fst( $items[ $item_id ]['item_meta']['_line_total'] );
  	}
 
+
+ 	/**
+ 	 * Given a booking, find ints metadata, and delete it from the database wp_postmeta
+ 	 *
+ 	 * @param in $booking_id the id of the booking to remove metadata for
+ 	 * @return array(string => bool) matches meta keys with successfully deleted true or false
+ 	 *
+ 	 */
+ 	public static function delete_booking_meta( $booking_id ) {
+ 		$success = array();
+ 		
+ 		foreach (get_post_meta( $booking_id ) as $meta_key => $meta_value) {
+ 			$success[ $meta_key ] = delete_post_meta( $booking_id, $meta_key );
+ 		}
+
+ 		return $success;
+ 	}
+
  	/**
  	 * Given a bookable product id, returns the set of prereservations for that dress.
  	 *
  	 * @param int $product_id the id of the bookable product to retrieve product ids from.
  	 * @return array(WC_Bookings)|false the set of prereservations for this dress, or false on failure.
  	 */
- 	public static function get_prereservations_for_dress_rental( $product_id ) {
+ 	public static function get_prereservations_for_dress_rental( $product_id, $user_id ) {
  		global $wpdb;
 
  		$bookable = get_product( $product_id );
@@ -78,27 +99,31 @@ class CC_Controller {
  		foreach ( $bookable->get_resources() as $resource ) {
  			if ( $resource->get_title() == "Prereservation" ) {
  				$resource_id = $resource->get_id();
- 				/* 
- 				 we've grabbed the resource id for the prereservation index on this dress.
-				 We also have access to the product id that it belongs to.
+ 				$booking_ids = get_posts( array(
+					'numberposts'   => -1,
+					'offset'        => 0,
+					'orderby'       => 'post_date',
+					'order'         => 'DESC',
+					'post_type'     => 'wc_booking',
+					'post_status'   => array('paid','confirmed'),
+					'fields'        => 'ids',
+					'no_found_rows' => true,
+					'meta_query' => array(
+						array(
+							'key'     => '_booking_resource_id',
+							'value'   => absint( $resource_id )
+						),
+						array(
+							'key'	    => '_booking_customer_id',
+							'value'   => absint( $user_id )
+						)
+					)
+				) );
 
-				 The next step is to grab all bookings for a specific product. The way to do this is a backwords lookup in the wp_postmeta table.
-
- 				 */ 
- 				 $bookings = $wpdb->get_col( $wpdb->prepare("SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key = '_booking_product_id' AND meta_value = %d", $product_id ) ); 
-
- 				 foreach ($bookings as $booking) {
- 				 	
- 				 }
-
- 				 return array();
+ 				return array_map( function($x) { return get_wc_booking( $x ); }, $booking_ids );
  			}
  		}
  	} 
-
- 	public static function get_bookings_for_dress_rental( $product_id ) {
-
- 	}
 
 
  	/**
