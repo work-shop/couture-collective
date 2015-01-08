@@ -228,7 +228,7 @@ img,video{
 .icon:before {
     content: attr(data-icon);
     font-family: "modern_pictograms_proregular";
-	font-size: 33px;
+	font-size: 27px;
 	line-height: 100%;
 	vertical-align: middle;
 	position: relative;	
@@ -242,12 +242,26 @@ img,video{
 }
 
 .icon{
+	&.pink-darker:before{
+		color: @pink-darker;
+	}
+}
+
+.icon.svg{
 	width: 25px;
 
 	svg{
 		width: 25px;
 		position: relative;
 		top: 4px;
+	}
+	
+	&.icon-small{
+		width: 15px;
+		
+		svg{
+			width: 15px;
+		}
 	}
 }
 
@@ -277,6 +291,11 @@ body{
 
 }
 
+.m0{
+	margin: 0;
+}
+
+
 .m{
 	margin-bottom: 1.5em;
 }
@@ -291,6 +310,10 @@ body{
 
 .m3{
 	margin-bottom: 100px;
+}
+
+.indent{
+	//text-indent: 2.5em;
 }
 
 ::selection {
@@ -319,10 +342,6 @@ svg *{
 
 .gray{
 	color: #333;
-}
-
-.pink{
-	color: @pink;
 }
 
 .brand{
@@ -361,6 +380,10 @@ svg *{
 
 .bordered-dark-top{
 	border-top: 3px solid @brand;
+}
+
+.bordered-pink-bottom{
+	border-bottom: 1px solid @pink-darker;
 }
 
 hr{
@@ -1377,7 +1400,7 @@ fieldset{
 }
 
 			
-.wc-bookings-booking-form-button{
+.reservation-item{
 
 }
 
@@ -1571,6 +1594,22 @@ input,textarea,button[type="submit"]{
 		max-width: 30px;
 		display: inline;
 	}	
+	
+	&.icon-button{
+		background: none;
+		max-width: none;
+		display: inline-block;
+		width: auto;
+		position: relative;
+		top: -2px;
+		border: none;
+		padding: 0;
+		
+		&:hover{
+			opacity: .5;
+			background: none;
+		}
+	}
 	
 }
 

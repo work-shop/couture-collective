@@ -32,7 +32,7 @@
 	
 				<hr class="brand half" />
 	
-				<p class="h7 uppercase"><span class="icon"><?php get_template_part('_icons/delivery'); ?></span> 
+				<p class="h7 uppercase"><span class="icon svg"><?php get_template_part('_icons/delivery'); ?></span> 
 				In My Closet
 				
 				</p>

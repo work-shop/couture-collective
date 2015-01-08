@@ -27,6 +27,10 @@
 <div class="row dress-prereservations">
 <div class="col-sm-12">
 
+<hr class="half" />
+
+<p class="h7 uppercase m">Pre-reserved for me:</p>
+
 <?php if (!empty($bookings) ) { ?>
 
 	<?php
@@ -45,8 +49,6 @@
 			unset($GLOBALS['CC_POST_DATA']['reservation_type']);
 		}
 
-
-
 	?>
 
 <?php } else { ?>
@@ -56,7 +58,6 @@
 <?php } ?>
 </div>
 </div>
-
 
 
 <?php if (!is_single()) : ?>
