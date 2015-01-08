@@ -40,16 +40,17 @@ class CC_Ajax {
 
 		parse_str( $_POST['form'], $posted );
 
-		$booking_id = $posted['add-to-cart']; // changing this will help the whole reservation thing.
+		$booking_id = $posted['add-to-cart']; 
 		$product    = get_product( $booking_id );
 		$type 		= $_POST['reservation_type'];
 
 		if ( ! $product ) {
 			die( json_encode( array(
 				'result' => 'ERROR',
-				'html'   => '<span class="booking-error">' . __( 'This booking is unavailable.', 'woocommerce-bookings' ) . '</span>'
+				'html'   => '<span class="booking-error">' . __( 'This date is unavailable.', 'woocommerce-bookings' ) . '</span>'
 			) ) );
 		}
+
 
 		$form = new CC_Make_Reservation_Form( $product, $type );
 		$cost = $form->calculate_booking_cost( $posted );
@@ -67,7 +68,7 @@ class CC_Ajax {
 
 		die( json_encode( array(
 			'result' => 'SUCCESS',
-			'html'   => __( 'Booking cost', 'woocommerce-bookings' ) . ': <strong>' . woocommerce_price( $display_price ) . $product->get_price_suffix() . '</strong>'
+			'html'   => __( '<p class="h7 uppercase">'.cc_booking_cost_string( $type ).':', 'woocommerce-bookings' ) . ' <span class="h8 numerals">' . woocommerce_price( $display_price ) . $product->get_price_suffix() . '</span></p>'
 		) ) );
 
 	}
