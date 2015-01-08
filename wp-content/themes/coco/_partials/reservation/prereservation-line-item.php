@@ -18,11 +18,14 @@ if ( $status_guard || $timing_guard ) { ?>
 		</div>
 	</div>
 
+	<?php if ( !$status_guard ) : ?>
 	<div class="row">
 		<div class="col-sm-9">
 		<p class="reservation-destination"><small>Shipping to <?php echo $order->get_shipping_address(); ?></small></p>
 		<div>
 	</div>
+	<?php endif; ?>
+
 	</li>
 
 
