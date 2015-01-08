@@ -127,6 +127,94 @@ class CC_Controller {
 
 
  	/**
+ 	 * given a user id, this function selects the active rentals that this user has
+ 	 * and returns an array of dresses mapped their rentals.
+ 	 *
+ 	 * @param int $user_id the id of the user to retrieve dresses and bookings for
+ 	 * @param array(string) $status the statuses to query for
+ 	 * @return array(array(string=>{WC_Post|WC_Booking}))
+ 	 */
+ 	public static function get_rentals_by_dress_for_user( $user_id, $status = array( 'confirmed', 'paid' ) ) {
+ 		global $wpdb;
+ 		/*
+ 		 The routine:
+
+ 		 	get the set of bookings for the given user WC_Bookings_Controller.
+ 		 	Group these by Bookable_Product, and retrieve dresses for each one.
+ 		 	Iterate accross the bookable products, looking up the appropria
+
+ 		 	scratch that.
+
+ 		 	Custom meta query, matching on name.
+ 		 */
+
+ 		$rental_ids = $wpdb->get_col( $wpdb->prepare("SELECT ID FROM {$wpdb->posts} WHERE post_title = %s", "Rental") );
+
+ 		if ( empty( $rental_ids ) ) return $rental_ids;
+
+ 		// we now have access to all ids of rental resources, we'd like to a right join on these with the postmeta fields to recover the rental bookings
+ 		// for all dresses, given the customer.
+
+ 		$booking_ids = get_posts( array(
+			'numberposts'   => -1,
+			'offset'        => 0,
+			'orderby'       => 'post_date',
+			'order'         => 'DESC',
+			'post_type'     => 'wc_booking',
+			'post_status'   => $status,
+			'fields'        => 'ids',
+			'no_found_rows' => true,
+			'meta_query' => array(
+				array(
+					'key'     => '_booking_resource_id',
+					'value'   => $rental_ids,
+					'compare' => 'IN'
+				),
+				array(
+					'key'	    => '_booking_customer_id',
+					'value'   => absint( $user_id )
+				)
+			)
+		) );
+
+ 		// we should now have all bookings that represent rentals for a certain user
+ 		// the next move is to turn these into WC_Booking objects, and sort them by dress.
+ 		// we basically need a sorting routine, ugh. Maybe a custom query is best.
+
+ 		$return = array();
+ 		$products = array();
+ 		$bookings = array_map(function($x) { return get_wc_booking( $x ); }, $booking_ids);
+ 		
+
+ 		foreach ( $bookings as $booking ) {
+ 			$product = $booking->get_product();
+
+ 			if ( !isset( $products[ $product->id ] ) ) {
+ 				// cache the selected dress for future use.
+ 				$dress = get_posts(array(
+					'post_type' => 'dress',
+					'meta_query' => array(
+						array(
+							'key' => 'dress_rental_product_instance',
+							'value' => '"'.$product->id.'"',
+							'compare' => 'LIKE'
+						)
+					)
+				));
+
+				if ( empty( $dress ) ) continue;
+
+				$products[ $product->id ] = ws_fst( $dress );
+ 			}
+
+ 			$return[ $products[ $product->id ]->ID ][] = $booking;
+ 		}
+
+ 		return $return;
+
+ 	}
+
+ 	/**
  	 * Given a set of bookings and a booking id, returns the booking indicated by that id
  	 * (Used to ensure that the requested deletion is actually connected to a given user's inventory)
  	 *
