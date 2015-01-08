@@ -37,7 +37,7 @@
 				
 				</p>
 				
-				<p class="remaining-reservations h7 uppercase"> pre-reservations remaining</span>
+				<p class="remaining-reservations h7 uppercase"><?php echo $remaining_preresevations;?> pre-reservations remaining</span>
 				
 				<hr class="brand half" />
 

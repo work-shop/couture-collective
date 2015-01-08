@@ -1,7 +1,8 @@
 <div class="row">
-<div class="col-sm-12 col-lg-12" style="border-top:3px solid #aaa;">
-<?php
+<div class="col-sm-12">
 
+	<hr />
+<?php
 
 	$user = $GLOBALS['CC_POST_DATA']['user'];
 	$sale = $GLOBALS['CC_POST_DATA']['sale'];

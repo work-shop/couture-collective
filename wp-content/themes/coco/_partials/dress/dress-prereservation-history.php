@@ -51,7 +51,7 @@
 
 <?php } else { ?>
 
-	<h3 class="centered">You haven't prereserved this dress yet.</h3>
+	<!-- <p class="h7 uppercase">You haven't prereserved this dress yet.</p> -->
 
 <?php } ?>
 </div>
@@ -68,11 +68,11 @@
 		$perma = get_post_permalink( $GLOBALS['CC_CLOSET_DATA']['dress']->ID );
 	?>
 
-		<h3 class="centered"><a href="<?php echo $perma; ?>">+ Add Prereservation</a></h3>
+		<h3 class=""><a href="<?php echo $perma; ?>">+ Add Prereservation</a></h3>
 
 	<?php } else { ?>
 
-		<h3 class="gray centered small">You've prereserved this dress 5 times.</h3>
+		<h3 class="">You've pre-reserved this dress 5 times.</h3>
 
 	<?php } ?>
 	</div>
