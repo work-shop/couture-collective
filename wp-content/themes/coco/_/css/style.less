@@ -669,6 +669,11 @@ h6,.h6{
 	.transition(height,.25s);
 	overflow: hidden;
 	
+	
+	&:hover{
+		height: @header-height !important;
+	}	
+	
 	#logo{
 		position: static;
 		padding-top: 38px;
@@ -792,21 +797,26 @@ h6,.h6{
 		
 		li {
 			margin-bottom: 0;
+			
+			&:first-child a{
+				padding: 12px 0px 8px 0px;	
+			}
 		
 		a{
 			background: @brand;
 			display: block;
 			color: white;
-			padding: 9px 10px 8px 0px;
+			padding: 9px 10px 10px 0px;
 			height: 100%;
 			line-height: 100%;
 			vertical-align: middle;
 			text-align: center;
-			font-size: 11px;
+			font-size: 12px;
+			letter-spacing: .25em;
 			
 			&:hover{
 					border-bottom: none !important;
-					color: @pink !important;
+					background: @pink-darker;
 				}
 			}
 		
@@ -820,10 +830,6 @@ h6,.h6{
 				display: block;
 			}
 		}		
-	}
-	
-	.my-account-item{
-		margin-top: 30px;
 	}
 	
 }
