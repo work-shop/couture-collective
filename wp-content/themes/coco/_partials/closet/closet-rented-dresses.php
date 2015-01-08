@@ -1,5 +1,9 @@
 <?php
-$rentals = $GLOBALS['CC_CLOSET_DATA']['rentals'];
+$rentals = CC_Controller::get_rentals_by_dress_for_user( get_current_user_id() );
+
+var_dump( $rentals );
+
+
 
 ?>
 

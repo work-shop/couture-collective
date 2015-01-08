@@ -56,6 +56,7 @@ if ( $status_guard || $timing_guard ) { ?>
 				<input type="hidden" class="referring-page" name="referring-page" value="<?php echo get_permalink(); ?>" />
 				<input type="hidden" class="user-id" name="user-id" value="<?php echo esc_attr( $GLOBALS['CC_POST_DATA']['user']->ID ); ?>" />
 				<input type="hidden" class="booking-id" name="booking-id" value="<?php echo esc_attr( $booking->get_ID() ); ?>" />
+				<input type="hidden" class="booking-id" name="reservation_type" value="<?php echo esc_attr( $reservation_type ); ?>" />
 				<button type="submit" class="cancel-reservation button">Cancel</button>
 			</form>
 		<div>
