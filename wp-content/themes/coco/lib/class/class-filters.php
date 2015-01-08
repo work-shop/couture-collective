@@ -6,8 +6,8 @@ class CC_Filters {
 
 	public static $filters = array(
 		'woocommerce_add_to_cart_validation' => array( 'cc_validate_add_cart_item_price', 15, 3 ),
-		'woocommerce_add_to_cart_validation' => array( 'cc_validate_add_to_cart_item', 16, 3 ),
-		'woocommerce_add_cart_item_data' => array( 'cc_add_cart_item_data', 15, 2 ),
+		'woocommerce_add_to_cart_validation' => array( 'cc_validate_add_cart_item_qty', 16, 3 ),
+		'woocommerce_add_cart_item_data' => array( 'cc_add_cart_item_data', 15, 2),
 		'woocommerce_email_classes' => 'cc_add_dry_cleaner_notifications'
 	);
 
