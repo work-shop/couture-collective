@@ -29,7 +29,7 @@ do_action( 'woocommerce_before_add_to_cart_form' );
 
 	<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $rental->id ); ?>" />
 	<input type="hidden" name="reservation_type" value="<?php echo $reservation_type; ?>" />
- 	<button disabled="disabled" type="submit" class="wc-bookings-booking-form-button single_add_to_cart_button button alt" style="display:none"><?php echo $rental->single_add_to_cart_text(); ?></button>
+ 	<button disabled="disabled" type="submit" class="wc-bookings-booking-form-button single_add_to_cart_button button alt" style="display:none"><?php echo "RENT NOW"; ?></button>
 
  	<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
 </form>
