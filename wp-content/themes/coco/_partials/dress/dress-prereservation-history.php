@@ -1,4 +1,5 @@
 <?php 
+	global $wpdb;
 	$bookings = array();
 	$reservation_type = 'Prereservation';
 
@@ -13,6 +14,13 @@
 		}
 	}
 
+	
+	$results = $wpdb->get_col( $wpdb->prepare("SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key = '_booking_product_id' AND meta_value = %d", $GLOBALS['CC_POST_DATA']['rental']->id ) ); 
+
+	//var_dump( $results );
+
+	//var_dump( $GLOBALS['CC_POST_DATA']['rental']->get_resources() );
+
 ?>
 
 <div class="row dress-prereservations">
@@ -24,7 +32,9 @@
 
 		foreach ($bookings as $booking) {
 			$GLOBALS['CC_POST_DATA']['current_booking'] = $booking;
+			//var_dump( get_post_meta( $booking->id ) );
 			$GLOBALS['CC_POST_DATA']['current_order'] = new WC_Order( $booking->order_id );
+			//var_dump( $GLOBALS['CC_POST_DATA']['current_order'] );
 			$GLOBALS['CC_POST_DATA']['reservation_type'] = $reservation_type;
 
 			get_template_part( '_partials/reservation/prereservation', 'line-item');
@@ -40,7 +50,7 @@
 
 <?php } else { ?>
 
-	<h3 class="serif centered">You haven't prereserved this dress yet.</h3>
+	<h3 class="centered">You haven't prereserved this dress yet.</h3>
 
 <?php } ?>
 </div>
@@ -52,9 +62,12 @@
 	<div class="row dress-prereservations">
 	<div class="col-sm-12">
 	<hr class="brand" />
-	<?php if ( 5 > count( $bookings ) ) { ?>
+	<?php if ( 5 > count( $bookings ) ) { 
 
-		<h3 class="pink centered">+ Add Prereservation</h3>
+		$perma = get_post_permalink( $GLOBALS['CC_CLOSET_DATA']['dress']->ID );
+	?>
+
+		<h3 class="centered"><a href="<?php echo $perma; ?>">+ Add Prereservation</a></h3>
 
 	<?php } else { ?>
 

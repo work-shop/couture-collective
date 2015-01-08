@@ -2,7 +2,7 @@
 
 ?>
 <div class="row">
-	<div class="col-sm-6 main-image off">
+	<div class="col-sm-6 main-image off small">
 		<?php
 		if ( $thumbnail = get_the_post_thumbnail($dress->ID, 'dress-large') ) {
 			echo $thumbnail;

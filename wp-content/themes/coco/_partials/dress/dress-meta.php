@@ -23,7 +23,7 @@
 
 			<?php
 
-			//get_template_part('_partials/dress/dress','alpha-pricing');
+			get_template_part('_partials/dress/dress','alpha-pricing');
 
 			?>
 			<?php
