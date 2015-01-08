@@ -1,4 +1,5 @@
 <?php
+
 $shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
 
 ?>
@@ -16,9 +17,8 @@ $shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
 			<div class="col-sm-4 col-sm-offset-1">
 			<?php 
 				$dress = get_post( $share );
-				$GLOBALS['CC_CLOSET_DATA']['dress'] = get_post( $share );
+				$GLOBALS['CC_CLOSET_DATA']['dress'] = $dress;
 				get_template_part('_partials/dress/closet', 'dress-summary' ); 
-				unset( $GLOBALS['CC_CLOSET_DATA']['dress'] );
 			?>
 			</div>
 			<div class="col-sm-6">
@@ -27,16 +27,20 @@ $shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
 				</div>
 				<div class="row">
 					<?php
+						$rental = get_field('dress_rental_product_instance', $share );
+
+						if ( empty( $rental ) ) continue;
+
 						$GLOBALS['CC_POST_DATA'] = array(
 							'user' => wp_get_current_user(),
-							'rental' => get_field('dress_rental_product_instance', $share )
+							'rental' => get_product( ws_fst( $rental ) )
 						);
 
 						// change this to prereservation history.
-						get_template_part( '_partials/dress/dress', 'rental-history');
+						get_template_part( '_partials/dress/dress', 'prereservation-history');
 
 						unset( $GLOBALS['CC_POST_DATA'] );
-
+						unset( $GLOBALS['CC_CLOSET_DATA']['dress']);
 					?>
 				</div>
 			</div>
