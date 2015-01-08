@@ -5,7 +5,8 @@ class CC_Filters {
 
 
 	public static $filters = array(
-		'woocommerce_add_to_cart_validation' => array( 'cc_validate_add_cart_item', 15, 3 ),
+		'woocommerce_add_to_cart_validation' => array( 'cc_validate_add_cart_item_price', 15, 3 ),
+		'woocommerce_add_to_cart_validation' => array( 'cc_validate_add_to_cart_item', 16, 3 ),
 		'woocommerce_add_cart_item_data' => array( 'cc_add_cart_item_data', 15, 2 ),
 		'woocommerce_email_classes' => 'cc_add_dry_cleaner_notifications'
 	);
@@ -26,7 +27,7 @@ class CC_Filters {
 	/**
 	 * When a reservation is added to the cart, validate it based on price...
 	 */
-	public function cc_validate_add_cart_item( $passed, $product_id, $qty ) {
+	public function cc_validate_add_cart_item_price( $passed, $product_id, $qty ) {
 		global $woocommerce;
 
 		$product = get_product( $product_id );
@@ -52,6 +53,31 @@ class CC_Filters {
 		}
 		return $passed;	
 	}
+
+	/**
+	 * When bookable product is added to the cart, check to see how many of this product the customer has
+	 * Already purchased (n), and how many they have in their cart (m), and deny the transaction if (n + m) > 5.
+	 *
+	 */
+	public function cc_validate_add_cart_item_qty( $passed, $product_id, $qty ) {
+		$product = get_product( $product_id );
+		$user = wp_get_current_user();
+
+		if ( $product->product_type !== "booking" ) return $passed;
+		if ( $qty > 5 ) return false;
+
+		return $passed;
+
+		/*
+		 We have found a request for a booking to be purchased by a user.
+
+		 we want now to inspect the database for non-cancelled orders involving the given user, and given product id.
+		 we will then want to check those orders for i
+
+		 */
+
+	}
+
 
 	/**
 	 * Added posted data to the specified cart item
