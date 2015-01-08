@@ -113,7 +113,7 @@
 								
 								<?php if ( is_home() && !is_user_logged_in() ) : ?>
 								<li>
-									<a href="<?php bloginfo('url'); ?>/join" class="hidden">
+									<a href="<?php bloginfo('url'); ?>/join" class="">
 										Become a Member
 									</a>
 								</li>							
@@ -177,7 +177,7 @@
 									<? }
 									else{ ?>
 										
-										<ul class="right-logged-out hidden">
+										<ul class="right-logged-out">
 											<li>
 												<a href="<?php bloginfo('url'); ?>/login">
 													Login
@@ -220,8 +220,20 @@
 							My Account
 						</a>		
 					</li>
+					<li>
+						<a href="<?php bloginfo('url'); ?>/closet">
+							My Closet
+						</a>		
+					</li>					
+					
 					<li><a href="<?php echo wp_logout_url( home_url() ); ?>" title="Logout">Logout</a></li>
 							
+					<?php else: ?>
+					<li>
+						<a href="<?php bloginfo('url'); ?>/join">
+							Become a Member
+						</a>		
+					</li>					
 					<?php endif; ?>
 				</ul>						
 			</div>	
