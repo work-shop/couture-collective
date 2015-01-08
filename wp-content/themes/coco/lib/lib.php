@@ -177,7 +177,7 @@ function cc_booking_prompt_string( $reservation_type ) {
 			return "Purchase";
 
 		case "Prereservation" :
-			return "Book";
+			return "Pre-reserve";
 
 		case "Rental" :
 			return "Rent";

@@ -14,16 +14,18 @@ if ( $status_guard || $timing_guard ) { ?>
 	<div class="reservation-item <?php echo ( $status_guard ) ? 'complete' : ''; ?> unmodifiable bordered-pink-bottom m2">
 		<div class="row">
 			<div class="col-sm-12">
-				<p class="reservation-date h3 m0"><span class="icon pink-darker icon-left" data-icon="%"></span><?php echo date( 'F jS, Y', strtotime( $booking->get_start_date() ) ); ?></p>
+				<p class="reservation-date h3 m"><span class="icon pink-darker icon-left" data-icon="%"></span><?php echo date( 'F jS, Y', strtotime( $booking->get_start_date() ) ); ?></p>
 			</div>
 		</div>
 	
 		<?php if ( !$status_guard ) : ?>
+<!--
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-1">
 				<p class="reservation-destination h9 indent">Shipped to <?php echo $order->get_shipping_address(); ?></p>
 			</div>
 		</div>
+-->
 		<?php endif; ?>
 
 	</div>

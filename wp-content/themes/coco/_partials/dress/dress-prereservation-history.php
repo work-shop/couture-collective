@@ -27,9 +27,7 @@
 <div class="row dress-prereservations">
 <div class="col-sm-12">
 
-<hr class="half" />
-
-<p class="h7 uppercase m">Pre-reserved for me:</p>
+<p class="h7 uppercase m">My Pre-reservations:</p>
 
 <?php if (!empty($bookings) ) { ?>
 
