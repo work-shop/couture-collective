@@ -31,6 +31,7 @@ class CC_Actions {
 	 * @var array(string => string) - cc action hooks
 	 */
 	protected static $actions = array(
+		'wp_authenticate'							=> 'empty_auth_redirect',
 		'wp_login_failed' 						=> 'login_failure_redirect',
 		'woocommerce_new_booking' 					=> 'compute_booking_margins_in_booking',
 		'woocommerce_booking_paid'					=> 'schedule_dry_cleaning_email_events',
@@ -182,10 +183,22 @@ class CC_Actions {
 	 * @param string $username the name passed to the failed login form
 	 */
 	public function login_failure_redirect( $username ) {
-		$ref = $_SERVER['HTTP_REFERER'];
+		
+		wc_add_notice('Incorrect username or password','notice');
+		wp_redirect( home_url() . '/my-account?login=failed' );
+		exit;	
+	}
 
-		if ( !empty($ref) ) {
-			wc_add_notice('Incorrect username or password','notice');
+	/**
+	 * @hooked header.php
+	 * This hook redirects the user to the /my-account page instead of wp-login for
+	 * for empty uses.
+	 *
+	 * @param string $username the name passed to the login form.
+	 */
+	public function empty_auth_redirect( $username ) {
+		if ( empty( $username ) ) {
+			wc_add_notice('Enter a username and password','notice');
 			wp_redirect( home_url() . '/my-account?login=failed' );
 			exit;	
 		}
