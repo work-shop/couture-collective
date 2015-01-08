@@ -141,14 +141,14 @@
 							 	get_currentuserinfo();
 							 	 ?>
 									<ul class="right-logged-in <?php if ( cc_user_is_guest() ) : echo 'hidden'; endif; ?>">
-										<li class="hidden">
+										<li class="">
 											<a href="<?php bloginfo('url'); ?>/cart" id="cart-link">
-												<?php // get_template_part('_icons/cart'); ?>
+												<?php get_template_part('_icons/cart'); ?>
 											</a>
 										</li>	
-										<li class="hidden">
+										<li class="">
 											<a href="<?php bloginfo('url'); ?>/closet">
-												<!-- My Closet -->
+												My Closet
 											</a>
 										</li>	
 										<li class="dropdown my-account-item">
