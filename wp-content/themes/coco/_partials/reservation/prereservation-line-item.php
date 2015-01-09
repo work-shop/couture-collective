@@ -4,8 +4,8 @@
 	$reservation_type = $GLOBALS['CC_POST_DATA']['reservation_type'];
 	$booking = $GLOBALS['CC_POST_DATA']['current_booking']; 
 	$order = $GLOBALS['CC_POST_DATA']['current_order'];
-
-	$status_guard = 'wc-completed' == $order->post_status;
+	//var_dump($booking);
+	$status_guard = 'complete' == $booking->post->post_status; 
 	$timing_guard = !CC_Controller::booking_is_modifiable( $booking );
 
 if ( $status_guard || $timing_guard ) { ?>
@@ -14,23 +14,20 @@ if ( $status_guard || $timing_guard ) { ?>
 	<div class="reservation-item <?php echo ( $status_guard ) ? 'complete' : ''; ?> unmodifiable bordered-pink-bottom m2">
 		<div class="row">
 			<div class="col-sm-12">
-				<p class="reservation-date h3 m"><span class="icon pink-darker icon-left" data-icon="%"></span><?php echo date( 'F jS, Y', strtotime( $booking->get_start_date() ) ); ?></p>
+				
+				<p class="reservation-date h3 <?php if(!$status_guard): ?>m0<?php endif; ?>"><?php if($status_guard): ?><span class="icon pink-darker icon-left" data-icon="%"></span><?php endif; ?><?php echo date( 'F jS, Y', strtotime( $booking->get_start_date() ) ); ?></p>
 			</div>
 		</div>
 	
-		<?php if(!is_single()): ?>
-	
-			<?php if ( !$status_guard ) : ?>
-	
-			<div class="row">
-				<div class="col-sm-8 col-sm-offset-1">
-					<p class="reservation-destination h9 indent">Shipped to <?php echo $order->get_shipping_address(); ?></p>
-				</div>
+		<?php if (!$status_guard) : ?>
+
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-1">
+				<p class="reservation-destination h9 indent">Shipping to <?php echo $order->get_shipping_address(); ?></p>
 			</div>
-	
-			<?php endif; ?>
-		
-		<?php endif; ?>
+		</div>
+
+		<?php endif; ?>		
 
 	</div>
 
@@ -39,6 +36,7 @@ if ( $status_guard || $timing_guard ) { ?>
 	<?php // editing / deletion of the order is possible. ?>
 
 	<div class="reservation-item modifiable incomplete bordered-pink-bottom m2">
+	
 		<div class="row">
 			<div class="col-sm-12">
 			<p class="reservation-date h3 m0"><?php echo date( 'F jS, Y', strtotime( $booking->get_start_date() ) ); ?></p>
