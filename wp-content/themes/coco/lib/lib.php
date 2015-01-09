@@ -198,19 +198,26 @@ function cc_booking_prompt_string( $reservation_type ) {
  * @return string formatted noun
  */
 function cc_booking_noun_string( $reservation_type ) {
+	$reservation_type = strtolower( $reservation_type );
+
 	switch ( $reservation_type ) {
-		case "Prereservation" :
+		case "prereservation" :
 			return "Pre-reservation";
 
-		case "Rental" :
+		case "rental" :
 			return "Rental";
 
-		case "Nextday" : 
+		case "nextday" : 
 			return "Next-day Rental";
 
-		case "Update":
+		case "update":
 			return "Update";
 
+		case "share":
+			return "Share";
+
+		case "sale":
+			return "Dress";
 		default :
 			return "";
 	}
