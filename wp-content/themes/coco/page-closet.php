@@ -43,6 +43,20 @@
 			?>
 	
 			<?php get_template_part('_partials/closet/closet', 'shared-dresses'); ?>
+				
+						
+			<div class="row">				
+				<div class="col-sm-8">
+					<p class="h7 uppercase">My Rentals</p>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="bordered-dark-bottom m2"></div>
+				</div>
+				
+			</div>					
 	
 			<?php get_template_part('_partials/closet/closet', 'rented-dresses'); ?>
 	

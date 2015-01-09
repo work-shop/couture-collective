@@ -15,8 +15,8 @@
 <div class="col-sm-12">
 <?php if ( !empty($bookings) ) { ?>
 
-<h6 class="small"></h6>
-<ul>
+<p class="h7 uppercase m2">My Rentals: </p>
+
 <?php
 
 	foreach ( $bookings as $i => $booking ) {
@@ -34,7 +34,6 @@
 	}
 
 ?>
-</ul>
 <?php } else { ?>
 
 

@@ -9,26 +9,13 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-wc_print_notices();
-
 do_action( 'woocommerce_before_cart' ); ?>
 
 <form action="<?php echo esc_url( WC()->cart->get_cart_url() ); ?>" method="post">
 
 <?php do_action( 'woocommerce_before_cart_table' ); ?>
 
-<table class="shop_table cart" cellspacing="0">
-	<thead>
-		<tr>
-			<th class="product-remove">&nbsp;</th>
-			<th class="product-thumbnail">&nbsp;</th>
-			<th class="product-name"><?php _e( 'Product', 'woocommerce' ); ?></th>
-			<th class="product-price"><?php _e( 'Price', 'woocommerce' ); ?></th>
-			<th class="product-quantity"><?php _e( 'Quantity', 'woocommerce' ); ?></th>
-			<th class="product-subtotal"><?php _e( 'Total', 'woocommerce' ); ?></th>
-		</tr>
-	</thead>
-	<tbody>
+
 		<?php do_action( 'woocommerce_before_cart_contents' ); ?>
 
 		<?php
@@ -38,48 +25,56 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 			if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 				?>
-				<tr class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
+				
+							
+				<div class="row m25 bordered-pink-bottom <?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
+				
+					<div class="product-thumbnail col-sm-2">
+						<a href="#dress-permalink">
+							img
+							<img src="" />
+						
+						</a>
+					</div>
 
-					<td class="product-remove">
-						<?php
-							echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s">&times;</a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'Remove this item', 'woocommerce' ) ), $cart_item_key );
-						?>
-					</td>
+					<div class="product-name col-sm-3">
+						<a href="#dress-permalink">
+						<h1 class="uppercase dress-designer">Designer</h1>
+						<h6 class="dress-description m2">Description</h6>
+						
+						<p class="h7 uppercase product-type m1">1 Share/1 Night Rental/Pre-reservation/End of Season Sale</p>
+						
+						<?php // if(!share || !end-of-season-sale) ?>
+						
+							<p class="h7 product-reservation-date m2">Friday, Jan 9, 2015</p>
+							
+	
+							<?php
+								// i deleted a bunch of stuff but left this because it seemed like it might be useful
+								// Meta data
+								//echo WC()->cart->get_item_data( $cart_item );
+							?>
+							
+							<div class="product-addresses">
+							
+								<p class="h7">Need to see what options we have for selecting addresses before marking it up</p>
+							
+							</div>
+							
+						<?php //endif ?>
 
-					<td class="product-thumbnail">
-						<?php
-							$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
+					</div>
 
-							if ( ! $_product->is_visible() )
-								echo $thumbnail;
-							else
-								printf( '<a href="%s">%s</a>', $_product->get_permalink(), $thumbnail );
-						?>
-					</td>
+					<div class="product-price col-sm-5">
+						<p class="h8 numerals">
+							<?php
+								echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
+							?>
+						</p>
 
-					<td class="product-name">
-						<?php
-							if ( ! $_product->is_visible() )
-								echo apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key );
-							else
-								echo apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', $_product->get_permalink(), $_product->get_title() ), $cart_item, $cart_item_key );
+					</div>
 
-							// Meta data
-							echo WC()->cart->get_item_data( $cart_item );
-
-               				// Backorder notification
-               				if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) )
-               					echo '<p class="backorder_notification">' . __( 'Available on backorder', 'woocommerce' ) . '</p>';
-						?>
-					</td>
-
-					<td class="product-price">
-						<?php
-							echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
-						?>
-					</td>
-
-					<td class="product-quantity">
+					<div class="product-quantity hidden">
 						<?php
 							if ( $_product->is_sold_individually() ) {
 								$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
@@ -94,14 +89,27 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 							echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key );
 						?>
-					</td>
+					</div>
 
-					<td class="product-subtotal">
+					<div class="product-subtotal hidden">
 						<?php
 							echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
 						?>
-					</td>
-				</tr>
+					</div>
+
+					<div class="product-remove col-sm-2">
+					
+						<?php // i need this span element to be INSIDE the <a> element in the apply_filters function below, if not possible, let me know ?>
+							<span class="icon svg small tooltip-white" data-toggle="tooltip" data-placement="bottom" title="remove item"><?php get_template_part('_icons/remove'); ?></span>
+						<?php
+							echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s"></a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'Remove this item', 'woocommerce' ) ), $cart_item_key );
+						?>
+					</div>
+					
+					
+				</div><!--/row cart-item-->
+								
+				
 				<?php
 			}
 		}
@@ -130,12 +138,14 @@ do_action( 'woocommerce_before_cart' ); ?>
 		</tr>
 
 		<?php do_action( 'woocommerce_after_cart_contents' ); ?>
-	</tbody>
-</table>
 
 <?php do_action( 'woocommerce_after_cart_table' ); ?>
 
 </form>
+
+
+
+
 
 <div class="cart-collaterals">
 
@@ -143,7 +153,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 	<?php woocommerce_cart_totals(); ?>
 
-	<?php woocommerce_shipping_calculator(); ?>
+	<?php // woocommerce_shipping_calculator(); ?>
 
 </div>
 

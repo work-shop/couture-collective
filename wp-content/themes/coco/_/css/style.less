@@ -1457,6 +1457,18 @@ fieldset{
 	opacity: .65;
 }
 
+.cart_item{
+	padding-bottom: 60px;
+}
+
+
+
+/********** @CART *********/
+
+.return-to-shop{
+	display: none;
+}
+
 
 
 /********** @UTILITIES *********/
@@ -1608,7 +1620,7 @@ fieldset{
 
 
 
-input,textarea,button[type="submit"]{
+input,textarea,button[type="submit"],.button-brand{
 	.transition(all,.125s);
 	padding: 5px;
 	border: 1px solid @pink-darker;
@@ -1750,6 +1762,13 @@ label{
 
 }
 
+#credit-cards{
+	h2{
+		.h7();
+	}
+	
+}
+
 .error{
 	padding: 10px;
 }
@@ -1789,6 +1808,11 @@ hr.page-header-rule{
 	margin-bottom: 30px;
 }
 
+.row-m0{
+	margin-left: 0;
+	margin-right: 0;
+}
+
 h1,.h1{
 	font-size: 18px;
 	font-family: 'latin_modern_roman10_regular', Georgia, Times New Roman, serif;
@@ -1807,7 +1831,7 @@ h3,.h3{
 }
 
 h4,.h4{
-	font-size: 18px;
+	font-size: 16px;
 	letter-spacing: .2em;
 	font-family: 'latin_modern_roman10_regular', Georgia, Times New Roman, serif;
 	color: #8d8d81;	
@@ -1815,7 +1839,7 @@ h4,.h4{
 }
 
 h5,.h5{
-	font-size: 20px;
+	font-size: 18px;
 	font-family: 'latin_modern_roman10_regular', Georgia, Times New Roman, serif;
 }
 
@@ -1891,6 +1915,10 @@ h6,.h6{
 
 #header{
 	height: 60px;
+	
+	&:hover{
+		height: 60px !important;
+	}
 
 	#logo{
 		padding-top: 12px;
@@ -2012,6 +2040,11 @@ h6,.h6{
 		display: block;
 	}
 	}
+}
+
+.closet-summary-image{
+	display: block;
+	max-width: 180px;
 }
 
 }

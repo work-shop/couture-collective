@@ -9,12 +9,16 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-wc_print_notices();
-
 ?>
 
-<p class="cart-empty"><?php _e( 'Your cart is currently empty.', 'woocommerce' ) ?></p>
+<div class="row">
+
+	<div class="col-sm-4 col-sm-offset-6">
+		
+		<p class="cart-empty h8"><?php _e( 'Your cart is currently empty.', 'woocommerce' ) ?> Return to the <a href="<?php bloginfo('url'); ?>/look-book" class="underline">Look Book</a> to shop.</p>
+	
+	</div>
+
+</div>
 
 <?php do_action( 'woocommerce_cart_is_empty' ); ?>
-
-<p class="return-to-shop"><a class="button wc-backward" href="<?php echo apply_filters( 'woocommerce_return_to_shop_redirect', get_permalink( wc_get_page_id( 'shop' ) ) ); ?>"><?php _e( 'Return To Shop', 'woocommerce' ) ?></a></p>

@@ -19,19 +19,16 @@
 		</div>
 	</section>
 		
-
-<div id="cart-body" class="template template-page">	
-
-	<section id="cart-introduction" class="block m">	
-		<div class="container bordered-dark-top">
+	<section id="cart-body" class="block m">	
+		<div class="container ">
 				
-			<div class="row">
-			
-				<div class="col-sm-12">
+			<div class="row bordered-dark-top m2">
 				
-					<?php echo do_shortcode('[woocommerce_cart]') ?>
-					
-				</div>
+			</div>
+
+			<div id="cart-contents">
+						
+				<?php echo do_shortcode('[woocommerce_cart]') ?>
 
 			</div>
 			

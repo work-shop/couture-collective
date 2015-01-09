@@ -22,7 +22,6 @@
 			$remaining_preresevations = CC_Controller::$maximum_prereservations - count( $GLOBALS['CC_POST_DATA']['prereservations'] );
 
 
-
 			echo ws_ifdef_do( $designer, ws_ifdef_concat('<h1 class="uppercase dress-designer">',$designer,'</h1>') );
 			echo ws_ifdef_do( $title, ws_ifdef_concat('<h6 class="dress-description">',$description,'</h6>') );
 	
@@ -32,9 +31,11 @@
 	
 				<hr class="brand half" />
 	
-				<p class="h7 uppercase"><span class="icon svg"><?php get_template_part('_icons/delivery'); ?></span> 
+				<p class="h7 uppercase">
+				<a href="<?php bloginfo('url'); ?>/closet" class="h7">
+				<span class="icon svg"><?php get_template_part('_icons/delivery'); ?></span> 
 				In My Closet
-				
+				</a>
 				</p>
 				
 				<p class="remaining-reservations h7 uppercase">

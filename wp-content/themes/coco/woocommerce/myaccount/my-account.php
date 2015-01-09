@@ -51,9 +51,11 @@ global $current_user;
 					<div class="col-sm-6">
 
 						<?php wc_get_template( 'myaccount/form-edit-account.php', array('user' => wp_get_current_user() ) ); ?>
+																		
+						<a href="<?php echo wp_logout_url( home_url() ); ?>" title="Logout" class="button-brand">Logout</a>
 
 					</div>
-					
+
 				</div>
 					
 					<?php //do_action( 'woocommerce_before_my_account' ); ?>
@@ -70,13 +72,25 @@ global $current_user;
 					
 				</div>
 				
-				<div class="row">			
+				<div class="row m3">			
 				
 					<?php wc_get_template( 'myaccount/my-address.php' ); ?>
 					
 				</div>
-
+				
+				<div class="row">	
+				
+					<div class="col-sm-12">
+						<h4 class="bordered centered m">My Credit Cards</h4>
+					</div>	
+					
+				</div>
+				
+				<div class="row m" id="my-account-credit-cards">			
+				
 					<?php do_action( 'woocommerce_after_my_account' ); ?>
+					
+				</div>				
 
 				</div>			
 		
