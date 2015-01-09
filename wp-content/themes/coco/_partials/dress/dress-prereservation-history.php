@@ -19,6 +19,7 @@
 			$GLOBALS['CC_POST_DATA']['current_booking'] = $booking;
 			//var_dump( get_post_meta( $booking->id ) );
 			$GLOBALS['CC_POST_DATA']['current_order'] = new WC_Order( $booking->order_id );
+			$GLOBALS['CC_POST_DATA']['reservation_type'] = "Prereservation";
 			//var_dump( $GLOBALS['CC_POST_DATA']['current_order'] );
 
 			get_template_part( '_partials/reservation/prereservation', 'line-item');
