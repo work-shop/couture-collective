@@ -105,7 +105,7 @@ class CC_Controller {
 					'orderby'       => 'post_date',
 					'order'         => 'DESC',
 					'post_type'     => 'wc_booking',
-					'post_status'   => array('paid','confirmed'),
+					'post_status'   => array('paid','confirmed','complete'),
 					'fields'        => 'ids',
 					'no_found_rows' => true,
 					'meta_query' => array(

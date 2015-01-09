@@ -2,7 +2,7 @@
 
 ?>
 <div class="row">
-	<div class="col-sm-6 main-image off small">
+	<div class="col-sm-5 main-image off small">
 		<?php
 		if ( $thumbnail = get_the_post_thumbnail($dress->ID, 'dress-large') ) {
 			echo $thumbnail;
@@ -11,7 +11,7 @@
 		}
 		?>
 	</div>
-	<div class="col-sm-6">
+	<div class="col-sm-7">
 		<?php
 			$perma = get_post_permalink( $dress->ID );
 			$designer = get_field('dress_designer', $dress->ID );

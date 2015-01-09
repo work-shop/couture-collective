@@ -15,7 +15,7 @@
 	} elseif (
 		//pages that anyone can see
 		is_home() ||
-		is_page(array( 9, 26, 30, 363, 11, 7 ))
+		is_page(array( 9, 26, 30, 363, 11, 7, 6 ))
 	) {
 		// no-op
 	} else {
@@ -241,6 +241,15 @@
 					<?php endif; ?>
 				</ul>						
 			</div>	
+
+			<?php if ( is_user_logged_in() ) :
+			 	global $current_user;
+			 	get_currentuserinfo();
+			 	
+			 	if(current_user_can( 'manage_options' )): ?>
+			 		<div id="admin-login" class="hidden-xs"><a href="<?php bloginfo('url'); ?>/wp-admin"><span class="icon" data-icon="("></span></a></div>
+
+			 <?php endif; endif; ?>			
 			
 		</header>
 
