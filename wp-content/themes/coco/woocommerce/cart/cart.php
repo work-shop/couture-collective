@@ -39,8 +39,10 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 					<div class="product-name col-sm-3">
 						<a href="#dress-permalink">
-						<h1 class="uppercase dress-designer">Designer</h1>
-						<h6 class="dress-description m2">Description</h6>
+							<h1 class="uppercase dress-designer">Designer</h1>
+							<h6 class="dress-description m2">Description</h6>												
+						</a>
+	
 						
 						<p class="h7 uppercase product-type m1">1 Share/1 Night Rental/Pre-reservation/End of Season Sale</p>
 						
@@ -108,34 +110,41 @@ do_action( 'woocommerce_before_cart' ); ?>
 					
 					
 				</div><!--/row cart-item-->
-								
-				
+											
 				<?php
 			}
 		}
 
 		do_action( 'woocommerce_cart_contents' );
 		?>
-		<tr>
-			<td colspan="6" class="actions">
-
-				<?php if ( WC()->cart->coupons_enabled() ) { ?>
-					<div class="coupon">
-
-						<label for="coupon_code"><?php _e( 'Coupon', 'woocommerce' ); ?>:</label> <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php _e( 'Coupon code', 'woocommerce' ); ?>" /> <input type="submit" class="button" name="apply_coupon" value="<?php _e( 'Apply Coupon', 'woocommerce' ); ?>" />
-
-						<?php do_action('woocommerce_cart_coupon'); ?>
-
-					</div>
-				<?php } ?>
-
-				<input type="submit" class="button" name="update_cart" value="<?php _e( 'Update Cart', 'woocommerce' ); ?>" /> <input type="submit" class="checkout-button button alt wc-forward" name="proceed" value="<?php _e( 'Proceed to Checkout', 'woocommerce' ); ?>" />
+		
+		<div class="cart-collaterals row">
+		
+			<div class="col-sm-6 col-sm-offset-6">
+				
+				<?php  do_action( 'woocommerce_cart_collaterals' ); ?>
+			
+				<div class="m2">
+					<?php woocommerce_cart_totals(); ?>
+				</div>
+				
+				<div class="col-sm-12 col-md-10 col-md-offset-2">
+				
+					<p class="h8 m2">I accept these terms & conditions.</p>
+				
+					<input type="submit" class="checkout-button button alt wc-forward" name="proceed" value="<?php _e( 'Checkout', 'woocommerce' ); ?>" />
+					
+					
 
 				<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
 
 				<?php wp_nonce_field( 'woocommerce-cart' ); ?>
-			</td>
-		</tr>
+				
+			</div>
+			
+				<?php // woocommerce_shipping_calculator(); ?>
+		
+		</div>		
 
 		<?php do_action( 'woocommerce_after_cart_contents' ); ?>
 
@@ -143,18 +152,5 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 </form>
 
-
-
-
-
-<div class="cart-collaterals">
-
-	<?php do_action( 'woocommerce_cart_collaterals' ); ?>
-
-	<?php woocommerce_cart_totals(); ?>
-
-	<?php // woocommerce_shipping_calculator(); ?>
-
-</div>
 
 <?php do_action( 'woocommerce_after_cart' ); ?>

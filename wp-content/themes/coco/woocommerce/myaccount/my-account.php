@@ -86,9 +86,13 @@ global $current_user;
 					
 				</div>
 				
-				<div class="row m" id="my-account-credit-cards">			
+				<div class="row m" id="my-account-credit-cards">	
+					
+					<div class="col-sm-12">		
 				
-					<?php do_action( 'woocommerce_after_my_account' ); ?>
+						<?php do_action( 'woocommerce_after_my_account' ); ?>
+					
+					</div>
 					
 				</div>				
 
