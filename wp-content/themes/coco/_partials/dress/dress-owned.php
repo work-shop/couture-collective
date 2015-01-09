@@ -1,6 +1,7 @@
 <?php
 	
 	$rental = $GLOBALS['CC_POST_DATA']['rental'];
+	$GLOBALS['CC_POST_DATA']['reservation_type'] = 'Prereservation';
 
 	// next_day_rental thing
 

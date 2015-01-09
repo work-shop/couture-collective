@@ -1,1 +1,1 @@
-<p class="alert gray">You purchased this dress for End-Of-Season sale.</p>
+<p class="h8">You purchased this dress for the End-Of-Season sale.</p>

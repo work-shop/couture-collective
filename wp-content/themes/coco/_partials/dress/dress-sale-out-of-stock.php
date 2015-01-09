@@ -1,1 +1,1 @@
-<p class="alert gray">This dress has already been sold.</p>
+<p class="h8">This dress has already been sold for the End of Season sale. </p>

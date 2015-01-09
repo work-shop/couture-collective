@@ -22,7 +22,7 @@ $rentals = CC_Controller::get_rentals_by_dress_for_user( get_current_user_id() )
 	$c = 0;
 	foreach( $rentals as $dress_id => $rentals ) : ?>
 
-		<div class="rented-dress m3">
+		<div class="rented-dress m3 row">
 			<div class="col-sm-6 col-md-5">
 			<?php 
 				$dress = get_post( $dress_id );
