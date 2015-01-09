@@ -120,7 +120,7 @@ class CC_Init {
 		$share_price = get_field( CC_Init::$fields['share_price'], $parent_post_id );
 		$sku = get_field( CC_Init::$fields['id'], $parent_post_id );
 
-		update_post_meta( $post_id, '_virtual', 'no'); // check this for functionality
+		update_post_meta( $post_id, '_virtual', 'yes'); // check this for functionality
 		update_post_meta( $post_id, 'total_sales', 0);
 		update_post_meta( $post_id, '_stock', 5 );
 		update_post_meta( $post_id, '_manage_stock', "yes" );
@@ -128,7 +128,7 @@ class CC_Init {
 		update_post_meta( $post_id, '_regular_price',  $share_price );
 		update_post_meta( $post_id, '_sale_price', $share_price );
 		update_post_meta( $post_id, '_price', $share_price );
-		update_post_meta($post_id, '_sku', cc_compute_product_sku( $sku, "SHARE") );
+		update_post_meta( $post_id, '_sku', cc_compute_product_sku( $sku, "SHARE") );
 
 		// NOT DONE <= these are not used currently, but could be used to programmatically calculate shipping later.
 		// update_post_meta( $post_id, '_weight', "" );
