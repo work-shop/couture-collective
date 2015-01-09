@@ -2,6 +2,8 @@
 
 	$bookings = $GLOBALS['CC_POST_DATA']['prereservations'];
 
+	//var_dump( CC_Controller::get_dress_for_product( $GLOBALS['CC_POST_DATA']['rental']->id, "rental" ) );
+
 ?>
 
 <div class="row dress-prereservations">
