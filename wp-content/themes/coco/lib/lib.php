@@ -183,7 +183,7 @@ function cc_booking_prompt_string( $reservation_type ) {
 			return "Rent";
 
 		case "Nextday" : 
-			return "Rent for Tomorrow";
+			return "Reserve";
 
 		default :
 			return "";
