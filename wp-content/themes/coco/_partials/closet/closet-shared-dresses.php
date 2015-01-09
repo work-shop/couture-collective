@@ -5,10 +5,13 @@ $shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
 ?>
 
 <div id="shared-dresses" class="row shared-dresses m3">
-	<div class="col-sm-12">
-	<?php if ( empty( $shares ) ) { ?>
 
-	<p class="h8">You don't own shares of any dresses right now. Visit the <a href="<?php echo bloginfo('url'); ?>/look-book">Look Book</a> to purchase shares.</p>
+	<?php if ( empty( $shares ) ) { ?>
+		<div class="col-sm-5 col-sm-offset-6">
+
+			<p class="h8">You don't own shares of any dresses right now. Visit the <a href="<?php echo bloginfo('url'); ?>/look-book">Look Book</a> to purchase shares.</p>
+			
+		</div>
 
 	<?php } else { ?>
 	<?php foreach( $shares as $share ) : ?>
@@ -47,5 +50,4 @@ $shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
 	<?php endforeach; ?>
 	<?php } ?>
 
-	</div>
 </div>
