@@ -16,6 +16,7 @@ $shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
 	<?php } else { ?>
 	<?php 
 	$c = 0;
+	$c2 = count( $shares );
 	foreach( $shares as $share ) : ?>
 
 		<div class="shared-dress m3 row">
@@ -49,7 +50,7 @@ $shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
 			</div>					
 		</div>
 
-		<?php if(!$c == count($shares) && count($shares) > 0): ?>
+		<?php if($c < $c2 - 1 ): ?>
 			<div class="col-sm-12">
 				<hr />
 			</div>	
