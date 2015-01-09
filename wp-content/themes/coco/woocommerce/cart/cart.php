@@ -27,53 +27,51 @@ do_action( 'woocommerce_before_cart' ); ?>
 				?>
 				
 							
-				<div class="row yellow <?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
+				<div class="row m25 bordered-pink-bottom <?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
 				
 					<div class="product-thumbnail col-sm-2">
-						<?php
-							$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
-
-							if ( ! $_product->is_visible() )
-								echo $thumbnail;
-							else
-								printf( '<a href="%s">%s</a>', $_product->get_permalink(), $thumbnail );
-						?>
+						<a href="#dress-permalink">
+							img
+							<img src="" />
+						
+						</a>
 					</div>
 
 					<div class="product-name col-sm-3">
+						<a href="#dress-permalink">
+						<h1 class="uppercase dress-designer">Designer</h1>
+						<h6 class="dress-description m2">Description</h6>
 						
-						<?php 
-						$title = $GLOBALS['CC_POST_DATA']['title'];
-						$description = $GLOBALS['CC_POST_DATA']['description'];
-						$designer = $GLOBALS['CC_POST_DATA']['designer'];
-				
-						$size = $GLOBALS['CC_POST_DATA']['size'];
-			
-						echo ws_ifdef_do( $designer, ws_ifdef_concat('<h1 class="uppercase dress-designer">',$designer,'</h1>') );
-						echo ws_ifdef_do( $title, ws_ifdef_concat('<h6 class="dress-description">',$description,'</h6>') );
-				
-						echo ws_ifdef_do( $user, ws_ifdef_do( $size, ws_ifdef_concat('<p class="h7">SIZE: <span class="numerals h8">',$size,'</span></p>') ) );
-						?>
-					
-						<?php
-							if ( ! $_product->is_visible() )
-								echo apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key );
-							else
-								echo apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', $_product->get_permalink(), $_product->get_title() ), $cart_item, $cart_item_key );
+						<p class="h7 uppercase product-type m1">1 Share/1 Night Rental/Pre-reservation/End of Season Sale</p>
+						
+						<?php // if(!share || !end-of-season-sale) ?>
+						
+							<p class="h7 product-reservation-date m2">Friday, Jan 9, 2015</p>
+							
+	
+							<?php
+								// i deleted a bunch of stuff but left this because it seemed like it might be useful
+								// Meta data
+								//echo WC()->cart->get_item_data( $cart_item );
+							?>
+							
+							<div class="product-addresses">
+							
+								<p class="h7">Need to see what options we have for selecting addresses before marking it up</p>
+							
+							</div>
+							
+						<?php //endif ?>
 
-							// Meta data
-							echo WC()->cart->get_item_data( $cart_item );
-
-               				// Backorder notification
-               				if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) )
-               					echo '<p class="backorder_notification">' . __( 'Available on backorder', 'woocommerce' ) . '</p>';
-						?>
 					</div>
 
 					<div class="product-price col-sm-5">
-						<?php
-							echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
-						?>
+						<p class="h8 numerals">
+							<?php
+								echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
+							?>
+						</p>
+
 					</div>
 
 					<div class="product-quantity hidden">
@@ -100,8 +98,11 @@ do_action( 'woocommerce_before_cart' ); ?>
 					</div>
 
 					<div class="product-remove col-sm-2">
+					
+						<?php // i need this span element to be INSIDE the <a> element in the apply_filters function below, if not possible, let me know ?>
+							<span class="icon svg small tooltip-white" data-toggle="tooltip" data-placement="bottom" title="remove item"><?php get_template_part('_icons/remove'); ?></span>
 						<?php
-							echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s">&times;</a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'Remove this item', 'woocommerce' ) ), $cart_item_key );
+							echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s"></a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'Remove this item', 'woocommerce' ) ), $cart_item_key );
 						?>
 					</div>
 					
