@@ -27,6 +27,8 @@ $shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
 			<div class="col-sm-5 col-sm-offset-1">
 				<div class="row">
 					<?php
+
+
 						$rental = get_field('dress_rental_product_instance', $share );
 
 						if ( empty( $rental ) ) continue;
@@ -38,6 +40,8 @@ $shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
 						$GLOBALS['CC_POST_DATA']['prereservations'] = CC_Controller::get_prereservations_for_dress_rental($GLOBALS['CC_POST_DATA']['rental']->id, $GLOBALS['CC_POST_DATA']['user']->ID);
 						$GLOBALS['CC_POST_DATA']['reservation_type'] = "Prereservation";
 						// change this to prereservation history.
+
+						get_template_part( '_partials/dress/dress', 'next-day-rental-make');
 						get_template_part( '_partials/dress/dress', 'prereservation-history');
 
 						unset( $GLOBALS['CC_POST_DATA'] );
