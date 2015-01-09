@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</p>
 
 	<fieldset>
-		<legend class="h5"><?php _e( 'Password Change', 'woocommerce' ); ?></legend>
+		<legend class="h7 uppercase m"><?php _e( 'Password Change', 'woocommerce' ); ?></legend>
 
 		<p class="form-row form-row-wide">
 			<label for="password_current"><?php _e( 'Current Password (leave blank to leave unchanged)', 'woocommerce' ); ?></label>
