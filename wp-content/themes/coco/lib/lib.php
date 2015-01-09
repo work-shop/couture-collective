@@ -183,12 +183,44 @@ function cc_booking_prompt_string( $reservation_type ) {
 			return "Rent";
 
 		case "Nextday" : 
-			return "Rent for Tomorrow";
+			return "Reserve";
 
 		default :
 			return "";
 	}
 
+}
+
+/**
+ * Formats the reservation type as a human-readable noun.
+ *
+ * @param string $reservation_type
+ * @return string formatted noun
+ */
+function cc_booking_noun_string( $reservation_type ) {
+	$reservation_type = strtolower( $reservation_type );
+
+	switch ( $reservation_type ) {
+		case "prereservation" :
+			return "Pre-reservation";
+
+		case "rental" :
+			return "Rental";
+
+		case "nextday" : 
+			return "Next-day Rental";
+
+		case "update":
+			return "Update";
+
+		case "share":
+			return "Share";
+
+		case "sale":
+			return "Dress";
+		default :
+			return "";
+	}
 }
 
 

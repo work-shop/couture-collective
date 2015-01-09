@@ -23,6 +23,23 @@ do_action( 'woocommerce_before_cart' ); ?>
 			$_product     = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 			$product_id   = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
 
+			if ( $_product->product_type == "booking" ) {
+				$dress_id = CC_Controller::get_dress_for_product( $product_id, 'rental' );
+				$type = CC_Controller::get_resource_name_for_cart_item( $cart_item['booking']['_resource_id'], $_product->get_resources() );
+			} else {
+				$dress_id = CC_Controller::get_dress_for_product( $product_id );
+				$terms = get_the_terms( $product_id, 'product_cat' );
+				if ( !empty($terms) ) { 
+					$type = ws_fst( $terms )->name;
+				} else {
+					$type = "Sale";
+				}
+			}
+
+			$perma = get_permalink( $dress_id );
+			$description = get_field( 'dress_description', $dress_id );
+			$designer = get_field( 'dress_designer', $dress_id );
+
 			if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 				?>
 				
@@ -30,32 +47,24 @@ do_action( 'woocommerce_before_cart' ); ?>
 				<div class="row m25 bordered-pink-bottom <?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
 				
 					<div class="product-thumbnail col-sm-2">
-						<a href="#dress-permalink">
-							img
-							<img src="" />
+						<a href="<?php echo $perma; ?>">
+							<?php echo get_the_post_thumbnail( $dress_id ); ?>
 						
 						</a>
 					</div>
 
 					<div class="product-name col-sm-3">
-						<a href="#dress-permalink">
-							<h1 class="uppercase dress-designer">Designer</h1>
-							<h6 class="dress-description m2">Description</h6>												
+
+						<a href="<?php echo $perma; ?>">
+							<h1 class="uppercase dress-designer"><?php echo $designer; ?></h1>
 						</a>
-	
+						<h6 class="dress-description m2"><?php echo $description; ?></h6>
+
+						<p class="h7 uppercase product-type m1"><?php echo $cart_item['quantity'] . ' ' .cc_booking_noun_string( $type ); ?></p>
 						
-						<p class="h7 uppercase product-type m1">1 Share/1 Night Rental/Pre-reservation/End of Season Sale</p>
+						<?php if ( $_product->product_type == "booking") : ?>
 						
-						<?php // if(!share || !end-of-season-sale) ?>
-						
-							<p class="h7 product-reservation-date m2">Friday, Jan 9, 2015</p>
-							
-	
-							<?php
-								// i deleted a bunch of stuff but left this because it seemed like it might be useful
-								// Meta data
-								//echo WC()->cart->get_item_data( $cart_item );
-							?>
+							<p class="h7 product-reservation-date m2"><?php echo $cart_item['booking']['date']; ?></p>
 							
 							<div class="product-addresses">
 							
@@ -63,7 +72,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 							
 							</div>
 							
-						<?php //endif ?>
+						<?php endif; ?>
 
 					</div>
 
@@ -102,9 +111,12 @@ do_action( 'woocommerce_before_cart' ); ?>
 					<div class="product-remove col-sm-2">
 					
 						<?php // i need this span element to be INSIDE the <a> element in the apply_filters function below, if not possible, let me know ?>
-							<span class="icon svg small tooltip-white" data-toggle="tooltip" data-placement="bottom" title="remove item"><?php get_template_part('_icons/remove'); ?></span>
+
+							<a href="<?php echo esc_url( WC()->cart->get_remove_url( $cart_item_key ) ); ?>" class="remove" title="Remove this item">
+								<span class="icon svg small tooltip-white" data-toggle="tooltip" data-placement="bottom" title="remove item"><?php get_template_part('_icons/remove'); ?></span>
+							</a>
 						<?php
-							echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s"></a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'Remove this item', 'woocommerce' ) ), $cart_item_key );
+							//echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s"></a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'Remove this item', 'woocommerce' ) ), $cart_item_key );
 						?>
 					</div>
 					

@@ -49,7 +49,7 @@ if ( isset( $_POST['referring-page']) && isset($_POST['user-id']) && isset($_POS
 
 				 */
 
-				CC_Controller::delete_booking_meta( $val->id );
+				
 
 
 				if ( WC()->payment_gateways() ) {
@@ -73,6 +73,8 @@ if ( isset( $_POST['referring-page']) && isset($_POST['user-id']) && isset($_POS
 					$or->update_status('cancelled');	
 				}
 
+				CC_Controller::delete_booking_meta( $val->id );
+				
 				wc_add_notice( 'Your '.$_POST['reservation_type'].' was successfully cancelled.','success' );
 				wp_redirect( $_POST['referring-page']);
 				exit;

@@ -16,7 +16,7 @@ echo "****************************************************\n\n";
 /**
  * This prints out the reserved dress
  */
-echo sprintf( __( 'Please Deliver: %s - %s', 'woocommerce-bookings'), $item_number, $item_name ) . "\n\n";
+echo "Please deliver: ".get_field("dress_id_number", $dress->ID)." - ".get_field("dress_description", $dress->ID)."\n\n";
 
 // print out the target reservation date.
 echo sprintf( __( 'On: %s', 'woocommerce-bookings'), $reservation_date ) . "\n\n";

@@ -87,9 +87,15 @@ class CC_Dry_Cleaning_Email extends WC_Email {
 		$date_format = apply_filters( 'woocommerce_bookings_date_format', 'M jS Y' );
 		$date = date_i18n( $date_format, ws_fst( get_post_meta( $booking->id, '_cc_customer_booked_date' ) ) );
 
+		$dress = CC_Controller::get_dress_for_product($booking->get_product()->id, 'rental');
+
 		ob_start();
 		wc_get_template( $this->template_plain,
 			array(
+				'booking' => $booking,
+				'order' => $order,
+				'customer' => $customer,
+				'dress' => $dress,
 				'email_heading' => $this->heading,
 				'item_number' => $num,
 				'item_name' => $name,
@@ -128,7 +134,7 @@ class CC_Dry_Cleaning_Email extends WC_Email {
 				'default' => $this->subject
 			),
 			'heading' => array(
-				'title' => 'Subject',
+				'title' => 'Heading',
 				'type' => 'text',
 				'description' => sprintf( __('This field controls the main heading used within the email. Leave blank to use %s.'), $this->heading ),
 				'placeholder' => '',

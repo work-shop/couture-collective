@@ -16,6 +16,7 @@ $shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
 	<?php } else { ?>
 	<?php 
 	$c = 0;
+	$c2 = count( $shares );
 	foreach( $shares as $share ) : ?>
 
 		<div class="shared-dress m3 row">
@@ -26,6 +27,7 @@ $shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
 				get_template_part('_partials/dress/closet', 'dress-summary' ); 
 			?>
 			</div>
+
 			<div class="col-sm-5 col-md-5 col-md-offset-1">
 				<?php
 					$rental = get_field('dress_rental_product_instance', $share );
@@ -39,6 +41,7 @@ $shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
 					$GLOBALS['CC_POST_DATA']['prereservations'] = CC_Controller::get_prereservations_for_dress_rental($GLOBALS['CC_POST_DATA']['rental']->id, $GLOBALS['CC_POST_DATA']['user']->ID);
 					$GLOBALS['CC_POST_DATA']['reservation_type'] = "Prereservation";
 					// change this to prereservation history.
+					get_template_part( '_partials/dress/dress', 'next-day-rental-make');
 					get_template_part( '_partials/dress/dress', 'prereservation-history');
 
 					unset( $GLOBALS['CC_POST_DATA'] );
@@ -47,7 +50,7 @@ $shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
 			</div>					
 		</div>
 
-		<?php if(!$c == count($shares) && count($shares) > 0): ?>
+		<?php if($c < $c2 - 1 ): ?>
 			<div class="col-sm-12">
 				<hr />
 			</div>	

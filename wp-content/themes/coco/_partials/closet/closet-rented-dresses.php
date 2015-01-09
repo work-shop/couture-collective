@@ -20,11 +20,13 @@ $rentals = CC_Controller::get_rentals_by_dress_for_user( get_current_user_id() )
 	<?php } else { ?>
 	<?php
 	$c = 0;
+	$c2 = count( $rentals );
 	foreach( $rentals as $dress_id => $rentals ) : ?>
 
 		<div class="rented-dress m3 row">
 			<div class="col-sm-6 col-md-5">
 			<?php 
+
 				$dress = get_post( $dress_id );
 				$GLOBALS['CC_CLOSET_DATA']['dress'] = $dress;
 				get_template_part('_partials/dress/closet', 'dress-summary' ); 
@@ -52,7 +54,7 @@ $rentals = CC_Controller::get_rentals_by_dress_for_user( get_current_user_id() )
 			</div>
 		</div>
 		
-		<?php if(!$c == count($rentals) && count($rentals) > 1): ?>
+		<?php if(  $c < $c2 - 1 ): ?>
 			<div class="col-sm-12">
 				<hr />
 			</div>	
