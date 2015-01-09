@@ -32,9 +32,11 @@
 	
 				<hr class="brand half" />
 	
-				<p class="h7 uppercase"><span class="icon svg"><?php get_template_part('_icons/delivery'); ?></span> 
+				<p class="h7 uppercase">
+				<a href="<?php bloginfo('url'); ?>/closet" class="h7">
+				<span class="icon svg"><?php get_template_part('_icons/delivery'); ?></span> 
 				In My Closet
-				
+				</a>
 				</p>
 				
 				<p class="remaining-reservations h7 uppercase">
