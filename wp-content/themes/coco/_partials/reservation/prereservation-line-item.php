@@ -15,7 +15,7 @@ if ( $status_guard || $timing_guard ) { ?>
 		<div class="row">
 			<div class="col-sm-12">
 				
-				<p class="reservation-date h3 <?php if(!$status_guard): ?>m0<?php endif; ?>"><?php if($status_guard): ?><span class="icon pink-darker icon-left" data-icon="%"></span><?php endif; ?><?php echo date( 'F jS, Y', strtotime( $booking->get_start_date() ) ); ?></p>
+				<p class="reservation-date h3 <?php if(!$status_guard): ?>m0<?php endif; ?>"><?php if($status_guard): ?><span class="icon pink-darker icon-left" data-icon="%"></span><?php endif; ?><?php echo date( 'F jS, Y', strtotime( CC_Controller::get_selected_date($booking->id) ) ); ?></p>
 			</div>
 		</div>
 	
@@ -39,7 +39,7 @@ if ( $status_guard || $timing_guard ) { ?>
 	
 		<div class="row">
 			<div class="col-sm-12">
-			<p class="reservation-date h3 m0"><?php echo date( 'F jS, Y', strtotime( $booking->get_start_date() ) ); ?></p>
+			<p class="reservation-date h3 m0"><?php echo date( 'F jS, Y', strtotime( CC_Controller::get_selected_date($booking->id) ) ); ?></p>
 			</div>
 		</div>
 	
