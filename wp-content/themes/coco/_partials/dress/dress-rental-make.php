@@ -1,6 +1,8 @@
 <div class="row">
 <div class="col-sm-12">
 
+<p class="h7"><span class="uppercase">One Night Rental:&nbsp;&nbsp;&nbsp;</span><span class="icon svg popover-white icon-small cursor-pointer" data-toggle="popover" data-placement="bottom" title="One Night Rental" data-content="Rent this dress for one night. Additional cleaning charges apply." data-trigger="focus-broken" tabindex="1"><?php get_template_part('_icons/question'); ?></span></p>
+
 <?php 
 
 global $woocommerce;

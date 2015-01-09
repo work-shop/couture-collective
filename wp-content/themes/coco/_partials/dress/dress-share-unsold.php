@@ -19,10 +19,9 @@ if ( $tv ) { ?>
 	//i commented this out because i couldnt get the icon tempalte part to include in this function - and it has to be a child of the p
 	//echo ws_ifdef_concat('<p class="h7 uppercase">SHARE: <span class="h8 numerals">',$share->get_price_html(),'</span></p>'); ?>
 	
-	
-	<p class="h7 uppercase">SHARE: 
-		<span class="h8 numerals"><?php echo $share->get_price_html(); ?>'</span>
-	 	<span class="icon-left icon svg"><?php get_template_part('_icons/question'); ?></span> 
+	<p class="h7" ><span class="uppercase">SHARE: </span>
+		<span class="h8 numerals"><?php echo $share->get_price_html(); ?>&nbsp;&nbsp;&nbsp;</span>
+	 	<span class="icon svg popover-white icon-small cursor-pointer" data-toggle="popover" data-placement="bottom" title="Purchase a Share" data-content="Pre-reserve up to 5 times per season, and 24 hours in advance any time the dress is available." data-trigger="focus-broken" tabindex="0"><?php get_template_part('_icons/question'); ?></span> 
 	 </p>
 
 

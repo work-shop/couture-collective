@@ -249,6 +249,9 @@ img,video{
 
 .icon.svg{
 	width: 25px;
+	&:focus{
+		outline: none;
+	}
 
 	svg{
 		width: 25px;
@@ -257,10 +260,15 @@ img,video{
 	}
 	
 	&.icon-small{
-		width: 15px;
+		width: 17px;
 		
 		svg{
-			width: 15px;
+			width: 17px;
+			
+			*{
+				fill: darken(@pink-darker,10%);
+			}
+			
 		}
 	}
 }
@@ -314,6 +322,12 @@ body{
 
 .indent{
 	//text-indent: 2.5em;
+}
+
+.cursor-pointer{
+	&:hover{
+		cursor: pointer;
+	}
 }
 
 ::selection {
@@ -513,10 +527,11 @@ h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6,p{
 
 
 .h9(){
-	font-size: 14px;
+	font-size: 13px;
 	font-family: 'latin_modern_roman10_italic', Georgia, Times New Roman, serif;
-	line-height: 1.75;			
-}
+	line-height: 1.75;	
+	letter-spacing: normal;		
+}		
 
 .h10(){
 	font-size: 13px;
@@ -742,18 +757,18 @@ h6,.h6{
 			margin: 0 auto;
 		}			
 		
-/*
-		#logo-mark{
-			width: 70px;
-			margin-bottom: 30px;
-		}
-		
-		#logo-type{
-			width: 310px;
-		}	
-*/
-		
 	}
+	
+
+	#admin-login{
+		position: fixed;
+		top: 17px;
+		right: 20px;
+		
+		.icon:before{
+			color: darken(@pink-darker,15%);
+		}
+	}	
 	
 }
 
@@ -1410,17 +1425,32 @@ fieldset{
 		.wc-bookings-booking-cost{
 			margin-left: 0px;
 			margin-right: 0px;
+			min-height: 20px;
 			padding: 0;
-			background: none;
+			background: transparent !important;
 			border: none;
 		}		
 	
 	}
 }
 
-			
-.reservation-item{
 
+.popover{
+
+	.shadow(0px, 1px, 2px, @pink-darker);
+
+	.popover-title{
+		.h7();
+		background: white;
+		text-align: center;
+		text-transform: uppercase;
+	}
+	
+	.popover-content{
+		.h8();
+		letter-spacing: normal;
+	}
+		
 }
 
 
@@ -1506,7 +1536,7 @@ fieldset{
 	font-size: 21px;
 	
 	.wc-forward{
-		.h3();
+		.h6();
 		display: block;
 		color: @pink-darker;
 	}
@@ -1925,8 +1955,10 @@ h6,.h6{
 			}
 		}
 	}
+
 	
 }
+
 
 .after{
 

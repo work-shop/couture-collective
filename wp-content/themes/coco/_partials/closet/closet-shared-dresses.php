@@ -4,27 +4,24 @@ $shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
 
 ?>
 
-<div id="shared-dresses" class="row shared-dresses">
+<div id="shared-dresses" class="row shared-dresses m3">
 	<div class="col-sm-12">
 	<?php if ( empty( $shares ) ) { ?>
 
-	<h3 class="serif centered">You don't own shares in any dresses right now. Visit the <a href="<?php echo bloginfo('url'); ?>/look-book">Look Book</a> to purchase shares.</h3>
+	<p class="h8">You don't own shares of any dresses right now. Visit the <a href="<?php echo bloginfo('url'); ?>/look-book">Look Book</a> to purchase shares.</p>
 
 	<?php } else { ?>
 	<?php foreach( $shares as $share ) : ?>
 
 		<div class="shared-dress row">
-			<div class="col-sm-4 col-sm-offset-1">
+			<div class="col-sm-5">
 			<?php 
 				$dress = get_post( $share );
 				$GLOBALS['CC_CLOSET_DATA']['dress'] = $dress;
 				get_template_part('_partials/dress/closet', 'dress-summary' ); 
 			?>
 			</div>
-			<div class="col-sm-6">
-				<div class="row">
-					
-				</div>
+			<div class="col-sm-5 col-sm-offset-1">
 				<div class="row">
 					<?php
 						$rental = get_field('dress_rental_product_instance', $share );
@@ -50,6 +47,5 @@ $shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
 	<?php endforeach; ?>
 	<?php } ?>
 
-	<hr class="page-header-rule"/>
 	</div>
 </div>

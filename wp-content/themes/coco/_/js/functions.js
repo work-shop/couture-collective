@@ -44,6 +44,8 @@ jQuery(document).ready(function($) {
 $(window).ready(function() {
 
 	$('[data-toggle="tooltip"]').tooltip();
+	$('[data-toggle="popover"]').popover();
+
 
 });//end window.ready
 
