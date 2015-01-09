@@ -191,6 +191,31 @@ function cc_booking_prompt_string( $reservation_type ) {
 
 }
 
+/**
+ * Formats the reservation type as a human-readable noun.
+ *
+ * @param string $reservation_type
+ * @return string formatted noun
+ */
+function cc_booking_noun_string( $reservation_type ) {
+	switch ( $reservation_type ) {
+		case "Prereservation" :
+			return "Pre-reservation";
+
+		case "Rental" :
+			return "Rental";
+
+		case "Nextday" : 
+			return "Next-day Rental";
+
+		case "Update":
+			return "Update";
+
+		default :
+			return "";
+	}
+}
+
 
 
 
