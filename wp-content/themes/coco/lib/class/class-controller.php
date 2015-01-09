@@ -346,19 +346,40 @@ class CC_Controller {
 	 * @param int $product_id the id of the product to retrieve the dress for
 	 * @return int the id of the parent dress
 	 */
-	public static function get_dress_for_product( $product_id, $type ) {
+	public static function get_dress_for_product( $product_id, $type = "" ) {
 		if ( !$product_id ) return false;
 
-		$parent_dresses = get_posts(array(
-			'post_type' => 'dress',
-			'meta_query' => array(
-				array(
-					'key' => 'dress_'.$type.'_product_instance',
-					'value' => '"'.$product_id.'"',
-					'compare' => 'LIKE'
+		if ( empty( $type ) ) {
+			$parent_dresses = get_posts(array(
+				'post_type' => 'dress',
+				'meta_query' => array(
+					'relation' => 'OR',
+					array(
+						'key' => 'dress_sale_product_instance',
+						'value' => '"'.$product_id.'"',
+						'compare' => 'LIKE'
+					),
+					array(
+						'key' => 'dress_share_product_instance',
+						'value' => '"'.$product_id.'"',
+						'compare' => 'LIKE'
+					)
 				)
-			)
-		));
+			));
+
+		} else {
+
+			$parent_dresses = get_posts(array(
+				'post_type' => 'dress',
+				'meta_query' => array(
+					array(
+						'key' => 'dress_'.$type.'_product_instance',
+						'value' => '"'.$product_id.'"',
+						'compare' => 'LIKE'
+					)
+				)
+			));
+		}
 
 		if ( !empty( $parent_dresses ) ) return $parent_dresses[0]->ID;
 
@@ -366,6 +387,13 @@ class CC_Controller {
 	}
 
 
+	public static function get_resource_name_for_cart_item( $resource_id, $resources  ) {
+		foreach ($resources as $resource) {
+			if ( $resource->get_id() == $resource_id ) {
+				return $resource->get_title();
+			}
+		}
+	}
 
 }
 
