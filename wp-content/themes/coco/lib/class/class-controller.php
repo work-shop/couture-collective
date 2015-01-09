@@ -339,6 +339,34 @@ class CC_Controller {
 		update_post_meta( $customer_id, 'cc_closet_values', $closet );
 
 	}
+
+	/**
+	 * get the parent dress for a given product.
+	 *
+	 * @param int $product_id the id of the product to retrieve the dress for
+	 * @return int the id of the parent dress
+	 */
+	public static function get_dress_for_product( $product_id, $type ) {
+		if ( !$product_id ) return false;
+
+		$parent_dresses = get_posts(array(
+			'post_type' => 'dress',
+			'meta_query' => array(
+				array(
+					'key' => 'dress_'.$type.'_product_instance',
+					'value' => '"'.$product_id.'"',
+					'compare' => 'LIKE'
+				)
+			)
+		));
+
+		if ( !empty( $parent_dresses ) ) return $parent_dresses[0]->ID;
+
+		return false;
+	}
+
+
+
 }
 
 ?>
