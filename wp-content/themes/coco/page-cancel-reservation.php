@@ -73,7 +73,7 @@ if ( isset( $_POST['referring-page']) && isset($_POST['user-id']) && isset($_POS
 					$or->update_status('cancelled');	
 				}
 
-				wc_add_notice( 'Your booking was successfully cancelled.','success' );
+				wc_add_notice( 'Your '.$_POST['reservation_type'].' was successfully cancelled.','success' );
 				wp_redirect( $_POST['referring-page']);
 				exit;
 			} else {

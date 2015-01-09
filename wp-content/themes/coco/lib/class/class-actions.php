@@ -184,7 +184,7 @@ class CC_Actions {
 	 */
 	public function login_failure_redirect( $username ) {
 		
-		wc_add_notice('Incorrect username or password','notice');
+		//wc_add_notice('Incorrect username or password','notice');
 		wp_redirect( home_url() . '/my-account?login=failed' );
 		exit;	
 	}
@@ -198,8 +198,8 @@ class CC_Actions {
 	 */
 	public function empty_auth_redirect( $username ) {
 		if ( empty( $username ) ) {
-			wc_add_notice('Enter a username and password','notice');
-			wp_redirect( home_url() . '/my-account?login=failed' );
+			//wc_add_notice('Enter a username and password','notice');
+			wp_redirect( home_url() . '/my-account' );
 			exit;	
 		}
 	}
