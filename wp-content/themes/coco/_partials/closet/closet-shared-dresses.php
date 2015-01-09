@@ -36,7 +36,7 @@ $shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
 							'rental' => get_product( ws_fst( $rental ) ),
 						);
 						$GLOBALS['CC_POST_DATA']['prereservations'] = CC_Controller::get_prereservations_for_dress_rental($GLOBALS['CC_POST_DATA']['rental']->id, $GLOBALS['CC_POST_DATA']['user']->ID);
-
+						$GLOBALS['CC_POST_DATA']['reservation_type'] = "Prereservation";
 						// change this to prereservation history.
 						get_template_part( '_partials/dress/dress', 'prereservation-history');
 
