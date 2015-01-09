@@ -7,7 +7,7 @@
 <div class="row dress-prereservations">
 <div class="col-sm-12">
 
-<p class="h7 uppercase m">My Pre-reservations:</p>
+<p class="h7 uppercase m">My <?php echo $GLOBALS['CC_POST_DATA']['reservation_type'] ?>s: </p>
 
 <?php if (!empty($bookings) ) { ?>
 
@@ -41,17 +41,22 @@
 	<div class="row prereservation-status">
 	<div class="col-sm-12">
 	
-	<?php if ( 5 > count( $bookings ) ) { 
+	<?php if ( 5 > count( $bookings ) ){ 
 
 		$perma = get_post_permalink( $GLOBALS['CC_CLOSET_DATA']['dress']->ID );
 	?>
+	
+		<?php if($GLOBALS['CC_POST_DATA']['reservation_type'] != 'Rental'): ?>
 
-		<p class="h7 uppercase m2"><?php echo (5-count( $bookings )); ?> Pre-reservations remaining</p> 
+			<p class="h7 uppercase m2"><?php echo (5-count( $bookings )); ?> Pre-reservations remaining</p>
+		
+		<?php endif; ?>
+		 
 		<a href="<?php echo $perma; ?>" class="button-brand">+ Add <?php echo $GLOBALS['CC_POST_DATA']['reservation_type'] ?></a>
 
 	<?php } else { 
 		
-		if($GLOBALS['CC_POST_DATA']['reservation_type'] == 'rental'): ?>
+		if($GLOBALS['CC_POST_DATA']['reservation_type'] != 'Rental'): ?>
 
 		<p class="h8">This dress has been pre-reserved the maximum number of times. You may delete an order and book a new one, or <a href="<?php bloginfo('url');?>/contact" target="_blank" class="underline">contact us</a> to change your order. </p>
 
