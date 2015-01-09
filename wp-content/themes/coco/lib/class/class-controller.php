@@ -54,7 +54,7 @@ class CC_Controller {
  	}
 
  	/**
- 	 * extracts the total refund amount from a set of items, given an item id
+ 	 * Extracts the total refund amount from a set of items, given an item id.
  	 *
  	 * @param string $item_id the line item id to extract refund amount for
  	 * @param array(string => array) $items an associative array of order items
@@ -64,6 +64,16 @@ class CC_Controller {
  		return ws_fst( $items[ $item_id ]['item_meta']['_line_total'] );
  	}
 
+
+ 	/**
+ 	 * Gets the date that the customer selected for a given booking id.
+ 	 *
+ 	 * @param int $booking_id the booking to retrieve the chosen date for.
+ 	 * @return long unix timestamp representing the date selected for $booking_id
+ 	 */
+ 	public static function get_selected_date( $booking_id ) {
+ 		return ws_fst( get_post_meta($booking_id, '_cc_customer_booked_date') );
+ 	}
 
  	/**
  	 * Given a booking, find ints metadata, and delete it from the database wp_postmeta
@@ -148,7 +158,7 @@ class CC_Controller {
  		 	Custom meta query, matching on name.
  		 */
 
- 		$rental_ids = $wpdb->get_col( $wpdb->prepare("SELECT ID FROM {$wpdb->posts} WHERE post_title = %s", "Rental") );
+ 		$rental_ids = $wpdb->get_col( $wpdb->prepare("SELECT ID FROM {$wpdb->posts} WHERE post_title IN (%s, %s)", "Rental", "Nextday") );
 
  		if ( empty( $rental_ids ) ) return $rental_ids;
 
@@ -212,6 +222,54 @@ class CC_Controller {
 
  		return $return;
 
+ 	}
+
+ 	/**
+ 	 * Determine whether a dress is available for reservation tomorrow.
+ 	 *
+ 	 * @param WC_Bookable_Product $rental the bookable product to get rentals for.
+ 	 * @return bool
+ 	 *
+ 	 */
+ 	public static function available_tomorrow( $rental ) {
+ 		$availability = array();
+ 		$resources = $rental->get_resources();
+ 		$target = array_map( function($x) { return array(
+ 			'id' => $x->get_id(),
+ 			'type' => $x->get_title()
+ 		); }, $resources);
+
+ 		foreach ( $target as $resource ) {
+ 			$availability[] = $rental->get_available_bookings(strtotime('+1 days'), strtotime('+36 hours'), $resource['id']);
+ 		}
+
+ 		return array_reduce($availability, function( $a,$b ) {
+ 			return !is_wp_error( $b ) && $a;
+ 		}, true);
+ 	}
+
+ 	/**
+ 	 * Given a WC_Bookable_Product instance, returns the date if its next day rental.
+ 	 *
+ 	 * @param WC_Product_Booking the bookable product to retrieve a next day reservation for
+ 	 * @return int timestamp of the next available reservation.
+ 	 */
+ 	public static function get_next_day_reservation( $rental ) {
+ 		$availability = array();
+ 		$resources = $rental->get_resources();
+ 		$target = array_reduce( array_map( function($x) { return array(
+ 			'id' => $x->get_id(),
+ 			'type' => $x->get_title()
+ 		); }, $resources), function( $carry,$item ) {
+ 			return (( $item['type'] == 'Nextday' ) ? $item['id'] : "") . $carry;
+ 		});
+
+ 		$availability = $rental->get_blocks_in_range(strtotime('+1 days'), strtotime('+36 hours'), null, $target );
+ 		$availability = ( $availability && !empty( $availability ) ) ? ws_fst( $availability ) : false;
+
+ 		if ( !$availability ) return false;
+
+ 		return array_combine( array("year", "month", "day"), explode( " ", date("Y m d", $availability ) ));
  	}
 
  	/**
