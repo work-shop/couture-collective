@@ -4,23 +4,7 @@ $rentals = CC_Controller::get_rentals_by_dress_for_user( get_current_user_id() )
 
 ?>
 
-<div id="rented-dresses" class="rented-dresses">	
-			
-		<div class="row">	
-						
-			<div class="col-sm-8">
-				<p class="h7 uppercase">My Rentals</p>
-			</div>
-			
-		</div>
-		
-		<div class="row">
-		
-			<div class="col-sm-12">
-				<div class="bordered-dark-bottom m2"></div>
-			</div>
-		
-		</div>
+<div id="rented-dresses" class="rented-dresses row">	
 	
 	<?php if ( empty($rentals ) ) { ?>
 	
@@ -34,44 +18,47 @@ $rentals = CC_Controller::get_rentals_by_dress_for_user( get_current_user_id() )
 	</div>
 
 	<?php } else { ?>
-	<?php foreach( $rentals as $dress_id => $rentals ) : ?>
+	<?php
+	$c = 0;
+	foreach( $rentals as $dress_id => $rentals ) : ?>
 
-		<div class="rented-dress row">
-			<div class="col-sm-4 col-sm-offset-1">
+		<div class="rented-dress row m3">
+			<div class="col-sm-6 col-md-5">
 			<?php 
 				$dress = get_post( $dress_id );
 				$GLOBALS['CC_CLOSET_DATA']['dress'] = $dress;
 				get_template_part('_partials/dress/closet', 'dress-summary' ); 
 			?>
 			</div>
-			<div class="col-sm-6">
-				<div class="row">
-					
-				</div>
-				<div class="row">
-					<?php
-						$rental = get_field('dress_rental_product_instance', $dress );
+			<div class="col-sm-6 col-md-5 col-md-offset-1">
+				<?php
+					$rental = get_field('dress_rental_product_instance', $dress );
 
-						if ( empty( $rental ) ) continue;
+					if ( empty( $rental ) ) continue;
 
-						$GLOBALS['CC_POST_DATA'] = array(
-							'user' => wp_get_current_user(),
-							'rental' => get_product( ws_fst( $rental ) ),
-						);
-						$GLOBALS['CC_POST_DATA']['prereservations'] = $rentals;
-						$GLOBALS['CC_POST_DATA']['reservation_type'] = "Rental";
+					$GLOBALS['CC_POST_DATA'] = array(
+						'user' => wp_get_current_user(),
+						'rental' => get_product( ws_fst( $rental ) ),
+					);
+					$GLOBALS['CC_POST_DATA']['prereservations'] = $rentals;
+					$GLOBALS['CC_POST_DATA']['reservation_type'] = "Rental";
 
-						// change this to prereservation history.
-						get_template_part( '_partials/dress/dress', 'prereservation-history');
+					// change this to prereservation history.
+					get_template_part( '_partials/dress/dress', 'prereservation-history');
 
-						unset( $GLOBALS['CC_POST_DATA'] );
-						unset( $GLOBALS['CC_CLOSET_DATA']['dress']);
-					?>
-				</div>
+					unset( $GLOBALS['CC_POST_DATA'] );
+					unset( $GLOBALS['CC_CLOSET_DATA']['dress']);
+				?>
 			</div>
 		</div>
+		
+		<?php if(!$c == count($rentals) && count($rentals) > 1): ?>
+			<div class="col-sm-12">
+				<hr />
+			</div>	
+		<?php endif; ?>	
 
-	<?php endforeach; ?>
+	<?php $c++; endforeach; ?>
 
 
 	<?php } ?>
