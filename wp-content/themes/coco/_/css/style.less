@@ -348,6 +348,10 @@ svg *{
 	color: @brand;
 }
 
+.underline{
+	text-decoration: underline;
+}
+
 .bordered{
 	padding: 3px 0 2px 0;
 	position: relative;
@@ -616,6 +620,21 @@ h6,.h6{
 .extra-small{
 	font-size: 10px;
 }
+
+
+.tooltip-white{	
+	&+.tooltip{
+		.tooltip-inner{
+			background: white;
+			color: @dark;
+		}	
+		.tooltip-arrow{
+			border-bottom-color: white;
+		}
+	}
+}
+
+	
 
 
 
@@ -1562,7 +1581,7 @@ input,textarea,button[type="submit"]{
 	border: 1px solid @pink-darker;
 	background: none;	
 	outline: none;
-	width: 100%;
+	width: 100%; 
 	text-indent: 5px;
 	.h7();
 	margin-bottom: 10px;
@@ -1580,8 +1599,9 @@ input,textarea,button[type="submit"]{
 		color: white;
 		.h7();
 		text-transform: uppercase;
-		width: 100%;
-		max-width: 200px;
+		width: auto;
+		max-width: none;
+		padding: 5px 10px;
 		margin-left: auto;
 		margin-right: auto;
 		

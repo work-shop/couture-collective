@@ -11,14 +11,20 @@ foreach ( $woocommerce->cart->get_cart() as $k => $v ) {
 
 if ( $tv ) { ?>
 
-<p class="alert gray">There's already a share of this dress in your cart.</p>
+<p class="h8">There's already a share of this dress in your cart.</p>
 
 <?php } else { 
 
 	$share = $GLOBALS['CC_POST_DATA']['share'];
-	echo ws_ifdef_concat('<p class="price">SHARE: ',$share->get_price_html(),'</p>');
+	//i commented this out because i couldnt get the icon tempalte part to include in this function - and it has to be a child of the p
+	//echo ws_ifdef_concat('<p class="h7 uppercase">SHARE: <span class="h8 numerals">',$share->get_price_html(),'</span></p>'); ?>
+	
+	
+	<p class="h7 uppercase">SHARE: 
+		<span class="h8 numerals"><?php echo $share->get_price_html(); ?>'</span>
+	 	<span class="icon-left icon svg"><?php get_template_part('_icons/question'); ?></span> 
+	 </p>
 
-?>
 
 	<form class="cart" method="post" enctype='multipart/form-data'>
 	 	<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>

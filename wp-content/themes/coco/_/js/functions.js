@@ -41,6 +41,12 @@ jQuery(document).ready(function($) {
 
 });//end document.ready
 
+$(window).ready(function() {
+
+	$('[data-toggle="tooltip"]').tooltip();
+
+});//end window.ready
+
 
 $(window).resize(function() {
 

@@ -7,7 +7,9 @@
 		<div class="container">	
 			<div class="row">
 			
-				<?php wc_print_notices(); ?>
+				<div class="col-sm-10 col-sm-offset-1 wc-notices">
+					<?php wc_print_notices(); ?>
+				</div>
 
 			
 				<?php get_template_part('_partials/dress/dress', 'base'); ?>

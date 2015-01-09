@@ -18,14 +18,18 @@ if ( $status_guard || $timing_guard ) { ?>
 			</div>
 		</div>
 	
-		<?php if ( !$status_guard ) : ?>
-<!--
-		<div class="row">
-			<div class="col-sm-8 col-sm-offset-1">
-				<p class="reservation-destination h9 indent">Shipped to <?php echo $order->get_shipping_address(); ?></p>
+		<?php if(!is_single()): ?>
+	
+			<?php if ( !$status_guard ) : ?>
+	
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-1">
+					<p class="reservation-destination h9 indent">Shipped to <?php echo $order->get_shipping_address(); ?></p>
+				</div>
 			</div>
-		</div>
--->
+	
+			<?php endif; ?>
+		
 		<?php endif; ?>
 
 	</div>
@@ -58,7 +62,7 @@ if ( $status_guard || $timing_guard ) { ?>
 					<input type="hidden" class="referring-page" name="referring-page" value="<?php echo get_permalink(); ?>" />
 					<input type="hidden" class="user-id" name="user-id" value="<?php echo esc_attr( $GLOBALS['CC_POST_DATA']['user']->ID ); ?>" />
 					<input type="hidden" class="booking-id" name="booking-id" value="<?php echo esc_attr( $booking->get_ID() ); ?>" />
-					<button type="submit" class="cancel-reservation button icon-button right"><span class="icon svg icon-small"><?php get_template_part('_icons/remove'); ?></span></button>
+					<button type="submit" class="cancel-reservation button icon-button right tooltip-white" data-toggle="tooltip" data-placement="bottom" title="cancel reservation"><span class="icon svg icon-small"><?php get_template_part('_icons/remove'); ?></span></button>
 				</form>
 			</div>
 			

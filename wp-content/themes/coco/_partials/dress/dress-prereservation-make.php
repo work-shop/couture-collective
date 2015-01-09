@@ -19,7 +19,7 @@ if ( 5 > count( $prereservations ) ) {
 	?>
 	
 	<div class="row">
-	<div class="col-sm-12">	
+		<div class="col-sm-12">	
 
 	<div class="dress-calendar">
 	<form class="cart" method="post" enctype='multipart/form-data'>
@@ -46,11 +46,12 @@ if ( 5 > count( $prereservations ) ) {
 
 	do_action( 'woocommerce_after_add_to_cart_form' ); ?>
 	
-	</div>	
-</div>
+		</div>	
+	</div>
+	
+	<hr />
 
-} else {
-?>
+<?php } else { ?>
 
 
 <?php } ?>
