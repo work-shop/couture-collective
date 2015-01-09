@@ -10,7 +10,7 @@
 		}
 		?>
 	</div>
-	<div class="col-sm-7">
+	<div class="col-sm-7 col-xs-8">
 		<?php
 			$perma = get_post_permalink( $dress->ID );
 			$designer = get_field('dress_designer', $dress->ID );

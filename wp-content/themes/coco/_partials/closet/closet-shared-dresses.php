@@ -4,7 +4,7 @@ $shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
 
 ?>
 
-<div id="shared-dresses" class="row shared-dresses m3">
+<div id="shared-dresses" class="row shared-dresses m3 row-m0">
 
 	<?php if ( empty( $shares ) ) { ?>
 		<div class="col-sm-5 col-sm-offset-6">
@@ -18,7 +18,7 @@ $shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
 	$c = 0;
 	foreach( $shares as $share ) : ?>
 
-		<div class="shared-dress row m3">
+		<div class="shared-dress m3 row">
 			<div class="col-sm-6 col-md-5">
 			<?php 
 				$dress = get_post( $share );
@@ -26,7 +26,7 @@ $shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
 				get_template_part('_partials/dress/closet', 'dress-summary' ); 
 			?>
 			</div>
-			<div class="col-sm-6 col-md-5 col-md-offset-1">
+			<div class="col-sm-5 col-md-5 col-md-offset-1">
 				<?php
 					$rental = get_field('dress_rental_product_instance', $share );
 
