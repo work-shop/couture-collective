@@ -9,26 +9,13 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-wc_print_notices();
-
 do_action( 'woocommerce_before_cart' ); ?>
 
 <form action="<?php echo esc_url( WC()->cart->get_cart_url() ); ?>" method="post">
 
 <?php do_action( 'woocommerce_before_cart_table' ); ?>
 
-<table class="shop_table cart" cellspacing="0">
-	<thead>
-		<tr>
-			<th class="product-remove">&nbsp;</th>
-			<th class="product-thumbnail">&nbsp;</th>
-			<th class="product-name"><?php _e( 'Product', 'woocommerce' ); ?></th>
-			<th class="product-price"><?php _e( 'Price', 'woocommerce' ); ?></th>
-			<th class="product-quantity"><?php _e( 'Quantity', 'woocommerce' ); ?></th>
-			<th class="product-subtotal"><?php _e( 'Total', 'woocommerce' ); ?></th>
-		</tr>
-	</thead>
-	<tbody>
+
 		<?php do_action( 'woocommerce_before_cart_contents' ); ?>
 
 		<?php
@@ -38,15 +25,11 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 			if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 				?>
-				<tr class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
-
-					<td class="product-remove">
-						<?php
-							echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s">&times;</a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'Remove this item', 'woocommerce' ) ), $cart_item_key );
-						?>
-					</td>
-
-					<td class="product-thumbnail">
+				
+							
+				<div class="row yellow <?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
+				
+					<div class="product-thumbnail col-sm-2">
 						<?php
 							$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
 
@@ -55,9 +38,23 @@ do_action( 'woocommerce_before_cart' ); ?>
 							else
 								printf( '<a href="%s">%s</a>', $_product->get_permalink(), $thumbnail );
 						?>
-					</td>
+					</div>
 
-					<td class="product-name">
+					<div class="product-name col-sm-3">
+						
+						<?php 
+						$title = $GLOBALS['CC_POST_DATA']['title'];
+						$description = $GLOBALS['CC_POST_DATA']['description'];
+						$designer = $GLOBALS['CC_POST_DATA']['designer'];
+				
+						$size = $GLOBALS['CC_POST_DATA']['size'];
+			
+						echo ws_ifdef_do( $designer, ws_ifdef_concat('<h1 class="uppercase dress-designer">',$designer,'</h1>') );
+						echo ws_ifdef_do( $title, ws_ifdef_concat('<h6 class="dress-description">',$description,'</h6>') );
+				
+						echo ws_ifdef_do( $user, ws_ifdef_do( $size, ws_ifdef_concat('<p class="h7">SIZE: <span class="numerals h8">',$size,'</span></p>') ) );
+						?>
+					
 						<?php
 							if ( ! $_product->is_visible() )
 								echo apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key );
@@ -71,15 +68,15 @@ do_action( 'woocommerce_before_cart' ); ?>
                				if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) )
                					echo '<p class="backorder_notification">' . __( 'Available on backorder', 'woocommerce' ) . '</p>';
 						?>
-					</td>
+					</div>
 
-					<td class="product-price">
+					<div class="product-price col-sm-5">
 						<?php
 							echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
 						?>
-					</td>
+					</div>
 
-					<td class="product-quantity">
+					<div class="product-quantity hidden">
 						<?php
 							if ( $_product->is_sold_individually() ) {
 								$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
@@ -94,14 +91,24 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 							echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key );
 						?>
-					</td>
+					</div>
 
-					<td class="product-subtotal">
+					<div class="product-subtotal hidden">
 						<?php
 							echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
 						?>
-					</td>
-				</tr>
+					</div>
+
+					<div class="product-remove col-sm-2">
+						<?php
+							echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s">&times;</a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'Remove this item', 'woocommerce' ) ), $cart_item_key );
+						?>
+					</div>
+					
+					
+				</div><!--/row cart-item-->
+								
+				
 				<?php
 			}
 		}
@@ -130,12 +137,14 @@ do_action( 'woocommerce_before_cart' ); ?>
 		</tr>
 
 		<?php do_action( 'woocommerce_after_cart_contents' ); ?>
-	</tbody>
-</table>
 
 <?php do_action( 'woocommerce_after_cart_table' ); ?>
 
 </form>
+
+
+
+
 
 <div class="cart-collaterals">
 
@@ -143,7 +152,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 	<?php woocommerce_cart_totals(); ?>
 
-	<?php woocommerce_shipping_calculator(); ?>
+	<?php // woocommerce_shipping_calculator(); ?>
 
 </div>
 
