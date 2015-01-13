@@ -9,14 +9,14 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ?>
-<div class="woocommerce-billing-fields">
+<div class="woocommerce-billing-fields m">
 	<?php if ( WC()->cart->ship_to_billing_address_only() && WC()->cart->needs_shipping() ) : ?>
 
 		<h3><?php _e( 'Billing &amp; Shipping', 'woocommerce' ); ?></h3>
 
 	<?php else : ?>
 
-		<h3><?php _e( 'Billing Details', 'woocommerce' ); ?></h3>
+		<p class="h7 uppercase m"><?php _e( 'Billing Information', 'woocommerce' ); ?></p>
 
 	<?php endif; ?>
 
@@ -63,4 +63,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 		<?php do_action( 'woocommerce_after_checkout_registration_form', $checkout ); ?>
 
 	<?php endif; ?>
+	
+	<hr />
 </div>

@@ -1466,11 +1466,33 @@ fieldset{
 }
 
 
+abbr[title]{
+	border-bottom: none;
+}
+
+
 
 /********** @CART *********/
 
 .return-to-shop{
 	display: none;
+}
+
+
+
+/********** @CHECKOUT *********/
+
+#billing_country_field,#shipping_company_field,#billing_company_field,#shipping_country_field{
+	display: none;
+}
+
+#billing_first_name_field,#billing_last_name_field,#shipping_first_name_field,#shipping_last_name_field,#billing_state_field,#billing_postcode_field,#shipping_state_field,#shipping_postcode_field{
+	width: 45%;
+	display: inline-block;
+}
+
+#billing_first_name_field,#billing_state_field,#shipping_first_name_field,#shipping_state_field{
+	margin-right: 9%;
 }
 
 

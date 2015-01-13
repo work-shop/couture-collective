@@ -2,27 +2,34 @@
 
 <div id="page" class="template page-cart">
 
-	<div class="container">
-		<div class="row">
-		
-			<div class="col-sm-12">
-				<h1><?php the_title(); ?></h1>
+	<section id="checkout-introduction" class="block m">	
+		<div class="container">
+				
+			<div class="row">
+			
+				<div class="col-sm-10 col-sm-offset-1">
+				
+					<?php wc_print_notices(); ?>
+					
+				</div>
+
 			</div>
 			
 		</div>
-		
-	</div>		
+	</section>
 	
-	<div class="container">
-		<div class="row">
-		
-			<div class="col-sm-12">
-				<?php echo do_shortcode('[woocommerce_checkout]') ?>
+	<section id="checkout-body" class="block m">
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+					<?php echo do_shortcode('[woocommerce_checkout]') ?>
+				</div>
+				
 			</div>
 			
-		</div>
-		
-	</div>		
+		</div>	
+	</section>	
 		
 </div>	
 
