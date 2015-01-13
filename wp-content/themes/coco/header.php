@@ -1,4 +1,8 @@
 <?php
+	/**
+	 * @todo refactor
+	 */
+
 	if (
 		//pages that no one should ever see, ever!
 		is_shop() ||

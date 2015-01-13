@@ -9,7 +9,7 @@ $reservation_type = "Nextday";
 
 <div class="row">
 	<div class="col-sm-12">
-	<?php if ( CC_Controller::available_tomorrow( $rental ) ) { ?>
+	<?php if ( $GLOBALS['CC_POST_DATA']['tomorrow'] ) { ?>
 
 		<?php $date = CC_Controller::get_next_day_reservation( $rental ); ?>
 

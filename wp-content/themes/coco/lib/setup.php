@@ -1,7 +1,6 @@
 <?php
 
-
-get_template_parts( array( 'theme-options') );
+require_once( 'theme-options.php' );
 	
 function theme_scripts() {
     wp_deregister_script( 'jquery' );
@@ -11,7 +10,6 @@ function theme_scripts() {
     wp_register_script( 'bootstrap', get_template_directory_uri() . '/_/js/bootstrap.js');
     wp_register_script( 'flexslider', get_template_directory_uri() . '/_/js/flexslider.js');
     wp_register_script( 'functions', get_template_directory_uri() . '/_/js/functions.js');
-    // scripts for ajax and add-to-cart behaviors
     wp_register_script( 'cc-ajax-make-reservation', get_template_directory_uri() . '/_/js/ajax/make-reservation.js' );
 
     wp_enqueue_script( 'jquery' );
@@ -19,10 +17,6 @@ function theme_scripts() {
     wp_enqueue_script( 'bootstrap' );
     wp_enqueue_script( 'flexslider' ); 
     wp_enqueue_script( 'functions' );
-   // wp_enqueue_script( 'ajax' );
-    
-   // wp_localize_script('ajax', 'ajax', array( 'URL' => admin_url('admin-ajax.php') )  );
-   // wp_localize_script('ajax', 'user', array( 'ID' => get_current_user_id() )  );
 }
 add_action('wp_enqueue_scripts', 'theme_scripts');
 

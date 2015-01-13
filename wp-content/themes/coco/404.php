@@ -8,7 +8,7 @@
 		 	<span class="icon" data-icon="&#172;">
 		</div>
 		<div class="col-sm-9 brand">	
-			<h2 class=""></span> Oh No! Looks like the page you're looking for is extinct. Sorry about that! Try heading back to the <a href="<?php bloginfo('url'); ?>">Home Page.</a></h2>
+			<h2 class=""></span> Oh No! Looks like the page you're looking for is extinct. Sorry about that! Try heading back to the <a class="underline" href="<?php bloginfo('url'); ?>">Home Page.</a></h2>
 		</div>	
 	
 	</div>
