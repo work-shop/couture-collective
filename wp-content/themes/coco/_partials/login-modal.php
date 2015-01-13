@@ -25,7 +25,7 @@
 							
 		        			<hr class="brand" />							
 							
-							<a href="<?php bloginfo('url'); ?>/how-it-works" class="h7 centered m display-block">Learn More about Couture Collective</a>
+							<a href="<?php bloginfo('url'); ?>/how-it-works" class="h7 centered m display-block underline">Learn More about Couture Collective</a>
 								
 							
 		        		</div>
