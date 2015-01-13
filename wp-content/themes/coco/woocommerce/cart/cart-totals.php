@@ -11,19 +11,17 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ?>
 <div class="cart_totals <?php if ( WC()->customer->has_calculated_shipping() ) echo 'calculated_shipping'; ?>">
 
-	<?php do_action( 'woocommerce_before_cart_totals' ); ?>
-
-	<h2><?php _e( 'Cart Totals', 'woocommerce' ); ?></h2>
-
+	<?php do_action( 'woocommerce_before_cart_totals' ); ?>	
+	
 	<table cellspacing="0">
 
-		<tr class="cart-subtotal">
+		<tr class="cart-subtotal hidden ">
 			<th><?php _e( 'Cart Subtotal', 'woocommerce' ); ?></th>
 			<td><?php wc_cart_totals_subtotal_html(); ?></td>
 		</tr>
 
 		<?php foreach ( WC()->cart->get_coupons( 'cart' ) as $code => $coupon ) : ?>
-			<tr class="cart-discount coupon-<?php echo esc_attr( $code ); ?>">
+			<tr class="cart-discount hidden  coupon-<?php echo esc_attr( $code ); ?>">
 				<th><?php wc_cart_totals_coupon_label( $coupon ); ?></th>
 				<td><?php wc_cart_totals_coupon_html( $coupon ); ?></td>
 			</tr>
@@ -33,14 +31,14 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 			<?php do_action( 'woocommerce_cart_totals_before_shipping' ); ?>
 
-			<?php wc_cart_totals_shipping_html(); ?>
+			<?php // wc_cart_totals_shipping_html(); ?>
 
 			<?php do_action( 'woocommerce_cart_totals_after_shipping' ); ?>
 
 		<?php endif; ?>
 
 		<?php foreach ( WC()->cart->get_fees() as $fee ) : ?>
-			<tr class="fee">
+			<tr class="fee hidden ">
 				<th><?php echo esc_html( $fee->name ); ?></th>
 				<td><?php wc_cart_totals_fee_html( $fee ); ?></td>
 			</tr>
@@ -63,7 +61,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 		<?php endif; ?>
 
 		<?php foreach ( WC()->cart->get_coupons( 'order' ) as $code => $coupon ) : ?>
-			<tr class="order-discount coupon-<?php echo esc_attr( $code ); ?>">
+			<tr class="order-discount hidden coupon-<?php echo esc_attr( $code ); ?>">
 				<th><?php wc_cart_totals_coupon_label( $coupon ); ?></th>
 				<td><?php wc_cart_totals_coupon_html( $coupon ); ?></td>
 			</tr>
@@ -71,17 +69,35 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 		<?php do_action( 'woocommerce_cart_totals_before_order_total' ); ?>
 
-		<tr class="order-total">
-			<th><?php _e( 'Order Total', 'woocommerce' ); ?></th>
-			<td><?php wc_cart_totals_order_total_html(); ?></td>
-		</tr>
+
+		<?php //custom stuff by work-shop ?>
+
+		<div class="col-sm-12 col-md-2">
+		
+			<h3 class="total-title">Total: </h3>
+			
+		</div>
+		
+		<div class="col-sm-12 col-md-10">
+			<p class="numerals h8 m2"><?php wc_cart_totals_order_total_html(); ?></span>
+		
+			<p class="h7 uppercase m">Terms:</p>
+			
+			<p class="h8">
+				A cleaning fee of $100 will be charged at the time of pick-up. 
+	A late fee of $100/day will be charged if dress is not ready
+	at time of scheduled pick-up. If dress is lost or damaged,
+	you will be charged for the full cost of the dress.	
+			</p>
+		
+		</div>
 
 		<?php do_action( 'woocommerce_cart_totals_after_order_total' ); ?>
 
 	</table>
 
 	<?php if ( WC()->cart->get_cart_tax() ) : ?>
-		<p><small><?php
+		<p  class="hidden"><small><?php
 
 			$estimated_text = WC()->customer->is_customer_outside_base() && ! WC()->customer->has_calculated_shipping()
 				? sprintf( ' ' . __( ' (taxes estimated for %s)', 'woocommerce' ), WC()->countries->estimated_for_prefix() . __( WC()->countries->countries[ WC()->countries->get_base_country() ], 'woocommerce' ) )
