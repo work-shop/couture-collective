@@ -232,6 +232,8 @@ class CC_Controller {
  	 *
  	 */
  	public static function available_tomorrow( $rental ) {
+ 		if ( !$rental ) return false;
+
  		$availability = array();
  		$resources = $rental->get_resources();
  		$target = array_map( function($x) { return array(
