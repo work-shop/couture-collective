@@ -19,6 +19,7 @@ if ( $GLOBALS['CC_POST_DATA']['logged_in'] ) {
 	$GLOBALS['CC_POST_DATA']['rental'] = new WC_Product_Booking( get_field('dress_rental_product_instance', $id)[0]->ID );
 	$GLOBALS['CC_POST_DATA']['user'] = wp_get_current_user();
 	$GLOBALS['CC_POST_DATA']['prereservations'] = CC_Controller::get_prereservations_for_dress_rental($GLOBALS['CC_POST_DATA']['rental']->id, $GLOBALS['CC_POST_DATA']['user']->ID);
+	$GLOBALS['CC_POST_DATA']['tomorrow'] = CC_Controller::available_tomorrow( $GLOBALS['CC_POST_DATA']['rental'] );
 
 }
 

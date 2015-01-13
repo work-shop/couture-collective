@@ -2,8 +2,6 @@
 
 	$bookings = $GLOBALS['CC_POST_DATA']['prereservations'];
 
-	//var_dump( CC_Controller::get_dress_for_product( $GLOBALS['CC_POST_DATA']['rental']->id, "rental" ) );
-
 ?>
 
 <div class="row dress-prereservations">
@@ -15,12 +13,18 @@
 
 	<?php
 
+		//var_dump( $bookings );
+
+		usort( $bookings, function( $a,$b ) {
+			$da = $a->custom_fields["_booking_start"];
+			$db = $b->custom_fields["_booking_start"];
+
+			return ( $da > $db ) ? 1 : (( $da < $db ) ? -1 : 0);
+		});
+
 		foreach ($bookings as $booking) {
 			$GLOBALS['CC_POST_DATA']['current_booking'] = $booking;
-			//var_dump( get_post_meta( $booking->id ) );
 			$GLOBALS['CC_POST_DATA']['current_order'] = new WC_Order( $booking->order_id );
-			//$GLOBALS['CC_POST_DATA']['reservation_type'] = "Prereservation";
-			//var_dump( $GLOBALS['CC_POST_DATA']['current_order'] );
 
 			get_template_part( '_partials/reservation/prereservation', 'line-item');
 
