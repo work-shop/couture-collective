@@ -33,24 +33,10 @@ if ( isset( $_POST['referring-page']) && isset($_POST['user-id']) && isset($_POS
 			));
 
 			$bk_succ = $val->update_status('cancelled');
+			$val->schedule_events();
 
 			if ( $bk_succ && $refund ) {
 				// if we've reached this point, let's try and refund the thing v. the Stripe API:
-
-				/*
-
-					TODO:
-
-					We need to reclaim the post meta values from the database here.
-					This is probably a custom database query, unfortunately...
-
-					It's not.
-					
-
-				 */
-
-				
-
 
 				if ( WC()->payment_gateways() ) {
 					$payment_gateways = WC()->payment_gateways->payment_gateways();
@@ -66,11 +52,6 @@ if ( isset( $_POST['referring-page']) && isset($_POST['user-id']) && isset($_POS
 					} elseif ( ! $result ) {
 						return new WP_Error( 'woocommerce_api_create_order_refund_api_failed', __( 'An error occurred while attempting to create the refund using the payment gateway API', 'woocommerce' ), array( 'status' => 500 ) );
 					}
-				}
-
-				// cancel the order if it only contained one item.
-				if ( 1 == count( $items ) ) {
-					$or->update_status('cancelled');	
 				}
 
 				CC_Controller::delete_booking_meta( $val->id );
