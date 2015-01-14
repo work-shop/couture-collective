@@ -44,7 +44,7 @@
 
 				$args = array(
 					'post_type' => 'dress',
-					'posts_per_page' => ( $uli ) ? -1 : 6,
+					'posts_per_page' => ( $uli ) ? -1 : 8,
 					'orderby' => 'menu_order',
 					'order' => 'ASC'
 				);
