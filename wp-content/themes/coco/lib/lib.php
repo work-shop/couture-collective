@@ -145,6 +145,17 @@ function cc_user_is_guest() {
 	return is_user_logged_in() && $current_user->user_login == 'Guest';
 }
 
+function cc_can_see_admin() {
+	global $current_user;
+
+	$administrative = array('shop_manager', 'administrator');
+	foreach ($current_user->roles as $role) {
+		if ( in_array($role, $administrative) ) return true;
+	}
+
+	return false;
+}
+
 /**
  * writes out a cost string based on the reservation_type
  *

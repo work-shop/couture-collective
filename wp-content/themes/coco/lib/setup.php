@@ -2,6 +2,11 @@
 
 require_once( 'theme-options.php' );
 	
+add_action( 'after_setup_theme', 'woocommerce_support' );
+function woocommerce_support() {
+    add_theme_support( 'woocommerce' );
+}
+
 function theme_scripts() {
     wp_deregister_script( 'jquery' );
 
