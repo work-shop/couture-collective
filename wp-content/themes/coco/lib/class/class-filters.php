@@ -8,7 +8,8 @@ class CC_Filters {
 		'woocommerce_add_to_cart_validation' => array( 'cc_validate_add_cart_item_price', 15, 3 ),
 		//'woocommerce_add_to_cart_validation' => array( 'cc_validate_add_cart_item_qty', 16, 3 ),
 		'woocommerce_add_cart_item_data' => array( 'cc_add_cart_item_data', 15, 2 ),
-		'woocommerce_email_classes' => 'cc_add_dry_cleaner_notifications'
+		'woocommerce_email_classes' => 'cc_add_dry_cleaner_notifications',
+		'woocommerce_email_classes' => 'cc_add_new_user'
 	);
 
 	/**
@@ -108,6 +109,19 @@ class CC_Filters {
 
 		$email_classes['CC_Dry_Cleaning_Email'] = new CC_Dry_Cleaning_Email();
 		//$email_classes['CC_Cancel_Dry_Cleaning_Email'] = new CC_Cancel_Dry_Cleaning_Email();
+
+		return $email_classes;
+	}
+
+
+	/**
+	 * @param array(WC_Email) $email_classes
+	 * @return array( WC_Email )
+	 */
+	public function cc_add_new_user( $email_classes ) {
+		require( realpath(dirname(__FILE__) . '/../emails/class-cc-new-user-email.php') );
+
+		$email_classes['WC_Email_Customer_New_Account'] = new CC_New_User_Email();
 
 		return $email_classes;
 	}

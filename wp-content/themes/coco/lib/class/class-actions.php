@@ -38,7 +38,12 @@ class CC_Actions {
 		'woocommerce_booking_pending_to_cancelled' 		=> 'clear_scheduled_dry_cleaning_email_events',
 		'woocommerce_booking_confirmed_to_cancelled' 		=> 'clear_scheduled_dry_cleaning_email_events',
 		'woocommerce_booking_paid_to_cancelled' 		=> 'clear_scheduled_dry_cleaning_email_events',
-		'woocommerce_order_status_processing'			=> 'add_dress_to_customer'
+		'woocommerce_order_status_processing'			=> 'add_dress_to_customer',
+		'woocommerce_created_customer'				=> 'set_customer_approval_status',
+		'wpau_approve'							=> 'activate_subscription',
+		'wpau_unapprove'							=> 'deactivate_subscription',
+		'expired_subscription'						=> 'deauthorize_user',
+		'cancelled_subscription'						=> 'deauthorize_user',
 	);
 
 	/**
@@ -183,8 +188,6 @@ class CC_Actions {
 	 * @param string $username the name passed to the failed login form
 	 */
 	public function login_failure_redirect( $username ) {
-		
-		//wc_add_notice('Incorrect username or password','notice');
 		wp_redirect( home_url() . '/my-account?login=failed' );
 		exit;	
 	}
@@ -198,14 +201,72 @@ class CC_Actions {
 	 */
 	public function empty_auth_redirect( $username ) {
 		if ( empty( $username ) ) {
-			//wc_add_notice('Enter a username and password','notice');
 			wp_redirect( home_url() . '/my-account' );
 			exit;	
 		}
 	}
 
+	/**
+	 * @hooked page-join.php
+	 * This hook sets the default user-status to unapproved,
+	 * logs out the user if they are are logged in,
+	 * and redirects them to a place-holder page.
+	 *
+	 * @param int $customer_id the id of the newly-created customer
+	 * @param array('username','password','email','role') $new_customer_data
+	 * @param string $password_generated
+	 */
+	public function set_customer_approval_status( $customer_id, $new_customer_data, $password_generated ) {
+		wp_logout();
+		deactivate_subscription( $customer_id );
+		wp_redirect( bloginfo('url') . '/my-account?login=pending' );
+		exit;
+	}
 
-	//
+	/**
+	 * If the user has been manually approved, set the user's subscription to active.
+	 *
+	 * @param int $user_id the id of the user to activate a subscription for.
+	 */
+	public function activate_subscription( $user_id ) {
+		if ( get_user_meta( $user_id, 'wp-approve-user', true ) ) {
+			$subs = WC_Subscriptions_Manager::get_users_subscriptions( $user_id );
+
+			if ( !empty( $subs ) ) {
+				$sub = ws_fst( $subs );
+				$key = $sub['order_id'] . '_' . $subs['product_id'];
+				WC_Subscriptions_Manager::activate_subscription( $user_id, $key );
+			}
+		}
+
+	}
+
+	/**
+	 * If the user has been manually "unapproved", set the user's subscription to on-hold
+	 *
+	 * @param int $user_id the id of the user to deactivate the subscription for
+	 */
+	public function deactivate_subscription( $user_id ) {
+		if ( !get_user_meta( $user_id, 'wp-approve-user', true ) ) {
+			$subs = WC_Subscriptions_Manager::get_users_subscriptions( $user_id );
+
+			if ( !empty( $subs ) ) {
+				$sub = ws_fst( $subs );
+				$key = $sub['order_id'] . '_' . $subs['product_id'];
+				WC_Subscriptions_Manager::put_subscription_on_hold( $user_id, $key );
+			}
+		}
+	}
+
+	/**
+	 * Deauthorize a user from logging in to the site.
+	 *
+	 * @param int $user_id id of the user to deauthorize
+	 * @param string $subscription_key identifier of the source subscription.
+	 */
+	public function deauthorize_user($user_id, $subscription_key) {
+		update_user_meta( $user_id, 'wp-approve-user', false );
+	}
 }
 
 new CC_Actions();
