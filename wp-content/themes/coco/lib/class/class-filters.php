@@ -9,7 +9,8 @@ class CC_Filters {
 		//'woocommerce_add_to_cart_validation' => array( 'cc_validate_add_cart_item_qty', 16, 3 ),
 		'woocommerce_add_cart_item_data' => array( 'cc_add_cart_item_data', 15, 2 ),
 		'woocommerce_email_classes' => 'cc_add_dry_cleaner_notifications',
-		'woocommerce_email_classes' => 'cc_add_new_user'
+		'woocommerce_email_classes' => 'cc_add_new_user',
+		'authenticate' => array( 'cc_check_user_approved', 30, 3 )
 	);
 
 	/**
@@ -125,6 +126,17 @@ class CC_Filters {
 
 		return $email_classes;
 	}
+
+
+	function cc_check_user_approved( $user, $username, $password ) {
+		if ( is_wp_error( $user ) ) return $user;
+		
+     		if ( get_user_meta( $user->ID, 'wp-approve-user', true) ) {
+     			return $user;
+     		} else {
+     			return new WP_Error();
+     		}
+	}	
 
 }
 
