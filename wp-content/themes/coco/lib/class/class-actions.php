@@ -219,9 +219,9 @@ class CC_Actions {
 	 * @param string $password_generated
 	 */
 	public function set_customer_approval_status( $customer_id ) {
-		if ( ! get_user_meta( $user_id, 'wp-approve-user', true) ) {
-			wp_logout();
+		if ( ! get_user_meta( $customer_id, 'wp-approve-user', true) ) {
 			$this->deactivate_subscription( $customer_id );
+			wp_logout();
 			wp_redirect( home_url() . '/my-account?login=pending' );
 			exit;
 		}
@@ -237,9 +237,10 @@ class CC_Actions {
 			$subs = WC_Subscriptions_Manager::get_users_subscriptions( $user_id );
 
 			if ( !empty( $subs ) ) {
-				$sub = ws_fst( $subs );
-				$key = $sub['order_id'] . '_' . $subs['product_id'];
-				WC_Subscriptions_Manager::activate_subscription( $user_id, $key );
+				foreach ( $subs as $key => $sub ) {
+					WC_Subscriptions_Manager::activate_subscription( $user_id, $key );
+				}
+				
 			}
 		}
 
@@ -255,9 +256,10 @@ class CC_Actions {
 			$subs = WC_Subscriptions_Manager::get_users_subscriptions( $user_id );
 
 			if ( !empty( $subs ) ) {
-				$sub = ws_fst( $subs );
-				$key = $sub['order_id'] . '_' . $subs['product_id'];
-				WC_Subscriptions_Manager::put_subscription_on_hold( $user_id, $key );
+				foreach ($subs as $key => $value) {
+					WC_Subscriptions_Manager::put_subscription_on_hold( $user_id, $key );
+				}
+				
 			}
 		}
 	}
@@ -307,7 +309,7 @@ class CC_Actions {
 	 *
 	 */
 	public function remove_membership_from_cart() {
-		//if ( is_checkout() && is_cart() ) {
+		if ( is_checkout() && is_cart() ) {
 			global $woocommerce;
 			$product_id = 45;
 			if ( sizeof( $woocommerce->cart->get_cart() ) > 0 ) {
@@ -319,7 +321,7 @@ class CC_Actions {
 					}
 				}
 			}
-		//}
+		}
 	}
 
 
