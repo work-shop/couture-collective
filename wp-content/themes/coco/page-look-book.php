@@ -41,6 +41,7 @@
 				
 				<div class="row">
 				<?php
+
 				$args = array(
 					'post_type' => 'dress',
 					'posts_per_page' => ( $uli ) ? -1 : 6,
