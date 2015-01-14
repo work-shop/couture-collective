@@ -3,31 +3,57 @@
 	 * @todo refactor
 	 */
 
-	if (
-		//pages that no one should ever see, ever!
-		is_shop() ||
-		is_product() ||
-		is_product_category() ||
-		is_product_tag() 
-	) { 
+	// if (
+	// 	//pages that no one should ever see, ever!
+	// 	is_shop() ||
+	// 	is_product() ||
+	// 	is_product_category() ||
+	// 	is_product_tag() 
+	// ) { 
+	// 	get_template_part('_partials/placeholder/placeholder', 'forward' ); 
+	// } elseif (
+	// 	// pages that the guest user should not see
+	// 	cc_user_is_guest() && ( is_page( array( 7 ) ) || is_admin() )
+	// ) {
+	// 	get_template_part('_partials/placeholder/placeholder', 'forward' ); 
+	// } elseif (
+	// 	//pages that anyone can see
+	// 	is_home() ||
+	// 	is_page(array( 9, 26, 30, 363, 7, 6 ))
+	// ) {
+	// 	// no-op
+	// } else {
+	// 	//pages that only logged in users should see
+	// 	if ( !is_user_logged_in() ) {
+	// 	 	get_template_part('_partials/login','modal');
+	// 	} else if ( is_page( array( ) ) ) {
+
+	// 	}
+	// }
+
+	if (is_shop() ||is_product() || is_product_category() || is_product_tag()  ) {
+
 		get_template_part('_partials/placeholder/placeholder', 'forward' ); 
-	} elseif (
-		// pages that the guest user should not see
-		cc_user_is_guest() && ( is_page( array( 7 ) ) || is_admin() )
-	) {
-		get_template_part('_partials/placeholder/placeholder', 'forward' ); 
-	} elseif (
-		//pages that anyone can see
-		is_home() ||
-		is_page(array( 9, 26, 30, 363, 11, 7, 6 ))
-	) {
-		// no-op
+
+	} else if ( is_user_logged_in() ) {
+		if ( cc_user_is_guest() && ( is_page( array( 7 ) ) || is_admin() && !cc_can_see_admin() )) {
+
+			get_template_part('_partials/placeholder/placeholder', 'forward' ); 
+
+		} else if ( is_page( array( 11 ) ) || (is_admin() && in_array( array('shop_manager','administrator')) ) ) {
+
+			get_template_part('_partials/placeholder/placeholder', 'forward' ); 
+
+		}
 	} else {
-		//pages that only logged in users should see
-		if ( !is_user_logged_in() ) :
-		 	get_template_part('_partials/login','modal');
-		endif;
+		if ( !(is_home() || is_page(array( 9, 26, 30, 363, 7, 6 ))) ) {
+
+			get_template_part('_partials/placeholder/placeholder', 'forward' ); 
+
+		} 
 	}
+
+	do_action('cc_remove_membership_items');
 ?>
 
 <!DOCTYPE html>
