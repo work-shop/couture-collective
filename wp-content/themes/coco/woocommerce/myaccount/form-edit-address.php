@@ -30,12 +30,15 @@ get_currentuserinfo();
 		
 		<div class="container">
 			<div class="row">	
+			
+				<hr class="page-header-rule" />	
+			
 				
 					<div class="col-sm-12">
-						<h4 class="bordered centered"><?php echo apply_filters( 'woocommerce_my_account_edit_address_title', $page_title ); ?></h4>
+						<h4 class="bordered centered m25"><?php echo apply_filters( 'woocommerce_my_account_edit_address_title', $page_title ); ?></h4>
 					</div>
 
-					<div class="col-sm-6">
+					<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 
 						<form method="post">
 	

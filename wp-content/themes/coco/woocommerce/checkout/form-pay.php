@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ?>
 <form id="order_review" method="post">
 
-	<table class="shop_table">
+	<table class="shop_table m3">
 		<thead>
 			<tr>
 				<th class="product-name"><?php _e( 'Product', 'woocommerce' ); ?></th>
@@ -46,7 +46,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 		?>
 		</tfoot>
 	</table>
-
+	
 	<div id="payment">
 		<?php if ( $order->needs_payment() ) : ?>
 		<h3><?php _e( 'Payment', 'woocommerce' ); ?></h3>

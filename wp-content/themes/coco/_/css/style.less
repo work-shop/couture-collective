@@ -1466,6 +1466,11 @@ fieldset{
 }
 
 
+abbr[title]{
+	border-bottom: none;
+}
+
+
 
 /********** @CART *********/
 
@@ -1473,6 +1478,74 @@ fieldset{
 	display: none;
 }
 
+
+
+/********** @CHECKOUT *********/
+
+#billing_country_field,#shipping_company_field,#billing_company_field,#shipping_country_field{
+	display: none;
+}
+
+#billing_first_name_field,#billing_last_name_field,#shipping_first_name_field,#shipping_last_name_field,#billing_state_field,#billing_postcode_field,#shipping_state_field,#shipping_postcode_field{
+	width: 45%;
+	display: inline-block;
+}
+
+#billing_first_name_field,#billing_state_field,#shipping_first_name_field,#shipping_state_field{
+	margin-right: 9%;
+}
+
+
+#payment{
+	margin-top: 60px;
+	padding-top: 60px;
+	border-top: 1px solid @brand;
+	input[type="submit"]{
+		margin-top: 30px;
+	}
+}
+
+#payment_method_stripe{
+	display: none;
+}
+
+label[for="payment_method_stripe"]{
+	display: none;
+}
+
+.payment_box.payment_method_stripe{
+
+	.form-row-wide{
+		a.button{
+			float: none !important;
+			display: none;
+			
+		}
+	}
+	label{
+		display: inline-block;
+		width: auto;
+	}
+	
+	input[type="checkbox"], input[type="radio"]{
+		display: inline-block;
+		width: auto;
+		margin-right: 15px;
+	}
+}
+
+label[for="terms"]{
+	display: inline-block;
+	margin-right: 15px;
+	
+	a{
+		text-decoration: underline;
+	}
+}
+
+#terms{
+	display: inline-block;
+}
 
 
 /********** @UTILITIES *********/
@@ -2021,6 +2094,10 @@ h6,.h6{
 	
 	.h11{
 		font-size: 11px;
+	}
+	
+	.product-summary{
+		height: 60px;
 	}
 }
 

@@ -13,9 +13,9 @@ if ( $order ) : ?>
 
 	<?php if ( $order->has_status( 'failed' ) ) : ?>
 
-		<p><?php _e( 'Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction.', 'woocommerce' ); ?></p>
+		<p class="h8"><?php _e( 'Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction.', 'woocommerce' ); ?></p>
 
-		<p><?php
+		<p class="h8"><?php
 			if ( is_user_logged_in() )
 				_e( 'Please attempt your purchase again or go to your account page.', 'woocommerce' );
 			else
@@ -31,29 +31,33 @@ if ( $order ) : ?>
 
 	<?php else : ?>
 
-		<p><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'Thank you. Your order has been received.', 'woocommerce' ), $order ); ?></p>
+		<h2 class=""><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'Thank you. Your order has been received.', 'woocommerce' ), $order ); ?></h2>
+		
+		<hr />
 
-		<ul class="order_details">
-			<li class="order">
+		<ul class="order_details m25">
+			<li class="order h7 uppercase m">
 				<?php _e( 'Order:', 'woocommerce' ); ?>
-				<strong><?php echo $order->get_order_number(); ?></strong>
+				<span class="h8 numerals"><?php echo $order->get_order_number(); ?></span>
 			</li>
-			<li class="date">
+			<li class="date h7 uppercase m">
 				<?php _e( 'Date:', 'woocommerce' ); ?>
-				<strong><?php echo date_i18n( get_option( 'date_format' ), strtotime( $order->order_date ) ); ?></strong>
+				<span class="h7"><?php echo date_i18n( get_option( 'date_format' ), strtotime( $order->order_date ) ); ?></span>
 			</li>
-			<li class="total">
+			<li class="total h7 uppercase m ">
 				<?php _e( 'Total:', 'woocommerce' ); ?>
-				<strong><?php echo $order->get_formatted_order_total(); ?></strong>
+				<span class="h8 numerals"><?php echo $order->get_formatted_order_total(); ?></span>
 			</li>
 			<?php if ( $order->payment_method_title ) : ?>
-			<li class="method">
+			<li class="method h7 uppercase m">
 				<?php _e( 'Payment method:', 'woocommerce' ); ?>
-				<strong><?php echo $order->payment_method_title; ?></strong>
+				<span class="h7"><?php echo $order->payment_method_title; ?></span>
 			</li>
 			<?php endif; ?>
 		</ul>
 		<div class="clear"></div>
+		
+		<hr />
 
 	<?php endif; ?>
 
