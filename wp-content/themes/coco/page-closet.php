@@ -23,7 +23,7 @@
 				</div>
 	
 				<div class="col-sm-offset-4">
-					<p class="h7 uppercase">Show: <a href="#all" class="active">All </a> <a href="#tomorrow"> Available Tomorrow</a></p>
+					<p class="h7 uppercase">Show: <a href="#all" class="active filter-option">All </a> <a href="#tomorrow filter-option"> Available Tomorrow</a></p>
 				</div>
 				
 				<div class="col-sm-12">
