@@ -105,7 +105,7 @@ class CC_Filters {
 	 */
 	public function cc_add_dry_cleaner_notifications( $email_classes ) {
 		// require internal the filter, so that it's loaded after WC_Email
-		require( realpath(dirname(__FILE__) . '/../emails/init.php') );
+		require_once( realpath(dirname(__FILE__) . '/../emails/init.php') );
 
 		$email_classes['CC_Dry_Cleaning_Email'] = new CC_Dry_Cleaning_Email();
 		//$email_classes['CC_Cancel_Dry_Cleaning_Email'] = new CC_Cancel_Dry_Cleaning_Email();
@@ -119,7 +119,7 @@ class CC_Filters {
 	 * @return array( WC_Email )
 	 */
 	public function cc_add_new_user( $email_classes ) {
-		require( realpath(dirname(__FILE__) . '/../emails/class-cc-new-user-email.php') );
+		require_once( realpath(dirname(__FILE__) . '/../emails/class-cc-new-user-email.php') );
 
 		$email_classes['WC_Email_Customer_New_Account'] = new CC_New_User_Email();
 
