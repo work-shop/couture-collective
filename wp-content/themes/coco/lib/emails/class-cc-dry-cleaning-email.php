@@ -84,10 +84,9 @@ class CC_Dry_Cleaning_Email extends WC_Email {
 		$name = $booking->get_product()->get_title();
 		$num = ws_fst( get_post_meta( '_sku', $booking->product_id ) );
 
-		$date_format = apply_filters( 'woocommerce_bookings_date_format', 'M jS Y' );
-		$date = date_i18n( $date_format, ws_fst( get_post_meta( $booking->id, '_cc_customer_booked_date' ) ) );
+		$date = date( 'F jS, Y', strtotime( CC_Controller::get_selected_date($booking->id) ) );
 
-		$dress = CC_Controller::get_dress_for_product($booking->get_product()->id, 'rental');
+		$dress = get_post( CC_Controller::get_dress_for_product($booking->get_product()->id, 'rental') );
 
 		ob_start();
 		wc_get_template( $this->template_plain,
@@ -102,7 +101,7 @@ class CC_Dry_Cleaning_Email extends WC_Email {
 				'reservation_date' => $date,
 				'pickup_date' => $booking->get_end_date(),
 				'customer_name' => $customer->name,
-				'customer_address' => $order->get_formatted_shipping_address()
+				'customer_address' => $order->get_shipping_address()
 			)
 		);
 		return ob_get_clean();
