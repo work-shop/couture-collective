@@ -107,7 +107,7 @@ add_action('admin_head', 'customAdmin');
 
 function remove_menus () {
 global $menu;
-	$restricted = array( __('Comments'),__('Tools') ,__('Posts'),__('Settings'), __('Pages') );
+	$restricted = array( __('Comments'),__('Posts'), __('Pages'));
    $whitelist = array('dev','greg','nic');
 	end ($menu);
 	while (prev($menu)){
