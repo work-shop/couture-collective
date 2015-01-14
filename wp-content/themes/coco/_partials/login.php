@@ -3,13 +3,27 @@
   <p class="login-username">
     <input type="text" name="log" id="user_login" class="input" placeholder="USERNAME" >
   </p>
- <p class="h10 m"><?php echo ( ws_eq_get_var('login','failed') ) ? "The username or password you entered is incorrect. Please try again. Your username and password were emailed to you. If you are having trouble, please email us at info@couturecollective.club": "";?></p> 
-  <p class="login-password <?php echo ( ws_eq_get_var('login','failed') ) ? "red failed": "";?>">
-    <input type="password" name="pwd" id="user_pass" class="input" value="" placeholder="PASSWORD" >
-  </p>
-  
-  <p class="login-submit">
-    <input type="submit" name="wp-submit" id="wp-submit" class="" value="LOG IN">
-    <input type="hidden" name="redirect_to" value="<?php echo home_url().'/look-book'; ?>" >
-  </p>  
+ <p class="h10 m"><?php 
+
+      if ( ws_eq_get_var('login','failed') ) {
+        echo "The username or password you entered is incorrect. Please try again. Your username and password were emailed to you. If you are having trouble, please email us at info@couturecollective.club";
+      } else if ( ws_eq_get_var('login','pending') ) {
+        echo "Thank you for your submission - you will be notified by email when your account is approved.";
+      }
+
+  ?></p> 
+
+  <?php if ( !ws_eq_get_var('login','pending') ) : ?>
+
+    <p class="login-password <?php echo ( ws_eq_get_var('login','failed') ) ? "red failed": "";?>">
+      <input type="password" name="pwd" id="user_pass" class="input" value="" placeholder="PASSWORD" >
+    </p>
+    
+    <p class="login-submit">
+      <input type="submit" name="wp-submit" id="wp-submit" class="" value="LOG IN">
+      <input type="hidden" name="redirect_to" value="<?php echo home_url().'/look-book'; ?>" >
+    </p>  
+
+  <?php endif; ?>
+
 </form>	
