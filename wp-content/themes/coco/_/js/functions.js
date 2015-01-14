@@ -208,6 +208,44 @@ function spy(){
 	
 }
 
+// nic's additions
+
+/*
+ *
+ *
+ */
+ // jQuery(document).ready(function($) {
+ // 	var a = $('#all'), b = $('#tomorrow');
+
+ // 	a.on('click', function( e ) {
+ // 		if ( a.hasClass('active') ) return;
+
+
+ // 	});
+
+ // 	b.on('click', function( e ) {
+ // 		if ( b.hasClass('active') ) return;
+
+ // 	});
+
+ // 	function cycleTo( selector ) {
+ // 		return function(e) {
+ // 			var c = $(this);
+ // 			if ( !c.hasClass('active') ) {
+ // 				$('.filter-option').removeClass('active');
+ // 				c.addClass('active');
+
+ // 				$( '.shared-dress' ).filter( selector ).
+ // 			}
+
+
+
+ // 		}
+ // 	}
+
+ // });
+
+
 
 
 
