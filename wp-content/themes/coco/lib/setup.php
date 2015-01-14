@@ -107,11 +107,12 @@ add_action('admin_head', 'customAdmin');
 
 function remove_menus () {
 global $menu;
-	$restricted = array( __('Comments'),/*__('Tools') ,__('Posts'),__('Settings') */ );
+	$restricted = array( __('Comments'),__('Tools') ,__('Posts'),__('Settings'), __('Pages') );
+   $whitelist = array('dev','greg','nic');
 	end ($menu);
 	while (prev($menu)){
 		$value = explode(' ',$menu[key($menu)][0]);
-		if(in_array($value[0] != NULL?$value[0]:"" , $restricted)){unset($menu[key($menu)]);}
+		if(in_array($value[0] != NULL?$value[0]:"" , $restricted) && !in_array($current_user->user_login, $whitelist)){unset($menu[key($menu)]);}
 	}
 }
 add_action('admin_menu', 'remove_menus');
