@@ -39,11 +39,13 @@ class CC_Actions {
 		'woocommerce_booking_confirmed_to_cancelled' 		=> 'clear_scheduled_dry_cleaning_email_events',
 		'woocommerce_booking_paid_to_cancelled' 		=> 'clear_scheduled_dry_cleaning_email_events',
 		'woocommerce_order_status_processing'			=> 'add_dress_to_customer',
-		'woocommerce_created_customer'				=> 'set_customer_approval_status',
+		'activated_subscription'						=> 'set_customer_approval_status',
 		'wpau_approve'							=> 'activate_subscription',
 		'wpau_unapprove'							=> 'deactivate_subscription',
 		'expired_subscription'						=> 'deauthorize_user',
 		'cancelled_subscription'						=> 'deauthorize_user',
+		'cc_add_membership_items'					=> 'add_membership_to_cart',
+		'cc_remove_membership_items'				=> 'remove_membership_from_cart'
 	);
 
 	/**
@@ -216,11 +218,13 @@ class CC_Actions {
 	 * @param array('username','password','email','role') $new_customer_data
 	 * @param string $password_generated
 	 */
-	public function set_customer_approval_status( $customer_id, $new_customer_data, $password_generated ) {
-		wp_logout();
-		deactivate_subscription( $customer_id );
-		wp_redirect( bloginfo('url') . '/my-account?login=pending' );
-		exit;
+	public function set_customer_approval_status( $customer_id ) {
+		if ( ! get_user_meta( $user_id, 'wp-approve-user', true) ) {
+			wp_logout();
+			$this->deactivate_subscription( $customer_id );
+			wp_redirect( home_url() . '/my-account?login=pending' );
+			exit;
+		}
 	}
 
 	/**
@@ -267,6 +271,58 @@ class CC_Actions {
 	public function deauthorize_user($user_id, $subscription_key) {
 		update_user_meta( $user_id, 'wp-approve-user', false );
 	}
+
+	/**
+	 *
+	 * Automatically add the membership product to a user's cart
+	 * if they visit the join page
+	 *
+	 */
+	public function add_membership_to_cart( ) {
+		if ( ! is_admin() ) {
+			global $woocommerce;
+			$product_id = 45; // membership product id
+			$found = false;
+			//check if product already in cart
+			if ( sizeof( $woocommerce->cart->get_cart() ) > 0 ) {
+				foreach ( $woocommerce->cart->get_cart() as $cart_item_key => $values ) {
+					$_product = $values['data'];
+					if ( $_product->id == $product_id )
+						$found = true;
+				}
+				// if product not found, add it
+				if ( ! $found )
+					$woocommerce->cart->add_to_cart( $product_id );
+			} else {
+				// if no products in cart, add it
+				$woocommerce->cart->add_to_cart( $product_id );
+			}
+		}
+	}
+
+	/**
+	 *
+	 * Automatically remove the membership product to a user's cart
+	 * if they are not on the join page
+	 *
+	 */
+	public function remove_membership_from_cart() {
+		//if ( is_checkout() && is_cart() ) {
+			global $woocommerce;
+			$product_id = 45;
+			if ( sizeof( $woocommerce->cart->get_cart() ) > 0 ) {
+				foreach ( $woocommerce->cart->get_cart() as $cart_item_key => $values ) {
+					$_product = $values['data'];
+					if ( $_product->id == $product_id ) {
+						$woocommerce->cart->set_quantity( $cart_item_key, 0 );
+						break;
+					}
+				}
+			}
+		//}
+	}
+
+
 }
 
 new CC_Actions();
