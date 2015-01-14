@@ -1,6 +1,8 @@
 
 <?php get_header();?>
 
+<?php do_action('cc_add_membership_items'); ?>
+
 <div id="page" class="template page-cart">
 
 <hr class="page-header-rule"/>						
