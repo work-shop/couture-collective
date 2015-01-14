@@ -46,9 +46,9 @@
 
 		}
 	} else {
-		if ( !(is_home() || is_page(array( 9, 26, 30, 363, 7, 6 ))) ) {
+		if ( !is_home() && !is_page(array( 9, 26, 30, 363, 11, 7, 6 )) ) {
 
-			get_template_part('_partials/placeholder/placeholder', 'forward' ); 
+			get_template_part('_partials/login','modal');
 
 		} 
 	}
