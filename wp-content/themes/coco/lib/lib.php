@@ -50,7 +50,7 @@ function ws_decide_image_type( $file ) {
 }
 
 
-function ws_fst( $lst ) { return $lst[0]; }
+function ws_fst( $lst ) { return array_shift( $lst ); }
 
 
 
