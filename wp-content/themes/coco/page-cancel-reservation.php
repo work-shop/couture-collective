@@ -30,7 +30,7 @@ if ( isset( $_POST['referring-page']) && isset($_POST['user-id']) && isset($_POS
 
 			// refund the tax as well.
 			$refund = wc_create_refund( array(
-				'amount' => $amt + $tax;,
+				'amount' => $amt + $tax,
 				'reason' => $user->display_name . ' ('. $user->user_email .') canceled the booking.',
 				'order_id' => $or->id,
 				'refund_id' => 0
@@ -86,5 +86,8 @@ if ( isset( $_POST['referring-page']) && isset($_POST['user-id']) && isset($_POS
 	wp_redirect( home_url() );
 	exit;
 }
+
+wp_redirect( home_url() );
+exit;
 
 ?>
