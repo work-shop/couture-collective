@@ -92,6 +92,35 @@ class CC_Controller {
  		return $success;
  	}
 
+
+ 	/**
+ 	 * gets the shared dresses for a user, optionally updating the closed values for that user
+ 	 * if they are out of date.
+ 	 *
+ 	 * @param WP_User $user user to get shared dresses for
+ 	 * @return array(string) dress ids.
+ 	 */
+ 	public static function get_shared_dresses_for_user( $user ) {
+ 		$dresses = get_post_meta( $user->ID, 'cc_closet_values', true );
+
+ 		$shares = ( !empty( $dresses ) && array_key_exists('share', $dresses) ) ? $dresses['share'] : array();
+
+ 		foreach ($shares as $i => $share) {
+ 			$dress = get_post( $share );
+ 			$product = wc_get_product( ws_fst( get_field( 'dress_share_product_instance', $share ))->ID );
+
+ 			if ( !woocommerce_customer_bought_product( $user->user_email, $user->ID, $product->id ) ) {
+ 				unset( $shares[ $i ] );
+ 			}
+ 		}
+
+
+ 		$dresses['share'] = array_values( $shares );
+ 		update_post_meta( $user->ID, 'cc_closet_values', $dresses );
+
+ 		return $dresses['share'];
+ 	}
+
  	/**
  	 * Given a bookable product id, returns the set of prereservations for that dress.
  	 *

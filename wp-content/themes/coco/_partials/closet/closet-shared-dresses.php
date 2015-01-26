@@ -1,6 +1,8 @@
 <?php
 
-$shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
+//$shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
+$shares = CC_Controller::get_shared_dresses_for_user( wp_get_current_user() );
+
 
 ?>
 
