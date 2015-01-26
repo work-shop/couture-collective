@@ -9,7 +9,7 @@ class CC_Filters {
 		//'woocommerce_add_to_cart_validation' => array( 'cc_validate_add_cart_item_qty', 16, 3 ),
 		'woocommerce_add_cart_item_data' => array( 'cc_add_cart_item_data', 15, 2 ),
 		'woocommerce_email_classes' => 'cc_add_dry_cleaner_notifications',
-		'woocommerce_email_classes' => 'cc_add_new_user',
+		//'woocommerce_email_classes' => 'cc_add_new_user',
 		'authenticate' => array( 'cc_check_user_approved', 30, 3 )
 	);
 
@@ -109,6 +109,8 @@ class CC_Filters {
 		require_once( realpath(dirname(__FILE__) . '/../emails/init.php') );
 
 		$email_classes['CC_Dry_Cleaning_Email'] = new CC_Dry_Cleaning_Email();
+		$email_classes['WC_Email_Customer_New_Account'] = new CC_New_User_Email();
+		
 		//$email_classes['CC_Cancel_Dry_Cleaning_Email'] = new CC_Cancel_Dry_Cleaning_Email();
 
 		return $email_classes;
