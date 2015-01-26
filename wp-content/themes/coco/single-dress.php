@@ -6,14 +6,15 @@
 	<article id="dress-<?php the_ID(); ?>" class="template dress m3">
 		<div class="container">	
 			<div class="row">
+
 			
 				<div class="col-sm-10 col-sm-offset-1 wc-notices">
 					<?php wc_print_notices(); ?>
 				</div>
 
-			
 				<?php get_template_part('_partials/dress/dress', 'base'); ?>
-			
+
+
 			</div>
 		</div>
 	</article>	
@@ -24,6 +25,7 @@
 			<div class="row">
 			
 				<?php 
+
 				global $post;
 				
 				$prev_post = get_adjacent_post( false, '', true); 

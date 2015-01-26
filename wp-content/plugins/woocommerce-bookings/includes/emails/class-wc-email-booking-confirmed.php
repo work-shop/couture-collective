@@ -46,6 +46,8 @@ class WC_Email_Booking_Confirmed extends WC_Email {
 	function trigger( $booking_id ) {
 		global $woocommerce;
 
+		//file_put_contents(get_template_directory_uri() . '/email_logs', "1: trigger called in wc-email-booking-confirmed\n", $flags = FILE_APPEND);
+
 		if ( $booking_id ) {
 			$this->object    = get_wc_booking( $booking_id );
 			$this->find[]    = '{product_title}';
@@ -72,6 +74,8 @@ class WC_Email_Booking_Confirmed extends WC_Email {
 			}
 		}
 
+		//file_put_contents(get_template_directory_uri() . '/email_logs', "2: first guard passed\n", $flags = FILE_APPEND);
+
 		if ( $booking_id ) {
 			$this->object    = get_wc_booking( $booking_id );
 
@@ -95,7 +99,11 @@ class WC_Email_Booking_Confirmed extends WC_Email {
 			return;
 		}
 
+		//file_put_contents(get_template_directory_uri() . '/email_logs', "3: second guard passed\n", $flags = FILE_APPEND);
+
 		$this->send( $this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments() );
+
+		//file_put_contents(get_template_directory_uri() . '/email_logs', "4: email sent\n", $flags = FILE_APPEND);
 	}
 
 	/**

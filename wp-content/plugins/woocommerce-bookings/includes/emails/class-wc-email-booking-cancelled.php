@@ -47,6 +47,8 @@ class WC_Email_Booking_Cancelled extends WC_Email {
 	function trigger( $booking_id ) {
 		global $woocommerce;
 
+		//file_put_contents(get_template_directory_uri() . '/email_logs', "Canc-1: trigger called in wc-email-booking-cancelled\n", $flags = FILE_APPEND);
+
 		if ( $booking_id ) {
 			$this->object    = get_wc_booking( $booking_id );
 			$this->find[]    = '{product_title}';
@@ -73,10 +75,16 @@ class WC_Email_Booking_Cancelled extends WC_Email {
 			}
 		}
 
+		//file_put_contents(get_template_directory_uri() . '/email_logs', "Canc-2: first guard passed in wc-email-booking-cancelled\n", $flags = FILE_APPEND);
+
 		if ( ! $this->is_enabled() || ! $this->get_recipient() )
 			return;
 
+		//file_put_contents(get_template_directory_uri() . '/email_logs', "Canc-3: second guard passed in wc-email-booking-cancelled\n", $flags = FILE_APPEND);
+
 		$this->send( $this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments() );
+
+		//file_put_contents(get_template_directory_uri() . '/email_logs', "Canc-4: email sent from wc-email-booking-cancelled\n", $flags = FILE_APPEND);
 	}
 
 	/**
