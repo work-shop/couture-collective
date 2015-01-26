@@ -81,7 +81,7 @@
 	         echo 'Not Found - '; 
 	         }
 	      if (is_home()) {
-	         bloginfo('name'); echo ' - '; bloginfo('description'); }
+	         bloginfo('name'); }
 	      else {
 	          bloginfo('name'); }
 	   ?>
@@ -276,7 +276,7 @@
 			 	global $current_user;
 			 	get_currentuserinfo();
 			 	
-			 	if(current_user_can( 'manage_options' )): ?>
+			 	if(current_user_can( 'manage_options' ) || current_user_can('manage_woocommerce') ): ?>
 			 		<div id="admin-login" class="hidden-xs"><a href="<?php bloginfo('url'); ?>/wp-admin"><span class="icon" data-icon="("></span></a></div>
 
 			 <?php endif; endif; ?>			
