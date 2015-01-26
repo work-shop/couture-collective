@@ -66,7 +66,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 						
 							<p class="h7 product-reservation-date m2"><?php echo $cart_item['booking']['date']; ?></p>
 							
-							<div class="product-addresses">
+							<div class="product-addresses hidden">
 							
 								<p class="h7">Need to see what options we have for selecting addresses before marking it up</p>
 							
@@ -141,8 +141,6 @@ do_action( 'woocommerce_before_cart' ); ?>
 				</div>
 				
 				<div class="col-sm-12 col-md-10 col-md-offset-2">
-				
-					<p class="h8 m2">I accept these terms & conditions.</p>
 				
 					<input type="submit" class="checkout-button button alt wc-forward" name="proceed" value="<?php _e( 'Checkout', 'woocommerce' ); ?>" />
 					
