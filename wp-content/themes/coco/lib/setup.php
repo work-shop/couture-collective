@@ -94,6 +94,22 @@ function remove_post_formats() {
     remove_theme_support('post-formats');
 }	
 	
+
+function add_shop_manager_roles() {
+  $role = get_role('shop_manager');
+
+  if ( $role->capabilities['add_users'] != 1 
+   && $role->capabilities['create_users'] != 1
+   && $role->capabilities['delete_users'] != 1 ) {
+
+    $role->add_cap('add_users');
+    $role->add_cap('create_users');
+    $role->add_cap('delete_users');
+    $role->add_cap('remove_users');
+
+  }
+}
+add_action('admin_init','add_shop_manager_roles');
 	
 function login_css() {
 	wp_enqueue_style( 'login_css', get_template_directory_uri() . '/_/css/login.css' );
