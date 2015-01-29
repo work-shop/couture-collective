@@ -1,4 +1,7 @@
 <form name="small-login" action="<?php bloginfo('url'); ?>/wp-login.php" method="post">  
+
+<?php do_action( 'woocommerce_login_form_start' ); ?>
+
   <?php global $wp; $url = home_url(add_query_arg(array(),$wp->request)); ?>
   <p class="login-username">
     <input type="text" name="log" id="user_login" class="input" placeholder="USERNAME" >
@@ -19,10 +22,14 @@
       <input type="password" name="pwd" id="user_pass" class="input" value="" placeholder="PASSWORD" >
     </p>
     
+    <?php do_action( 'woocommerce_login_form' ); ?>
+
     <p class="login-submit">
       <input type="submit" name="wp-submit" id="wp-submit" class="" value="LOG IN">
       <input type="hidden" name="redirect_to" value="<?php echo home_url().'/look-book'; ?>" >
     </p>  
+
+    <?php do_action( 'woocommerce_login_form_end' ); ?>
 
   <?php endif; ?>
 

@@ -10,7 +10,7 @@ class CC_Filters {
 		'woocommerce_add_cart_item_data' => array( 'cc_add_cart_item_data', 15, 2 ),
 		'woocommerce_email_classes' => 'cc_add_dry_cleaner_notifications',
 		//'woocommerce_email_classes' => 'cc_add_new_user',
-		'authenticate' => array( 'cc_check_email_registry', 35, 3 ),
+		//'wp_authenticate_user' => array( 'cc_check_email_registry', 20, 2 ),
 		'authenticate' => array( 'cc_check_user_approved', 30, 3 )
 	);
 
@@ -132,24 +132,24 @@ class CC_Filters {
 
 
 	public function cc_check_user_approved( $user, $username, $password ) {
+		if ( is_wp_error( $user ) ) {
+			
+			if ( is_email( $username ) ) {
+				$user = get_user_by( 'email', $username );
+				$username = $user->user_login;
+			} else {
+				return $user;
+			}
+		}
+
 		if ( is_wp_error( $user ) ) return $user;
 		
-     		if ( get_user_meta( $user->ID, 'wp-approve-user', true) ) {
-     			return $user;
+     		if ( get_user_meta( $user->ID, 'wp-approve-user', true) != false ) {
+     			return wp_authenticate_username_password( null, $username, $password );
      		} else {
      			return new WP_Error();
      		}
 	}
-
-	public function cc_check_email_registry( $user, $username, $password ) {
-		if ( is_email( $username ) ) {
-			$user = get_user_by_email( $username );
-			if ( $user ) $username = $user->user_login;
-		}
-
-		return wp_authenticate_username_password( null, $username, $password );
-	}
-
 
 }
 
