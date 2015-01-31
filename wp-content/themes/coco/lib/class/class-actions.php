@@ -39,6 +39,7 @@ class CC_Actions {
 		'woocommerce_booking_confirmed_to_cancelled' 		=> 'clear_scheduled_dry_cleaning_email_events',
 		'woocommerce_booking_paid_to_cancelled' 		=> 'clear_scheduled_dry_cleaning_email_events',
 		'woocommerce_order_status_processing'			=> 'add_dress_to_customer',
+		'woocommerce_order_status_completed'			=> 'add_dress_to_customer',
 		'activated_subscription'						=> 'set_customer_approval_status',
 		'wpau_approve'							=> 'activate_subscription',
 		'wpau_unapprove'							=> 'deactivate_subscription',
@@ -160,7 +161,8 @@ class CC_Actions {
 		if ( !$order_id ) return;
 
 		if ( $order_id && ($order = wc_get_order( $order_id )) ) {
-			$customer_id = get_current_user_id();
+			//$customer_id = get_current_user_id();
+			$customer_id = $order->get_user_id();
 
 			foreach ( $order->get_items() as $order_item ) {
 				$product_id = (count( $order_item['item_meta']['_product_id'] ) == 1) 
@@ -309,7 +311,7 @@ class CC_Actions {
 	 *
 	 */
 	public function remove_membership_from_cart() {
-		if ( is_checkout() && is_cart() ) {
+		if ( is_checkout() || is_cart() ) {
 			global $woocommerce;
 			$product_id = 45;
 			if ( sizeof( $woocommerce->cart->get_cart() ) > 0 ) {
@@ -323,7 +325,6 @@ class CC_Actions {
 			}
 		}
 	}
-
 
 }
 
