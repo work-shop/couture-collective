@@ -34,9 +34,6 @@
 	
 			<?php 
 				$dresses = CC_Controller::dresses_for_customer( get_current_user_id() );
-
-				// var_dump( array_keys( $dresses['share'], 427 ) );
-				// var_dump( $dresses );
 	
 				$GLOBALS['CC_CLOSET_DATA'] = array(
 					'shares' => ( !empty( $dresses ) && array_key_exists('share', $dresses) ) ? $dresses['share'] : array(),

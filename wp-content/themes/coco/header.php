@@ -114,25 +114,21 @@
 
 <?php get_template_part('ie'); ?>
 
-	<?php 
-	
-	if ( !is_page(array( 7 )) ) :
-		if ( is_user_logged_in() ) :
-		 	global $current_user;
-		 	get_currentuserinfo();
-		 	
-			 	if(current_user_can( 'manage_options' ) || current_user_can('manage_woocommerce') ): 
-			 		$alert_state = 'site-alert-off';
-			 	else: 
-			 		$alert_state = 'site-alert-on';
-			 	endif;
-			 	
-		else:
-			$alert_state = 'site-alert-on';
-		endif; 	
-	endif; ?>	
-	 	
+<?php
+$alert_state = 'site-alert-off';
 
+if ( !is_page( array( 7 ) ) && !is_page( array( 35 ) )) :
+	if ( is_user_logged_in() ) :
+	 	global $current_user;
+	 	get_currentuserinfo();
+
+	 	if( !current_user_can( 'manage_options' ) && !current_user_can('manage_woocommerce') ): 
+	 		$alert_state = 'site-alert-on';	 		
+	 	endif;
+	 	
+	endif; 	
+endif; 
+?>
 
 <div id="state" class="loading <?php echo $alert_state; ?>">
 
@@ -140,7 +136,7 @@
 "></div>
 
 
-	<?php if ( $alert_state == 'site-alert-on' ) : ?>
+	<?php if ( isset($alert_state) && $alert_state == 'site-alert-on' ) : ?>
 
 		<div id="site-alert" class="bg-white" >
 			<div class="container">
@@ -156,7 +152,7 @@
 		</div>		
 	 	 			 	
 	 	
-	 	<?php endif; ?>
+	 <?php endif; ?>
 
 		<header id="header" class="off">
 
