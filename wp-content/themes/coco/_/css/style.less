@@ -655,6 +655,43 @@ h6,.h6{
 
 /********** @STRUCTURE AND MAIN ELEMENTS *********/
 
+#site-alert{
+	display: none;
+}
+
+
+.site-alert-on{
+
+	#site-alert{
+			padding-top: 10%;
+
+	
+		h2{
+			font-family: muli;
+			color: red;
+			font-weight: 700;
+			color: #af6966;
+			line-height: 1.5;
+		}
+		
+		display: block;		
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		z-index: 9999;
+	}
+	#header{
+		top: 120px;
+	}
+	
+	#headerfix{
+		height: 290px;
+	}
+}
+
+
 .loading{
 	.transition(opacity,1s);
 	opacity: 0 !important;	
@@ -2131,6 +2168,7 @@ h6,.h6{
 }
 
 }
+
 
 
 

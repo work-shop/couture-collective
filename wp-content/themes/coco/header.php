@@ -102,7 +102,7 @@
       <script src="<?php bloginfo('template_directory'); ?>/_/js/respond.js"></script>
     <![endif]-->		
     
-	<link href='http://fonts.googleapis.com/css?family=Muli:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Muli:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
         	
 	<?php wp_head(); ?>
 				
@@ -114,11 +114,47 @@
 
 <?php get_template_part('ie'); ?>
 
-<div id="state" class="loading">
+	<?php 
+	if ( is_user_logged_in() ) :
+	 	global $current_user;
+	 	get_currentuserinfo();
+	 	
+		 	if(current_user_can( 'manage_options' ) || current_user_can('manage_woocommerce') ): 
+		 		$alert_state = 'site-alert-off';
+		 	else: 
+		 		$alert_state = 'site-alert-on';
+		 	endif;
+		 	
+	else:
+		$alert_state = 'site-alert-on';
+	endif; ?>	
+	 	
+
+
+<div id="state" class="loading <?php echo $alert_state; ?>">
 
 	<div id="background" class="<?php  if ( is_home()) : echo 'background-home'; endif; ?>
 "></div>
-	
+
+
+	<?php if ( $alert_state == 'site-alert-on' ) : ?>
+
+		<div id="site-alert" class="bg-white" >
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8 col-sm-offset-2">
+						<h2 class="m1">We are currently experiencing some technical problems on Couture Collective. </h2>
+						<h2>You may have trouble accessing your account, or your order information. We are working as quickly as we can to correct the problem. </h2>
+						<h2>Thanks for your patience.</h2>
+					
+					</div>
+				</div>
+			</div>
+		</div>		
+	 	 			 	
+	 	
+	 	<?php endif; ?>
+
 		<header id="header" class="off">
 
 			<nav id="nav">
