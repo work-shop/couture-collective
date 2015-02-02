@@ -13,7 +13,7 @@ class CC_Controller {
 	 * @return array(WP_Post) an array of dress posts
 	 */
 	public static function dresses_for_customer( $id ) {
-		return get_post_meta( $id, 'cc_closet_values', true);
+		return get_user_meta( $id, 'cc_closet_values', true);
 	}
 
 	/**
@@ -101,7 +101,7 @@ class CC_Controller {
  	 * @return array(string) dress ids.
  	 */
  	public static function get_shared_dresses_for_user( $user ) {
- 		$dresses = get_post_meta( $user->ID, 'cc_closet_values', true );
+ 		$dresses = get_user_meta( $user->ID, 'cc_closet_values', true );
 
  		$shares = ( !empty( $dresses ) && array_key_exists('share', $dresses) ) ? $dresses['share'] : array();
 
@@ -116,7 +116,7 @@ class CC_Controller {
 
 
  		$dresses['share'] = array_values( $shares );
- 		update_post_meta( $user->ID, 'cc_closet_values', $dresses );
+ 		update_user_meta( $user->ID, 'cc_closet_values', $dresses );
 
  		return $dresses['share'];
  	}
@@ -361,15 +361,28 @@ class CC_Controller {
 
 		$parent_dress_id = $parent_dresses[0]->ID;
 
-		$closet = get_post_meta( $customer_id, 'cc_closet_values', true);
+		$closet = get_user_meta( $customer_id, 'cc_closet_values', true);
 
-		if ( !empty($closet) ) {
-			$closet[ $type ][] = $parent_dress_id;
+		if ( !empty($closet) && isset( $closet[$type] ) ) {
+			// get existing keys in the array,
+			$existing = array_keys( $closet[ $type ], $parent_dress_id );
+
+			if ( !empty( $existing ) ) {
+				if ( ($n = count( $existing )) > 1 ) {
+					for ( $i = 1; $i < $n; $i++ ) {
+						unset( $closet[ $type ][ $existing[ $i ] ] );
+					}
+				} else {
+					return;
+				}
+			} else {
+				$closet[ $type ][] = $parent_dress_id;
+			}
 		} else {
-			$closet[$type] = array( $parent_dress_id );
+			$closet[ $type ] = array( $parent_dress_id );
 		}
 
-		update_post_meta( $customer_id, 'cc_closet_values', $closet );
+		update_user_meta( $customer_id, 'cc_closet_values', $closet );
 
 	}
 

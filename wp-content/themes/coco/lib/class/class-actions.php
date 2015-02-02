@@ -283,6 +283,7 @@ class CC_Actions {
 	 *
 	 */
 	public function add_membership_to_cart( ) {
+		
 		if ( ! is_admin() ) {
 			global $woocommerce;
 			$product_id = 45; // membership product id
