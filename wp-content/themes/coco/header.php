@@ -116,16 +116,16 @@
 
 <?php
 $alert_state = 'site-alert-off';
-
-if ( !is_page( array( 7 ) ) && !is_page( array( 35 ) )) :
+//admin pages, my-account, and closet
+if ( !(is_admin() || is_page( array( 7 ) ) || is_page( array( 35 ) )) ) :
+	$alert_state = 'site-alert-on';
 	if ( is_user_logged_in() ) :
 	 	global $current_user;
 	 	get_currentuserinfo();
 
-	 	if( !current_user_can( 'manage_options' ) && !current_user_can('manage_woocommerce') ): 
-	 		$alert_state = 'site-alert-on';	 		
+	 	if( current_user_can( 'manage_options' ) && current_user_can('manage_woocommerce') ): 
+	 		$alert_state = 'site-alert-off';
 	 	endif;
-	 	
 	endif; 	
 endif; 
 ?>
