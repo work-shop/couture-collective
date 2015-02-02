@@ -43,7 +43,7 @@ $shares = CC_Controller::get_shared_dresses_for_user( wp_get_current_user() );
 			);
 		?>
 
-		<div class="shared-dress m3 row <?php echo ( $GLOBALS['CC_POST_DATA']['tomorrow'] )  ? "available-tomorrow" : ""; ?>">
+		<div class="shared-dress m3 row <?php echo ( $GLOBALS['CC_POST_DATA']['tomorrow'] ) ? "available-tomorrow" : ""; ?>">
 			<div class="col-sm-6 col-md-5">
 			<?php 
 				get_template_part('_partials/dress/closet', 'dress-summary' ); 
