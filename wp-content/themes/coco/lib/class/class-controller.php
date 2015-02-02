@@ -342,6 +342,8 @@ class CC_Controller {
 		if ( !in_array($type, array('share','rental')) ) return;
 		if ( !$customer_id || !$product_id ) return;
 
+		// now we need to check on uniqueness in this array, and maintain setlike conditions
+
 		/* We've encountered a share product. 
 	         0. given our post id, let's query the posts.
 		  1. get our custom taxo, and see that our array is formatted properly; use true to unserialize array.
