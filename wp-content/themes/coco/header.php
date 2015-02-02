@@ -115,18 +115,21 @@
 <?php get_template_part('ie'); ?>
 
 	<?php 
-	if ( is_user_logged_in() ) :
-	 	global $current_user;
-	 	get_currentuserinfo();
-	 	
-		 	if(current_user_can( 'manage_options' ) || current_user_can('manage_woocommerce') ): 
-		 		$alert_state = 'site-alert-off';
-		 	else: 
-		 		$alert_state = 'site-alert-on';
-		 	endif;
+	
+	if ( !is_page(array( 7 )) ) :
+		if ( is_user_logged_in() ) :
+		 	global $current_user;
+		 	get_currentuserinfo();
 		 	
-	else:
-		$alert_state = 'site-alert-on';
+			 	if(current_user_can( 'manage_options' ) || current_user_can('manage_woocommerce') ): 
+			 		$alert_state = 'site-alert-off';
+			 	else: 
+			 		$alert_state = 'site-alert-on';
+			 	endif;
+			 	
+		else:
+			$alert_state = 'site-alert-on';
+		endif; 	
 	endif; ?>	
 	 	
 
