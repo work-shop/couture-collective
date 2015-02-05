@@ -106,11 +106,15 @@ class CC_Controller {
  		$shares = ( !empty( $dresses ) && array_key_exists('share', $dresses) ) ? $dresses['share'] : array();
 
  		foreach ($shares as $i => $share) {
- 			$dress = get_post( $share );
- 			$product = wc_get_product( ws_fst( get_field( 'dress_share_product_instance', $share ))->ID );
+ 			if ( $share ) {
+ 				$dress = get_post( $share );
+	 			$product = wc_get_product( ws_fst( get_field( 'dress_share_product_instance', $share ))->ID );
 
- 			if ( !woocommerce_customer_bought_product( $user->user_email, $user->ID, $product->id ) ) {
- 				unset( $shares[ $i ] );
+	 			if ( !$shares[ $i ]  || !woocommerce_customer_bought_product( $user->user_email, $user->ID, $product->id ) ) {
+	 				unset( $shares[ $i ] );
+	 			}
+ 			} else {
+ 				unset( $shares[$i] );
  			}
  		}
 
