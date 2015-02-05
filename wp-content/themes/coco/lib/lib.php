@@ -219,7 +219,7 @@ function cc_booking_noun_string( $reservation_type ) {
 			return "Rental";
 
 		case "nextday" : 
-			return "Next-day Rental";
+			return "Next-day Reservation";
 
 		case "update":
 			return "Update";
