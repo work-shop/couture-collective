@@ -34,7 +34,8 @@ class CC_Actions {
 		'wp_authenticate'							=> 'empty_auth_redirect',
 		'wp_login_failed' 						=> 'login_failure_redirect',
 		'woocommerce_new_booking' 					=> 'compute_booking_margins_in_booking',
-		'woocommerce_booking_paid'					=> 'schedule_dry_cleaning_email_events',
+		'woocommerce_booking_paid'					=> 'schedule_dry_cleaning_email_events', // this is why emails arent going through on BE.
+		'woocommerce_booking_confirmed' 				=> 'schedule_dry_cleaning_email_events',
 		'woocommerce_booking_pending_to_cancelled' 		=> 'clear_scheduled_dry_cleaning_email_events',
 		'woocommerce_booking_confirmed_to_cancelled' 		=> 'clear_scheduled_dry_cleaning_email_events',
 		'woocommerce_booking_paid_to_cancelled' 		=> 'clear_scheduled_dry_cleaning_email_events',
@@ -100,6 +101,7 @@ class CC_Actions {
 		// A -- send the email immediately, if the email is within a certain range, or
 		// B -- schedule an email to be sent when the range margin is met.
 		if ( !$booking_id ) return;
+		if ( get_post_meta( $booking_id, '_cc_drycleaning_email_registered', true ) == true ) return; // we've already sent mail.
 
 		$booking = array( 
 			'booking_start' 	=> (($s = get_post_meta( $booking_id, '_booking_start' )) && is_array($s)) ? ws_fst( $s ) : $s,
@@ -112,10 +114,18 @@ class CC_Actions {
 
 		if ( strtotime('today') > $min_email_date ) { 
 			// if today is greater than one week prior to the desired booking.
-			do_action( 'cc_send_dry_cleaning_email', $booking_id );
+			if ( !get_post_meta( $booking_id, '_cc_drycleaning_email_registered', true )) {
+				update_post_meta( $booking_id, '_cc_drycleaning_email_registered', true);
+
+				do_action( 'cc_send_dry_cleaning_email', $booking_id );
+			}
 		} else {
 			// we need to schedule an event for send the email.
-			wp_schedule_single_event( $min_email_date, 'cc_send_dry_cleaning_email', array( $booking_id ) );
+			if ( !get_post_meta( $booking_id, '_cc_drycleaning_email_registered', true )) {
+				update_post_meta( $booking_id, '_cc_drycleaning_email_registered', true);
+				
+				wp_schedule_single_event( $min_email_date, 'cc_send_dry_cleaning_email', array( $booking_id ) );
+			}
 		}
 	}
 
