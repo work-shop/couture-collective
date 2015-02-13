@@ -79,15 +79,28 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 		</div>
 		
 		<div class="col-sm-12 col-md-10">
-			<p class="numerals h8 m2"><?php wc_cart_totals_order_total_html(); ?></span>
+			<p class="numerals h8 m2"><?php wc_cart_totals_order_total_html(); ?></p>
 		
-			<p class="h7 uppercase m">Terms:</p>
+			<p class="h7 uppercase m hidden">Terms:</p>
 			
-			<p class="h8">
-				A cleaning fee of $100 will be charged at the time of pick-up. 
-	A late fee of $100/day will be charged if dress is not ready
-	at time of scheduled pick-up. If dress is lost or damaged,
-	you will be charged for the full cost of the dress.	
+			<!-- for each product in the cart, get the product type, and display terms for those items -->
+
+			<p class="h8 rental">
+				 
+			(This charge reflects cleaning and handling fees for the item.)
+
+			</p>
+
+			<p class="h8 share hidden">
+				
+			...	
+
+			</p>
+
+			<p class="h8 end-of-season hidden">
+				
+			...
+
 			</p>
 		
 		</div>
