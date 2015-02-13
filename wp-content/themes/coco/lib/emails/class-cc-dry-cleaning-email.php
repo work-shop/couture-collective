@@ -84,7 +84,7 @@ class CC_Dry_Cleaning_Email extends WC_Email {
 		$name = $booking->get_product()->get_title();
 		$num = ws_fst( get_post_meta( '_sku', $booking->product_id ) );
 
-		$date = date( 'F jS, Y', strtotime( CC_Controller::get_selected_date($booking->id) ) );
+		//$date = date( 'F jS, Y', strtotime( CC_Controller::get_selected_date($booking->id) ) );
 
 		$dress = get_post( CC_Controller::get_dress_for_product($booking->get_product()->id, 'rental') );
 
@@ -98,7 +98,7 @@ class CC_Dry_Cleaning_Email extends WC_Email {
 				'email_heading' => $this->heading,
 				'item_number' => $num,
 				'item_name' => $name,
-				'reservation_date' => $date,
+				'reservation_date' => $booking->get_start_date(),
 				'pickup_date' => $booking->get_end_date(),
 				'customer_name' => $customer->name,
 				'customer_address' => $order->get_shipping_address()
