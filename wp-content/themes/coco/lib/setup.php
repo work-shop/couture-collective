@@ -99,13 +99,17 @@ function add_shop_manager_roles() {
   $role = get_role('shop_manager');
 
   if ( $role->capabilities['add_users'] != 1 
-   && $role->capabilities['create_users'] != 1
-   && $role->capabilities['delete_users'] != 1 ) {
+   || $role->capabilities['create_users'] != 1
+   || $role->capabilities['edit_user'] != 1
+   || $role->capabilities['promote_users'] != 1
+    ) {
 
     $role->add_cap('add_users');
+    $role->add_cap('edit_user');
     $role->add_cap('create_users');
     $role->add_cap('delete_users');
     $role->add_cap('remove_users');
+    $role->add_cap('promote_users');
 
   }
 }
