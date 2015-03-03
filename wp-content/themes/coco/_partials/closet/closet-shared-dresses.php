@@ -3,11 +3,9 @@
 //$shares = $GLOBALS['CC_CLOSET_DATA']['shares'];
 $shares = CC_Controller::get_shared_dresses_for_user( wp_get_current_user() );
 
-
 ?>
 
 <div id="shared-dresses" class="row shared-dresses m3 row-m0">
-	<h2 class="hidden">This is pushed.</h2>
 
 
 	<?php if ( empty( $shares ) ) { ?>
