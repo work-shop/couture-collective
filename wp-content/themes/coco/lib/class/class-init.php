@@ -251,6 +251,7 @@ class CC_Init {
 		update_post_meta( $post_id, '_wc_booking_duration_type', 'fixed');
 		update_post_meta( $post_id, '_wc_booking_duration', CC_BOOKING_DURATION);
 		update_post_meta( $post_id, '_wc_booking_duration_unit', 'day');
+		update_post_meta( $post_id, '_wc_booking_cost', 0);
 		update_post_meta( $post_id, '_wc_booking_base_cost', 0);
 		update_post_meta( $post_id, '_wc_booking_block_cost', 0);
 		update_post_meta( $post_id, '_wc_booking_min_duration', 1);
