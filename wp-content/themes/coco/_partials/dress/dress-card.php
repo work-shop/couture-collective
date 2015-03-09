@@ -12,7 +12,7 @@
 			if ( has_post_thumbnail() ) {
 				the_post_thumbnail();
 			} else {
-				echo '<img src="' . get_bloginfo( 'template_directory' ) . '/_/img/thumbnail-default.jpg" />';
+				echo '<img width="178" class="attachment-post-thumbnail wp-post-image" height="372" src="' . get_bloginfo( 'template_directory' ) . '/_/img/Dress-Placeholder_01.png" />';
 			}
 			?>							
 		</div>
