@@ -167,7 +167,7 @@ $alert_state = 'site-alert-off';
 															
 								<li>
 									<a href="<?php bloginfo('url'); ?>/look-book">
-										Fall 2014 Look Book
+										Look Book
 									</a>
 								</li>	
 								<li>
