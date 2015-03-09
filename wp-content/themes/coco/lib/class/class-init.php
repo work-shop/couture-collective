@@ -490,6 +490,7 @@ class CC_Init {
 		wp_update_post( $updated );	
 
 		update_post_meta( $id, '_sku',  $changed['sku'] );
+		update_post_meta( $post_id, '_wc_booking_cost', 0); // added to correct consistency issues.
 		
 		$this->cc_update_rental_pricing( $id, $changed );	
 	}
