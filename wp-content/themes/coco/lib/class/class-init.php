@@ -264,6 +264,19 @@ class CC_Init {
 		update_post_meta($post_id, '_wc_booking_default_date_availability', 'available');
 		update_post_meta($post_id, '_wc_booking_calendar_display_mode', 'always_visible');
 
+		// new block
+
+		update_post_meta($post_id, '_wc_booking_availability', array());
+		update_post_meta($post_id, '_wc_booking_pricing', array());
+		update_post_meta($post_id, '_wc_booking_resources_assignment', 'customer');
+
+		update_post_meta($post_id, '_wc_booking_requires_confirmation', 'no');
+		update_post_meta($post_id, '_wc_booking_has_persons', 'no');
+		update_post_meta($post_id, '_wc_booking_has_person_types', 'no');
+
+
+		// end new block
+
 		update_post_meta( $post_id, '_virtual', 'no'); // check this for functionality
 		update_post_meta( $post_id, 'total_sales', 0);
 		update_post_meta( $post_id, '_stock', "");
@@ -490,7 +503,17 @@ class CC_Init {
 		wp_update_post( $updated );	
 
 		update_post_meta( $id, '_sku',  $changed['sku'] );
-		update_post_meta( $post_id, '_wc_booking_cost', 0); // added to correct consistency issues.
+
+		// added to correct consistency issues.
+		update_post_meta( $id, '_wc_booking_cost', 0); 
+		update_post_meta($id, '_wc_booking_availability', array());
+		update_post_meta($id, '_wc_booking_pricing', array());
+		update_post_meta($id, '_wc_booking_resources_assignment', 'customer');
+
+		update_post_meta($id, '_wc_booking_requires_confirmation', 'no');
+		update_post_meta($id, '_wc_booking_has_persons', 'no');
+		update_post_meta($id, '_wc_booking_has_person_types', 'no');
+		// end: added to correct consistency issues.
 		
 		$this->cc_update_rental_pricing( $id, $changed );	
 	}
