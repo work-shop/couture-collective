@@ -1280,11 +1280,33 @@ h6,.h6{
 	height: 100%;
 }
 
+// dress image scaling
+
+
+#main-image {
+	position: relative;
+	cursor:none;
+}
+
+.magnifier {
+	width:175px;
+	height: 175px;
+	position: absolute;
+	border-radius:100%;
+	border:1px solid gray;
+
+	display: none;
+
+	z-index: 1000;
+}
+
+
 .dress-gallery{
 	.main-image{
 		
 		img{
 			.shadow(0, 0, 2px, @pink-darker);
+			display: block;
 			
 			&:hover{
 				//cursor: -webkit-zoom-in;
@@ -1293,11 +1315,13 @@ h6,.h6{
 		
 		&.on{		
 			position: fixed;
-			top: 10%;
-			left: 0%;
+			top: 50%;
+			left: 50%;
 			width: 100%;
 			height: 100%;
 			z-index: 9999;
+
+			transform: translate(-50%,-50%);
 			
 			img{
 				height: 80%;
