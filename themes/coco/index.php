@@ -2,7 +2,7 @@
 <?php get_header();?>
 
 <div id="home" class="template home">	
-
+	<!-- This is pushed to the new environment : 3/30/15 -->
 	<section id="home-introduction" class="home-introduction block fit">
 	
 			<div class="container">
