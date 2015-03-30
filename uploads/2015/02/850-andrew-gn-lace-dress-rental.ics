@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//WooThemes//WooCommerce Bookings 1.4.10//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Couture Collective
+X-ORIGINAL-URL:http://localhost:8888/coco/
+X-WR-CALDESC:Bookings from Couture Collective
+X-WR-TIMEZONE:America/New_York
+BEGIN:VEVENT
+DTEND:20150218
+UID:wc_bookings_850
+DTSTAMP:20150219T150609
+LOCATION:
+DESCRIPTION:Resource #431 - Prereservation\n\n
+URL;VALUE=URI:http://localhost:8888/coco/my-account/view-order/849
+SUMMARY:#850 - Andrew Gn Lace Dress Rental
+DTSTART:20150216
+END:VEVENT
+END:VCALENDAR

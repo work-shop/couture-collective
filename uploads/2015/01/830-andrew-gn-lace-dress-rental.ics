@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//WooThemes//WooCommerce Bookings 1.4.10//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Couture Collective
+X-ORIGINAL-URL:http://localhost:8888/coco/
+X-WR-CALDESC:Bookings from Couture Collective
+X-WR-TIMEZONE:America/New_York
+BEGIN:VEVENT
+DTEND:20150128
+UID:wc_bookings_830
+DTSTAMP:20150126T001712
+LOCATION:
+DESCRIPTION:Resource #434 - Nextday\n\n
+URL;VALUE=URI:http://localhost:8888/coco/my-account/view-order/829
+SUMMARY:#830 - Andrew Gn Lace Dress Rental
+DTSTART:20150126
+END:VEVENT
+END:VCALENDAR
