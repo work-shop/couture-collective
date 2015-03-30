@@ -20,3 +20,4 @@ configs/
 
 # environment settings
 env_prod
+password
