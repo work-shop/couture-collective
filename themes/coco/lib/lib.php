@@ -165,7 +165,7 @@ function cc_can_see_admin() {
 function cc_booking_cost_string( $reservation_type ) {
 	switch ( $reservation_type ) {
 		case "Prereservation" :
-			return "Reservation Cost";
+			return "Cleaning Cost";
 
 		case "Rental" :
 			return "Rental Cost";
