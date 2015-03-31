@@ -8,7 +8,7 @@
 			if ( $thumbnail = get_the_post_thumbnail($dress->ID, 'dress-large') ) {
 				echo $thumbnail;
 			} else { 
-				echo '<img src="' . get_bloginfo( 'template_directory' ) . '/_/img/thumbnail-default.jpg" />';
+				echo '<img src="' . get_bloginfo( 'template_directory' ) . '/_/img/Dress-Placeholder_01.png" />';
 			}
 			?>
 		</div>

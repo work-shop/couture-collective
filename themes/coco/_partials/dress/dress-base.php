@@ -6,13 +6,13 @@
 
 <div class="col-sm-5 col-sm-offset-1 dress-meta">
 <?php	
-	get_template_part('_partials/dress/dress', 'meta');
-
 	if ( is_user_logged_in() ) {
 
 		get_template_part('_partials/dress/dress', 'logic');
 
 	}
+
+	get_template_part('_partials/dress/dress', 'meta');
 ?>
 </div>
 
