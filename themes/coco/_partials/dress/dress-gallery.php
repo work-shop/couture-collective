@@ -28,7 +28,7 @@
 			if ( has_post_thumbnail() ) { ?>
 
 				<div src-giant="<?php echo $images[ 0 ]['sizes']['full']; ?>" class="magnifier"></div>
-				<img src-giant="<?php echo $images[ $i ]['sizes']['full']; ?>" src-small="<?php echo $images[ 0 ]['sizes']['thumbnail']; ?>" src="<?php echo $images[ 0 ]['sizes']['large']; ?>" />
+				<img src-giant="<?php echo $images[ 0 ]['sizes']['full']; ?>" src-small="<?php echo $images[ 0 ]['sizes']['thumbnail']; ?>" src="<?php echo $images[ 0 ]['sizes']['large']; ?>" />
 				
 			<?php } else {
 				echo '<img src="' . get_bloginfo( 'template_directory' ) . '/_/img/Dress-Placeholder_01.png" />';

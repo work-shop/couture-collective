@@ -23,12 +23,20 @@
 
 
 			echo ws_ifdef_do( $designer, ws_ifdef_concat('<h1 class="uppercase dress-designer">',$designer,'</h1>') );
+
 			echo ws_ifdef_do( $title, ws_ifdef_concat('<h6 class="dress-description">',$description,'</h6>') );
 	
 			echo ws_ifdef_do( $user, ws_ifdef_do( $size, ws_ifdef_concat('<p class="h7">SIZE: <span class="numerals h8">',$size,'</span></p>') ) );
-			
-			if( $owned ){ ?>
-	
+
+			?>
+
+			<button type="submit" class="button"><a class="uppercase white" href="#wc-bookings-booking-form">See the calendar</button></a>
+
+
+			<?php if( $owned ){ ?>
+		
+
+
 				<hr class="brand half" />
 	
 				<p class="h7 uppercase">
