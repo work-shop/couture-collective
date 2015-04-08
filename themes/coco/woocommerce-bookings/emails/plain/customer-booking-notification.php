@@ -8,8 +8,6 @@ echo $email_heading . "\n\n";
 
 echo strip_tags( $notification_message );
 
-echo "This is a hijack!";
-
 echo __(  'The details of your booking are shown below.', 'woocommerce-bookings' ) . "\n\n";
 
 echo "****************************************************\n\n";
