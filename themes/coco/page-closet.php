@@ -22,10 +22,11 @@
 					<p class="h7 uppercase">My Dresses</p>
 				</div>
 	
-				<div class="col-sm-offset-4">
+				<div class="col-sm-offset-4 hidden">
 					<p class="h7 uppercase">Show: <a href="#all" class="active filter-option">All </a> <a href="#tomorrow filter-option"> Available Tomorrow</a></p>
 				</div>
-				
+			</div>
+			<div class="row">	
 				<div class="col-sm-12">
 					<div class="bordered-dark-bottom m2"></div>
 				</div>

@@ -14,7 +14,7 @@
 					
 						<h1 class="serif centered m">How it Works</h1>
 						
-						<h3 class="centered m">Couture Collective(Co.Co.) is a revolution in fashion ownership.</h3>
+						<h3 class="centered m">Couture Collective (Co.Co.) is a revolution in fashion ownership.</h3>
 						
 						<p class="h3 centered m">
 						Each fall and spring, we offer our members fractional shares in the newest looks from the hottest designers. Beautifully maintained and impeccably stored, your clothes are delivered to your door whenever you want them, all season long. When the season’s over, it’s time for a whole new wardrobe. 	
@@ -97,7 +97,7 @@
 					<div class="descriptor-text centered">
 						<h5>Need a Dress for One Night?</h5>
 						<p class="h3">
-						 All unsold item shares in an item are valued at five wearings each. Single wearings are available for 10% of the retail price. Items available for single wearings can be seen on the One Night Only section of the website. 
+						 All unsold item shares in an item are valued at five wearings each. Single wearings are available for 10% of the retail price. 
 						</p>
 					</div>
 					
