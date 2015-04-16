@@ -63,7 +63,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				<div class="col2-set" id="customer_login">
 
-					<div class="col-1">
+					<div class="col-2">
 
 				<?php endif; ?>
 
@@ -90,7 +90,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								</label>
 							</p>
 							<p class="lost_password">
-								<a class=" button-brand" href="<?php echo esc_url( wc_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'woocommerce' ); ?></a>
+								<a class="button" href="<?php echo esc_url( wc_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'woocommerce' ); ?></a>
 							</p>
 
 							<?php do_action( 'woocommerce_login_form_end' ); ?>
