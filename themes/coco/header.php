@@ -45,14 +45,22 @@
 			get_template_part('_partials/placeholder/placeholder', 'forward' ); 
 
 		}
-	} else {
+	} 
+
+	/*
+
+	// commented out the modal invocation on restricted pages.
+	// this will make the look-book public and make it much easier
+	// to navigate the 
+
+	else {
 		if ( !is_home() && !is_page(array( 9, 26, 30, 363, 11, 7, 6 )) ) {
 
 			get_template_part('_partials/login','modal');
 
 		} 
 	}
-
+	*/
 	do_action('cc_remove_membership_items');
 ?>
 
@@ -274,7 +282,7 @@ $alert_state = 'site-alert-off';
 				<ul>								
 					<li>
 						<a href="<?php bloginfo('url'); ?>/look-book">
-							Fall 2014 Look Book
+							Look Book
 						</a>
 					</li>	
 					<li>
