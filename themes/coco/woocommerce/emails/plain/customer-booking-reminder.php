@@ -14,7 +14,7 @@ if ( $booking->get_order() ) {
 
 echo sprintf( __(  'This is a reminder that your reservation of %s will be delivered on %s.', 'woocommerce-bookings' ),
 		get_field( "dress_designer", $dress_id ) . ' ' . get_field( "dress_description", $dress_id ),
-		date( 'F jS, Y', strtotime( CC_Controller::get_selected_date($booking->id) ) )
+		$booking->get_start_date()
 	) . "\n\n";
 
 echo sprintf( __(  'Please have it ready for pickup on %s.', 'woocommerce-bookings' ),
