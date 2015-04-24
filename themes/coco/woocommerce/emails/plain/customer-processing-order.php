@@ -48,7 +48,7 @@ foreach ($order->get_items() as $key => $value) {
 				 * This is a tomorrow reservation.
 				 */
 
-				echo sprintf( __( 'Your reservation of %s - %s will be delivered on tomorrow.', 'woocommerce-bookings'),
+				echo sprintf( __( 'Your reservation of %s - %s will be delivered tomorrow.', 'woocommerce-bookings'),
 						get_field('dress_designer', $dress_id),
 						get_field('dress_description', $dress_id)
 					) . "\n\n";
@@ -63,6 +63,10 @@ foreach ($order->get_items() as $key => $value) {
 
 		} else if ( $product->product_type == "simple" && $product_type == "share"  ) {
 			$dress_id = CC_Controller::get_dress_for_product( $product->id, "share" );
+
+			/**
+			 * @todo fix the hard-coded offset interval here...
+			 */
 
 			echo sprintf( __('Thank you for your purchase of a share in %s - %s. You can manage your dress at %s/closet.'),
 				get_field('dress_designer', $dress_id),
