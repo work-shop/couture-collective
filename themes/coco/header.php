@@ -32,10 +32,11 @@
 	// }
 
 	if (is_shop() ||is_product() || is_product_category() || is_product_tag()  ) {
-
+		/* These pages should be displayed under NO circumstances. */
 		get_template_part('_partials/placeholder/placeholder', 'forward' ); 
 
 	} else if ( is_user_logged_in() ) {
+		/* These pages should be displayed under NO circumstances. */
 		if ( cc_user_is_guest() && ( is_page( array( 7 ) ) || is_admin() && !cc_can_see_admin() )) {
 
 			get_template_part('_partials/placeholder/placeholder', 'forward' ); 
@@ -45,7 +46,11 @@
 			get_template_part('_partials/placeholder/placeholder', 'forward' ); 
 
 		}
-	} 
+	} else { // 35 = closet, 5 = cart
+		if ( is_page( 35 ) ) { 
+			get_template_part('_partials/placeholder/placeholder', 'forward' ); 
+		}
+	}
 
 	/*
 
