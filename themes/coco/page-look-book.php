@@ -45,7 +45,10 @@
 				$row_length = 4;
 				$index = 0;
 
+				$season = get_field('active_season', 'option');
+
 				$args = array(
+					'post__in' => CC_Controller::get_dresses_for_season( ws_fst( $season ) ),
 					'post_type' => 'dress',
 					'posts_per_page' => ( $uli ) ? -1 : 8,
 					'orderby' => 'title',
