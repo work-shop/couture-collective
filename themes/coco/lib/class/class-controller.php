@@ -2,7 +2,9 @@
 
 class CC_Controller {
 	public static $field_keys = array(
-		'closet_values' => 'field_553f9d01909ec'
+		'closet_values' => 'field_553f9d01909ec',
+		'season_dresses' => 'field_553fe01b64ca0',
+		'active_season' => 'field_553fe0e583f45'
 	);
 
 	public static $maximum_prereservations = 5;
@@ -94,30 +96,28 @@ class CC_Controller {
  		return $success;
  	}
 
- 	// public static function get_shared_dresses_for_user( $user ) {
- 	// 	$dresses = get_user_meta( $user->ID, 'cc_closet_values', true );
 
- 	// 	$shares = ( !empty( $dresses ) && array_key_exists('share', $dresses) ) ? $dresses['share'] : array();
-
- 	// 	foreach ($shares as $i => $share) {
- 	// 		if ( $share ) {
- 	// 			$dress = get_post( $share );
-	 // 			$product = wc_get_product( ws_fst( get_field( 'dress_share_product_instance', $share ))->ID );
-
-	 // 			if ( !$shares[ $i ]  || !woocommerce_customer_bought_product( $user->user_email, $user->ID, $product->id ) ) {
-	 // 				unset( $shares[ $i ] );
-	 // 			}
- 	// 		} else {
- 	// 			unset( $shares[$i] );
- 	// 		}
- 	// 	}
+ 	/**
+ 	 * gets the id of the currently active season.
+ 	 *
+ 	 * @return int, the id of the currently activated season.
+ 	 */
+ 	public static function get_active_season() {
+ 		return ws_fst( get_field(CC_Controller::$field_keys['active_season'], 'option') );
+ 	}
 
 
- 	// 	$dresses['share'] = array_values( $shares );
- 	// 	update_user_meta( $user->ID, 'cc_closet_values', $dresses );
-
- 	// 	return $dresses['share'];
- 	// }
+ 	/**
+ 	 * Given the id of a season post, returns the dresses associated with that season.
+ 	 *
+ 	 * @param int $season_id 
+ 	 * @return array(int), the dresses in this season.
+ 	 *
+ 	 */
+ 	public static function get_dresses_for_season( $season_id ) {
+ 		$dresses = get_field( CC_Controller::$field_keys['season_dresses'], $season_id );
+ 		return ( $dresses ) ? $dresses : array();
+ 	}
 
  	/**
  	 * gets the shared dresses for a user, optionally updating the closed values for that user
@@ -127,6 +127,7 @@ class CC_Controller {
  	 * @return array(string) dress ids.
  	 */
  	public static function get_shared_dresses_for_user( $user ) {
+
  		// get the old dresses for this user, to prepare for a migration.
  		$old_dresses = get_user_meta( $user->ID, 'cc_closet_values', true );
 
@@ -184,7 +185,12 @@ class CC_Controller {
  		update_user_meta( $user->ID, 'cc_closet_values', $old_dresses );
  		update_field( CC_Controller::$field_keys['closet_values'], $new_dresses, 'user_' . $user->ID );
 
- 		return $new_dresses;
+ 		// now that the values have been saved and computed, we need to intersect this array with the active season's dresses.
+
+
+ 		$season_dresses = CC_Controller::get_dresses_for_season( CC_Controller::get_active_season() );
+
+ 		return array_intersect($season_dresses, $new_dresses);
  	}
 
  	/**

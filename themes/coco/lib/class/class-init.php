@@ -25,8 +25,8 @@ class CC_Init {
 	 */
 	public function __construct() {
 		add_action( 'init', array($this, 'cc_dress_init') );
-		add_action('save_post', array($this, 'cc_dress_modify') );
-		add_action('before_delete_post', array( $this, 'cc_dress_destroy') );
+		add_action( 'save_post', array($this, 'cc_dress_modify') );
+		add_action( 'before_delete_post', array( $this, 'cc_dress_destroy') );
 	}
 
 	/**
@@ -36,7 +36,7 @@ class CC_Init {
 	 *
 	 */
 	public function cc_dress_init() {
-		$labels = array(
+		$labels_dress = array(
 			'name' => 'Dresses',
 			'singular_name' =>'Dress',
 			'add_new' => 'Add New',
@@ -50,15 +50,38 @@ class CC_Init {
 		   	'not_found_in_trash' => 'No Dresses found in Trash', 
 		);
 
-		$options = array(
-			'labels' => $labels,
+		$options_dress = array(
+			'labels' => $labels_dress,
 			'public' => true,
 			'has_archive' => true,
 			'rewrite' => array('slug' => 'dresses'),
 			'supports' => array( 'title', 'editor', 'thumbnail', 'tags' )
 		);
 
-		register_post_type( 'dress', $options );
+		$labels_season = array(
+			'name' => "Seasons",
+			'singular_name' => 'Season',
+			'add_new' => 'Add New',
+			'add_new_item' => 'Add New Season',
+			'edit_item' => 'Edit Season',
+			'new_item' => 'New Season',
+			'all_item' => 'All Seasons',
+			'view_item' => 'View Season',
+			'search_items' => 'Search Seasons',
+			'not_found' => 'No Seasons Found',
+			'not_found_in_trash' => 'No Seasons found in Trash'
+		);
+
+		$options_season = array(
+			'labels' => $labels_season,
+			'public' => true,
+			'has_archive' => false,
+			'rewrite' => array('slug' => 'seasons'),
+			'supports' => array( 'title' )
+		);	
+
+		register_post_type( 'dress', $options_dress );
+		register_post_type( 'season', $options_season );
 	}
 
 	/**
