@@ -1,9 +1,7 @@
 <?php
 	$images = get_field('dress_images', get_the_ID() );
 
-	if ( $images ) {
-
-		//var_dump($images);
+	if ( $images ) :
 
 ?>
 
@@ -38,11 +36,4 @@
 		</div>
 	</div>
 
-<?php
-	} else {
-?>
-
-
-<?php
-	}
-?>
+<?php endif; ?>

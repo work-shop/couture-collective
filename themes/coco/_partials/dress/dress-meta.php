@@ -2,11 +2,7 @@
 	<div class="bordered-dark-top">
 		<?php
 		
-			$owned = wc_customer_bought_product(
-				$GLOBALS['CC_POST_DATA']['user']->user_email,
-				$GLOBALS['CC_POST_DATA']['user']->ID,
-				$GLOBALS['CC_POST_DATA']['share']->id
-			);
+			$owned = $GLOBALS['CC_POST_DATA']['owned'];
 
 			$id = $GLOBALS['CC_POST_DATA']['id'];
 			$user = $GLOBALS['CC_POST_DATA']['logged_in'];

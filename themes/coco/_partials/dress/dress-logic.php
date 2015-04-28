@@ -1,10 +1,13 @@
 <?php
-	//var_dump( $GLOBALS['CC_POST_DATA']['user'] );
-	$owned = wc_customer_bought_product(
-		$GLOBALS['CC_POST_DATA']['user']->user_email,
-		$GLOBALS['CC_POST_DATA']['user']->ID,
-		$GLOBALS['CC_POST_DATA']['share']->id
-	);
+	// $owned = wc_customer_bought_product(
+	// 	$GLOBALS['CC_POST_DATA']['user']->user_email,
+	// 	$GLOBALS['CC_POST_DATA']['user']->ID,
+	// 	$GLOBALS['CC_POST_DATA']['share']->id
+	// );
+
+	$owned = $GLOBALS['CC_POST_DATA']['owned'];
+
+
 
 	// echo '<h1>'.$GLOBALS['CC_POST_DATA']['user']->user_email.'</h1>';
 	// echo '<h1>'.$GLOBALS['CC_POST_DATA']['user']->ID.'</h1>';
