@@ -31,7 +31,7 @@
 	    <li class="h7"><span class="uppercase">Rental</span><br /><span class="h8 numerals">$<?php echo $rental_price; ?></span></li>
     <?php } ?>
     <?php if ( $sale->is_in_stock() ) { ?>
-	    <li class="h7"><span class="uppercase">Final Sale</span><br /><span class="h8 numerals">$<?php echo $sale_price; ?></span></li>
+	    <li class="h7"><span class="uppercase">Sale</span><br /><span class="h8 numerals">$<?php echo $sale_price; ?></span></li>
     <?php } ?>
 </ul>
 
