@@ -25,7 +25,7 @@ $remaining_preresevations = CC_Controller::$maximum_prereservations - count( $GL
 			<?php } ?>
 		</p>
 		<div class="row">
-			<form class="cart col-xs-4 m1" method="post" enctype="multipart/form-data">
+			<form class="cart col-sm-4 m1" method="post" enctype="multipart/form-data">
 
 				<input type="hidden" value="<?php echo $date['year']; ?>" name="wc_bookings_field_start_date_year" class="booking_date_year" />
 				<input type="hidden" value="<?php echo $date['month']; ?>" name="wc_bookings_field_start_date_month" class="booking_date_month" />
@@ -35,7 +35,7 @@ $remaining_preresevations = CC_Controller::$maximum_prereservations - count( $GL
 			 	<button type="submit" class="wc-bookings-booking-form-button single_add_to_cart_button button alt"><?php echo cc_booking_prompt_string( $reservation_type ); ?></button>
 			 	
 		 	</form>
-		 	<p class="h8 col-xs-8">
+		 	<p class="h8 col-sm-8">
 			 	Reserve this dress for delivery tomorrow. This doesn't count against your pre-reservations of this dress.
 			</p>
 		</div>
