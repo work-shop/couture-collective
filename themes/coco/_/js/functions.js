@@ -124,7 +124,6 @@ jQuery(document).ready(function($) {
 	$('')
 	
 	$('#tabs-nav li').click(function(e){
-		e.preventDefault();
 	    if (!$(this).hasClass('active')) {
 	        var tabNum = $(this).index();
 	        var nthChild = tabNum+1;
