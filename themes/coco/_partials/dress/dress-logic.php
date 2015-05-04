@@ -23,7 +23,7 @@
 	 */
 	$rental_price = get_field('dress_rental_price', get_the_ID() );
 ?>
-<ul id="tabs-nav" class="list-inline">
+<ul id="tabs-nav" class="list-inline<?php if ( $owned ) { ?> owned<?php } ?>">
 	<?php if ( $owned ) { ?>
 		<li class="active h7"><a href="#owned"><span class="uppercase">My Reservations</span><br /><span class="h8 numerals">&nbsp;</span></a></li>
 	<?php } else { ?>
