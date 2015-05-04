@@ -1,3 +1,4 @@
+<li id="rental" class="tab">
 <?php
 
 
@@ -6,3 +7,4 @@
 
 
 ?>
+</li>

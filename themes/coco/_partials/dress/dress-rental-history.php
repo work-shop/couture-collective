@@ -11,8 +11,7 @@
 	}
 
 ?>
-<div class="row dress-rentals">
-<div class="col-sm-12">
+<div class="dress-rentals">
 <?php if ( !empty($bookings) ) { ?>
 
 <p class="h7 uppercase m2">My Rentals: </p>
@@ -38,7 +37,6 @@
 
 
 <?php } ?>
-</div>
 </div>
 
 <?php // add a prereservation callout ?>

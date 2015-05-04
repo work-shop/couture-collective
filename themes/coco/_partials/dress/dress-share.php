@@ -1,4 +1,4 @@
-<div class="row">
+<li id="share" class="active row">
 	<div class="col-sm-12" >
 	<?php
 		$user = $GLOBALS['CC_POST_DATA']['user'];
@@ -16,7 +16,5 @@
 	
 	?>
 	
-	<hr/>
-	
 	</div>
-</div>
+</li>

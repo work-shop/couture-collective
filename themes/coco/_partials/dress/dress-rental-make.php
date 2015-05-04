@@ -1,7 +1,4 @@
-<div class="row">
-<div class="col-sm-12">
-
-<p class="h7"><span class="uppercase">One Night Rental:&nbsp;&nbsp;&nbsp;</span><span class="icon svg popover-white icon-small cursor-pointer" data-toggle="popover" data-placement="bottom" title="One Night Rental" data-content="Rent this dress for one night. Additional cleaning charges apply." data-trigger="focus-broken" tabindex="1"><?php get_template_part('_icons/question'); ?></span></p>
+<p class="h8 m2">Select date for your one-night rental.</p>
 
 <?php 
 
@@ -17,30 +14,28 @@ do_action( 'woocommerce_before_add_to_cart_form' );
 ?>
 
 <div class="dress-calendar">
-<form class="cart" method="post" enctype='multipart/form-data'>
+		<form class="cart" method="post" enctype='multipart/form-data'>
 
- 	<div id="wc-bookings-booking-form" class="wc-bookings-booking-form cc-make-reservation-form" style="display:none">
+		 	<div id="wc-bookings-booking-form" class="wc-bookings-booking-form cc-make-reservation-form" style="display:none">
 
- 		<?php $booking_form->output(); ?>
+		 		<?php $booking_form->output(); ?>
 
- 		<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
+		 		<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
 
- 		<div class="wc-bookings-booking-cost" style="display:none"></div>
+		 		<div class="wc-bookings-booking-cost" style="display:none"></div>
 
+			</div>
+			<div class="row">
+				<div class="col-xs-4">
+					<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $rental->id ); ?>" />
+					<input type="hidden" name="reservation_type" value="<?php echo $reservation_type; ?>" />
+				 	<button disabled="disabled" type="submit" class="wc-bookings-booking-form-button single_add_to_cart_button button alt" style="display:none"><?php echo cc_booking_prompt_string($reservation_type); ?></button>
+				 </div>
+			 	<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
+				<p class="col-xs-8 h8 righted">Additional cleaning charges apply.</p>
+			</div>
+		</form>
 	</div>
-
-	<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $rental->id ); ?>" />
-	<input type="hidden" name="reservation_type" value="<?php echo $reservation_type; ?>" />
- 	<button disabled="disabled" type="submit" class="wc-bookings-booking-form-button single_add_to_cart_button button alt" style="display:none"><?php echo cc_booking_prompt_string($reservation_type); ?></button>
-
- 	<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
-</form>
 </div>
 
 <?php do_action( 'woocommerce_after_add_to_cart_form' ); ?>
-
-	<hr />
-
-
-</div>
-</div>
