@@ -27,11 +27,11 @@
 	<?php if ( $owned ) { ?>
 		<li class="active h7"><a href="#owned"><span class="uppercase">My Reservations</span><br /><span class="h8 numerals">&nbsp;</span></a></li>
 	<?php } else { ?>
-		<li class="active h7"><a href="#share"><span class="uppercase">Share</span><br /><span class="h8 numerals">$<?php echo $share_price ?></span></a></li>
-	    <li class="h7"><a href="#rental"><span class="uppercase">Rental</span><br /><span class="h8 numerals">$<?php echo $rental_price ?></span></a></li>
+		<li class="active h7"><a href="#share"><span class="uppercase">Share</span><br /><span class="h8 numerals">$<?php echo $share_price; ?></span></a></li>
+	    <li class="h7"><a href="#rental"><span class="uppercase">Rental</span><br /><span class="h8 numerals">$<?php echo $rental_price; ?></span></a></li>
     <?php } ?>
     <?php if ( $sale->is_in_stock() ) { ?>
-	    <li class="h7"><a href="#sale"><span class="uppercase">Final Sale</span><br /><span class="h8 numerals">$<?php echo $sale_price ?></span></a></li>
+	    <li class="h7"><a href="#sale"><span class="uppercase">Final Sale</span><br /><span class="h8 numerals">$<?php echo $sale_price; ?></span></a></li>
     <?php } ?>
 </ul>
 
@@ -39,13 +39,12 @@
 <?php
 	
 	if ( $owned ) {
-
 		get_template_part('_partials/dress/dress','owned');
-		get_template_part('_partials/dress/dress','sale');
-
 	} else {
 		get_template_part('_partials/dress/dress','share');
 		get_template_part('_partials/dress/dress','rental');
+	}
+	if ( $sale->is_in_stock() ) {
 		get_template_part('_partials/dress/dress','sale');	
 	}
 
