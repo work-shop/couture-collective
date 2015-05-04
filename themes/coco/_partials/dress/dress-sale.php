@@ -1,4 +1,4 @@
-<li id="sale" class="tab">
+<li class="tab">
 <?php
 
 	$user = $GLOBALS['CC_POST_DATA']['user'];

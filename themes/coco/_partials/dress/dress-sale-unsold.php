@@ -18,7 +18,7 @@ if ( $tv ) { ?>
 	$sale = $GLOBALS['CC_POST_DATA']['sale'];
 	//echo ws_ifdef_concat('<p class="h7 uppercase">End of Season Sale: <span class="numerals">',$sale->get_price_html(),'</span></p>'); ?>
 
-	<p class="h7" ><span class="uppercase">End of Season Purchase: </span>
+	<p class="h7 hidden" ><span class="uppercase">End of Season Purchase: </span>
 		<span class="h8 numerals"><?php echo $sale->get_price_html(); ?>&nbsp;&nbsp;&nbsp;</span>
 	</p>
 

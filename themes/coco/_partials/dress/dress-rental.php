@@ -1,4 +1,4 @@
-<li id="rental" class="tab">
+<li class="tab">
 <?php
 
 

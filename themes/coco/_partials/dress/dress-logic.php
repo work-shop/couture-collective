@@ -25,13 +25,13 @@
 ?>
 <ul id="tabs-nav" class="list-inline<?php if ( $owned ) { ?> owned<?php } ?>">
 	<?php if ( $owned ) { ?>
-		<li class="active h7"><a href="#owned"><span class="uppercase">My Reservations</span><br /><span class="h8 numerals">&nbsp;</span></a></li>
+		<li class="active h7"><span class="uppercase">My Reservations</span><br /><span class="h8 numerals">&nbsp;</span></li>
 	<?php } else { ?>
-		<li class="active h7"><a href="#share"><span class="uppercase">Share</span><br /><span class="h8 numerals">$<?php echo $share_price; ?></span></a></li>
-	    <li class="h7"><a href="#rental"><span class="uppercase">Rental</span><br /><span class="h8 numerals">$<?php echo $rental_price; ?></span></a></li>
+		<li class="active h7"><span class="uppercase">Share</span><br /><span class="h8 numerals">$<?php echo $share_price; ?></span></li>
+	    <li class="h7"><span class="uppercase">Rental</span><br /><span class="h8 numerals">$<?php echo $rental_price; ?></span></li>
     <?php } ?>
     <?php if ( $sale->is_in_stock() ) { ?>
-	    <li class="h7"><a href="#sale"><span class="uppercase">Final Sale</span><br /><span class="h8 numerals">$<?php echo $sale_price; ?></span></a></li>
+	    <li class="h7"><span class="uppercase">Final Sale</span><br /><span class="h8 numerals">$<?php echo $sale_price; ?></span></li>
     <?php } ?>
 </ul>
 

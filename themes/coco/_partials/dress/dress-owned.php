@@ -1,4 +1,4 @@
-<li id="owned" class="tab active">
+<li class="tab active">
 <?php
 	
 	$rental = $GLOBALS['CC_POST_DATA']['rental'];
