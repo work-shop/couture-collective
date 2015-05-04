@@ -1,15 +1,24 @@
 <?php
-	//var_dump( $GLOBALS['CC_POST_DATA']['user'] );
 	$owned = wc_customer_bought_product(
 		$GLOBALS['CC_POST_DATA']['user']->user_email,
 		$GLOBALS['CC_POST_DATA']['user']->ID,
 		$GLOBALS['CC_POST_DATA']['share']->id
 	);
 
-	// echo '<h1>'.$GLOBALS['CC_POST_DATA']['user']->user_email.'</h1>';
-	// echo '<h1>'.$GLOBALS['CC_POST_DATA']['user']->ID.'</h1>';
-	// echo '<h1>'.$GLOBALS['CC_POST_DATA']['share']->id.'</h1>';
-	// echo '<h1>'.$owned.'</h1>';
+	/**
+	 * @var $share_price float the price of a share in this dress. 
+	 */
+	$share_price = get_field('dress_share_price', get_the_ID() );
+
+	/**
+	 * @var $sale_price float the price of the end-of-season sale for this dress. 
+	 */
+	$sale_price = get_field('dress_sale_price', get_the_ID() );
+
+	/**
+	 * @var $rental_price float the price of a rental in the dress.
+	 */
+	$rental_price = get_field('dress_rental_price', get_the_ID() );
 
 	if ( $owned ) {
 
