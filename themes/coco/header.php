@@ -32,10 +32,11 @@
 	// }
 
 	if (is_shop() ||is_product() || is_product_category() || is_product_tag()  ) {
-
+		/* These pages should be displayed under NO circumstances. */
 		get_template_part('_partials/placeholder/placeholder', 'forward' ); 
 
 	} else if ( is_user_logged_in() ) {
+		/* These pages should be displayed under NO circumstances. */
 		if ( cc_user_is_guest() && ( is_page( array( 7 ) ) || is_admin() && !cc_can_see_admin() )) {
 
 			get_template_part('_partials/placeholder/placeholder', 'forward' ); 
@@ -45,14 +46,26 @@
 			get_template_part('_partials/placeholder/placeholder', 'forward' ); 
 
 		}
-	} else {
+	} else { // 35 = closet, 5 = cart
+		if ( is_page( 35 ) ) { 
+			get_template_part('_partials/placeholder/placeholder', 'forward' ); 
+		}
+	}
+
+	/*
+
+	// commented out the modal invocation on restricted pages.
+	// this will make the look-book public and make it much easier
+	// to navigate the 
+
+	else {
 		if ( !is_home() && !is_page(array( 9, 26, 30, 363, 11, 7, 6 )) ) {
 
 			get_template_part('_partials/login','modal');
 
 		} 
 	}
-
+	*/
 	do_action('cc_remove_membership_items');
 ?>
 
@@ -274,7 +287,7 @@ $alert_state = 'site-alert-off';
 				<ul>								
 					<li>
 						<a href="<?php bloginfo('url'); ?>/look-book">
-							Fall 2014 Look Book
+							Look Book
 						</a>
 					</li>	
 					<li>
