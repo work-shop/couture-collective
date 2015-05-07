@@ -1,9 +1,7 @@
 <?php
-	$images = get_field('dress_images', get_the_ID() );
+	
 
-	if ( $images ) {
-
-		//var_dump($images);
+	if ( $images = get_field('dress_images', get_the_ID() ) ) {
 
 ?>
 
@@ -23,7 +21,7 @@
 		</div>
 	<?php endif; ?>
 
-		<div id="main-image" class="col-sm-10 col-xs-12 main-image off">
+		<div id="main-image" class="col-sm-10 main-image off">
 			<?php 
 			if ( has_post_thumbnail() ) { ?>
 
@@ -38,11 +36,4 @@
 		</div>
 	</div>
 
-<?php
-	} else {
-?>
-
-
-<?php
-	}
-?>
+<?php } ?>
