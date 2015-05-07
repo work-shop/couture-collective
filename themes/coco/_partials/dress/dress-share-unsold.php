@@ -25,16 +25,21 @@ if ( $tv ) { ?>
 	 </p>
 
 	 <div class="row">
-		<form class="cart col-sm-4" method="post" enctype='multipart/form-data'>
-		 	<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
+	 	<div class="col-sm-4">
+			<form class="cart" method="post" enctype='multipart/form-data'>
+			 	<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
 
-		 	<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $share->id ); ?>" />
+			 	<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $share->id ); ?>" />
 
-		 	<button type="submit" class="single_add_to_cart_button button alt"><?php echo cc_booking_prompt_string('Share'); ?></button>
+			 	<button type="submit" class="single_add_to_cart_button button alt"><?php echo cc_booking_prompt_string('Share'); ?></button>
 
-			<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
-		</form>
-		<p class="h8 col-sm-8">Pre-reserve up to 5 times per season, and 24 hours in advance any time the dress is available.</p>
+				<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
+			</form>
+		</div>
+
+		<div class="col-sm-offset-1 col-sm-7">
+			<p class="h8">Pre-reserve up to 5 times per season, and 24 hours in advance any time the dress is available.</p>
+		</div>
 	</div>
 
 <? } ?>

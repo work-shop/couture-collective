@@ -25,19 +25,24 @@ $remaining_preresevations = CC_Controller::$maximum_prereservations - count( $GL
 			<?php } ?>
 		</p>
 		<div class="row">
-			<form class="cart col-sm-4 m1" method="post" enctype="multipart/form-data">
+			<div class="col-sm-4 m1">
+				<form class="cart" method="post" enctype="multipart/form-data">
 
-				<input type="hidden" value="<?php echo $date['year']; ?>" name="wc_bookings_field_start_date_year" class="booking_date_year" />
-				<input type="hidden" value="<?php echo $date['month']; ?>" name="wc_bookings_field_start_date_month" class="booking_date_month" />
-				<input type="hidden" value="<?php echo $date['day']; ?>" name="wc_bookings_field_start_date_day" class="booking_date_day" />
-				<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $rental->id ); ?>">
-				<input type="hidden" name="reservation_type" value="<?php echo $reservation_type; ?>">
-			 	<button type="submit" class="wc-bookings-booking-form-button single_add_to_cart_button button alt"><?php echo cc_booking_prompt_string( $reservation_type ); ?></button>
-			 	
-		 	</form>
-		 	<p class="h8 col-sm-8">
-			 	Reserve this dress for delivery tomorrow. This doesn't count against your reservations of this dress.
-			</p>
+					<input type="hidden" value="<?php echo $date['year']; ?>" name="wc_bookings_field_start_date_year" class="booking_date_year" />
+					<input type="hidden" value="<?php echo $date['month']; ?>" name="wc_bookings_field_start_date_month" class="booking_date_month" />
+					<input type="hidden" value="<?php echo $date['day']; ?>" name="wc_bookings_field_start_date_day" class="booking_date_day" />
+					<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $rental->id ); ?>">
+					<input type="hidden" name="reservation_type" value="<?php echo $reservation_type; ?>">
+				 	<button type="submit" class="wc-bookings-booking-form-button single_add_to_cart_button button alt"><?php echo cc_booking_prompt_string( $reservation_type ); ?></button>
+				 	
+			 	</form>
+		 	</div>
+
+		 	<div class="col-sm-offset-1 col-sm-7">
+			 	<p class="h8">
+				 	Reserve this dress for delivery tomorrow. This doesn't count against your reservations of this dress.
+				</p>
+			</div>
 		</div>
 
 	<?php } else { ?>
