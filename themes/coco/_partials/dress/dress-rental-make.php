@@ -1,5 +1,3 @@
-<p class="h8 m2">Select date for your one-night rental.</p>
-
 <?php 
 
 global $woocommerce;
@@ -12,6 +10,8 @@ $booking_form = new CC_Make_Reservation_Form( $rental, $reservation_type );
 do_action( 'woocommerce_before_add_to_cart_form' ); 
 
 ?>
+
+<p class="h8 m2">Select date for your one-night rental.</p>
 
 <div class="dress-calendar">
 	<form class="cart" method="post" enctype='multipart/form-data'>

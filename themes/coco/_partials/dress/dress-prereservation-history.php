@@ -9,7 +9,7 @@
 
 <?php if (!empty($bookings) ) { ?>
 
-<p class="h7 uppercase m2">My <?php echo $GLOBALS['CC_POST_DATA']['reservation_type']; ?>s: </p>
+<p class="h7 uppercase m2">My <?php echo cc_booking_noun_string( $GLOBALS['CC_POST_DATA']['reservation_type'] ); ?>s: </p>
 
 	<?php
 
@@ -35,7 +35,7 @@
 
 <?php } else { ?>
 
-	<p class="h7 uppercase">You haven't prereserved this dress yet.</p>
+	<p class="h7 uppercase hidden">You haven't reserved this dress yet.</p>
 
 <?php } ?>
 </div>
@@ -53,7 +53,7 @@
 	
 		<?php if($GLOBALS['CC_POST_DATA']['reservation_type'] != 'Rental'): ?>
 
-			<p class="h7 uppercase m2"><?php echo (5-count( $bookings )); ?> Pre-reservations remaining</p>
+			<p class="h7 uppercase m2"><?php echo (5-count( $bookings )); ?> Reservations remaining</p>
 		
 		<?php endif; ?>
 		 
@@ -63,7 +63,7 @@
 		
 		if($GLOBALS['CC_POST_DATA']['reservation_type'] != 'Rental'): ?>
 
-		<p class="h8">This dress has been pre-reserved the maximum number of times. You may delete an order and book a new one, or <a href="<?php bloginfo('url');?>/contact" target="_blank" class="underline">contact us</a> to change your order. </p>
+		<p class="h8">You've reserved this dress the maximum number of times. You may delete an order and book a new one, or <a href="<?php bloginfo('url');?>/contact" target="_blank" class="underline">contact us</a> to change your order. </p>
 
 
 	<?php endif; } ?>

@@ -16,12 +16,12 @@ $remaining_preresevations = CC_Controller::$maximum_prereservations - count( $GL
 
 		<?php $date = CC_Controller::get_next_day_reservation( $rental ); ?>
 
-		<p class="remaining-reservations h7 uppercase">
+		<p class="remaining-reservations h7 uppercase m2">
 		<?php 
 		if($remaining_preresevations > 0){
-			echo $remaining_preresevations;?> pre-reservations remaining
+			echo $remaining_preresevations;?> reservations remaining
 			<?php } else{ ?>
-				<p class="h8">This dress has been pre-reserved the maximum number of times. You may delete an order and book a new one, or <a href="<?php bloginfo('url');?>/contact" target="_blank" class="underline">contact us</a> to change your order. </p>
+				<p class="h8">This dress has been reserved the maximum number of times. You may delete an order and book a new one, or <a href="<?php bloginfo('url');?>/contact" target="_blank" class="underline">contact us</a> to change your order. </p>
 			<?php } ?>
 		</p>
 		<div class="row">
@@ -36,7 +36,7 @@ $remaining_preresevations = CC_Controller::$maximum_prereservations - count( $GL
 			 	
 		 	</form>
 		 	<p class="h8 col-sm-8">
-			 	Reserve this dress for delivery tomorrow. This doesn't count against your pre-reservations of this dress.
+			 	Reserve this dress for delivery tomorrow. This doesn't count against your reservations of this dress.
 			</p>
 		</div>
 
