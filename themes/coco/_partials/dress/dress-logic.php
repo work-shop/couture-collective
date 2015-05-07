@@ -33,7 +33,7 @@
 
 	<?php if ( $owned ) { ?>
 
-		<li class="active h7"><span class="uppercase m3"><span class="hidden-xs" style>My </span>Reservations</span><br/ ><span class="h8 numerals"><?php echo wc_trim_zeros( wc_price( $dry_cleaning_price ) ); ?></span></li>
+		<li class="active h7"><span class="uppercase m3">Reservations</span><br/ ><span class="h8 numerals"><?php echo wc_trim_zeros( wc_price( $dry_cleaning_price ) ); ?></span></li>
 
 	<?php } else { ?>
 

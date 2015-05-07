@@ -32,7 +32,7 @@ if ( $tv ) { ?>
 
 			<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
 		</form>
-		<p class="h8 col-sm-8">Final purchase of this item is available at 30% off retail price. It will be delivered at the end of the season.</p>
+		<p class="h8 col-sm-offset-1 col-sm-7">Final purchase of this item is available at 30% off retail price. It will be delivered at the end of the season.</p>
 	</div>
 <? } ?>
 

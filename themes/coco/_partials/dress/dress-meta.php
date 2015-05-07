@@ -32,10 +32,7 @@
 
 	
 				<p class="h7 uppercase">
-				<a href="<?php bloginfo('url'); ?>/closet" class="h7">
-				<span class="icon svg"><?php get_template_part('_icons/delivery'); ?></span> 
-				In My Closet
-				</a>
+				<a href="<?php bloginfo('url'); ?>/closet"><!--<span class="icon svg">--><?php get_template_part('_icons/delivery'); ?><!--</span>-->In My Closet</a>
 				</p>
 					
 			
