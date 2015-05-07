@@ -7,10 +7,10 @@
 
 	<div class="row">
 		<?php if (count( $images ) > 1) : ?>
-		<div class="col-sm-2 hidden-xs">
-		<ul class="row">
+		<div class="col-sm-2 p0 hidden-xs">
+		<ul class="">
 			<?php for ( $i = 1; $i < count( $images ); $i++ ) : ?>
-				<li class="small-image co-sm-12 main-image m">
+				<li class="small-image main-image m">
 					<a href="#">
 					<img src-giant="<?php echo $images[ $i ]['sizes']['full']; ?>" src-large="<?php echo $images[ $i ]['sizes']['large']; ?>" src="<?php echo $images[ $i ]['sizes']['thumbnail']; ?>" />
 					</a>
