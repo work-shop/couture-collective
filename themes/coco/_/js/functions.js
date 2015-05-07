@@ -121,8 +121,18 @@ jQuery(document).ready(function($) {
 	
 	})();
 
+	$('')
 	
-
+	$('#tabs-nav li').click(function(e){
+	    if (!$(this).hasClass('active')) {
+	        var tabNum = $(this).index();
+	        var nthChild = tabNum+1;
+	        $('#tabs-nav li.active').removeClass('active');
+	        $(this).addClass('active');
+	        $('#tab li.active').removeClass('active');
+	        $('#tab li:nth-child('+nthChild+')').addClass('active');
+	    }
+	});
 	  
 
 });//end document.ready

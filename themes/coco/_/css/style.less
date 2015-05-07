@@ -191,6 +191,9 @@ img,video{
 	position: relative;
 	top: 45%;
 	-webkit-transform: translate(0, -50%);
+}
+.righted{
+	text-align: right;
 }	
 
 .logo{
@@ -276,7 +279,7 @@ img,video{
 a{
 	color: @brand;
 	.transition(color,.125s);
-	&:hover{
+	&:hover, &:active{
 		text-decoration: none;
 		color: darken(@brand,5%);
 	}
@@ -1370,7 +1373,7 @@ fieldset{
 		
 		.wc-bookings-date-picker .ui-datepicker-header{
 			background: white;
-			background: rgba(255,255,255,.2);
+			background: transparent;
 			border-top: none;
 			color: #8d8d81;
 			.border-radius(0);
@@ -1531,6 +1534,38 @@ abbr[title]{
 	border-bottom: none;
 }
 
+#tabs-nav {
+	margin-top: 40px;
+	li {
+		text-align: center;
+		background: fade(@dark,10%);
+		padding: 10px 10px 5px;
+		line-height: 0.5em;
+		cursor: pointer;
+		width: 32.25%;
+		&:hover {
+			background: fade(white,10%);
+		}
+		&.active {
+			border-top: 2px solid @pink-darker;
+			background: fade(white,20%);
+		}
+	}
+	&.owned li {
+		width: 49%;
+	}
+}
+
+#tab {
+	padding: 20px;
+	background: fade(white,20%);
+	li {
+		display: none;
+		&.active {
+			display: block;
+		}
+	}
+}
 
 
 /********** @CART *********/

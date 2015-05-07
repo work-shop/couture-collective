@@ -61,7 +61,7 @@ if ( $status_guard || $timing_guard ) { ?>
 					<input type="hidden" class="user-id" name="user-id" value="<?php echo esc_attr( $GLOBALS['CC_POST_DATA']['user']->ID ); ?>" />
 					<input type="hidden" class="booking-id" name="booking-id" value="<?php echo esc_attr( $booking->get_ID() ); ?>" />
 					<input type="hidden" class="booking-id" name="reservation_type" value="<?php echo esc_attr( $reservation_type ); ?>" />
-					<button type="submit" class="cancel-reservation button icon-button right tooltip-white" data-toggle="tooltip" data-placement="bottom" title="cancel reservation"><span class="icon svg icon-small"><?php get_template_part('_icons/remove'); ?></span></button>
+					<button type="submit" class="cancel-reservation button button-brand right tooltip-white" data-toggle="tooltip" data-placement="bottom" title="cancel reservation">Cancel<!--<span class="icon svg icon-small"><?php get_template_part('_icons/remove'); ?>--></span></button>
 				</form>
 			</div>
 			
