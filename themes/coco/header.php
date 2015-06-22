@@ -37,7 +37,7 @@
 
 	} else if ( is_user_logged_in() ) {
 		/* These pages should be displayed under NO circumstances. */
-		if ( cc_user_is_guest() && ( is_page( array( 7 ) ) || is_admin() && !cc_can_see_admin() )) {
+		if ( cc_user_is_guest() && ( is_page( array( 7, 35 ) ) || is_admin() && !cc_can_see_admin() )) {
 
 			get_template_part('_partials/placeholder/placeholder', 'forward' ); 
 
@@ -46,13 +46,19 @@
 			get_template_part('_partials/placeholder/placeholder', 'forward' ); 
 
 		}
-	} else { // 35 = closet, 5 = cart
+	} 
+
+	/*
+
+	// commented out the free lookbook feature.
+
+	else { // 35 = closet, 5 = cart
 		if ( is_page( 35 ) ) { 
 			get_template_part('_partials/placeholder/placeholder', 'forward' ); 
 		}
 	}
-
-	/*
+	*/
+	
 
 	// commented out the modal invocation on restricted pages.
 	// this will make the look-book public and make it much easier
@@ -65,7 +71,7 @@
 
 		} 
 	}
-	*/
+	
 	do_action('cc_remove_membership_items');
 ?>
 
@@ -219,6 +225,8 @@ $alert_state = 'site-alert-off';
 							 	get_currentuserinfo();
 							 	global $woocommerce;
 							 	
+
+							 		if ( !cc_user_is_guest() ) {
 							 	 ?>
 									<ul class="right-logged-in <?php if ( cc_user_is_guest() ) : echo 'hidden'; endif; ?>">
 										<li class="">
@@ -246,8 +254,15 @@ $alert_state = 'site-alert-off';
 										</li>										
 									
 									</ul>
+									<?php } else { ?>
+
+										<ul class="right-logged-out">
+											<li><a href="<?php echo wp_logout_url( home_url() ); ?>" title="Logout">Logout</a></li>
+										</ul>
+
+									<?php } ?>
 			
-							<?php } else{ 
+							<?php } else { 
 									if(is_home()){ ?>
 									
 									<div id="header-login">
@@ -330,10 +345,10 @@ $alert_state = 'site-alert-off';
 				</ul>						
 			</div>	
 
-			<?php if ( is_user_logged_in() ) :
+			<?php if ( $logged_in ) :
 			 	
-			 	
-			 	if(current_user_can( 'manage_options' ) || current_user_can('manage_woocommerce') ): ?>
+			 	if( $manage_options || $manage_wc ): ?>
+
 			 		<div id="admin-login" class="hidden-xs"><a href="<?php bloginfo('url'); ?>/wp-admin"><span class="icon" data-icon="("></span></a></div>
 
 			 <?php endif; endif; ?>			
