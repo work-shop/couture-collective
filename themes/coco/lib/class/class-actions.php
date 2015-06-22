@@ -20,7 +20,7 @@ class CC_Actions {
 	/**
 	 * @var int positive offset margin for bookings
 	 */
-	protected static $offset_pos = 1;
+	protected static $offset_pos = 2;
 
 	/**
 	 * @var string - namespace prefix
