@@ -28,7 +28,7 @@
 															
 								<li>
 									<a class="white h7 uppercase"  href="<?php bloginfo('url'); ?>/look-book">
-										Fall 2014 Look Book
+										Look Book
 									</a>
 								</li>	
 								<li>
@@ -47,11 +47,19 @@
 								<?php get_template_part('_partials/login'); ?>
 								
 								<?php else: ?>
-								<li>
-									<a class="white h7 uppercase" href="<?php bloginfo('url'); ?>/my-account">
-										My Account
-									</a>		
-								</li>															
+									<?php if ( !cc_user_is_guest() ) { ?>
+										<li>
+											<a class="white h7 uppercase" href="<?php bloginfo('url'); ?>/my-account">
+												My Account
+											</a>		
+										</li>	
+									<?php } else { ?>
+										<li>
+											<a class="white h7 uppercase" href="<?php echo wp_logout_url( home_url() ); ?>">
+												Logout
+											</a>	
+										</li>	
+									<?php } ?>														
 								<?php endif; ?>
 							</ul>
 							
