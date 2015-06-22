@@ -176,6 +176,31 @@ function get_template_parts( $parts = array() ) {
 add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 
 
+/**
+ * This routine hot-plugs the wp_new_user_notification function in pluggable.php
+ * It sends an email to the site-admin notifying them of the change, but not to anyone else.
+ */
+if ( !function_exists( 'wp_new_user_notification' ) ) {
+  function wp_new_user_notification( $user_id, $plaintext_pass = '' ) {
+    $user = new WP_User( $user_id );
+
+    $user_login = stripslashes( $user->user_login );
+    $user_email = stripslashes( $user->user_email );
+
+    $message = sprintf( __("We received a New User Application on %s:"), get_option('blogname')) . "\r\n\r\n";
+    $message .= sprintf( __("Username: %s"), $user_login ) . '\r\n\r\n';
+    $message .= sprintf( __("Email: %s"), $user_email ) . "\r\n";
+
+    @wp_mail(
+        get_option( 'admin_email' ),
+        sprintf(__("[%s] New User Application"), get_option('blogname')),
+        $message
+     );
+  }
+}
+
+
+
 
 
 
