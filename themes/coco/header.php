@@ -317,12 +317,21 @@ $alert_state = 'site-alert-off';
 						</a>		
 					</li>					
 					<?php endif; ?>
+
+					<?php if ($logged_in = is_user_logged_in()) : 
+						global $current_user;
+			 			get_currentuserinfo();
+
+			 			if ( ($manage_options = current_user_can( 'manage_options' )) || ($manage_wc = current_user_can('manage_woocommerce')) ) : ?>
+						
+						<li><a href="<?php bloginfo('url'); ?>/wp-admin"><span class="icon" data-icon="("></span></a></li>
+
+					<?php endif; endif; ?>
 				</ul>						
 			</div>	
 
 			<?php if ( is_user_logged_in() ) :
-			 	global $current_user;
-			 	get_currentuserinfo();
+			 	
 			 	
 			 	if(current_user_can( 'manage_options' ) || current_user_can('manage_woocommerce') ): ?>
 			 		<div id="admin-login" class="hidden-xs"><a href="<?php bloginfo('url'); ?>/wp-admin"><span class="icon" data-icon="("></span></a></div>
