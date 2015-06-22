@@ -27,7 +27,11 @@
 	 * @var $rental_price float the price of a rental in the dress.
 	 */
 	$rental_price = get_field('dress_rental_price', get_the_ID() );
+
+	if ( !cc_user_is_guest() ) {
 ?>
+
+
 
 <ul id="tabs-nav" class="list-inline<?php if ( $owned ) { ?> owned<?php } ?>">
 
@@ -74,3 +78,11 @@
 ?>
 
 </ul>
+
+<?php } else { ?>
+
+
+
+
+
+<?php } ?>
