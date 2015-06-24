@@ -12,7 +12,7 @@ $remaining_preresevations = CC_Controller::$maximum_prereservations - count( $GL
 
 <div class="row">
 	<div class="col-sm-12">
-	<?php if ( $GLOBALS['CC_POST_DATA']['tomorrow'] ) { ?>
+	<?php if ( /*$GLOBALS['CC_POST_DATA']['tomorrow']*/ false ) { ?>
 
 		<?php $date = CC_Controller::get_next_day_reservation( $rental ); ?>
 
