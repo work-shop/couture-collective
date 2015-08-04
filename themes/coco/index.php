@@ -20,7 +20,7 @@
 				<div class="row m3">
 				
 					<div class="col-sm-8 col-sm-offset-2">
-						<h4 class="centered white tagline">What's in your closet<br class="visible-xs"/> <span class="italic">this</span> season?</h4>
+						<h4 class="centered white tagline hidden">What's in your closet<br class="visible-xs"/> <span class="italic">this</span> season?</h4>
 						
 						<div class="nav-home visible-xs">
 												
