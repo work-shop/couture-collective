@@ -14,6 +14,7 @@ function theme_scripts() {
     wp_register_script( 'less', get_template_directory_uri() . '/_/js/less.js');
     wp_register_script( 'bootstrap', get_template_directory_uri() . '/_/js/bootstrap.js');
     wp_register_script( 'flexslider', get_template_directory_uri() . '/_/js/flexslider.js');
+    wp_register_script( 'elevate-zoom', get_template_directory_uri() . '/_/js/jquery.elevateZoom-3.0.8.min.js');
     wp_register_script( 'functions', get_template_directory_uri() . '/_/js/functions.js');
     wp_register_script( 'cc-ajax-make-reservation', get_template_directory_uri() . '/_/js/ajax/make-reservation.js' );
 
@@ -21,6 +22,7 @@ function theme_scripts() {
     wp_enqueue_script( 'less' );    
     wp_enqueue_script( 'bootstrap' );
     wp_enqueue_script( 'flexslider' ); 
+    wp_enqueue_script('elevate-zoom');
     wp_enqueue_script( 'functions' );
 }
 add_action('wp_enqueue_scripts', 'theme_scripts');
@@ -174,6 +176,31 @@ function get_template_parts( $parts = array() ) {
 }	
 
 add_filter( 'woocommerce_enqueue_styles', '__return_false' );
+
+
+/**
+ * This routine hot-plugs the wp_new_user_notification function in pluggable.php
+ * It sends an email to the site-admin notifying them of the change, but not to anyone else.
+ */
+if ( !function_exists( 'wp_new_user_notification' ) ) {
+  function wp_new_user_notification( $user_id, $plaintext_pass = '' ) {
+    $user = new WP_User( $user_id );
+
+    $user_login = stripslashes( $user->user_login );
+    $user_email = stripslashes( $user->user_email );
+
+    $message = sprintf( __("We received a New User Application on %s:"), get_option('blogname')) . "\r\n\r\n";
+    $message .= sprintf( __("Username: %s"), $user_login ) . '\r\n\r\n';
+    $message .= sprintf( __("Email: %s"), $user_email ) . "\r\n";
+
+    @wp_mail(
+        get_option( 'admin_email' ),
+        sprintf(__("[%s] New User Application"), get_option('blogname')),
+        $message
+     );
+  }
+}
+
 
 
 

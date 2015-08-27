@@ -188,13 +188,13 @@ function cc_booking_prompt_string( $reservation_type ) {
 			return "Purchase";
 
 		case "Prereservation" :
-			return "Pre-reserve";
+			return "Reserve";
 
 		case "Rental" :
 			return "Rent";
 
 		case "Nextday" : 
-			return "Reserve";
+			return "Reserve for Tomorrow";
 
 		default :
 			return "";
@@ -213,7 +213,7 @@ function cc_booking_noun_string( $reservation_type ) {
 
 	switch ( $reservation_type ) {
 		case "prereservation" :
-			return "Pre-reservation";
+			return "Reservation";
 
 		case "rental" :
 			return "Rental";

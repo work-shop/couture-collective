@@ -26,7 +26,7 @@
 
     <p class="login-submit">
       <input type="submit" name="wp-submit" id="wp-submit" class="" value="LOG IN">
-      <input type="hidden" name="redirect_to" value="<?php echo home_url().'/look-book'; ?>" >
+      <input type="hidden" name="redirect_to" value="<?php echo home_url().'/closet'; ?>" >
     </p>  
 
     <?php do_action( 'woocommerce_login_form_end' ); ?>

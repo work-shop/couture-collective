@@ -21,7 +21,7 @@ if ( 5 > count( $prereservations ) ) {
 	<div class="row">
 		<div class="col-sm-12">	
 		
-		<p class="h7"><span class="uppercase">Pre-Reservation:&nbsp;&nbsp;&nbsp;</span><span class="icon svg popover-white icon-small cursor-pointer" data-toggle="popover" data-placement="bottom" title="Pre" data-content="Pre-reserve this dress up to 5 times per share, only cleaning charges apply." data-trigger="focus-broken" tabindex="4"><?php get_template_part('_icons/question'); ?></span></p>
+		<p class="h8">Make changes to your current reservation dates.</p>
 
 	<div class="dress-calendar">
 	<form class="cart" method="post" enctype='multipart/form-data'>

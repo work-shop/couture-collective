@@ -15,8 +15,16 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 	<div class="col-sm-4 col-sm-offset-6">
 		
-		<p class="cart-empty h8"><?php _e( 'Your cart is currently empty.', 'woocommerce' ) ?> Return to the <a href="<?php bloginfo('url'); ?>/look-book" class="underline">Look Book</a> to shop.</p>
+		<?php if ( is_user_logged_in() ) { ?>
+
+		<p class="cart-empty h8"><?php _e( 'Your cart is currently empty.', 'woocommerce' ) ?> Return to the <a href="<?php echo site_url('/look-book'); ?>" class="underline">Look Book</a> to shop.</p>
 	
+		<?php } else { ?>
+
+		<p class="cart-empty h8"> You don't have an account yet. Head to <a href="<?php echo site_url('/join'); ?>" class="underline">here</a> to join.</p>
+
+		<?php } ?>
+
 	</div>
 
 </div>

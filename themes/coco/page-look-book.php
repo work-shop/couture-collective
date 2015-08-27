@@ -50,7 +50,7 @@
 				$args = array(
 					'post__in' => CC_Controller::get_dresses_for_season( ws_fst( $season ) ),
 					'post_type' => 'dress',
-					'posts_per_page' => ( $uli ) ? -1 : 8,
+					'posts_per_page' => -1,
 					'orderby' => 'title',
 					'order' => 'ASC'
 				);

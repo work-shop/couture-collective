@@ -1,1 +1,1 @@
-<?php wp_redirect( home_url() ); ?>
+<?php wp_redirect( home_url() ); exit;?>
