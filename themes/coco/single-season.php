@@ -3,27 +3,26 @@
 
 <?php wc_print_notices(); ?>
 
-<div id="look-book" class="template template-page ">	
+<div id="season-single" class="template template-page ">	
 
-	<section id="look-book-introduction" class="page-introduction block m2 hidden">	
-	
-		<hr class="page-header-rule"/>					
+	<section id="look-book-introduction" class="page-introduction block m2">	
 
 		<div class="container">
 				
 			<div class="row">
 			
 				<div class="col-sm-10 col-sm-offset-1">
-
 				
-					<h1 class="serif centered m">Welcome to the Fall 2014 Look Book Preview!</h1>
+					<h1 class="serif centered m"><?php echo get_the_title()?></h1>
 
-									
 				</div>		
 
 			</div>
 			
 		</div>
+
+		<hr class="page-header-rule"/>					
+
 	</section>
 	
 	<section id="look-book-body" class="look-book block">	
@@ -45,7 +44,7 @@
 				$row_length = 4;
 				$index = 0;
 
-				$season = CC_Controller::get_active_season();
+				$season = get_the_ID();
 
 				$args = array(
 					'post__in' => CC_Controller::get_dresses_for_season( $season ),

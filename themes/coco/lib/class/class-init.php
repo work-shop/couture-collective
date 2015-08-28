@@ -75,7 +75,7 @@ class CC_Init {
 		$options_season = array(
 			'labels' => $labels_season,
 			'public' => true,
-			'has_archive' => false,
+			'has_archive' => true,
 			'rewrite' => array('slug' => 'seasons'),
 			'supports' => array( 'title' )
 		);	

@@ -1,3 +1,4 @@
+
 <?php
 	/**
 	 * @todo refactor
@@ -30,6 +31,7 @@
 
 	// 	}
 	// }
+
 
 	if (is_shop() ||is_product() || is_product_category() || is_product_tag()  ) {
 		/* These pages should be displayed under NO circumstances. */
@@ -173,6 +175,9 @@ $alert_state = 'site-alert-off';
 	 	
 	 <?php endif; ?>
 
+
+	<?php $current_season = get_post( CC_Controller::get_active_season() ); ?>
+
 		<header id="header" class="off">
 
 			<nav id="nav">
@@ -186,7 +191,12 @@ $alert_state = 'site-alert-off';
 															
 								<li>
 									<a href="<?php bloginfo('url'); ?>/look-book">
-										Look Book
+										<?php echo $current_season->post_title; ?> Look Book
+									</a>
+								</li>	
+								<li>
+									<a href="<?php bloginfo('url'); ?>/seasons">
+										Past Seasons
 									</a>
 								</li>	
 								<li>
@@ -302,7 +312,12 @@ $alert_state = 'site-alert-off';
 				<ul>								
 					<li>
 						<a href="<?php bloginfo('url'); ?>/look-book">
-							Look Book
+							<?php echo $current_season->post_title; ?> Look Book
+						</a>
+					</li>	
+					<li>
+						<a href="<?php bloginfo('url'); ?>/seasons">
+							Past Seasons
 						</a>
 					</li>	
 					<li>
