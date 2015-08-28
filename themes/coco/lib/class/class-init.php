@@ -36,6 +36,8 @@ class CC_Init {
 	 *
 	 */
 	public function cc_dress_init() {
+		self::cc_trunk_shows_init();
+
 		$labels = array(
 			'name' => 'Dresses',
 			'singular_name' =>'Dress',
@@ -59,6 +61,35 @@ class CC_Init {
 		);
 
 		register_post_type( 'dress', $options );
+	}
+
+	/**
+	 * This function initializes the "trunkshow" post type.
+	 */
+	public function cc_trunk_shows_init() {
+		$labels = array(
+			'name' => 'Trunk Shows',
+			'singular_name' =>'Trunk Show',
+			'add_new' => 'Add New',
+		    	'add_new_item' => 'Add New Trunk Show',
+		    	'edit_item' => 'Edit Trunk Show',
+		    	'new_item' => 'New Trunk Show',
+		    	'all_items' => 'All Trunk Shows',
+		   	'view_item' => 'View Trunk Show',
+		   	'search_items' => 'Search Trunk Shows',
+		   	'not_found' =>  'No Trunk Shows found',
+		   	'not_found_in_trash' => 'No Trunk Shows found in Trash', 
+		);
+
+		$options = array(
+			'labels' => $labels,
+			'public' => true,
+			'has_archive' => true,
+			'rewrite' => array('slug' => 'trunk-shows'),
+			'supports' => array( 'title', 'editor', 'thumbnail' )
+		);
+
+		register_post_type( 'trunkshow', $options );
 	}
 
 	/**
