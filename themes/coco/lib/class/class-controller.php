@@ -445,6 +445,51 @@ class CC_Controller {
 		}
 	}
 
+	/**
+	 * This routine gets all future trunk shows
+	 * @return array(WP_Post) trunkshows in the future. 
+	 */
+	public static function get_upcoming_trunkshows() {
+		
+		$upcoming = self::get_trunkshows_by_date_pivot( date('Ymd') );
+
+		return ( empty( $upcoming ) ) ? $upcoming : $upcoming[0];
+
+	}
+
+	/**
+	 * This routine divides a 
+	 * @return array(WP_Post) trunkshows selected by $comparison and $date.
+	 */
+	public static function get_trunkshows_by_date_pivot( $date ) {
+		$args = array(
+			'post_type' => 'trunkshow',
+			'posts_per_page' => -1,
+			'orderby' => 'title',
+			'order' => 'ASC'
+		);
+
+		$GLOBALS['__get_trunkshows_by_date_pivot::NOW'] = $date;
+
+		$shows = get_posts( $args );
+
+		usort($shows, function( $a, $b ) {
+			$d_a = get_field( 'trunk_show_date', $a->ID );
+			$d_b = get_field( 'trunk_show_date', $b->ID );
+
+			return ( $d_a > $d_b ) ? 1 : (( $d_a < $d_b ) ? -1 : 0);
+		});
+
+		$split = ws_array_split( $shows, function( $show ) {
+			$date = get_field( 'trunk_show_date', $show->ID );
+			return ($date >= $GLOBALS['__get_trunkshows_by_date_pivot::NOW']) ? 0 : 1;
+		});
+
+		unset( $GLOBALS['__get_trunkshows_by_date_pivot::NOW'] );
+
+		return $split;
+	}
+
 }
 
 ?>
