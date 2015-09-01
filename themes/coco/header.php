@@ -190,11 +190,16 @@ $alert_state = 'site-alert-off';
 									</a>
 								</li>	
 
-								<li>
-									<a href="<?php bloginfo('url'); ?>/trunk-shows">
-										Trunk Shows
-									</a>
-								</li>	
+								
+								<?php
+								/*
+									<li>
+										<a href="<?php bloginfo('url'); ?>/trunk-shows">
+											Trunk Shows
+										</a>
+									</li>	
+								*/
+								?>
 
 								<li>
 									<a href="<?php bloginfo('url'); ?>/how-it-works">
