@@ -743,7 +743,7 @@ h6,
 }
 .after #header {
   background: #ebdedb;
-  height: 118px;
+  height: auto;
 }
 .after #header #logo {
   margin: 0 auto;

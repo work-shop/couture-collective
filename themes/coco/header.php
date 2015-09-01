@@ -189,6 +189,13 @@ $alert_state = 'site-alert-off';
 										Look Book
 									</a>
 								</li>	
+
+								<li>
+									<a href="<?php bloginfo('url'); ?>/trunk-shows">
+										Trunk Shows
+									</a>
+								</li>	
+
 								<li>
 									<a href="<?php bloginfo('url'); ?>/how-it-works">
 										How it Works
