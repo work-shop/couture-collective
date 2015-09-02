@@ -20,11 +20,11 @@
 				<div class="row m3">
 				
 					<div class="col-sm-8 col-sm-offset-2">
-						<?php if ( get_field('sneak_peak_active', 'option') ) : ?>
+						<?php /*if ( get_field('sneak_peak_active', 'option') ) : ?>
 							<a href="<?php bloginfo('url'); ?>/sneak-peak"><h4 class="centered white tagline">
 								<?php echo get_field('sneak_peak_heading', 'option'); ?>
 							</h4></a>
-						<?php endif; ?>
+						<?php endif; */ ?>
 						
 						<div class="nav-home visible-xs">
 												
