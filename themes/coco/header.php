@@ -65,7 +65,7 @@
 	// to navigate the 
 
 	else {
-		if ( !is_home() && !is_page(array( 9, 26, 30, 363, 11, 7, 6 )) ) {
+		if ( !is_home() && !is_page(array( 9, 26, 30, 363, 11, 7, 6, 3606, 919 )) ) {
 
 			get_template_part('_partials/login','modal');
 
@@ -201,13 +201,11 @@ $alert_state = 'site-alert-off';
 								?>
 								
 								<?php if ( get_field('sneak_peak_active', 'option') ) : ?>
-								<?php /* ?>
 								<li>
-									<a href="<?php bloginfo('url'); ?>/sneak-peak">
+									<a href="<?php bloginfo('url'); ?>/sneak-peek">
 										<?php echo get_field('sneak_peak_heading', 'option'); ?>
 									</a>
 								</li>	
-								<?php */ ?>
 								<?php endif; ?>
 
 								<li>
@@ -327,9 +325,9 @@ $alert_state = 'site-alert-off';
 						</a>
 					</li>	
 
-					<?php var_dump( get_field('sneak_peak_active', 'option') ); if ( get_field('sneak_peak_active', 'option') ) : ?>
+					<?php if ( get_field('sneak_peak_active', 'option') ) : ?>
 					<li>
-						<a href="<?php bloginfo('url'); ?>/sneak-peak">
+						<a href="<?php bloginfo('url'); ?>/sneak-peek">
 							<?php echo get_field('sneak_peak_heading', 'option'); ?>
 						</a>
 					</li>	
