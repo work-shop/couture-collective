@@ -189,7 +189,6 @@ $alert_state = 'site-alert-off';
 										Look Book
 									</a>
 								</li>	
-
 								
 								<?php
 								/*
@@ -200,6 +199,16 @@ $alert_state = 'site-alert-off';
 									</li>	
 								*/
 								?>
+								
+								<?php if ( get_field('sneak_peak_active', 'option') ) : ?>
+								<?php /* ?>
+								<li>
+									<a href="<?php bloginfo('url'); ?>/sneak-peak">
+										<?php echo get_field('sneak_peak_heading', 'option'); ?>
+									</a>
+								</li>	
+								<?php */ ?>
+								<?php endif; ?>
 
 								<li>
 									<a href="<?php bloginfo('url'); ?>/how-it-works">
@@ -317,6 +326,15 @@ $alert_state = 'site-alert-off';
 							Look Book
 						</a>
 					</li>	
+
+					<?php var_dump( get_field('sneak_peak_active', 'option') ); if ( get_field('sneak_peak_active', 'option') ) : ?>
+					<li>
+						<a href="<?php bloginfo('url'); ?>/sneak-peak">
+							<?php echo get_field('sneak_peak_heading', 'option'); ?>
+						</a>
+					</li>	
+					<?php endif; ?>
+
 					<li>
 						<a href="<?php bloginfo('url'); ?>/how-it-works">
 							How it Works
