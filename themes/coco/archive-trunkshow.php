@@ -14,13 +14,11 @@ $split = CC_Controller::get_trunkshows_by_date_pivot( date('Ymd') );
 		
 		<div class="container">
 
-
-
 			<? if ( !empty( $split[0] ) ) : ?>
 
 				<div class="row">
 					
-					<div class="col-sm-12">
+					<div class="col-sm-offset-1 col-sm-10">
 					
 						<h4 class=" bordered centered m25">Upcoming Events</h4>
 												
@@ -32,7 +30,11 @@ $split = CC_Controller::get_trunkshows_by_date_pivot( date('Ymd') );
 					
 				</div>
 
-				<div class="row upcoming-events">
+				<div class="row">
+					
+					<div class="col-sm-offset-1 col-sm-10">
+
+					<div class="row past-events">
 
 					<?php foreach ($split[0] as $show) { ?>
 					
@@ -48,6 +50,10 @@ $split = CC_Controller::get_trunkshows_by_date_pivot( date('Ymd') );
 	
 					<? } ?>
 
+					</div>
+					
+					</div>
+
 				</div>
 
 			<?php endif; ?>
@@ -58,7 +64,7 @@ $split = CC_Controller::get_trunkshows_by_date_pivot( date('Ymd') );
 
 				<div class="row">
 					
-					<div class="col-sm-12">
+					<div class="col-sm-offset-1 col-sm-10">
 					
 						<h4 class="bordered centered m25">Past Events</h4>
 										
@@ -66,22 +72,30 @@ $split = CC_Controller::get_trunkshows_by_date_pivot( date('Ymd') );
 					
 				</div>
 
-				<div class="row past-events">
-
-					<?php foreach ($split[1] as $show) { ?>
+				<div class="row">
 					
-					<?php 
+					<div class="col-sm-offset-1 col-sm-10">
+
+					<div class="row past-events">
+
+						<?php foreach ($split[1] as $show) { ?>
 						
-						$GLOBALS['SHOW'] = $show;
+						<?php 
+							
+							$GLOBALS['SHOW'] = $show;
 
-						get_template_part('_partials/trunkshow/trunkshow', 'card');
+							get_template_part('_partials/trunkshow/trunkshow', 'card');
 
-						unset( $GLOBALS['SHOW'] ); 
+							unset( $GLOBALS['SHOW'] ); 
 
-					?>
-	
-					<? } ?>
-					
+						?>
+		
+						<? } ?>
+						
+					</div>
+
+					</div>
+
 				</div>
 
 			<? endif; ?>
