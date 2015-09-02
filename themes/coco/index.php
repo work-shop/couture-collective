@@ -35,6 +35,15 @@
 										Look Book
 									</a>
 								</li>	
+
+								<?php if ( get_field('sneak_peak_active', 'option') ) : ?>
+								<li>
+									<a class="white h7 uppercase"  href="<?php bloginfo('url'); ?>/sneak-peek">
+										<?php echo get_field('sneak_peak_heading', 'option'); ?>
+									</a>
+								</li>	
+								<?php endif; ?>
+
 								<li>
 									<a class="white h7 uppercase"  href="<?php bloginfo('url'); ?>/how-it-works">
 										How it Works
