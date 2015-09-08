@@ -190,15 +190,13 @@ $alert_state = 'site-alert-off';
 									</a>
 								</li>	
 								
-								<?php
-								/*
-									<li>
-										<a href="<?php bloginfo('url'); ?>/trunk-shows">
-											Trunk Shows
-										</a>
-									</li>	
-								*/
-								?>
+								
+								<li>
+									<a href="<?php bloginfo('url'); ?>/shows">
+										Upcoming Shows	
+									</a>
+								</li>	
+								
 								
 								<?php if ( get_field('sneak_peak_active', 'option') ) : ?>
 								<li>
@@ -324,6 +322,14 @@ $alert_state = 'site-alert-off';
 							Look Book
 						</a>
 					</li>	
+
+					
+					<li>
+						<a href="<?php bloginfo('url'); ?>/shows">
+							Upcoming Shows
+						</a>
+					</li>	
+					
 
 					<?php if ( get_field('sneak_peak_active', 'option') ) : ?>
 					<li>

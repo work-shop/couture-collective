@@ -474,10 +474,15 @@ class CC_Controller {
 		$shows = get_posts( $args );
 
 		usort($shows, function( $a, $b ) {
-			$d_a = get_field( 'trunk_show_date', $a->ID );
-			$d_b = get_field( 'trunk_show_date', $b->ID );
+			$d_a_s = get_field( 'trunk_show_date', $a->ID );
+			$d_b_s = get_field( 'trunk_show_date', $b->ID );
+			$d_a_e = get_field( 'trunk_show_date_end', $a->ID );
+			$d_b_e = get_field( 'trunk_show_date_end', $b->ID );
 
-			return ( $d_a > $d_b ) ? 1 : (( $d_a < $d_b ) ? -1 : 0);
+			$cmp_a = ($d_a_e) ? $d_a_e : $d_a_s;
+			$cmp_b = ($d_b_e) ? $d_b_e : $d_b_s;
+
+			return ( $cmp_a > $cmp_b ) ? 1 : (( $cmp_a < $cmp_b ) ? -1 : 0);
 		});
 
 		$split = ws_array_split( $shows, function( $show ) {

@@ -85,7 +85,7 @@ class CC_Init {
 			'labels' => $labels,
 			'public' => true,
 			'has_archive' => true,
-			'rewrite' => array('slug' => 'trunk-shows'),
+			'rewrite' => array('slug' => 'shows'),
 			'supports' => array( 'title', 'editor', 'thumbnail' )
 		);
 

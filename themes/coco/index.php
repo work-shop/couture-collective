@@ -36,6 +36,14 @@
 									</a>
 								</li>	
 
+								
+								<li>
+									<a class="white h7 uppercase"  href="<?php bloginfo('url'); ?>/shows">
+										Upcoming Shows
+									</a>
+								</li>	
+								
+
 								<?php if ( get_field('sneak_peak_active', 'option') ) : ?>
 								<li>
 									<a class="white h7 uppercase"  href="<?php bloginfo('url'); ?>/sneak-peek">

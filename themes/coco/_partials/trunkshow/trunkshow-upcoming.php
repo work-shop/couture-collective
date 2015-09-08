@@ -1,13 +1,17 @@
 <?php
 
-$upcoming_shows = CC_Controller::get_upcoming_trunkshows();
+$current_id = $GLOBALS['CURRENT_ID'];
+$upcoming_shows = $GLOBALS['UPCOMING'];
 
 ?>
 
-<div class="col-xs-12 col-sm-4">
-	<div class="row">										
+
+	<div class="row">	
+		<div class="col-sm-12 hidden-xs">
+			<p class="h11 numerals">&nbsp;</p>
+		</div>									
 		<div class="col-sm-12">
-			<a href="<?php bloginfo('url') ?>/trunk-shows"><p class="h7 uppercase bold">Upcoming Shows</p>
+			<a href="<?php bloginfo('url') ?>/shows"><p class="h7 uppercase bold ">&nbsp;</p>
 		</div>
 	</div>
 	<div class="row">	
@@ -20,16 +24,30 @@ $upcoming_shows = CC_Controller::get_upcoming_trunkshows();
 	<?php foreach ($upcoming_shows as $show) : ?>
 	
 		<li class="col-sm-12 m2">
-			<?php if ( $show->ID == get_the_ID() ) { ?>
+			<?php if ( $show->ID == $current_id ) { ?>
 
 				<p class="h7 uppercase bold"><?php echo $show->post_title; ?></p>
-				<p class="h11 uppercase brand"><?php echo ws_render_date( get_field( 'trunk_show_date', $show->ID ) ); ?></p>
+				<p class="h11 numerals">
+					<?php echo ws_render_date( get_field('trunk_show_date', $show->ID ) ); ?>
+					<?php
+						if ( $end = get_field('trunk_show_date_end', $show->ID ) ) {
+							echo " – " . ws_render_date( $end );
+						}
+					?>
+				</p>
 
 			<?php } else { ?>
 
 				<a href="<?php echo get_the_permalink( $show->ID ); ?>">
 					<p class="h7 uppercase"><?php echo $show->post_title; ?></p>
-					<p class="h11 uppercase brand"><?php echo ws_render_date( get_field( 'trunk_show_date', $show->ID ) ); ?></p>
+					<p class="h11 numerals">
+						<?php echo ws_render_date( get_field('trunk_show_date', $show->ID ) ); ?>
+						<?php
+							if ( $end = get_field('trunk_show_date_end', $show->ID ) ) {
+								echo " – " . ws_render_date( $end );
+							}
+						?>
+					</p>
 				</a>
 
 			<?php } ?>
@@ -38,4 +56,3 @@ $upcoming_shows = CC_Controller::get_upcoming_trunkshows();
 	<?php endforeach; ?>
 
 	</ul>
-</div>

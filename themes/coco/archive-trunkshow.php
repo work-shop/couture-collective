@@ -1,113 +1,60 @@
+<?php get_header();?>
+
 <?php
 
 $split = CC_Controller::get_trunkshows_by_date_pivot( date('Ymd') );
 
-?>
+?>	
 
-<?php get_header();?>
+<div id="trunkshow-archive" class="template template-page template-single">	
 
-<div id="trunk-shows" class="template template-page">	
+		<div class="container">	
+			<div class="row">
 
-	<hr class="page-header-rule hidden"/>						
-
-	<section id="trunk-shows" class="trunk-shows block">	
-		
-		<div class="container">
-
-			<? if ( !empty( $split[0] ) ) : ?>
-
-				<div class="row">
-					
-					<div class="col-sm-offset-1 col-sm-10">
-					
-						<h4 class=" bordered centered m25">Upcoming Events</h4>
-												
-						<p class="h3 centered m25">
-						Please email <a href="mailto:info@couturecollective.club">info@couturecollective.club</a> to schedule an appointment for a private showing or arrange for a custom selection to be sent to you to try.
-						</p>
-										
-					</div>
-					
+				<div class="col-sm-10 col-sm-offset-1 wc-notices">
+					<?php wc_print_notices(); ?>
 				</div>
 
-				<div class="row">
-					
-					<div class="col-sm-offset-1 col-sm-10">
+			</div>
 
-					<div class="row past-events">
+			<div class="row">
+				<div class="col-sm-8 col-xs-12 p0">
 
-					<?php foreach ($split[0] as $show) { ?>
-					
 					<?php 
-						
-						$GLOBALS['SHOW'] = $show;
 
-						get_template_part('_partials/trunkshow/trunkshow', 'card');
+					foreach ( $split[0] as $trunkshow ) {
 
-						unset( $GLOBALS['SHOW'] ); 
+						$GLOBALS['TRUNKSHOW'] = $trunkshow;
+
+						get_template_part('_partials/trunkshow/trunkshow', 'base'); 
+
+						unset( $GLOBALS['TRUNKSHOW'] );
+
+					}
 
 					?>
-	
-					<? } ?>
-
-					</div>
-					
-					</div>
 
 				</div>
 
-			<?php endif; ?>
+				<div class="col-sm-4 col-xs-12">
 
+					<?php 
 
+					$GLOBALS['UPCOMING'] = $split[0];
+					$GLOBALS['CURRENT_ID'] = -1;
 
-			<? if ( !empty( $split[1] ) ) : ?>
+					get_template_part('_partials/trunkshow/trunkshow', 'upcoming'); 
 
-				<div class="row">
-					
-					<div class="col-sm-offset-1 col-sm-10">
-					
-						<h4 class="bordered centered m25">Past Events</h4>
-										
-					</div>
-					
-				</div>
+					unset( $GLOBALS['UPCOMING'] );
+					unset( $GLOBALS['CURRENT_ID'] );
 
-				<div class="row">
-					
-					<div class="col-sm-offset-1 col-sm-10">
-
-					<div class="row past-events">
-
-						<?php foreach ($split[1] as $show) { ?>
-						
-						<?php 
-							
-							$GLOBALS['SHOW'] = $show;
-
-							get_template_part('_partials/trunkshow/trunkshow', 'card');
-
-							unset( $GLOBALS['SHOW'] ); 
-
-						?>
-		
-						<? } ?>
-						
-					</div>
-
-					</div>
+					?>
 
 				</div>
 
-			<? endif; ?>
-
-			
-
+			</div>
 		</div>
 
-	</section>
-
-	
-	
-</div>	
+</div>
 
 <?php get_footer(); ?>
