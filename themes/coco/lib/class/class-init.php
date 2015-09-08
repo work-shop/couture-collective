@@ -55,7 +55,7 @@ class CC_Init {
 		);
 
 		$options_dress = array(
-			'labels' => $labels_dress,
+			'labels' => $labels,
 			'public' => true,
 			'has_archive' => true,
 			'rewrite' => array('slug' => 'dresses'),

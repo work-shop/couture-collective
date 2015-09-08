@@ -119,6 +119,7 @@ class CC_Controller {
  		return ( $dresses ) ? $dresses : array();
  	}
 
+
  	/**
  	 * gets the shared dresses for a user, optionally updating the closed values for that user
  	 * if they are out of date.
@@ -127,6 +128,40 @@ class CC_Controller {
  	 * @return array(string) dress ids.
  	 */
  	public static function get_shared_dresses_for_user( $user ) {
+ 		$dresses = get_user_meta( $user->ID, 'cc_closet_values', true );
+
+ 		$shares = ( !empty( $dresses ) && array_key_exists('share', $dresses) ) ? $dresses['share'] : array();
+
+ 		foreach ($shares as $i => $share) {
+ 			if ( $share ) {
+ 				$dress = get_post( $share );
+	 			$product = wc_get_product( ws_fst( get_field( 'dress_share_product_instance', $share ))->ID );
+
+	 			if ( !$shares[ $i ]  || !woocommerce_customer_bought_product( $user->user_email, $user->ID, $product->id ) ) {
+	 				unset( $shares[ $i ] );
+	 			}
+ 			} else {
+ 				unset( $shares[$i] );
+ 			}
+ 		}
+
+
+ 		$dresses['share'] = array_values( $shares );
+ 		update_user_meta( $user->ID, 'cc_closet_values', $dresses );
+
+ 		return $dresses['share'];
+ 	}
+
+
+
+ 	/**
+ 	 * gets the shared dresses for a user, optionally updating the closed values for that user
+ 	 * if they are out of date.
+ 	 *
+ 	 * @param WP_User $user user to get shared dresses for
+ 	 * @return array(string) dress ids.
+ 	 */
+ 	public static function MIGRATE_and_get_shared_dresses_for_user( $user ) {
 
  		// get the old dresses for this user, to prepare for a migration.
  		$old_dresses = get_user_meta( $user->ID, 'cc_closet_values', true );
@@ -192,6 +227,8 @@ class CC_Controller {
 
  		return array_intersect($season_dresses, $new_dresses);
  	}
+
+
 
  	/**
  	 * Given a bookable product id, returns the set of prereservations for that dress.
@@ -402,7 +439,7 @@ class CC_Controller {
  	}
 
 
-	/**
+ 	/**
 	 * Given a product ID, this function adds the dress the appropropriate
 	 * bin on a given user's meta taxonomy.
 	 *
@@ -411,6 +448,62 @@ class CC_Controller {
 	 * @param int $customer_id, the customer to assign the dress to.
 	 */
 	public static function add_dress_to_customer_closet( $type, $product_id, $customer_id ) {
+		if ( !in_array($type, array('share','rental')) ) return;
+		if ( !$customer_id || !$product_id ) return;
+
+		// now we need to check on uniqueness in this array, and maintain setlike conditions
+
+		/* We've encountered a share product. 
+	         0. given our post id, let's query the posts.
+		  1. get our custom taxo, and see that our array is formatted properly; use true to unserialize array.
+		*/
+		$parent_dresses = get_posts(array(
+			'post_type' => 'dress',
+			'meta_query' => array(
+				array(
+					'key' => 'dress_'.$type.'_product_instance',
+					'value' => '"'.$product_id.'"',
+					'compare' => 'LIKE'
+				)
+			)
+		));
+
+		$parent_dress_id = $parent_dresses[0]->ID;
+
+		$closet = get_user_meta( $customer_id, 'cc_closet_values', true);
+
+		if ( !empty($closet) && isset( $closet[$type] ) ) {
+			// get existing keys in the array,
+			$existing = array_keys( $closet[ $type ], $parent_dress_id );
+
+			if ( !empty( $existing ) ) {
+				if ( ($n = count( $existing )) > 1 ) {
+					for ( $i = 1; $i < $n; $i++ ) {
+						unset( $closet[ $type ][ $existing[ $i ] ] );
+					}
+				} else {
+					return;
+				}
+			} else {
+				$closet[ $type ][] = $parent_dress_id;
+			}
+		} else {
+			$closet[ $type ] = array( $parent_dress_id );
+		}
+
+		update_user_meta( $customer_id, 'cc_closet_values', $closet );
+
+	}
+
+	/**
+	 * Given a product ID, this function adds the dress the appropropriate
+	 * bin on a given user's meta taxonomy.
+	 *
+	 * @param {"share","rental"} $type, the type that the passed product id belongs to.
+	 * @param int $product_id, the product to reverse lookup.
+	 * @param int $customer_id, the customer to assign the dress to.
+	 */
+	public static function MIGRATE_and_add_dress_to_customer_closet( $type, $product_id, $customer_id ) {
 		if ( !in_array($type, array('share','rental')) ) return; 
 		if ( !$customer_id || !$product_id ) return;
 
