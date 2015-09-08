@@ -67,7 +67,7 @@
 	// to navigate the 
 
 	else {
-		if ( !is_home() && !is_page(array( 9, 26, 30, 363, 11, 7, 6 )) ) {
+		if ( !is_home() && !is_page(array( 9, 26, 30, 363, 11, 7, 6, 3606, 919 )) ) {
 
 			get_template_part('_partials/login','modal');
 
@@ -114,7 +114,7 @@
 		
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	
-	<link rel="apple-touch-icon"href="/apple-touch-icon.png">	
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">	
 	<link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/_/img/favicon.ico">
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 			
@@ -199,6 +199,25 @@ $alert_state = 'site-alert-off';
 										Past Seasons
 									</a>
 								</li>	
+								
+								
+								<?php if ( is_user_logged_in() ) : ?>
+								<li>
+									<a href="<?php bloginfo('url'); ?>/shows">
+										Upcoming Shows
+									</a>
+								</li>	
+								<?php endif; ?>
+								
+								
+								<?php if ( get_field('sneak_peak_active', 'option') ) : ?>
+								<li>
+									<a href="<?php bloginfo('url'); ?>/sneak-peek">
+										<?php echo get_field('sneak_peak_heading', 'option'); ?>
+									</a>
+								</li>	
+								<?php endif; ?>
+
 								<li>
 									<a href="<?php bloginfo('url'); ?>/how-it-works">
 										How it Works
@@ -320,6 +339,24 @@ $alert_state = 'site-alert-off';
 							Past Seasons
 						</a>
 					</li>	
+
+					<?php if ( is_user_logged_in() ) : ?>
+					<li>
+						<a href="<?php bloginfo('url'); ?>/shows">
+							Upcoming Shows
+						</a>
+					</li>	
+					<?php endif; ?>
+					
+
+					<?php if ( get_field('sneak_peak_active', 'option') ) : ?>
+					<li>
+						<a href="<?php bloginfo('url'); ?>/sneak-peek">
+							<?php echo get_field('sneak_peak_heading', 'option'); ?>
+						</a>
+					</li>	
+					<?php endif; ?>
+
 					<li>
 						<a href="<?php bloginfo('url'); ?>/how-it-works">
 							How it Works

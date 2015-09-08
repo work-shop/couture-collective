@@ -52,7 +52,23 @@ function ws_decide_image_type( $file ) {
 
 function ws_fst( $lst ) { return array_shift( $lst ); }
 
+/**
+ * This routine splits an array into two subarrays based
+ * on a callback.
+ * 
+ * @param  array(A)  $array    the array to split
+ * @param  [A -> Z] $callback a function mapping values of the array into unique indices.
+ * @return [array(array(a))]    
+ */
+function ws_array_split( $array = array(), $callback ) {
+	$return = array();
 
+	foreach ($array as $value) {
+		$return[ $callback( $value ) ][] = $value;
+	}
+
+	return $return;
+}
 
 
 // functions for manipulating $_GET and $_POST data

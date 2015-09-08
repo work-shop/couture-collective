@@ -161,6 +161,9 @@ ul {
   -webkit-padding-start: 0px;
 }
 /********** @THEME *********/
+.m1 {
+  margin-bottom: 1em;
+}
 .m0 {
   margin: 0;
 }
@@ -178,6 +181,10 @@ ul {
 }
 .p0 {
   padding: 0;
+}
+.p-5 {
+  padding-left: .5em;
+  padding-right: .5em;
 }
 .cursor-pointer:hover {
   cursor: pointer;
@@ -743,7 +750,7 @@ h6,
 }
 .after #header {
   background: #ebdedb;
-  height: 118px;
+  height: auto;
 }
 .after #header #logo {
   margin: 0 auto;

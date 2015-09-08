@@ -36,7 +36,11 @@ class CC_Init {
 	 *
 	 */
 	public function cc_dress_init() {
-		$labels_dress = array(
+		self::cc_trunk_shows_init();
+		self::cc_seasons_init();
+
+		$labels = array(
+
 			'name' => 'Dresses',
 			'singular_name' =>'Dress',
 			'add_new' => 'Add New',
@@ -56,8 +60,15 @@ class CC_Init {
 			'has_archive' => true,
 			'rewrite' => array('slug' => 'dresses'),
 			'supports' => array( 'title', 'editor', 'thumbnail', 'tags' )
-		);
+		);	
 
+		register_post_type( 'dress', $options_dress );
+	}
+
+	/**
+	 * This function initializes the seasons post-type.
+	 */
+	public function cc_seasons_init() {
 		$labels_season = array(
 			'name' => "Seasons",
 			'singular_name' => 'Season',
@@ -78,10 +89,38 @@ class CC_Init {
 			'has_archive' => true,
 			'rewrite' => array('slug' => 'seasons'),
 			'supports' => array( 'title' )
-		);	
+		);
 
-		register_post_type( 'dress', $options_dress );
 		register_post_type( 'season', $options_season );
+	}
+
+	/**
+	 * This function initializes the "trunkshow" post type.
+	 */
+	public function cc_trunk_shows_init() {
+		$labels = array(
+			'name' => 'Trunk Shows',
+			'singular_name' =>'Trunk Show',
+			'add_new' => 'Add New',
+		    	'add_new_item' => 'Add New Trunk Show',
+		    	'edit_item' => 'Edit Trunk Show',
+		    	'new_item' => 'New Trunk Show',
+		    	'all_items' => 'All Trunk Shows',
+		   	'view_item' => 'View Trunk Show',
+		   	'search_items' => 'Search Trunk Shows',
+		   	'not_found' =>  'No Trunk Shows found',
+		   	'not_found_in_trash' => 'No Trunk Shows found in Trash', 
+		);
+
+		$options = array(
+			'labels' => $labels,
+			'public' => true,
+			'has_archive' => true,
+			'rewrite' => array('slug' => 'shows'),
+			'supports' => array( 'title', 'editor', 'thumbnail' )
+		);
+
+		register_post_type( 'trunkshow', $options );
 	}
 
 	/**
