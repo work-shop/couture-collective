@@ -65,7 +65,7 @@
 	// to navigate the 
 
 	else {
-		if ( !is_home() && !is_page(array( 9, 26, 30, 363, 11, 7, 6, 3606, 919 )) ) {
+		if ( !is_home() && !is_page(array( 9, 26, 30, 363, 11, 7, 6, 3606, 919)) && (!is_post_type_archive( 'trunkshow' ) ) && !is_singular('trunkshow') ) {
 
 			get_template_part('_partials/login','modal');
 
