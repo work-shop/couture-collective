@@ -191,11 +191,13 @@ $alert_state = 'site-alert-off';
 								</li>	
 								
 								
+								<?php if ( is_user_logged_in() ) : ?>
 								<li>
 									<a href="<?php bloginfo('url'); ?>/shows">
-										Upcoming Shows	
+										Upcoming Shows
 									</a>
 								</li>	
+								<?php endif; ?>
 								
 								
 								<?php if ( get_field('sneak_peak_active', 'option') ) : ?>
@@ -323,12 +325,13 @@ $alert_state = 'site-alert-off';
 						</a>
 					</li>	
 
-					
+					<?php if ( is_user_logged_in() ) : ?>
 					<li>
 						<a href="<?php bloginfo('url'); ?>/shows">
 							Upcoming Shows
 						</a>
 					</li>	
+					<?php endif; ?>
 					
 
 					<?php if ( get_field('sneak_peak_active', 'option') ) : ?>
