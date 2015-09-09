@@ -479,14 +479,18 @@ class CC_Controller {
 			$d_a_e = get_field( 'trunk_show_date_end', $a->ID );
 			$d_b_e = get_field( 'trunk_show_date_end', $b->ID );
 
-			$cmp_a = ($d_a_e) ? $d_a_e : $d_a_s;
-			$cmp_b = ($d_b_e) ? $d_b_e : $d_b_s;
+			$cmp_a = ($d_a_e) ? $d_a_s : $d_a_s;
+			$cmp_b = ($d_b_e) ? $d_b_s : $d_b_s;
 
 			return ( $cmp_a > $cmp_b ) ? 1 : (( $cmp_a < $cmp_b ) ? -1 : 0);
 		});
 
 		$split = ws_array_split( $shows, function( $show ) {
-			$date = get_field( 'trunk_show_date', $show->ID );
+			$start = get_field( 'trunk_show_date', $show->ID );
+			$end = get_field('trunk_show_date_end', $show->ID );
+
+			$date = ( $end ) ? $end : $start;
+
 			return ($date >= $GLOBALS['__get_trunkshows_by_date_pivot::NOW']) ? 0 : 1;
 		});
 

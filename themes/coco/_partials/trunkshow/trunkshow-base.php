@@ -6,7 +6,7 @@ $trunkshow = $GLOBALS['TRUNKSHOW'];
 
 
 
-<div class="col-xs-12 col-sm-12 m3">
+<div class="col-xs-12 col-sm-12 m1">
 	<div class="row">
 		<div class="col-sm-12">
 			<p class="h11 numerals">
@@ -18,7 +18,7 @@ $trunkshow = $GLOBALS['TRUNKSHOW'];
 				?>
 			</p>
 		</div>										
-		<div class="col-sm-12">
+		<div class="col-sm-12 hidden">
 			<a href="<?php echo get_the_permalink( $trunkshow->ID ); ?>"><p class="h7 uppercase bold"><?php echo $trunkshow->post_title; ?></p></a>
 		</div>
 	</div>
