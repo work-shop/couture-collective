@@ -8,7 +8,7 @@ $upcoming_shows = $GLOBALS['UPCOMING'];
 
 	<div class="row">										
 		<div class="col-sm-12">
-			<a href="<?php bloginfo('url') ?>/shows"><p class="h7 uppercase bold ">Upcoming Shows</p>
+			<a href="<?php bloginfo('url') ?>/shows"><p class="h7-padded uppercase bold">Upcoming Shows</p>
 		</div>
 	</div>
 	<div class="row">	

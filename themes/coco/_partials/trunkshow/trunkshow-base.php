@@ -9,7 +9,7 @@ $trunkshow = $GLOBALS['TRUNKSHOW'];
 <div class="col-xs-12 col-sm-12 m1">
 	<div class="row">
 		<div class="col-sm-12">
-			<p class="h11 numerals">
+			<p class="h5 numerals">
 				<?php echo ws_render_date( get_field('trunk_show_date', $trunkshow->ID ) ); ?>
 				<?php
 					if ( $end = get_field('trunk_show_date_end', $trunkshow->ID ) ) {
