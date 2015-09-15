@@ -16,8 +16,8 @@ class CC_Init {
 		'sale_price' 	=> 'dress_sale_price',
 		'rent_price' 	=> 'dress_rental_price',
 		'dry_price' 		=> 'dress_dry_cleaning_price',
-		'description' 	=> 'dress_description'
-
+		'description' 	=> 'dress_description',
+		'season_dresses' 	=> 'field_553fe01b64ca0'
 	);
 
 	/**
@@ -25,8 +25,19 @@ class CC_Init {
 	 */
 	public function __construct() {
 		add_action( 'init', array($this, 'cc_dress_init') );
-		add_action( 'save_post', array($this, 'cc_dress_modify') );
+		add_action( 'save_post', array($this, 'on_post_save') );
 		add_action( 'before_delete_post', array( $this, 'cc_dress_destroy') );
+
+		add_filter('acf/update_value/key=' . self::$fields['season_dresses'], array($this, 'cc_season_modify'), 10, 3);
+
+	}
+
+
+	public function on_post_save( $post_id  ) {
+		$post = get_post( $post_id );
+
+		if ( cc_dress( $post ) ) { self::cc_dress_modify( $post_id  ); }
+		//else if ( cc_season( $post ) ) { self::cc_season_modify( $post_id ); }
 	}
 
 	/**
@@ -676,6 +687,52 @@ class CC_Init {
 		} else {
 			// ERROR, no 1-to-3 injection.
 		}
+	}
+
+
+	/**
+	 * This dress ensures functionality of the relation dresses --> seasons.
+	 * It gives preference to the latest action, ignoring previous relations.
+	 * 
+	 * @param  [type] $post_id [description]
+	 * @return [type]          [description]
+	 */
+	public function cc_season_modify( $value, $post_id, $field ) {
+		$post = get_post( $post_id );
+		if ( !cc_season( $post ) ) return;
+
+		remove_filter('acf/update_value/name=' . self::$fields['season_dresses'], array($this, 'cc_season_modify'), 10 );
+
+		$meta_query = array('relation' => 'OR');
+
+		foreach ( $value as $dress_id ) {
+
+			array_push($meta_query, array(
+				'key' => 'season_dresses',
+				'value' => '"' . $dress_id . '"',
+				'compare' => 'LIKE'
+			));
+
+		}
+
+		$seasons = get_posts(array(
+			'post__not_in' => array( $post_id ),
+			'post_type' => 'season',
+			'meta_query' => $meta_query
+		));
+
+		foreach ( $seasons as $season ) {
+
+			$dresses = get_field(self::$fields['season_dresses'], $season->ID );
+			$new_dresses = array_diff($dresses, $value);
+			update_field( self::$fields['season_dresses'], $new_dresses, $season->ID );
+
+		}
+
+		add_filter('acf/update_value/name=' . self::$fields['season_dresses'], array($this, 'cc_season_modify'), 10, 3);
+
+		return $value;
+
 	}
 
 }
