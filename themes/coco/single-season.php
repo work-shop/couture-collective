@@ -61,6 +61,8 @@
 
 					while ( $GLOBALS['LOOP']->have_posts() ) : 
 
+						$GLOBALS['LOOP']->the_post();
+
 						$sale = new WC_Product( get_field('dress_sale_product_instance', get_the_ID() )[0]->ID );
 
 						if ( $sale->is_in_stock() ) {
@@ -73,17 +75,15 @@
 
 						 	$index++;
 
-					 	} else {
-
-					 		$GLOBALS['LOOP']->the_post();
-
-					 	}	
+					 	} 	
 
 					endwhile;
 
 				} else { 
 					echo '<h1>There aren\'t any dresses right now!</h1>';
 				} 
+
+				wp_reset_postdata();
 
 				?>
 				</div>

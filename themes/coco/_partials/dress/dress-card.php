@@ -1,9 +1,3 @@
-<?php
-	//PARAMETERS: WP_Query Iterator:
-	$GLOBALS['LOOP']->the_post(); 
-?>
-
-
 <div class="col-sm-3 col-md-3 col-xs-6 product-card card <?php echo cc_get_dress_states( $GLOBALS['USER'], get_the_ID() ); ?>">
 	<a href="<?php  the_permalink(); ?>">
 
@@ -23,5 +17,3 @@
 	
 	</a>
 </div>
-
-

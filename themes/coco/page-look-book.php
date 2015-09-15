@@ -62,6 +62,8 @@
 
 					while ( $GLOBALS['LOOP']->have_posts() ) : 
 
+						$GLOBALS['LOOP']->the_post();
+
 						if ( $index % $row_length == 0 ) echo '<div class="row">';
 
 					 	get_template_part( '_partials/dress/dress', 'card' );
