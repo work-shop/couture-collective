@@ -5,6 +5,12 @@
 		$GLOBALS['CC_POST_DATA']['share']->id
 	);
 	
+	$in_stock = $GLOBALS['CC_POST_DATA']['sale']->is_in_stock();
+	$active = $GLOBALS['CC_POST_DATA']['active'];
+
+	var_dump( $GLOBALS['CC_POST_DATA']['id']);
+	var_dump( $in_stock );
+
 	$user = $GLOBALS['CC_POST_DATA']['user'];
 	$sale = $GLOBALS['CC_POST_DATA']['sale'];
 
@@ -28,27 +34,39 @@
 	 */
 	$rental_price = get_field('dress_rental_price', get_the_ID() );
 
-	if ( !cc_user_is_guest() ) {
+	if ( !cc_user_is_guest() && ( $active || $in_stock ) ) {
 ?>
 
 
 
 <ul id="tabs-nav" class="list-inline<?php if ( $owned ) { ?> owned<?php } ?>">
 
-	<?php if ( $owned ) { ?>
 
-		<li class="active h7"><span class="uppercase m3">Reservations</span><br/ ><span class="h8 numerals"><?php echo wc_trim_zeros( wc_price( $dry_cleaning_price ) ); ?></span></li>
+	
+	<?php if ( $active ) { ?>
 
-	<?php } else { ?>
+		<?php if ( $owned ) { ?>
 
-		<li class="active h7"><span class="uppercase">Share</span><br /><span class="h8 numerals"><?php echo wc_trim_zeros( wc_price( $share_price) ); ?></span></li>
-		<li class="h7"><span class="uppercase">Rental</span><br /><span class="h8 numerals"><?php echo wc_trim_zeros(wc_price( $rental_price)); ?></span></li>
+			<li class="active h7"><span class="uppercase m3">Reservations</span><br/ ><span class="h8 numerals"><?php echo wc_trim_zeros( wc_price( $dry_cleaning_price ) ); ?></span></li>
 
-	<?php } ?>
+		<?php } else { ?>
 
-	<?php if ( $sale->is_in_stock() ) { ?>
+			<li class="active h7"><span class="uppercase">Share</span><br /><span class="h8 numerals"><?php echo wc_trim_zeros( wc_price( $share_price) ); ?></span></li>
+			<li class="h7"><span class="uppercase">Rental</span><br /><span class="h8 numerals"><?php echo wc_trim_zeros(wc_price( $rental_price)); ?></span></li>
 
+		<?php } ?>
+
+		<?php if ( $in_stock ) { ?>
+
+			<li class="h7"><span class="uppercase">Sale</span><br /><span class="h8 numerals small-xs"><?php echo wc_trim_zeros( wc_price( $sale_price)); ?></span></li>
+
+		<?php } ?>
+
+	<?php } else if ( $in_stock ) { ?>
+
+		<li class="active h7"><span class="uppercase">Rental</span><br /><span class="h8 numerals"><?php echo wc_trim_zeros(wc_price( $rental_price)); ?></span></li>
 		<li class="h7"><span class="uppercase">Sale</span><br /><span class="h8 numerals small-xs"><?php echo wc_trim_zeros( wc_price( $sale_price)); ?></span></li>
+
 
 	<?php } ?>
 
@@ -58,19 +76,29 @@
 
 <?php
 	
-	if ( $owned ) {
+	if ( $active ) {
 
-		get_template_part('_partials/dress/dress','owned');
 
-	} else {
+		if ( $owned ) {
 
-		get_template_part('_partials/dress/dress','share');
+			get_template_part('_partials/dress/dress','owned');
+
+		} else {
+
+			get_template_part('_partials/dress/dress','share');
+			get_template_part('_partials/dress/dress','rental');
+
+		}
+
+		if ( $in_stock ) {
+
+			get_template_part('_partials/dress/dress','sale');
+
+		}
+
+	} else if ( $in_stock ) {
+
 		get_template_part('_partials/dress/dress','rental');
-
-	}
-
-	if ( $sale->is_in_stock() ) {
-
 		get_template_part('_partials/dress/dress','sale');
 
 	}

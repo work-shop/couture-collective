@@ -51,7 +51,7 @@
 					'post_type' => 'dress',
 					'posts_per_page' => -1,
 					'orderby' => 'title',
-					'order' => 'ASC'
+					'order' => 'ASC',
 				);
 
 				$GLOBALS['LOOP'] = new WP_Query( $args );
@@ -61,13 +61,24 @@
 
 					while ( $GLOBALS['LOOP']->have_posts() ) : 
 
-						if ( $index % $row_length == 0 ) echo '<div class="row">';
+						$sale = new WC_Product( get_field('dress_sale_product_instance', get_the_ID() )[0]->ID );
 
-					 	get_template_part( '_partials/dress/dress', 'card' );
+						if ( $sale->is_in_stock() ) {
 
-					 	if ( $index % $row_length == $row_length - 1 ) echo '</div>';
+							if ( $index % $row_length == 0 ) echo '<div class="row">';
 
-					 	$index++;
+						 	get_template_part( '_partials/dress/dress', 'card' );
+
+						 	if ( $index % $row_length == $row_length - 1 ) echo '</div>';
+
+						 	$index++;
+
+					 	} else {
+
+					 		$GLOBALS['LOOP']->the_post();
+
+					 	}	
+
 					endwhile;
 
 				} else { 

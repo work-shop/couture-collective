@@ -119,6 +119,17 @@ class CC_Controller {
  		return ( $dresses ) ? $dresses : array();
  	}
 
+ 	/**
+ 	 * This routine returns true if the indicated dress is a member of the current
+ 	 * season, and false otherwise.
+ 	 * 
+ 	 * @param  [int] $dress_id the id of the dress to test for.
+ 	 * @return [boolean]           true if $dress_id is in the current season of dresses
+ 	 */
+ 	public static function dress_is_in_active_season( $dress_id ) {
+ 		return count( array_intersect( self::get_dresses_for_season( self::get_active_season() ), array( $dress_id ))) > 0;
+ 	}
+
 
  	/**
  	 * gets the shared dresses for a user, optionally updating the closed values for that user
@@ -149,7 +160,10 @@ class CC_Controller {
  		$dresses['share'] = array_values( $shares );
  		update_user_meta( $user->ID, 'cc_closet_values', $dresses );
 
- 		return $dresses['share'];
+ 		// restrict the active shared dresses to the dresses that are in the currently active season.
+ 		$season_dresses = CC_Controller::get_dresses_for_season( CC_Controller::get_active_season() );
+
+ 		return array_intersect( $dresses['share'], $season_dresses );
  	}
 
 

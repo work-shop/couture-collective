@@ -1,4 +1,4 @@
-<li class="tab">
+<li class="<?php if ( ! $GLOBALS['CC_POST_DATA']['active']) : ?>active<?php endif; ?> tab">
 <?php
 
 
