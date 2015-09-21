@@ -136,8 +136,8 @@
 <?php get_template_part('ie'); ?>
 
 <?php
-$alert_state = 'site-alert-off';
-//admin pages, my-account, and closet
+// $alert_state = ( is_front_page() ) ? 'site-alert-off' : 'site-alert-off';
+// //admin pages, my-account, and closet
 // if ( !(is_admin() || is_page( array( 7 ) ) || is_page( array( 35 ) )) ) :
 // 	$alert_state = 'site-alert-on';
 // 	if ( is_user_logged_in() ) :
@@ -149,6 +149,12 @@ $alert_state = 'site-alert-off';
 // 	 	endif;
 // 	endif; 	
 // endif; 
+// 
+ 
+if ( get_current_user_id() != 1 ) {
+	$alert_state = "site-alert-on";
+}
+
 ?>
 
 <div id="state" class="loading <?php echo $alert_state; ?>">
@@ -163,10 +169,12 @@ $alert_state = 'site-alert-off';
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-8 col-sm-offset-2">
-						<h2 class="m1">We are currently experiencing some technical problems on Couture Collective. </h2>
-						<h2>You may have trouble accessing your account, or your order information. We are working as quickly as we can to correct the problem. </h2>
-						<h2>Thanks for your patience.</h2>
-					
+						<h2 class="m1">We're currently in the process of updating Couture Collective!</h2>
+						
+						<h2>You'll be able to access the site again soon.</h2>
+						
+						<h2 class="italic">Thanks for your patience.</h2>
+
 					</div>
 				</div>
 			</div>

@@ -8,9 +8,6 @@
 	$in_stock = $GLOBALS['CC_POST_DATA']['sale']->is_in_stock();
 	$active = $GLOBALS['CC_POST_DATA']['active'];
 
-	var_dump( $GLOBALS['CC_POST_DATA']['id']);
-	var_dump( $in_stock );
-
 	$user = $GLOBALS['CC_POST_DATA']['user'];
 	$sale = $GLOBALS['CC_POST_DATA']['sale'];
 
