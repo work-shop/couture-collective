@@ -151,11 +151,12 @@
 // endif; 
 // 
  
-if ( get_current_user_id() != 1 ) {
+if ( /*get_current_user_id() != 1*/ false ) {
 	$alert_state = "site-alert-on";
 } else {
 	$alert_state = "site-alert-off";
 }
+
 
 ?>
 
