@@ -153,6 +153,8 @@
  
 if ( get_current_user_id() != 1 ) {
 	$alert_state = "site-alert-on";
+} else {
+	$alert_state = "site-alert-off";
 }
 
 ?>
@@ -173,7 +175,9 @@ if ( get_current_user_id() != 1 ) {
 						
 						<h2>You'll be able to access the site again soon.</h2>
 						
-						<h2 class="italic">Thanks for your patience.</h2>
+						<h2 class="italic m1">Thanks for your patience.</h2>
+
+						<?php get_template_part('_partials/login'); ?>
 
 					</div>
 				</div>
