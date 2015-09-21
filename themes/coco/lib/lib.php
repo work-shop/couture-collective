@@ -101,6 +101,13 @@ function cc_dress( $post ) {
 		 ('auto-draft' != $post->post_status );
 }
 
+function cc_season( $post ) {
+	return ('season' == $post->post_type) && 
+		 ('draft' != $post->post_status ) &&
+		 ('trash' != $post->post_status ) &&
+		 ('auto-draft' != $post->post_status );
+}
+
 function cc_dress_trash( $post ) {
 	return ('dress' == $post->post_type) && 
 		 ('trash' == $post->post_status );

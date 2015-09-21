@@ -12,6 +12,9 @@ $GLOBALS['CC_POST_DATA']['images'] = get_field('dress_images', $id);
 $GLOBALS['CC_POST_DATA']['size'] = get_field('dress_size', $id);
 
 
+$GLOBALS['CC_POST_DATA']['active'] = CC_Controller::dress_is_in_active_season( $id );
+
+
 
 if ( $GLOBALS['CC_POST_DATA']['logged_in'] ) {
 	$GLOBALS['CC_POST_DATA']['sale'] = new WC_Product( get_field('dress_sale_product_instance', $id )[0]->ID );
@@ -20,6 +23,9 @@ if ( $GLOBALS['CC_POST_DATA']['logged_in'] ) {
 	$GLOBALS['CC_POST_DATA']['user'] = wp_get_current_user();
 	$GLOBALS['CC_POST_DATA']['prereservations'] = CC_Controller::get_prereservations_for_dress_rental($GLOBALS['CC_POST_DATA']['rental']->id, $GLOBALS['CC_POST_DATA']['user']->ID);
 	$GLOBALS['CC_POST_DATA']['tomorrow'] = CC_Controller::available_tomorrow( $GLOBALS['CC_POST_DATA']['rental'] );
+
+	$shares = CC_Controller::get_shared_dresses_for_user( $GLOBALS['CC_POST_DATA']['user'] );
+	$GLOBALS['CC_POST_DATA']['owned'] = in_array( $GLOBALS['CC_POST_DATA']['id'], $shares);
 
 }
 

@@ -1,4 +1,4 @@
-<li class="active row">
+<li class="<?php if ( $GLOBALS['CC_POST_DATA']['active']) : ?>active<?php endif; ?> row">
 	<div class="col-sm-12" >
 	<?php
 		$user = $GLOBALS['CC_POST_DATA']['user'];

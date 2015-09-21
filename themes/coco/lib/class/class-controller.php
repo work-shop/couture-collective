@@ -1,7 +1,11 @@
 <?php
 
 class CC_Controller {
-
+	public static $field_keys = array(
+		'closet_values' => 'field_553f9d01909ec',
+		'season_dresses' => 'field_553fe01b64ca0',
+		'active_season' => 'field_553fe0e583f45'
+	);
 
 	public static $maximum_prereservations = 5;
 
@@ -94,6 +98,40 @@ class CC_Controller {
 
 
  	/**
+ 	 * gets the id of the currently active season.
+ 	 *
+ 	 * @return int, the id of the currently activated season.
+ 	 */
+ 	public static function get_active_season() {
+ 		return ws_fst( get_field(CC_Controller::$field_keys['active_season'], 'option') );
+ 	}
+
+
+ 	/**
+ 	 * Given the id of a season post, returns the dresses associated with that season.
+ 	 *
+ 	 * @param int $season_id 
+ 	 * @return array(int), the dresses in this season.
+ 	 *
+ 	 */
+ 	public static function get_dresses_for_season( $season_id ) {
+ 		$dresses = get_field( CC_Controller::$field_keys['season_dresses'], $season_id );
+ 		return ( $dresses ) ? $dresses : array();
+ 	}
+
+ 	/**
+ 	 * This routine returns true if the indicated dress is a member of the current
+ 	 * season, and false otherwise.
+ 	 * 
+ 	 * @param  [int] $dress_id the id of the dress to test for.
+ 	 * @return [boolean]           true if $dress_id is in the current season of dresses
+ 	 */
+ 	public static function dress_is_in_active_season( $dress_id ) {
+ 		return count( array_intersect( self::get_dresses_for_season( self::get_active_season() ), array( $dress_id ))) > 0;
+ 	}
+
+
+ 	/**
  	 * gets the shared dresses for a user, optionally updating the closed values for that user
  	 * if they are out of date.
  	 *
@@ -122,8 +160,89 @@ class CC_Controller {
  		$dresses['share'] = array_values( $shares );
  		update_user_meta( $user->ID, 'cc_closet_values', $dresses );
 
- 		return $dresses['share'];
+ 		// restrict the active shared dresses to the dresses that are in the currently active season.
+ 		$season_dresses = CC_Controller::get_dresses_for_season( CC_Controller::get_active_season() );
+
+ 		return array_intersect( $dresses['share'], $season_dresses );
  	}
+
+
+
+ 	/**
+ 	 * gets the shared dresses for a user, optionally updating the closed values for that user
+ 	 * if they are out of date.
+ 	 *
+ 	 * @param WP_User $user user to get shared dresses for
+ 	 * @return array(string) dress ids.
+ 	 */
+ 	public static function MIGRATE_and_get_shared_dresses_for_user( $user ) {
+
+ 		// get the old dresses for this user, to prepare for a migration.
+ 		$old_dresses = get_user_meta( $user->ID, 'cc_closet_values', true );
+
+ 		// get the newly stored dresses for the user. Avoid the unset case.
+ 		$new_dresses = ($arr = get_field('closet_values', 'user_' . $user->ID )) ? $arr : array();
+
+ 		// now its time to normalize the set of closet value, based on the new configuration.
+ 		$shares = array_unique( array_merge( $new_dresses, (( !empty( $old_dresses ) && array_key_exists('share', $old_dresses) ) ? $old_dresses['share'] : array()) ) );
+
+
+ 		foreach ($shares as $i => $share) {
+ 			if ( $share ) {
+ 				$dress = get_post( $share );
+	 			$product = wc_get_product( ws_fst( get_field( 'dress_share_product_instance', $share ))->ID );
+	 			/*
+					When do we know that this is a valid share instance?
+
+					Inference Schema for Dress Ownership
+
+					Old array?		New array?		Order Exists?
+				1	Y 			Y 			Y					=>	Y (Theoretically Won't Happen...)
+				2	Y 			Y 			_					=>   	Y (It has been manually added.)
+				3	Y 			_ 			Y					=>   	Y
+				4	Y 			_ 			_					=>	_
+				5	_ 			Y 			Y					=>   	Y
+				6	_			Y 			_					=>	Y
+				7	_  			_ 			Y					=>	_
+				8	_  			_ 			_					=> 	_
+
+	 			*/
+
+				$o = in_array( $share, $old_dresses ); // is this share in the old array?
+				$n = in_array( $share, $new_dresses ); // is this share in the new array?
+				$e = woocommerce_customer_bought_product( $user->user_email, $user->ID, $product->id ); // was this product purchased?
+
+	 			if ( 	!$shares[ $i ]  
+
+	 			   || ($o && !($n || $e)) 	// line 4 of the truth table above
+	 			   || (!($o || $n) && $e) 	// line 7 of the truth table above
+	 			   					// line 8 never happens.
+	 			   ) {
+
+	 				unset( $shares[ $i ] );
+
+	 			}
+ 			} else {
+ 				unset( $shares[$i] );
+ 			}
+ 		}
+
+ 		// now it's very important that we update our invariants.
+ 		$new_dresses = array_values( $shares );
+ 		$old_dresses['share'] = array(); // mark the old array as visited – remove all entries. (migration complete)
+
+ 		update_user_meta( $user->ID, 'cc_closet_values', $old_dresses );
+ 		update_field( CC_Controller::$field_keys['closet_values'], $new_dresses, 'user_' . $user->ID );
+
+ 		// now that the values have been saved and computed, we need to intersect this array with the active season's dresses.
+
+
+ 		$season_dresses = CC_Controller::get_dresses_for_season( CC_Controller::get_active_season() );
+
+ 		return array_intersect($season_dresses, $new_dresses);
+ 	}
+
+
 
  	/**
  	 * Given a bookable product id, returns the set of prereservations for that dress.
@@ -334,7 +453,7 @@ class CC_Controller {
  	}
 
 
-	/**
+ 	/**
 	 * Given a product ID, this function adds the dress the appropropriate
 	 * bin on a given user's meta taxonomy.
 	 *
@@ -388,6 +507,160 @@ class CC_Controller {
 
 		update_user_meta( $customer_id, 'cc_closet_values', $closet );
 
+	}
+
+	/**
+	 * Given a product ID, this function adds the dress the appropropriate
+	 * bin on a given user's meta taxonomy.
+	 *
+	 * @param {"share","rental"} $type, the type that the passed product id belongs to.
+	 * @param int $product_id, the product to reverse lookup.
+	 * @param int $customer_id, the customer to assign the dress to.
+	 */
+	public static function MIGRATE_and_add_dress_to_customer_closet( $type, $product_id, $customer_id ) {
+		if ( !in_array($type, array('share','rental')) ) return; 
+		if ( !$customer_id || !$product_id ) return;
+
+		$parent_dresses = get_posts(array(
+			'post_type' => 'dress',
+			'meta_query' => array(
+				array(
+					'key' => 'dress_'.$type.'_product_instance',
+					'value' => '"'.$product_id.'"',
+					'compare' => 'LIKE'
+				)
+			)
+		));
+
+		$parent_dress_id = $parent_dresses[0]->ID;
+
+		switch ( $type ) {
+			case 'share':
+				return CC_Controller::add_share_to_customer_closet( $parent_dress_id, $customer_id );
+
+			case 'rental':
+				return CC_Controller::add_rental_to_customer_closet( $parent_dress_id, $customer_id );
+		}
+
+	}
+
+	/**
+	 * add_share_to_customer_closet : int x int -> void
+	 *
+	 *
+	 * @since v1.5
+	 * @param int $dress_id, the dress to insert into the closet.
+	 * @param int $customer_id, the customer to assign the dress to. 
+	 *
+	 */
+	public static function add_share_to_customer_closet( $dress_id, $customer_id ) {
+		/**
+		 * This routine needs to: 
+		 *  1. get the existing closet representation for a user,
+ 		 *  2. ?? branch if that value is empty
+ 		 *  		2.1 (YES) add the dress id to the given user's closet value ACF field
+ 		 *		2.2 (NO) add each of the values in the share closet and add them to
+ 		 *                    to the ACF field, then replace the the closet with an empty array.
+ 		 *
+		 *
+		 */
+
+		$shares = CC_Controller::get_shared_dresses_for_user( $customer_id );
+
+		$shares = array_unique( array_merge( $shares, array( $dress_id ) ) );
+
+		update_field(CC_Controller::$field_keys['closet_values'], $shares, 'user_' . $customer_id );
+
+	}
+
+
+
+	// public static function add_share_to_customer_closet( $dress_id, $customer_id ) {
+	// 	/**
+	// 	 * This routine needs to: 
+	// 	 *  1. get the existing closet representation for a user,
+ // 		 *  2. ?? branch if that value is empty
+ // 		 *  		2.1 (YES) add the dress id to the given user's closet value ACF field
+ // 		 *		2.2 (NO) add each of the values in the share closet and add them to
+ // 		 *                    to the ACF field, then replace the the closet with an empty array.
+ // 		 *
+	// 	 *
+	// 	 */
+
+	// 	// 1. get existing closet representation for the user
+	// 	$closet = get_user_meta( $customer_id, "cc_closet_values", true);
+
+	// 	// if the closet is NOT empty, and the 'share' field is set...
+	// 	if ( !empty($closet) && isset( $closet[ "share" ] ) && !empty( $closet["share"] ) ) {
+	// 		// check to see if the current dress id exists in the array.
+	// 		$existing = array_keys( $closet[ "share" ], $dress_id );
+
+	// 		if ( !empty( $existing ) ) {
+	// 			if ( ($n = count( $existing )) > 1 ) {
+	// 				for ( $i = 1; $i < $n; $i++ ) {
+	// 					unset( $closet[ "share" ][ $existing[ $i ] ] );
+	// 				}
+	// 			} else {
+	// 				return;
+	// 			}
+	// 		} else {
+	// 			$closet[ "share" ][] = $dress_id;
+	// 		}
+	// 	} else {
+	// 		$closet[ "share" ] = array( $dress_id );
+	// 	}
+
+	// 	// closet['share'] now contains the proper representation of shared dresses.
+	// 	// we'll update the current values of the field with the proper value.
+	// 	update_field(CC_Controller::$field_keys["closet_values"], $closet["share"], "user_" . $customer_id );
+
+	// 	// unset the value at the share position.
+	// 	unset( $closet[ "share" ] );
+
+	// 	// tag the meta value with blank data to signal that the migration has taken place.
+	// 	update_user_meta( $customer_id, "cc_closet_values", $closet );
+
+	// }
+
+	/**
+	 * add_rental_to_customer_closet : int x int -> void
+	 *
+	 * add a rental product to a customer's closet based on the original
+	 * routine specification. This method is ported over from the original
+	 * dress placement routine, and is factored out to allow for the user's
+	 * shares to be handled differently. The previous $type : String parameter
+	 * has been inlined in this version of the routine.
+	 *
+	 * @since v1.5
+	 * @param int $dress_id, the dress to insert into the closet.
+	 * @param int $customer_id, the customer to assign the dress to. 
+	 *
+	 */
+	public static function add_rental_to_customer_closet( $dress_id, $customer_id ) {
+
+		$closet = get_user_meta( $customer_id, 'cc_closet_values', true);
+
+		if ( !empty($closet) && isset( $closet[ 'rental' ] ) ) {
+			// get existing keys in the array,
+			$existing = array_keys( $closet[ 'rental' ], $dress_id );
+
+			if ( !empty( $existing ) ) {
+				if ( ($n = count( $existing )) > 1 ) {
+					for ( $i = 1; $i < $n; $i++ ) {
+						unset( $closet[ 'rental' ][ $existing[ $i ] ] );
+					}
+				} else {
+					return;
+				}
+			} else {
+				$closet[ 'rental' ][] = $dress_id;
+			}
+		} else {
+			$closet[ 'rental' ] = array( $dress_id );
+		}
+
+		update_user_meta( $customer_id, 'cc_closet_values', $closet );
+		
 	}
 
 	/**
