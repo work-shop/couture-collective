@@ -729,7 +729,7 @@ class CC_Controller {
 		
 		$upcoming = self::get_trunkshows_by_date_pivot( date('Ymd') );
 
-		return ( empty( $upcoming ) ) ? $upcoming : $upcoming[0];
+		return ( ! isset( $upcoming[0] ) ) ? array() : $upcoming[0];
 
 	}
 
