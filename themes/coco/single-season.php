@@ -63,7 +63,7 @@
 
 						$GLOBALS['LOOP']->the_post();
 
-						$sale = new WC_Product( get_field('dress_sale_product_instance', get_the_ID() )[0]->ID );
+						$sale = new WC_Product( get_field( CC_Controller::$field_keys['sale_product'], get_the_ID() )[0]->ID );
 
 						if ( $sale->is_in_stock() ) {
 

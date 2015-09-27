@@ -170,11 +170,16 @@ class CC_Actions {
 	public function add_dress_to_customer( $order_id ) {
 		if ( !$order_id ) return;
 
+
+
 		if ( $order_id && ($order = wc_get_order( $order_id )) ) {
 			//$customer_id = get_current_user_id();
 			$customer_id = $order->get_user_id();
 
+
+
 			foreach ( $order->get_items() as $order_item ) {
+				var_dump('got here FOREACH 1');
 				$product_id = (count( $order_item['item_meta']['_product_id'] ) == 1) 
 						  ? $order_item['item_meta']['_product_id'][0] : "";
 
@@ -185,12 +190,20 @@ class CC_Actions {
 
 				$terms = wp_get_object_terms( $product_id, 'product_cat', array('fields' => 'names') ); 
 				foreach ($terms as $name) {
+					var_dump('got here FOREACH 2');
 					if ( in_array($name, array('share', 'rental')) ) {
+						var_dump('got here B');
+						var_dump( $customer_id );
+
 						CC_Controller::add_dress_to_customer_closet( $name, $product_id, $customer_id );
 					}
 				}
 			}
 		}
+	}
+
+	public function admin_add_dress_to_customer( $order_id ) {
+
 	}
 
 

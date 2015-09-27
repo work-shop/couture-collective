@@ -8,9 +8,9 @@ class CC_Init {
 	 * @var string map of custom fields names to database labels
 	 */
 	public static $fields = array(
-		'rental' 		=> 'dress_rental_product_instance',
-		'sale' 		=> 'dress_sale_product_instance',
-		'share' 		=> 'dress_share_product_instance',
+		'rental' 		=> 'field_547b33139d8a7',
+		'sale' 		=> 'field_547b32879d8a4',
+		'share' 		=> 'field_547b32da9d8a6',
 		'id'			=> 'dress_id_number',
 		'share_price'	=> 'dress_share_price',
 		'sale_price' 	=> 'dress_sale_price',

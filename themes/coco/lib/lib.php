@@ -135,8 +135,8 @@ function cc_active_bookings( $x,$y ) {
 
 function cc_get_dress_states( $user, $dress_id ) {
 	$class_string = "";
-	$share_arr = get_field( 'dress_share_product_instance', $dress_id );
-	$sale_arr = get_field( 'dress_sale_product_instance', $dress_id );
+	$share_arr = get_field( CC_Controller::$field_keys['share_product'], $dress_id );
+	$sale_arr = get_field( CC_Controller::$field_keys['sale_product'], $dress_id );
 
 	if ( $user && !empty( $share_arr ) && !empty( $sale_arr ) ) {
 

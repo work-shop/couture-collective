@@ -4,7 +4,10 @@ class CC_Controller {
 	public static $field_keys = array(
 		'closet_values' => 'field_553f9d01909ec',
 		'season_dresses' => 'field_553fe01b64ca0',
-		'active_season' => 'field_553fe0e583f45'
+		'active_season' => 'field_553fe0e583f45',
+		'sale_product' => 'field_547b32879d8a4',
+		'share_product' => 'field_547b32da9d8a6',
+		'rental_product' => 'field_547b33139d8a7'
 	);
 
 	public static $maximum_prereservations = 5;
@@ -146,7 +149,7 @@ class CC_Controller {
  		foreach ($shares as $i => $share) {
  			if ( $share ) {
  				$dress = get_post( $share );
-	 			$product = wc_get_product( ws_fst( get_field( 'dress_share_product_instance', $share ))->ID );
+	 			$product = wc_get_product( ws_fst( get_field( CC_Controller::$field_keys['share_product'], $share ))->ID );
 
 	 			if ( !$shares[ $i ]  || !woocommerce_customer_bought_product( $user->user_email, $user->ID, $product->id ) ) {
 	 				unset( $shares[ $i ] );
@@ -190,7 +193,7 @@ class CC_Controller {
  		foreach ($shares as $i => $share) {
  			if ( $share ) {
  				$dress = get_post( $share );
-	 			$product = wc_get_product( ws_fst( get_field( 'dress_share_product_instance', $share ))->ID );
+	 			$product = wc_get_product( ws_fst( get_field( CC_Controller::$field_keys['share_product'], $share ))->ID );
 	 			/*
 					When do we know that this is a valid share instance?
 
