@@ -25,7 +25,7 @@ $shares = CC_Controller::get_shared_dresses_for_user( wp_get_current_user() );
 			$dress = get_post( $share );
 			$GLOBALS['CC_CLOSET_DATA']['dress'] = $dress;
 			
-			$rental = get_field('dress_rental_product_instance', $share );
+			$rental = get_field( CC_Controller::$field_keys['rental_product'], $share );
 
 			if ( empty( $rental ) ) continue;
 

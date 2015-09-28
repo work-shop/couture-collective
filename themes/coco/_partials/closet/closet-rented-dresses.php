@@ -34,7 +34,7 @@ $rentals = CC_Controller::get_rentals_by_dress_for_user( get_current_user_id() )
 			</div>
 			<div class="col-sm-6 col-md-5 col-md-offset-1">
 				<?php
-					$rental = get_field('dress_rental_product_instance', $dress );
+					$rental = get_field(CC_Controller::$field_keys['rental_product'], $dress );
 
 					if ( empty( $rental ) ) continue;
 
