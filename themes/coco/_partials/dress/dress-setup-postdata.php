@@ -15,7 +15,6 @@ $GLOBALS['CC_POST_DATA']['size'] = get_field('dress_size', $id);
 $GLOBALS['CC_POST_DATA']['active'] = CC_Controller::dress_is_in_active_season( $id );
 
 
-
 if ( $GLOBALS['CC_POST_DATA']['logged_in'] ) {
 	$GLOBALS['CC_POST_DATA']['sale'] = new WC_Product( get_field( CC_Controller::$field_keys['sale_product'], $id )[0]->ID );
 	$GLOBALS['CC_POST_DATA']['share'] = new WC_Product( get_field( CC_Controller::$field_keys['share_product'], $id )[0]->ID );
