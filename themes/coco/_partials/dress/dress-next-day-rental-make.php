@@ -18,7 +18,7 @@ $remaining_preresevations = CC_Controller::$maximum_prereservations - count( $GL
 
 		<?php $date = CC_Controller::get_next_day_reservation( $rental ); ?>
 
-		<p class="remaining-reservations h7 uppercase m2">
+		<p class="remaining-reservations h7 uppercase m2 hidden">
 		<?php 
 		if($remaining_preresevations > 0){
 			echo $remaining_preresevations;?> reservations remaining
