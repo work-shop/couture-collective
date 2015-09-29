@@ -78,7 +78,7 @@ foreach ($order->get_items() as $key => $value) {
 
 			$dress_id = CC_Controller::get_dress_for_product( $product->id, "sale" );
 
-			echo sprintf( __('Thank you for your purchase of %s - %s! This item will be delivered to you on October 1st, 2015.'),
+			echo sprintf( __('Thank you for your purchase of %s - %s! This item will be delivered to you on April 1st, 2016.'),
 				get_field('dress_designer', $dress_id),
 				get_field('dress_description', $dress_id)
 			);
