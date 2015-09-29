@@ -5,11 +5,7 @@
 			$id = $GLOBALS['CC_POST_DATA']['id'];
 			$user = $GLOBALS['CC_POST_DATA']['logged_in'];
 		
-			$owned = $user && wc_customer_bought_product(
-				$GLOBALS['CC_POST_DATA']['user']->user_email,
-				$GLOBALS['CC_POST_DATA']['user']->ID,
-				$GLOBALS['CC_POST_DATA']['share']->id
-			);
+			$owned = $GLOBALS['CC_POST_DATA']['owned'];
 
 			$title = $GLOBALS['CC_POST_DATA']['title'];
 			$description = $GLOBALS['CC_POST_DATA']['description'];
