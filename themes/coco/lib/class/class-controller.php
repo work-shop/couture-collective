@@ -7,7 +7,9 @@ class CC_Controller {
 		'active_season' => 'field_553fe0e583f45',
 		'sale_product' => 'field_547b32879d8a4',
 		'share_product' => 'field_547b32da9d8a6',
-		'rental_product' => 'field_547b33139d8a7'
+		'rental_product' => 'field_547b33139d8a7',
+		'trunkshow_start' => 'field_55e09a49b2997',
+		'trunkshow_end' => 'field_55ef2ab89384d'
 	);
 
 	public static $maximum_prereservations = 5;
@@ -123,6 +125,40 @@ class CC_Controller {
  	}
 
  	/**
+ 	 * given a dress id, get the season that contains that dress, of false if the dress is
+ 	 * not part of a season on the site
+ 	 * 
+ 	 * @param  [int] $dress_id the id of the dress to retrieve the season of
+ 	 * @return [int]           the id of the containing season
+ 	 */
+ 	public static function get_season_for_dress( $dress_id ) {
+ 		$season = get_posts( array(
+ 			'post_type' => 'season',
+ 			'meta_query' => array(
+ 				array(
+ 					'compare' => 'LIKE',
+ 					'key' => 'season_dresses',
+ 					'value' => '"' . $dress_id . '"'
+ 				)
+ 			)
+ 		) );
+
+ 		return ( !empty( $season ) ) ? ws_fst( $season )->ID : false;
+ 	}
+
+	/**
+ 	 * This routine returns true if the indicated dress is a member of the current
+ 	 * season, and false otherwise.
+ 	 *
+ 	 * @param  [int] $season_id the id of the season to test for.
+ 	 * @param  [int] $dress_id the id of the dress to test for.
+ 	 * @return [boolean]           true if $dress_id is in the $season_id season of dresses
+ 	 */
+ 	public static function dress_is_in_season( $season_id, $dress_id ) {
+ 		return count( array_intersect( self::get_dresses_for_season( $season_id ), array( $dress_id ))) > 0;
+ 	}
+
+ 	/**
  	 * This routine returns true if the indicated dress is a member of the current
  	 * season, and false otherwise.
  	 * 
@@ -130,7 +166,7 @@ class CC_Controller {
  	 * @return [boolean]           true if $dress_id is in the current season of dresses
  	 */
  	public static function dress_is_in_active_season( $dress_id ) {
- 		return count( array_intersect( self::get_dresses_for_season( self::get_active_season() ), array( $dress_id ))) > 0;
+ 		return self::dress_is_in_season( self::get_active_season(), $dress_id );
  	}
 
 
@@ -141,34 +177,78 @@ class CC_Controller {
  	 * @param WP_User $user user to get shared dresses for
  	 * @return array(string) dress ids.
  	 */
+ 	// public static function get_shared_dresses_for_user( $user ) {
+ 	// 	$dresses = get_user_meta( $user->ID, 'cc_closet_values', true );
+
+ 	// 	$shares = ( !empty( $dresses ) && array_key_exists('share', $dresses) ) ? $dresses['share'] : array();
+
+ 	// 	foreach ($shares as $i => $share) {
+ 	// 		if ( $share ) {
+ 	// 			$dress = get_post( $share );
+	 // 			$product = wc_get_product( ws_fst( get_field( CC_Controller::$field_keys['share_product'], $share ))->ID );
+
+	 // 			if ( !$shares[ $i ]  || !woocommerce_customer_bought_product( $user->user_email, $user->ID, $product->id ) ) {
+	 // 				unset( $shares[ $i ] );
+	 // 			}
+ 	// 		} else {
+ 	// 			unset( $shares[$i] );
+ 	// 		}
+ 	// 	}
+
+
+ 	// 	$dresses['share'] = array_values( $shares );
+ 	// 	update_user_meta( $user->ID, 'cc_closet_values', $dresses );
+
+ 	// 	// restrict the active shared dresses to the dresses that are in the currently active season.
+ 	// 	$season_dresses = CC_Controller::get_dresses_for_season( CC_Controller::get_active_season() );
+
+ 	// 	return array_intersect( $dresses['share'], $season_dresses );
+ 	// }
+
+
  	public static function get_shared_dresses_for_user( $user ) {
- 		$dresses = get_user_meta( $user->ID, 'cc_closet_values', true );
 
- 		$shares = ( !empty( $dresses ) && array_key_exists('share', $dresses) ) ? $dresses['share'] : array();
+ 		$products = array_filter( self::get_products_for_user( $user ), function($x) { return has_term('share', 'product_cat', $x); } );
 
- 		foreach ($shares as $i => $share) {
- 			if ( $share ) {
- 				$dress = get_post( $share );
-	 			$product = wc_get_product( ws_fst( get_field( CC_Controller::$field_keys['share_product'], $share ))->ID );
+ 		if ( empty( $products ) ) return $products;
 
-	 			if ( !$shares[ $i ]  || !woocommerce_customer_bought_product( $user->user_email, $user->ID, $product->id ) ) {
-	 				unset( $shares[ $i ] );
-	 			}
- 			} else {
- 				unset( $shares[$i] );
- 			}
- 		}
+ 		$dresses = array_map( function( $x ) { return self::get_dress_for_product( $x, 'share' ); }, $products );
 
+ 		$season_dresses = self::get_dresses_for_season( self::get_active_season() );
 
- 		$dresses['share'] = array_values( $shares );
- 		update_user_meta( $user->ID, 'cc_closet_values', $dresses );
-
- 		// restrict the active shared dresses to the dresses that are in the currently active season.
- 		$season_dresses = CC_Controller::get_dresses_for_season( CC_Controller::get_active_season() );
-
- 		return array_intersect( $dresses['share'], $season_dresses );
+ 		return array_intersect( $dresses, $season_dresses);
  	}
 
+ 	public static function get_products_for_user( $user ) {
+ 		$orders = self::get_orders_for_user( $user->ID, array('wc-processing', 'wc-completed') );
+ 		if ( empty( $orders ) ) return $orders;
+
+ 		$order_list = '(' . join(',', $orders) . ')';
+
+ 		global $wpdb;
+
+ 		$query_select_order_items = "SELECT order_item_id as id FROM {$wpdb->prefix}woocommerce_order_items WHERE order_id IN {$order_list}";
+ 		$query_select_product_ids = "SELECT meta_value as product_id FROM {$wpdb->prefix}woocommerce_order_itemmeta WHERE meta_key=%s AND order_item_id IN ($query_select_order_items)";
+ 		$products = $wpdb->get_col( $wpdb->prepare( $query_select_product_ids, '_product_id') );
+
+ 		$products = array_map( function( $x ) { return intval( $x ); }, array_unique( $products ) );
+
+ 		return $products;
+ 	} 
+
+ 	public static function get_orders_for_user( $id, $states = array( 'wc-completed' ) ) {
+ 		if ( !$id ) return false;
+
+ 		$posts = get_posts( array(
+ 			'numberposts' => -1,
+ 			'meta_key' => '_customer_user',
+ 			'meta_value' => $id,
+ 			'post_type' => 'shop_order',
+ 			'post_status' => $states
+ 		) );
+
+ 		return wp_list_pluck( $posts, 'ID' );
+ 	}
 
 
  	/**
@@ -349,21 +429,33 @@ class CC_Controller {
  		$return = array();
  		$products = array();
  		$bookings = array_map(function($x) { return get_wc_booking( $x ); }, $booking_ids);
- 		
+
+
 
  		foreach ( $bookings as $booking ) {
  			$product = $booking->get_product();
 
+ 			
+
  			if ( !isset( $products[ $product->id ] ) ) {
+ 				$serialized_str = serialize( array( (string)$product->id) );
+				$serialized_int = serialize( array( intval( $product->id) ) );
+
  				// cache the selected dress for future use.
  				$dress = get_posts(array(
 					'post_type' => 'dress',
 					'meta_query' => array(
+						'relation' => 'OR',
 						array(
 							'key' => 'dress_rental_product_instance',
-							'value' => '"'.$product->id.'"',
-							'compare' => 'LIKE'
-						)
+							'value' => $serialized_str,
+							'compare' => '='
+						),
+						array(
+							'key' => 'dress_rental_product_instance',
+							'value' => $serialized_int,
+							'compare' => '='
+						),
 					)
 				));
 
@@ -675,6 +767,9 @@ class CC_Controller {
 	public static function get_dress_for_product( $product_id, $type = "" ) {
 		if ( !$product_id ) return false;
 
+		$serialized_str = serialize( array( (string)$product_id) );
+		$serialized_int = serialize( array( intval( $product_id ) ) );
+
 		if ( empty( $type ) ) {
 			$parent_dresses = get_posts(array(
 				'post_type' => 'dress',
@@ -682,13 +777,23 @@ class CC_Controller {
 					'relation' => 'OR',
 					array(
 						'key' => 'dress_sale_product_instance',
-						'value' => '"'.$product_id.'"',
-						'compare' => 'LIKE'
+						'value' => $serialized_int,
+						'compare' => '='
+					),
+					array(
+						'key' => 'dress_sale_product_instance',
+						'value' => $serialized_str,
+						'compare' => '='
 					),
 					array(
 						'key' => 'dress_share_product_instance',
-						'value' => '"'.$product_id.'"',
-						'compare' => 'LIKE'
+						'value' => $serialized_int,
+						'compare' => '='
+					),
+					array(
+						'key' => 'dress_share_product_instance',
+						'value' => $serialized_str,
+						'compare' => '='
 					)
 				)
 			));
@@ -698,11 +803,17 @@ class CC_Controller {
 			$parent_dresses = get_posts(array(
 				'post_type' => 'dress',
 				'meta_query' => array(
+					'relation' => 'OR',
 					array(
 						'key' => 'dress_'.$type.'_product_instance',
-						'value' => '"'.$product_id.'"',
-						'compare' => 'LIKE'
-					)
+						'value' => $serialized_int,
+						'compare' => '='
+					),
+					array(
+						'key' => 'dress_'.$type.'_product_instance',
+						'value' => $serialized_str,
+						'compare' => '='
+					),
 				)
 			));
 		}
@@ -750,10 +861,10 @@ class CC_Controller {
 		$shows = get_posts( $args );
 
 		usort($shows, function( $a, $b ) {
-			$d_a_s = get_field( 'trunk_show_date', $a->ID );
-			$d_b_s = get_field( 'trunk_show_date', $b->ID );
-			$d_a_e = get_field( 'trunk_show_date_end', $a->ID );
-			$d_b_e = get_field( 'trunk_show_date_end', $b->ID );
+			$d_a_s = get_field( self::$field_keys['trunkshow_start'], $a->ID );
+			$d_b_s = get_field( self::$field_keys['trunkshow_start'], $b->ID );
+			$d_a_e = get_field( self::$field_keys['trunkshow_end'], $a->ID );
+			$d_b_e = get_field( self::$field_keys['trunkshow_end'], $b->ID );
 
 			$cmp_a = ($d_a_e) ? $d_a_s : $d_a_s;
 			$cmp_b = ($d_b_e) ? $d_b_s : $d_b_s;
@@ -762,8 +873,8 @@ class CC_Controller {
 		});
 
 		$split = ws_array_split( $shows, function( $show ) {
-			$start = get_field( 'trunk_show_date', $show->ID );
-			$end = get_field('trunk_show_date_end', $show->ID );
+			$start = get_field( self::$field_keys['trunkshow_start'], $show->ID );
+			$end = get_field( self::$field_keys['trunkshow_end'], $show->ID );
 
 			$date = ( $end ) ? $end : $start;
 
