@@ -1,13 +1,7 @@
 <?php
-	$owned = wc_customer_bought_product(
-		$GLOBALS['CC_POST_DATA']['user']->user_email,
-		$GLOBALS['CC_POST_DATA']['user']->ID,
-		$GLOBALS['CC_POST_DATA']['share']->id
-	);
-	
+	$owned = $GLOBALS['CC_POST_DATA']['owned'];	
 	$in_stock = $GLOBALS['CC_POST_DATA']['sale']->is_in_stock();
 	$active = $GLOBALS['CC_POST_DATA']['active'];
-
 	$user = $GLOBALS['CC_POST_DATA']['user'];
 	$sale = $GLOBALS['CC_POST_DATA']['sale'];
 
