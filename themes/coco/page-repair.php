@@ -1,6 +1,6 @@
 <?
 /*
-	Template Name: Repair
+	Template Name: List-Duplicates
 */
 ?>
 
@@ -76,13 +76,9 @@ if ( get_current_user_id() == 1) {
 
 				echo "Retrieved $type_guess Product: $returned_id -- Selected $type_guess Product: $post->ID<br/>";
 
-				echo "No Linked Dress... Deleting Duplicate<br/>";
-
-				//wp_delete_post( $post->ID );
+				echo "No Linked Dress...<br/>";
 
 				if ( $dress_id && !isset( $updated[ $dress_id ] ) ) {
-
-					//wp_update_post( array( 'ID' => $dress_id, 'post_content' => 'Updated') );
 
 					echo "Updating Proper Children of $dress_id... <br/>";
 
