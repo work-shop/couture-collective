@@ -221,6 +221,7 @@ class CC_Controller {
 
  	public static function get_products_for_user( $user ) {
  		$orders = self::get_orders_for_user( $user->ID, array('wc-processing', 'wc-completed') );
+
  		if ( empty( $orders ) ) return $orders;
 
  		$order_list = '(' . join(',', $orders) . ')';
