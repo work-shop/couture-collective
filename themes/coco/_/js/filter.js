@@ -1,6 +1,6 @@
 /** ----------- SORTING ACTIONS --------------------------------- */
 
-var delay = 500;
+var delay = 350;
 
 function makeKey( key ) { return key + '-key'; }
 

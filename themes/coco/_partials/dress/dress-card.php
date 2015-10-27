@@ -1,7 +1,7 @@
 <?php $designer = get_field(CC_Controller::$field_keys['dress_designer'], get_the_ID()); ?>
 
 <div 
-	class="col-sm-3 col-md-3 col-xs-6 product-card card <?php echo cc_get_dress_states( $GLOBALS['USER'], get_the_ID() ); ?>"
+	class="col-sm-4 col-md-4 col-xs-6 product-card card <?php echo cc_get_dress_states( $GLOBALS['USER'], get_the_ID() ); ?>"
 	<?php if ($sizes = CC_Controller::get_normalized_dress_size( get_the_ID() ) ) { ?>
 
 			data-size-value="<?php echo implode( ',', array_merge( $sizes, array( '*' ) ) ); ?>"
