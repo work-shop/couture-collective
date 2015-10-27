@@ -9,7 +9,9 @@ class CC_Controller {
 		'share_product' => 'field_547b32da9d8a6',
 		'rental_product' => 'field_547b33139d8a7',
 		'trunkshow_start' => 'field_55e09a49b2997',
-		'trunkshow_end' => 'field_55ef2ab89384d'
+		'trunkshow_end' => 'field_55ef2ab89384d',
+		'dress_search_size' => 'field_55e9d94f019c2',
+		'dress_designer' => 'field_547b25d7080b7'
 	);
 
 	public static $maximum_prereservations = 5;
@@ -101,6 +103,39 @@ class CC_Controller {
  		return $success;
  	}
 
+
+ 	/**
+ 	 * Given the id of a dress, this routine returns a string representing the
+ 	 * normalized size of the passed dress.
+ 	 * 
+ 	 * @param  [int] $dress_id a dress id.
+ 	 * @return [string]     either extra-small, small, medium, or large
+ 	 */
+ 	public static function get_normalized_dress_size( $dress_id ) {
+ 		return get_field( CC_Controller::$field_keys['dress_search_size'], $dress_id);
+ 	}
+
+ 	/**
+ 	 * get all of the designers registered on the site for a given season.
+ 	 * 
+ 	 * @param  [int] $season_id the id of the season
+ 	 * @return [array(string)]         array of designer names
+ 	 */
+ 	public static function get_designers( $season_id ) {
+ 		return array_unique( array_map( function( $dress ) {
+ 			return get_field( self::$field_keys[ 'dress_designer' ], $dress );
+ 		}, self::get_dresses_for_season( $season_id ) ) );
+ 	}
+
+ 	/**
+ 	 * given a string, replace space with dashes and convert to lowercase.
+ 	 * 
+ 	 * @param  [string] $name string to convert
+ 	 * @return [string]       converted string
+ 	 */
+ 	public static function normalize_name( $name ) {
+ 		return implode( '-', explode( ' ', strtolower( trim( $name ) ) ) );
+ 	}
 
  	/**
  	 * gets the id of the currently active season.

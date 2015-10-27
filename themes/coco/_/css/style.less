@@ -283,6 +283,11 @@ a{
 		text-decoration: none;
 		color: darken(@brand,5%);
 	}
+
+	&.active {
+		font-weight: bold;
+		color: darken(@brand,10%);
+	}
 }
 
 ul{
@@ -2245,6 +2250,10 @@ h6,.h6{
 	max-width: 180px;
 }
 
+}
+
+*[class$="-hidden"] {
+	display: none !important;
 }
 
 

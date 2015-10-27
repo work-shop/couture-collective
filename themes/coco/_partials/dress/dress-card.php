@@ -1,5 +1,22 @@
-<div class="col-sm-3 col-md-3 col-xs-6 product-card card <?php echo cc_get_dress_states( $GLOBALS['USER'], get_the_ID() ); ?>">
-	<a href="<?php  the_permalink(); ?>">
+<?php $designer = get_field(CC_Controller::$field_keys['dress_designer'], get_the_ID()); ?>
+
+<div 
+	class="col-sm-3 col-md-3 col-xs-6 product-card card <?php echo cc_get_dress_states( $GLOBALS['USER'], get_the_ID() ); ?>"
+	<?php if ($sizes = CC_Controller::get_normalized_dress_size( get_the_ID() ) ) { ?>
+
+			data-size-value="<?php echo implode( ',', array_merge( $sizes, array( '*' ) ) ); ?>"
+
+	<?php } else { ?>
+		
+			data-size-value="*"
+
+	<?php } ?>
+
+	data-designer-value="<?php echo CC_Controller::normalize_name( $designer ); ?>,*"
+
+
+>
+	<a href="<?php the_permalink(); ?>">
 
 		<div class="product-image">
 			<?php 
@@ -12,7 +29,7 @@
 		</div>
 
 		<div class="product-summary">
-			<p class="h11 card-designer bordered-dark-bottom"><?php echo get_field('dress_designer', get_the_ID()); ?></p>
+			<p class="h11 card-designer bordered-dark-bottom"><?php echo $designer; ?></p>
 		</div>
 	
 	</a>

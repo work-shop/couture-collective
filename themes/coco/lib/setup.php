@@ -16,6 +16,7 @@ function theme_scripts() {
     wp_register_script( 'flexslider', get_template_directory_uri() . '/_/js/flexslider.js');
     wp_register_script( 'elevate-zoom', get_template_directory_uri() . '/_/js/jquery.elevateZoom-3.0.8.min.js');
     wp_register_script( 'functions', get_template_directory_uri() . '/_/js/functions.js');
+    wp_register_script( 'filter', get_template_directory_uri() . '/_/js/filter.js');
     wp_register_script( 'cc-ajax-make-reservation', get_template_directory_uri() . '/_/js/ajax/make-reservation.js' );
 
     wp_enqueue_script( 'jquery' );
@@ -24,6 +25,7 @@ function theme_scripts() {
     wp_enqueue_script( 'flexslider' ); 
     wp_enqueue_script('elevate-zoom');
     wp_enqueue_script( 'functions' );
+    wp_enqueue_script( 'filter' );
 }
 add_action('wp_enqueue_scripts', 'theme_scripts');
 
