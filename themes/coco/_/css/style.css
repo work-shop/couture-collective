@@ -495,8 +495,8 @@ h6,
   -o-transition: all 0.5s 0s ease;
 }
 #header {
-  height: 170px;
-  max-height: 170px;
+  height: 250px;
+  min-height: 250px;
   position: fixed;
   top: 0;
   left: 0;
@@ -509,7 +509,7 @@ h6,
   overflow: hidden;
 }
 #header:hover {
-  height: 170px !important;
+  height: 250px !important;
 }
 #header #logo {
   position: static;
@@ -553,7 +553,7 @@ h6,
   color: #e6d8d5;
 }
 #nav li {
-  margin-bottom: 9px;
+  margin-bottom: 5px;
 }
 #nav li a {
   letter-spacing: .1em;
@@ -738,7 +738,7 @@ h6,
   color: white;
 }
 #headerfix {
-  height: 170px;
+  height: 250px;
 }
 .home #header li a {
   color: white;
@@ -765,7 +765,7 @@ h6,
 }
 .after.home #header {
   background: none;
-  height: 170px;
+  height: 250px;
   overflow: visible;
 }
 #footer .container {
