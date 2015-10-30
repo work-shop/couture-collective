@@ -1,10 +1,6 @@
 <?php
 /**
  * Customer booking reminder email
- *
- * @author WooThemes
- * @package WooCommerce/Templates/Emails/HTML
- * @version 2.0.0
  */
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>
 

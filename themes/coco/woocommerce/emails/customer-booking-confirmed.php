@@ -1,6 +1,10 @@
 <?php
 /**
- * Customer booking confirmed email
+ * Customer booking cancelled
+ *
+ * @author WooThemes
+ * @package WooCommerce/Templates/Emails/HTML
+ * @version 2.0.0
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly

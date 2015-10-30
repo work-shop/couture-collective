@@ -4,7 +4,7 @@
  *
  * @author 		WooThemes
  * @package 	WooCommerce/Templates/Emails
- * @version     1.6.4
+ * @version     2.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>
@@ -13,7 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>
 
 <?php foreach ($order->get_items() as $key => $value) {
 		$product = wc_get_product( ws_fst( $value['item_meta']['_product_id'] ));
-		$product_type = ( is_array($ts = get_the_terms( $product->id, 'product_cat')) ) ? ws_fst( $ts )->name : ""; ?>
+		$product_type = ( is_array($ts = get_the_terms( $product->id, 'product_cat')) ) ? ws_fst( $ts )->name : ""; 
+
+		?>
 
 
 	<?php if ( $product->product_type == "booking" ) { ?>
