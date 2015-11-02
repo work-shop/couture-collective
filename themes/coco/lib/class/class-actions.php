@@ -243,7 +243,6 @@ class CC_Actions {
 			$this->deactivate_subscription( $customer_id );
 			wp_logout();
 			wp_redirect( home_url() . '/my-account?login=pending' );
-			exit;
 		}
 	}
 
@@ -281,6 +280,11 @@ class CC_Actions {
 				}
 				
 			}
+		}
+
+		if ( get_current_user_id() == $user_id ) {
+			wp_logout();
+			wp_redirect( home_url() . '/my-account?login=pending' );
 		}
 	}
 
