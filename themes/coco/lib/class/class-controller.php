@@ -123,8 +123,8 @@ class CC_Controller {
  	 */
  	public static function get_designers( $season_id ) {
  		return array_unique( array_map( function( $dress ) {
- 			return get_field( self::$field_keys[ 'dress_designer' ], $dress );
- 		}, self::get_dresses_for_season( $season_id ) ) );
+ 			return get_field( CC_Controller::$field_keys[ 'dress_designer' ], $dress );
+ 		}, CC_Controller::get_dresses_for_season( $season_id ) ) );
  	}
 
  	/**
@@ -190,7 +190,7 @@ class CC_Controller {
  	 * @return [boolean]           true if $dress_id is in the $season_id season of dresses
  	 */
  	public static function dress_is_in_season( $season_id, $dress_id ) {
- 		return count( array_intersect( self::get_dresses_for_season( $season_id ), array( $dress_id ))) > 0;
+ 		return count( array_intersect( CC_Controller::get_dresses_for_season( $season_id ), array( $dress_id ))) > 0;
  	}
 
  	/**
@@ -201,7 +201,7 @@ class CC_Controller {
  	 * @return [boolean]           true if $dress_id is in the current season of dresses
  	 */
  	public static function dress_is_in_active_season( $dress_id ) {
- 		return self::dress_is_in_season( self::get_active_season(), $dress_id );
+ 		return CC_Controller::dress_is_in_season( CC_Controller::get_active_season(), $dress_id );
  	}
 
 
@@ -243,19 +243,19 @@ class CC_Controller {
 
  	public static function get_shared_dresses_for_user( $user ) {
 
- 		$products = array_filter( self::get_products_for_user( $user ), function($x) { return has_term('share', 'product_cat', $x); } );
+ 		$products = array_filter( CC_Controller::get_products_for_user( $user ), function($x) { return has_term('share', 'product_cat', $x); } );
 
  		if ( empty( $products ) ) return $products;
 
- 		$dresses = array_map( function( $x ) { return self::get_dress_for_product( $x, 'share' ); }, $products );
+ 		$dresses = array_map( function( $x ) { return CC_Controller::get_dress_for_product( $x, 'share' ); }, $products );
 
- 		$season_dresses = self::get_dresses_for_season( self::get_active_season() );
+ 		$season_dresses = CC_Controller::get_dresses_for_season( CC_Controller::get_active_season() );
 
  		return array_intersect( $dresses, $season_dresses);
  	}
 
  	public static function get_products_for_user( $user ) {
- 		$orders = self::get_orders_for_user( $user->ID, array('wc-processing', 'wc-completed') );
+ 		$orders = CC_Controller::get_orders_for_user( $user->ID, array('wc-processing', 'wc-completed') );
 
  		if ( empty( $orders ) ) return $orders;
 
@@ -874,7 +874,7 @@ class CC_Controller {
 	 */
 	public static function get_upcoming_trunkshows() {
 		
-		$upcoming = self::get_trunkshows_by_date_pivot( date('Ymd') );
+		$upcoming = CC_Controller::get_trunkshows_by_date_pivot( date('Ymd') );
 
 		return ( ! isset( $upcoming[0] ) ) ? array() : $upcoming[0];
 
@@ -897,10 +897,10 @@ class CC_Controller {
 		$shows = get_posts( $args );
 
 		usort($shows, function( $a, $b ) {
-			$d_a_s = get_field( self::$field_keys['trunkshow_start'], $a->ID );
-			$d_b_s = get_field( self::$field_keys['trunkshow_start'], $b->ID );
-			$d_a_e = get_field( self::$field_keys['trunkshow_end'], $a->ID );
-			$d_b_e = get_field( self::$field_keys['trunkshow_end'], $b->ID );
+			$d_a_s = get_field( CC_Controller::$field_keys['trunkshow_start'], $a->ID );
+			$d_b_s = get_field( CC_Controller::$field_keys['trunkshow_start'], $b->ID );
+			$d_a_e = get_field( CC_Controller::$field_keys['trunkshow_end'], $a->ID );
+			$d_b_e = get_field( CC_Controller::$field_keys['trunkshow_end'], $b->ID );
 
 			$cmp_a = ($d_a_e) ? $d_a_s : $d_a_s;
 			$cmp_b = ($d_b_e) ? $d_b_s : $d_b_s;
@@ -909,8 +909,8 @@ class CC_Controller {
 		});
 
 		$split = ws_array_split( $shows, function( $show ) {
-			$start = get_field( self::$field_keys['trunkshow_start'], $show->ID );
-			$end = get_field( self::$field_keys['trunkshow_end'], $show->ID );
+			$start = get_field( CC_Controller::$field_keys['trunkshow_start'], $show->ID );
+			$end = get_field( CC_Controller::$field_keys['trunkshow_end'], $show->ID );
 
 			$date = ( $end ) ? $end : $start;
 

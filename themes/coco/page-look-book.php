@@ -74,9 +74,6 @@
 					<div class="row">
 					<?php
 
-					// $row_length = 4;
-					// $index = 0;
-
 					$args = array(
 						'post__in' => CC_Controller::get_dresses_for_season( $season_id ),
 						'post_type' => 'dress',

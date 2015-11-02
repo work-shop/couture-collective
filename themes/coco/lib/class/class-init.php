@@ -28,7 +28,7 @@ class CC_Init {
 		add_action( 'save_post', array($this, 'on_post_save') );
 		add_action( 'before_delete_post', array( $this, 'cc_dress_destroy') );
 
-		add_filter('acf/update_value/key=' . self::$fields['season_dresses'], array($this, 'cc_season_modify'), 10, 3);
+		add_filter('acf/update_value/key=' . CC_Init::$fields['season_dresses'], array($this, 'cc_season_modify'), 10, 3);
 
 	}
 
@@ -36,8 +36,8 @@ class CC_Init {
 	public function on_post_save( $post_id  ) {
 		$post = get_post( $post_id );
 
-		if ( cc_dress( $post ) ) { self::cc_dress_modify( $post_id  ); }
-		//else if ( cc_season( $post ) ) { self::cc_season_modify( $post_id ); }
+		if ( cc_dress( $post ) ) { CC_Init::cc_dress_modify( $post_id  ); }
+		//else if ( cc_season( $post ) ) { CC_Init::cc_season_modify( $post_id ); }
 	}
 
 	/**
@@ -47,8 +47,8 @@ class CC_Init {
 	 *
 	 */
 	public function cc_dress_init() {
-		self::cc_trunk_shows_init();
-		self::cc_seasons_init();
+		CC_Init::cc_trunk_shows_init();
+		CC_Init::cc_seasons_init();
 
 		$labels = array(
 
@@ -701,7 +701,7 @@ class CC_Init {
 		$post = get_post( $post_id );
 		if ( !cc_season( $post ) ) return;
 
-		remove_filter('acf/update_value/name=' . self::$fields['season_dresses'], array($this, 'cc_season_modify'), 10 );
+		remove_filter('acf/update_value/name=' . CC_Init::$fields['season_dresses'], array($this, 'cc_season_modify'), 10 );
 
 		$meta_query = array('relation' => 'OR');
 
@@ -723,13 +723,13 @@ class CC_Init {
 
 		foreach ( $seasons as $season ) {
 
-			$dresses = get_field(self::$fields['season_dresses'], $season->ID );
+			$dresses = get_field(CC_Init::$fields['season_dresses'], $season->ID );
 			$new_dresses = array_diff($dresses, $value);
-			update_field( self::$fields['season_dresses'], $new_dresses, $season->ID );
+			update_field( CC_Init::$fields['season_dresses'], $new_dresses, $season->ID );
 
 		}
 
-		add_filter('acf/update_value/name=' . self::$fields['season_dresses'], array($this, 'cc_season_modify'), 10, 3);
+		add_filter('acf/update_value/name=' . CC_Init::$fields['season_dresses'], array($this, 'cc_season_modify'), 10, 3);
 
 		return $value;
 
