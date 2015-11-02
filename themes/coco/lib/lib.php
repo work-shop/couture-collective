@@ -259,5 +259,34 @@ function cc_booking_noun_string( $reservation_type ) {
 
 
 
-
+if ( !function_exists( 'wp_log' ) ) {
+    /**
+     * A file based logging utility.
+     * 
+     * Made for WordPress, but can be used anywhere with a single change.
+     * 
+     * @author Tareq Hasan <tareq@wedevs.com>
+     * 
+     * @param string $type type of the log
+     * @param string $message log message
+     * @param mixed $var any variable to log
+     */
+    function wp_log( $type = '', $message = '', $var = null ) {
+        if ( $var !== null ) {
+            if ( is_array( $var ) ) {
+                //replace new line with space, double space with single space
+                $message .= str_replace( array("\n", '  '), array('', ' '), var_export( $var, true ) );
+            } elseif ( is_object( $var ) ) {
+                //prettyfy json
+                $message .= str_replace( array('":', ',', '"'), array(' => ', ', ', ''), json_encode( $var, true ) );
+            } elseif ( is_bool( $var ) ) {
+                $message .= $var ? 'TRUE' : 'FALSE';
+            } else {
+                $message .= $var;
+            }
+        }
+        $log_message = sprintf( "[%s][%s] %s\n", date( 'd.m.Y h:i:s' ), $type, $message );
+        error_log( $log_message, 3, WP_CONTENT_DIR . '/my-debug.log' );
+    }
+}
 
