@@ -267,13 +267,76 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>
 		</table>
 
 
-
-
-	<?php } else { // This is a sale purchase ?>
+	<?php } else if ( $product->ID == 45 ) { // This is a membership purchase ?>
 
 
 
 		<?php $dress_id = CC_Controller::get_dress_for_product( $product->id, "sale" ); ?>
+
+		<table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock">
+		    <tbody class="mcnTextBlockOuter">
+		        <tr>
+		            <td valign="top" class="mcnTextBlockInner">
+		                
+		                <table align="left" border="0" cellpadding="0" cellspacing="0" width="600" class="mcnTextContentContainer">
+		                    <tbody><tr>
+		                        
+		                        <td valign="top" class="mcnTextContent" style="padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px;">
+		                        
+		                            <p class="null" style="text-align: center;line-height:2.4;"><span style="font-size:16px"><span class="mc-toc-title"><span style="font-family:georgia,times,times new roman,serif">Thank you for purchasing a membership with Couture Collective.</span></span></span></span></p>
+
+		                        </td>
+		                    </tr>
+		                </tbody></table>
+		                
+		            </td>
+		        </tr>
+		    </tbody>
+		</table>
+		<table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnDividerBlock" style="min-width:100%;">
+		    <tbody class="mcnDividerBlockOuter">
+		        <tr>
+		            <td class="mcnDividerBlockInner" style="min-width: 100%; padding: 18px 18px 48px;">
+		                <table class="mcnDividerContent" border="0" cellpadding="0" cellspacing="0" width="70%" style="border-top-width: 1px;border-top-style: solid;border-top-color: #4A443E; margin:0 auto;">
+		                    <tbody><tr>
+		                        <td>
+		                            <span></span>
+		                        </td>
+		                    </tr>
+		                </tbody>
+		                </table>
+		            </td>
+		        </tr>
+		    </tbody>
+		</table>
+		            </td>
+		        </tr>
+		    </tbody>
+		</table><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock">
+		    <tbody class="mcnTextBlockOuter">
+		        <tr>
+		            <td valign="top" class="mcnTextBlockInner">
+		                
+		                <table align="left" border="0" cellpadding="0" cellspacing="0" width="600" class="mcnTextContentContainer">
+		                    <tbody><tr>
+		                        
+		                        <td valign="top" class="mcnTextContent" style="padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px;">
+		                        
+		                            <p class="null" style="text-align: center;"><span style="font-size:16px"><span class="mc-toc-title"><span style="font-family:georgia,times,times new roman,serif">You will be notified when your membership is approved.</span></span></span></p>
+
+		                        </td>
+		                    </tr>
+		                </tbody></table>
+		                
+		            </td>
+		        </tr>
+		    </tbody>
+		</table>
+
+
+
+
+	<?php } else { // This is a sale purchase ?>
 
 		<table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock">
 		    <tbody class="mcnTextBlockOuter">
@@ -326,7 +389,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>
 		                        
 		                        <td valign="top" class="mcnTextContent" style="padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px;">
 		                        
-		                            <p class="null" style="text-align: center;"><span style="font-size:16px"><span class="mc-toc-title"><span style="font-family:georgia,times,times new roman,serif">This item will be delivered to you on <strong>[Season End Date]</strong>.</span></span></span></p>
+		                            <p class="null" style="text-align: center;"><span style="font-size:16px"><span class="mc-toc-title"><span style="font-family:georgia,times,times new roman,serif">This item will be delivered to you on <strong>April 1st, 2016</strong>.</span></span></span></p>
 
 		                        </td>
 		                    </tr>
@@ -336,9 +399,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>
 		        </tr>
 		    </tbody>
 		</table>
-
-
-
 
 	<?php } ?>
 
