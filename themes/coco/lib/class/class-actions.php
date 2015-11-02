@@ -239,10 +239,11 @@ class CC_Actions {
 	 * @param string $password_generated
 	 */
 	public function set_customer_approval_status( $customer_id ) {
+		if ( WP_DEBUG ) wp_log('debug', '"set_customer_approval_status"');
 		if ( ! get_user_meta( $customer_id, 'wp-approve-user', true) ) {
+			if ( WP_DEBUG ) wp_log('debug', '"set_customer_approval_status": wp-approve-user == false');
 			$this->deactivate_subscription( $customer_id );
-			wp_logout();
-			wp_redirect( home_url() . '/my-account?login=pending' );
+			CC_Actions::deauthenticate_wp_user();
 		}
 	}
 
@@ -252,6 +253,7 @@ class CC_Actions {
 	 * @param int $user_id the id of the user to activate a subscription for.
 	 */
 	public function activate_subscription( $user_id ) {
+		if ( WP_DEBUG ) wp_log('debug', '"activate_subscription"');
 		if ( get_user_meta( $user_id, 'wp-approve-user', true ) ) {
 			$subs = WC_Subscriptions_Manager::get_users_subscriptions( $user_id );
 
@@ -271,7 +273,9 @@ class CC_Actions {
 	 * @param int $user_id the id of the user to deactivate the subscription for
 	 */
 	public function deactivate_subscription( $user_id ) {
+		if ( WP_DEBUG ) wp_log('debug', '"deactivate_subscription"');
 		if ( !get_user_meta( $user_id, 'wp-approve-user', true ) ) {
+			if ( WP_DEBUG ) wp_log('debug', '"deactivate_subscription": wp-approve-user is false');
 			$subs = WC_Subscriptions_Manager::get_users_subscriptions( $user_id );
 
 			if ( !empty( $subs ) ) {
@@ -283,8 +287,10 @@ class CC_Actions {
 		}
 
 		if ( get_current_user_id() == $user_id ) {
-			wp_logout();
-			wp_redirect( home_url() . '/my-account?login=pending' );
+			if ( WP_DEBUG ) wp_log('debug', '"deactivate_subscription": current_user_id == ' . $user_id );
+
+			CC_Actions::deauthenticate_wp_user();
+
 		}
 	}
 
@@ -295,6 +301,7 @@ class CC_Actions {
 	 * @param string $subscription_key identifier of the source subscription.
 	 */
 	public function deauthorize_user($user_id, $subscription_key) {
+		if ( WP_DEBUG ) wp_log('debug', '"deauthorize_user"');
 		update_user_meta( $user_id, 'wp-approve-user', false );
 	}
 
@@ -347,6 +354,14 @@ class CC_Actions {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Destroy all sessions associated with the currently logged in user.
+	 */
+	public static function deauthenticate_wp_user() {
+		wp_destroy_all_sessions();
+		wp_clear_auth_cookie();
 	}
 
 }
