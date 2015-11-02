@@ -11,7 +11,8 @@ class CC_Controller {
 		'trunkshow_start' => 'field_55e09a49b2997',
 		'trunkshow_end' => 'field_55ef2ab89384d',
 		'dress_search_size' => 'field_55e9d94f019c2',
-		'dress_designer' => 'field_547b25d7080b7'
+		'dress_designer' => 'field_547b25d7080b7',
+		'dress_description' => 'field_547b2637080b8'
 	);
 
 	public static $maximum_prereservations = 5;

@@ -1,4 +1,5 @@
 <?php $designer = get_field(CC_Controller::$field_keys['dress_designer'], get_the_ID()); ?>
+<?php $description = get_field(CC_Controller::$field_keys['dress_description'], get_the_ID()); ?>
 
 <div 
 	class="col-sm-4 col-md-4 col-xs-6 product-card card <?php echo cc_get_dress_states( $GLOBALS['USER'], get_the_ID() ); ?>"
@@ -29,7 +30,8 @@
 		</div>
 
 		<div class="product-summary">
-			<p class="h11 card-designer bordered-dark-bottom"><?php echo $designer; ?></p>
+			<p class="h11 card-designer bordered-dark-bottom m1"><?php echo $designer; ?></p>
+			<p class="card-designer small bold hidden"><?php echo strtolower( $description ); ?></p>
 		</div>
 	
 	</a>
