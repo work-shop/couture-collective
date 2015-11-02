@@ -147,8 +147,14 @@ a {
 }
 a:hover,
 a:active {
+  cursor: pointer;
   text-decoration: none;
   color: #3c3732;
+}
+a.active {
+  cursor: auto;
+  font-weight: bold;
+  color: #2e2b27;
 }
 ul {
   list-style: none;
@@ -1634,4 +1640,7 @@ label {
     display: block;
     max-width: 180px;
   }
+}
+*[class$="-hidden"] {
+  display: none !important;
 }

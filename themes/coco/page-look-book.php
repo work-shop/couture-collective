@@ -100,7 +100,6 @@
 
 						 	//if ( $index % $row_length == $row_length - 1 ) echo '</div>';
 
-						 	$index++;
 						endwhile;
 
 					} else { 

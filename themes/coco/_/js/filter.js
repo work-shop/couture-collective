@@ -11,21 +11,27 @@ function makeData( key ) { return 'data-' + key; }
 function makeHidden( key ) { return key + '-hidden'; }
 
 function transitionIn( index, set, next ) {
-	set.fadeIn( delay, function( ) {
-		set.removeClass( makeHidden( index ) );
-		if ( next !== undefined ) { next(); }
-	});
+	set.removeClass( makeHidden( index ) );
+	if ( next !== undefined ) { next(); }
+
+	// set.fadeIn( delay, function( ) {
+	// 	set.removeClass( makeHidden( index ) );
+	// 	if ( next !== undefined ) { next(); }
+	// });
 }
 
 function transitionOut( index, set, next ) {
-	set.fadeOut( delay, function() {
-		set.addClass( makeHidden( index ) );
-		if ( next !== undefined ) { next(); }
-	});
+	set.addClass( makeHidden( index ) );
+	if ( next !== undefined ) { next(); }
+
+
+	// set.fadeOut( delay, function() {
+	// 	set.addClass( makeHidden( index ) );
+	// 	if ( next !== undefined ) { next(); }
+	// });
 }
 
 function filter(index, key, set) {
-	console.log( set );
 	var inSet = set.filter( function( i, element ) {
 		var matches = $( this ).data( makeValue( index ) ).split(',');
 

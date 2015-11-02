@@ -280,11 +280,13 @@ a{
 	color: @brand;
 	.transition(color,.125s);
 	&:hover, &:active{
+		cursor:pointer;
 		text-decoration: none;
 		color: darken(@brand,5%);
 	}
 
 	&.active {
+		cursor:auto;
 		font-weight: bold;
 		color: darken(@brand,10%);
 	}
