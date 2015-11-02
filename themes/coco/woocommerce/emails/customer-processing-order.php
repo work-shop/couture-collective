@@ -267,11 +267,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>
 		</table>
 
 
-	<?php } else if ( $product->ID == 45 ) { // This is a membership purchase ?>
+	<?php } else if ( $product->id == 45 ) { // This is a membership purchase ?>
 
-
-
-		<?php $dress_id = CC_Controller::get_dress_for_product( $product->id, "sale" ); ?>
 
 		<table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock">
 		    <tbody class="mcnTextBlockOuter">
@@ -337,6 +334,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>
 
 
 	<?php } else { // This is a sale purchase ?>
+
+		<?php $dress_id = CC_Controller::get_dress_for_product( $product->id, "sale" ); ?>
 
 		<table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock">
 		    <tbody class="mcnTextBlockOuter">
