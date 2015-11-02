@@ -76,4 +76,24 @@ $(document).ready( function() {
 		});
 	});
 
+
+	size();
+
+	$( window ).once('resize', size);
+
 });
+
+
+function size() {
+
+	var max = -Infinity;
+
+	$('.product-card').each( function( ) {
+
+		var l = $( this ).outerHeight();
+
+		max = ( l > max ) ? l : max;
+
+	}).outerHeight( max );
+
+}
