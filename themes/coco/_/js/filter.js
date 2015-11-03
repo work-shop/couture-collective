@@ -79,7 +79,7 @@ $(document).ready( function() {
 
 	size();
 
-	$( window ).once('resize', size);
+	$( window ).one('resize', size);
 
 });
 
@@ -94,6 +94,6 @@ function size() {
 
 		max = ( l > max ) ? l : max;
 
-	}).outerHeight( max );
+	}).height( max );
 
 }
