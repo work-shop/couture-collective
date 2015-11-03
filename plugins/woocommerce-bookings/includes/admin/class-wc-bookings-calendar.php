@@ -18,7 +18,7 @@ class WC_Bookings_Calendar {
 
 			$this->bookings = WC_Bookings_Controller::get_bookings_in_date_range(
 				strtotime( 'midnight', strtotime( $day ) ),
-				strtotime( 'midnight +1 day', strtotime( $day ) ),
+				strtotime( 'midnight +18 hours', strtotime( $day ) ),
 				$product_filter
 			);
 		} else {
