@@ -203,6 +203,16 @@ if ( !function_exists( 'wp_new_user_notification' ) ) {
   }
 }
 
+add_action('admin_head', 'my_custom_fonts');
+
+function my_custom_fonts() {
+  echo '<style>
+    .bookings { 
+      height:350px !important;
+    } 
+  </style>';
+}
+
 
 
 
