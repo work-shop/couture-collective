@@ -31,7 +31,7 @@
 
 		<div class="product-summary">
 			<p class="h11 card-designer bordered-dark-bottom m1"><?php echo $designer; ?></p>
-			<p class="card-designer small bold hidden"><?php echo strtolower( $description ); ?></p>
+			<p class="card-designer small bold"><?php echo strtolower( $description ); ?></p>
 		</div>
 	
 	</a>
