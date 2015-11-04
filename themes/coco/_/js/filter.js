@@ -79,7 +79,7 @@ $(document).ready( function() {
 
 	size();
 
-	$( window ).one('resize', size);
+	$( window ).on('resize', size);
 
 });
 
@@ -88,9 +88,9 @@ function size() {
 
 	var max = -Infinity;
 
-	$('.product-card').each( function( ) {
+	$('.product-card').height('auto').each( function( ) {
 
-		var l = $( this ).outerHeight();
+		var l = $( this ).height();
 
 		max = ( l > max ) ? l : max;
 
