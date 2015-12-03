@@ -123,9 +123,13 @@ class CC_Controller {
  	 * @return [array(string)]         array of designer names
  	 */
  	public static function get_designers( $season_id ) {
- 		return array_unique( array_map( function( $dress ) {
+ 		$designers = array_unique( array_map( function( $dress ) {
  			return get_field( CC_Controller::$field_keys[ 'dress_designer' ], $dress );
  		}, CC_Controller::get_dresses_for_season( $season_id ) ) );
+
+ 		sort( $designers, SORT_STRING );
+
+ 		return $designers;
  	}
 
  	/**
